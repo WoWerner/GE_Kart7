@@ -21,7 +21,7 @@
       <MajorVersionNr Value="7"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="5"/>
+      <BuildNr Value="6"/>
       <Language Value="0407"/>
       <StringTable CompanyName="Wolfgang Werner" FileDescription="GE_Kart: Verwaltungsprogramm für Kirchengemeinden" InternalName="GE_Kart.exe" LegalCopyright="Wolfgang Werner" OriginalFilename="GE_Kart.exe" ProductName="GE_Kart" ProductVersion="7.5.1.2"/>
     </VersionInfo>
@@ -87,8 +87,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
-        <TopLine Value="1216"/>
-        <CursorPos X="21" Y="1222"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="1234"/>
+        <CursorPos X="9" Y="1270"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -141,7 +142,6 @@
         <ComponentName Value="frmKartei"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="424"/>
         <CursorPos X="113" Y="531"/>
@@ -341,103 +341,127 @@
         <UsageCount Value="4"/>
       </Unit28>
     </Units>
-    <JumpHistory Count="24" HistoryIndex="23">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="1215" Column="42" TopLine="1207"/>
+        <Caret Line="2856" Column="95" TopLine="2778"/>
       </Position1>
       <Position2>
-        <Filename Value="help.pas"/>
-        <Caret Line="135" Column="11" TopLine="116"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2518" Column="49" TopLine="2479"/>
       </Position2>
       <Position3>
-        <Filename Value="help.pas"/>
-        <Caret Line="116" Column="27" TopLine="102"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="1274" Column="59" TopLine="1232"/>
       </Position3>
       <Position4>
         <Filename Value="main.pas"/>
-        <Caret Line="497" Column="141" TopLine="492"/>
+        <Caret Line="2195" Column="18" TopLine="2116"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="2600" Column="9" TopLine="2589"/>
+        <Caret Line="2206" Column="18" TopLine="2127"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
-        <Caret Line="2706" Column="38" TopLine="2669"/>
+        <Caret Line="2331" Column="15" TopLine="2252"/>
       </Position6>
       <Position7>
         <Filename Value="main.pas"/>
-        <Caret Line="3104" Column="71" TopLine="3073"/>
+        <Caret Line="2653" Column="13" TopLine="2625"/>
       </Position7>
       <Position8>
         <Filename Value="main.pas"/>
-        <Caret Line="839" Column="118" TopLine="828"/>
+        <Caret Line="2879" Column="43" TopLine="2815"/>
       </Position8>
       <Position9>
         <Filename Value="main.pas"/>
-        <Caret Line="2581" Column="16" TopLine="2544"/>
+        <Caret Line="2949" Column="69" TopLine="2923"/>
       </Position9>
       <Position10>
         <Filename Value="main.pas"/>
-        <Caret Line="2657" Column="14" TopLine="2620"/>
+        <Caret Line="2966" Column="45" TopLine="2923"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="2873" Column="66" TopLine="2843"/>
+        <Caret Line="2971" Column="41" TopLine="2923"/>
       </Position11>
       <Position12>
-        <Filename Value="help.pas"/>
-        <Caret Line="219" Column="27" TopLine="203"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2581" Column="12" TopLine="2546"/>
       </Position12>
       <Position13>
-        <Filename Value="help.pas"/>
-        <Caret Line="491" Column="80" TopLine="477"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2697" Column="22" TopLine="2633"/>
       </Position13>
       <Position14>
-        <Filename Value="help.pas"/>
-        <Caret Line="519" Column="58" TopLine="488"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2698" Column="55" TopLine="2634"/>
       </Position14>
       <Position15>
-        <Filename Value="help.pas"/>
-        <Caret Line="536" Column="58" TopLine="499"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2704" Column="43" TopLine="2640"/>
       </Position15>
       <Position16>
-        <Filename Value="help.pas"/>
-        <Caret Line="558" Column="64" TopLine="521"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2713" Column="42" TopLine="2649"/>
       </Position16>
       <Position17>
-        <Filename Value="help.pas"/>
-        <Caret Line="143" Column="14" TopLine="118"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2728" Column="37" TopLine="2664"/>
       </Position17>
       <Position18>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="1045" Column="100" TopLine="1007"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2734" Column="37" TopLine="2670"/>
       </Position18>
       <Position19>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="1063" TopLine="1049"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2740" Column="37" TopLine="2676"/>
       </Position19>
       <Position20>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="1062" Column="64" TopLine="1038"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2746" Column="37" TopLine="2682"/>
       </Position20>
       <Position21>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="1093" Column="96" TopLine="1078"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2879" Column="65" TopLine="2815"/>
       </Position21>
       <Position22>
-        <Filename Value="global.pas"/>
-        <Caret Line="266" Column="37" TopLine="228"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2884" Column="65" TopLine="2820"/>
       </Position22>
       <Position23>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="865" Column="3" TopLine="863"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2887" Column="64" TopLine="2823"/>
       </Position23>
       <Position24>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="771" Column="20" TopLine="763"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="2904" Column="59" TopLine="2840"/>
       </Position24>
+      <Position25>
+        <Filename Value="main.pas"/>
+        <Caret Line="2949" Column="69" TopLine="2885"/>
+      </Position25>
+      <Position26>
+        <Filename Value="main.pas"/>
+        <Caret Line="2966" Column="45" TopLine="2902"/>
+      </Position26>
+      <Position27>
+        <Filename Value="main.pas"/>
+        <Caret Line="2971" Column="41" TopLine="2907"/>
+      </Position27>
+      <Position28>
+        <Filename Value="main.pas"/>
+        <Caret Line="2694" Column="93" TopLine="2658"/>
+      </Position28>
+      <Position29>
+        <Filename Value="main.pas"/>
+        <Caret Line="2659" Column="12" TopLine="2646"/>
+      </Position29>
+      <Position30>
+        <Filename Value="main.pas"/>
+        <Caret Line="2973" Column="33" TopLine="265"/>
+      </Position30>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
@@ -464,7 +488,7 @@
     </Linking>
   </CompilerOptions>
   <Debugging>
-    <BreakPoints Count="1">
+    <BreakPoints Count="2">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -472,6 +496,13 @@
         <Source Value="main.pas"/>
         <Line Value="898"/>
       </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="main.pas"/>
+        <Line Value="2868"/>
+      </Item2>
     </BreakPoints>
     <Watches Count="1">
       <Item1>
