@@ -1,8 +1,8 @@
 object frmKartei: TfrmKartei
-  Left = 626
+  Left = 202
   Height = 675
   Hint = 'Strg-Pos1: Erster Datensatz'#13#10'Bild hoch: Vorhergehender Datensatz'#13#10'Bild runter: Nächster Datensatz'#13#10'Strg-Ende: Letzter Datensatz'#13#10#13#10'Strg-S: Speichern'#13#10'Strg-P: Drucken'#13#10'Strg-F: Schnellsuche'#13#10#13#10'Mausrad: Datensatzwechsel'#13#10#13#10'F1: Hilfe'
-  Top = 206
+  Top = 107
   Width = 1003
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -77,9 +77,9 @@ object frmKartei: TfrmKartei
     Height = 488
     Top = 161
     Width = 888
-    ActivePage = TSKasualien
+    ActivePage = TSAllgemein
     ParentFont = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 1
     OnChange = pcDetailsChange
     object TSAllgemein: TTabSheet
@@ -103,7 +103,7 @@ object frmKartei: TfrmKartei
         Left = 4
         Height = 15
         Top = 4
-        Width = 72
+        Width = 71
         Caption = 'Telefon privat'
         ParentColor = False
       end
@@ -122,7 +122,7 @@ object frmKartei: TfrmKartei
         Left = 212
         Height = 15
         Top = 4
-        Width = 93
+        Width = 92
         Caption = 'Telefon dienstlich'
         ParentColor = False
       end
@@ -152,7 +152,7 @@ object frmKartei: TfrmKartei
         Left = 420
         Height = 15
         Top = 4
-        Width = 73
+        Width = 72
         Caption = 'Telefon mobil'
         ParentColor = False
       end
@@ -160,7 +160,7 @@ object frmKartei: TfrmKartei
         Left = 652
         Height = 15
         Top = 4
-        Width = 17
+        Width = 18
         Caption = 'Fax'
         ParentColor = False
       end
@@ -581,7 +581,7 @@ object frmKartei: TfrmKartei
         Left = 420
         Height = 15
         Top = 96
-        Width = 220
+        Width = 219
         Caption = 'Internet / Facebook / Twitter / WKW / u.a.'
         ParentColor = False
       end
@@ -619,7 +619,7 @@ object frmKartei: TfrmKartei
         Left = 420
         Height = 15
         Top = 144
-        Width = 220
+        Width = 219
         Caption = 'Internet / Facebook / Twitter / WKW / u.a.'
         ParentColor = False
       end
@@ -1013,7 +1013,7 @@ object frmKartei: TfrmKartei
         Left = 4
         Height = 15
         Top = 8
-        Width = 62
+        Width = 61
         Caption = 'Tauf Datum'
         ParentColor = False
       end
@@ -1021,7 +1021,7 @@ object frmKartei: TfrmKartei
         Left = 84
         Height = 15
         Top = 8
-        Width = 43
+        Width = 42
         Caption = 'Tauf Ort'
         ParentColor = False
       end
@@ -1040,7 +1040,7 @@ object frmKartei: TfrmKartei
         Left = 285
         Height = 15
         Top = 8
-        Width = 61
+        Width = 60
         Caption = 'Tauf Pfarrer'
         ParentColor = False
       end
@@ -1059,7 +1059,7 @@ object frmKartei: TfrmKartei
         Left = 484
         Height = 15
         Top = 8
-        Width = 63
+        Width = 62
         Caption = 'Tauf Spruch'
         ParentColor = False
       end
@@ -1078,7 +1078,7 @@ object frmKartei: TfrmKartei
         Left = 686
         Height = 15
         Top = 8
-        Width = 71
+        Width = 70
         Caption = 'Tauf. Reg. Nr.'
         ParentColor = False
       end
@@ -1268,7 +1268,7 @@ object frmKartei: TfrmKartei
         Left = 4
         Height = 15
         Top = 241
-        Width = 62
+        Width = 61
         Caption = 'Trau Datum'
         ParentColor = False
       end
@@ -1300,7 +1300,7 @@ object frmKartei: TfrmKartei
         Left = 84
         Height = 15
         Top = 241
-        Width = 43
+        Width = 42
         Caption = 'Trau Ort'
         ParentColor = False
       end
@@ -1319,7 +1319,7 @@ object frmKartei: TfrmKartei
         Left = 285
         Height = 15
         Top = 241
-        Width = 61
+        Width = 60
         Caption = 'Trau Pfarrer'
         ParentColor = False
       end
@@ -1338,7 +1338,7 @@ object frmKartei: TfrmKartei
         Left = 484
         Height = 15
         Top = 241
-        Width = 63
+        Width = 62
         Caption = 'Trau Spruch'
         ParentColor = False
       end
@@ -1357,7 +1357,7 @@ object frmKartei: TfrmKartei
         Left = 686
         Height = 15
         Top = 241
-        Width = 71
+        Width = 70
         Caption = 'Trau. Reg. Nr.'
         ParentColor = False
       end
@@ -1365,7 +1365,7 @@ object frmKartei: TfrmKartei
         Left = 4
         Height = 15
         Top = 282
-        Width = 61
+        Width = 60
         Caption = 'Trauzeugen'
         ParentColor = False
       end
@@ -3018,7 +3018,7 @@ object frmKartei: TfrmKartei
         Left = 76
         Height = 15
         Top = 8
-        Width = 23
+        Width = 22
         Caption = 'Titel'
         ParentColor = False
       end
@@ -3353,24 +3353,6 @@ object frmKartei: TfrmKartei
       ShowHint = True
       TabOrder = 0
     end
-    object ediGemFilter: TLabeledEdit
-      Left = 3
-      Height = 23
-      Top = 96
-      Width = 80
-      EditLabel.AnchorSideLeft.Control = ediGemFilter
-      EditLabel.AnchorSideRight.Control = ediGemFilter
-      EditLabel.AnchorSideRight.Side = asrBottom
-      EditLabel.AnchorSideBottom.Control = ediGemFilter
-      EditLabel.Left = 3
-      EditLabel.Height = 15
-      EditLabel.Top = 78
-      EditLabel.Width = 80
-      EditLabel.Caption = 'Gemeinde'
-      EditLabel.ParentColor = False
-      TabOrder = 2
-      OnChange = OnFilterChange
-    end
     object cbFilterMark: TCheckBox
       Left = 3
       Height = 19
@@ -3391,7 +3373,7 @@ object frmKartei: TfrmKartei
       BevelOuter = bvNone
       ClientHeight = 16
       ClientWidth = 72
-      TabOrder = 3
+      TabOrder = 2
       object Label145: TLabel
         Left = 3
         Height = 15
@@ -3411,6 +3393,24 @@ object frmKartei: TfrmKartei
         ParentColor = False
         ParentFont = False
       end
+    end
+    object cbGemeinde: TComboBox
+      Left = 3
+      Height = 23
+      Top = 96
+      Width = 85
+      ItemHeight = 15
+      OnChange = OnFilterChange
+      TabOrder = 3
+      Text = 'Alle'
+    end
+    object Label149: TLabel
+      Left = 3
+      Height = 15
+      Top = 80
+      Width = 54
+      Caption = 'Gemeinde'
+      ParentColor = False
     end
   end
   object cbBearbeiten: TCheckBox
@@ -3552,8 +3552,8 @@ object frmKartei: TfrmKartei
     top = 88
   end
   object PopupMenuMarkiert: TPopupMenu
-    left = 944
-    top = 448
+    left = 952
+    top = 440
     object mnuDelMark: TMenuItem
       Caption = 'Lösche alle Markierungen'
       OnClick = mnuDelMarkClick

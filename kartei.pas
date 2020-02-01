@@ -41,6 +41,7 @@ type
     cbFilterMark: TCheckBox;
     cbBearbeiten: TCheckBox;
     cbMarkiert: TCheckBox;
+    cbGemeinde: TComboBox;
     DateEditKomm: TDateEdit;
     DBCBAnrede: TDBComboBox;
     dbcbUebertrittAus: TDBComboBox;
@@ -259,6 +260,7 @@ type
     Label146: TLabel;
     Label147: TLabel;
     Label148: TLabel;
+    Label149: TLabel;
     Label21: TLabel;
     Label25: TLabel;
     Label26: TLabel;
@@ -337,7 +339,6 @@ type
     Label97: TLabel;
     Label98: TLabel;
     Label99: TLabel;
-    ediGemFilter: TLabeledEdit;
     labRecCnt: TLabel;
     MemoKomm: TMemo;
     mnuMarkThis: TMenuItem;
@@ -472,6 +473,8 @@ begin
   DBGridOverView.Columns.Add.FieldName := 'Strasse';      DBGridOverView.Columns.Items[3].Width := 140;
   DBGridOverView.Columns.Add.FieldName := 'Geburtstag';   DBGridOverView.Columns.Items[4].Width :=  80;
   panShowOverview.Visible              := frmMain.mnuShowOverView.Checked;
+  cbGemeinde.Items.Text := sGemeinden;
+  cbGemeinde.Text       := sGemeindenAlle;
 end;
 
 procedure TfrmKartei.panDatenbankOverviewMouseLeave(Sender: TObject);
@@ -1255,17 +1258,17 @@ begin
 
   //Scrollbar setzen
   if nAnzahl = 0 then
-  begin
-    scBarKartei.Min := 0;
-    scBarKartei.position := 0;
-  end
+    begin
+      scBarKartei.Min := 0;
+      scBarKartei.position := 0;
+    end
   else
-  begin
-    scBarKartei.Min := 1;
-    if (nPos > scBarKartei.Max) then scBarKartei.position := 1; //erst einmal auf eine sichere Position
-    scBarKartei.Max := nAnzahl;
-    scBarKartei.position := nPos; //Jetzt auf die richtige
-  end;
+    begin
+      scBarKartei.Min := 1;
+      if (nPos > scBarKartei.Max) then scBarKartei.position := 1; //erst einmal auf eine sichere Position
+      scBarKartei.Max := nAnzahl;
+      scBarKartei.position := nPos; //Jetzt auf die richtige
+    end;
 end;
 
 procedure TfrmKartei.OnFilterChange(Sender: TObject);
@@ -1275,9 +1278,12 @@ var
 
 begin
   sFilter := '';
-  if ediGemFilter.Text <> '' then sFilter := SQL_Where_Add(sFilter, 'Gemeinde=''' + ediGemFilter.Text + '''');
-  if not cbAbgaenge.Checked  then sFilter := SQL_Where_Add(sFilter, 'Abgang=''0''');
-  if cbFilterMark.Checked    then sFilter := SQL_Where_Add(sFilter, 'Markiert=''1''');
+  if cbGemeinde.Text = ''
+    then sFilter := SQL_Where_Add(sFilter, SQL_Where_IsNull('Gemeinde'))
+    else if cbGemeinde.Text <> sGemeindenAlle
+      then sFilter := SQL_Where_Add(sFilter, 'Gemeinde=''' + cbGemeinde.Text + '''');
+  if not cbAbgaenge.Checked then sFilter := SQL_Where_Add(sFilter, 'Abgang=''0''');
+  if cbFilterMark.Checked   then sFilter := SQL_Where_Add(sFilter, 'Markiert=''1''');
   myDebugLN('Setze Filter: ' + sFilter);
   frmDM.dsetPERSONEN.Filter   := sFilter;
   frmDM.dsetPERSONEN.Filtered := (sFilter <> '');
