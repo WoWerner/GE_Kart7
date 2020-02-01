@@ -1,8 +1,8 @@
 object frmKartei: TfrmKartei
-  Left = 885
+  Left = 626
   Height = 675
   Hint = 'Strg-Pos1: Erster Datensatz'#13#10'Bild hoch: Vorhergehender Datensatz'#13#10'Bild runter: Nächster Datensatz'#13#10'Strg-Ende: Letzter Datensatz'#13#10#13#10'Strg-S: Speichern'#13#10'Strg-P: Drucken'#13#10'Strg-F: Schnellsuche'#13#10#13#10'Mausrad: Datensatzwechsel'#13#10#13#10'F1: Hilfe'
-  Top = 0
+  Top = 206
   Width = 1003
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -77,9 +77,9 @@ object frmKartei: TfrmKartei
     Height = 488
     Top = 161
     Width = 888
-    ActivePage = TSAllgemein
+    ActivePage = TSKasualien
     ParentFont = False
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 1
     OnChange = pcDetailsChange
     object TSAllgemein: TTabSheet
@@ -433,7 +433,7 @@ object frmKartei: TfrmKartei
         MaxLength = 255
         TabOrder = 20
       end
-      object Label52: TLabel
+      object labFFeld1: TLabel
         Left = 4
         Height = 15
         Top = 360
@@ -977,7 +977,7 @@ object frmKartei: TfrmKartei
       Caption = 'Kasualien 1 (Taufe, Konfirmation, Trauung)'
       ClientHeight = 460
       ClientWidth = 880
-      object Label62: TLabel
+      object labFFeld2: TLabel
         Left = 4
         Height = 15
         Top = 333
@@ -1599,7 +1599,7 @@ object frmKartei: TfrmKartei
       Caption = 'Kasualien 2 (Zu/Abgang)'
       ClientHeight = 460
       ClientWidth = 880
-      object Label61: TLabel
+      object labFFeld3: TLabel
         Left = 4
         Height = 15
         Top = 414
@@ -2452,7 +2452,7 @@ object frmKartei: TfrmKartei
         MaxLength = 255
         TabOrder = 21
       end
-      object Label48: TLabel
+      object labFFeld4: TLabel
         Left = 4
         Height = 15
         Top = 336

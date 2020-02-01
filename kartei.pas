@@ -287,20 +287,20 @@ type
     Label45: TLabel;
     Label46: TLabel;
     Label47: TLabel;
-    Label48: TLabel;
+    labFFeld4: TLabel;
     Label49: TLabel;
     Label5: TLabel;
     Label50: TLabel;
     Label51: TLabel;
-    Label52: TLabel;
+    labFFeld1: TLabel;
     Label53: TLabel;
     Label54: TLabel;
     Label55: TLabel;
     Label56: TLabel;
     Label59: TLabel;
     Label6: TLabel;
-    Label61: TLabel;
-    Label62: TLabel;
+    labFFeld3: TLabel;
+    labFFeld2: TLabel;
     Label63: TLabel;
     Label64: TLabel;
     Label65: TLabel;
@@ -1323,6 +1323,10 @@ begin
   dbcbEhegatteKirche.Items.Text := sKirchenEintraege;
   dbcbUebertrittAus.Items.Text  := sKirchenEintraege;
   dbcbUebertrittNach.Items.Text := sKirchenEintraege;
+  labFFeld1.Caption             := help.ReadIniVal(sIniFile, 'Defaults','labFFeld1', 'Freies Feld 1', true);
+  labFFeld2.Caption             := help.ReadIniVal(sIniFile, 'Defaults','labFFeld2', 'Freies Feld 2', true);
+  labFFeld3.Caption             := help.ReadIniVal(sIniFile, 'Defaults','labFFeld3', 'Freies Feld 3', true);
+  labFFeld4.Caption             := help.ReadIniVal(sIniFile, 'Defaults','labFFeld4', 'Freies Feld 4', true);
 end;
 
 procedure TfrmKartei.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);

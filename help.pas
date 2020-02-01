@@ -589,10 +589,12 @@ begin
     Que.First;
     Que.EnableControls;
 
+    CloseFile(f); //Ausgabedatei schliessen
+
     Screen.Cursor := crDefault;
     if finishMessage
        then if MessageDlg(Inttostr(j)+' Zeilen exportiert in Datei '+FileName+#13+
-                          'Solle Sie angezeigt werden?', mtConfirmation, [mbYes, mbNo],0)= mrYes
+                          'Sollen Sie angezeigt werden?', mtConfirmation, [mbYes, mbNo],0)= mrYes
           then opendocument(FileName);
   except
     on E : Exception do
@@ -607,7 +609,6 @@ begin
   except
     //Tritt auf, wenn die Datei nicht offen war
   end;
-
 end;
 
 {******************************************************************************}
@@ -700,6 +701,7 @@ begin
         n1   := n Mod 10;
         If n100<>0 Then Result:=Result+Zahlen[n100]+'hundert';
         Result:=Result+ZehnerUndEiner(n10,n1);
+        Result[1] := Uppercase(Result[1])[1];
       end;
 end; {Basis Georg W. Seefried}
 
