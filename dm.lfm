@@ -4,7 +4,7 @@ object frmDM: TfrmDM
   Top = 6
   Width = 368
   Caption = 'frmDM'
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '1.6.4.0'
   object dsPersonen: TDataSource
     AutoEdit = False
     DataSet = dsetPersonen
