@@ -2777,7 +2777,7 @@ begin
                     inc(abgang);
                     SetAbgang;
                   end;
-              if year(frmDM.dsetPersonen.fieldByName('UebertrittsAbDatum').asstring) = frmStatInfo.stat_jahr.text
+              if frmDM.dsetPersonen.fieldByName('UebertrittsAbDatum').asstring <> ''
                 then
                   begin
                     inc(KONVERTZU);
