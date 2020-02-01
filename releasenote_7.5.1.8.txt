@@ -1,4 +1,8 @@
-﻿Änderungen in der Version 7.5.1.7 (30.11.2019)
+﻿Änderungen in der Version 7.5.1.8 (31.12.2019)
+- "Jubiläumsliste" mit Gemeinde Info
+- Filter in der Statistik und Karteikarte zeigen nur verfügbare Gemeindeneinträge an
+
+Änderungen in der Version 7.5.1.7 (30.11.2019)
 - "Geburtstagsliste für Gemeidebrief" nach Gemeinden getrennt
 
 Änderungen in der Version 7.5.1.6 (10.11.2018)
