@@ -1,7 +1,7 @@
 object frmDM: TfrmDM
-  Left = 1195
+  Left = 407
   Height = 686
-  Top = 186
+  Top = 53
   Width = 368
   Caption = 'frmDM'
   LCLVersion = '1.8.0.6'

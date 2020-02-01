@@ -240,6 +240,8 @@ const
                         '[Gemeinde] VARCHAR(2) NULL'+
                         ');';
 
+  sGemeindenAlle      = 'Alle';
+
 
 
 type
@@ -256,6 +258,7 @@ var
   bSQLDebug         : boolean;
   sReportFile       : String;
   sKirchenEintraege : String;
+  sGemeinden        : String;
   sDefaultGemeinde  : string;
   sNewVers          : String;
   sAktuelles        : String;

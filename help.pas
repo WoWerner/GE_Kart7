@@ -1160,7 +1160,7 @@ end;
 function SQL_Where_IsNull(Feld: String): string;
 
 begin
-  result := '(('+Feld+' ISNULL) or ('+Feld+'= ""))';
+  result := '(('+Feld+' is null) or ('+Feld+'=''''))';
 end;
 
 {******************************************************************************}

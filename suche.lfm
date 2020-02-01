@@ -212,14 +212,14 @@ object frmSuche: TfrmSuche
       Left = 150
       Height = 23
       Top = 29
-      Width = 240
+      Width = 48
       TabOrder = 3
     end
     object Label6: TLabel
       Left = 6
       Height = 15
       Top = 60
-      Width = 58
+      Width = 57
       Caption = 'Taufmonat'
       ParentColor = False
     end
@@ -238,7 +238,7 @@ object frmSuche: TfrmSuche
       Left = 110
       Height = 15
       Top = 60
-      Width = 26
+      Width = 25
       Caption = 'Tauf.'
       ParentColor = False
     end
@@ -276,7 +276,7 @@ object frmSuche: TfrmSuche
       Left = 302
       Height = 15
       Top = 60
-      Width = 26
+      Width = 25
       Caption = 'Trau.'
       ParentColor = False
     end
@@ -465,14 +465,14 @@ object frmSuche: TfrmSuche
       Left = 70
       Height = 23
       Top = 8
-      Width = 56
+      Width = 126
       TabOrder = 0
     end
     object Label12: TLabel
       Left = 6
       Height = 15
       Top = 32
-      Width = 337
+      Width = 338
       Caption = 'Zum suchen einer  Mitarbeit benutzen Sie bitte die Volltextsuche'
       ParentColor = False
     end

@@ -19,14 +19,14 @@ type
     Bevel1: TBevel;
     btnOK: TButton;
     btnCancel: TButton;
+    stat_gemeinde: TComboBox;
     Label1: TLabel;
     stat_jahr: TEdit;
     Label2: TLabel;
     Label3: TLabel;
     stat_Kirche: TComboBox;
     Label4: TLabel;
-    stat_gemeinde: TEdit;
-    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -44,9 +44,11 @@ uses
 
 { TfrmStatInfo }
 
-procedure TfrmStatInfo.FormCreate(Sender: TObject);
+procedure TfrmStatInfo.FormShow(Sender: TObject);
 begin
-  stat_Kirche.Items.Text:=sKirchenEintraege;
+  stat_Kirche.Items.Text   := sKirchenEintraege;
+  stat_gemeinde.Items.Text := sGemeinden;
+  stat_gemeinde.Text       := sDefaultGemeinde;
 end;
 
 end.
