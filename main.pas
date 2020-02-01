@@ -943,7 +943,7 @@ begin
                     until Item = '';
                   end;
               FeldNamen := FeldNamen + ' Markiert, Abgang) VALUES (';
-              //myDebugLN(FeldNamen);
+              myDebugLN(FeldNamen);
 
               //Daten einfügen
               if StringList.count > 1 then
@@ -1701,6 +1701,13 @@ begin
 end;
 
 procedure TfrmMain.mnuGebListClick(Sender: TObject);
+var
+  sWhere1,
+  sWhere2,
+  sWhere3,
+  sWhere4,
+  sGebAb   : String;
+  i        : integer;
 
   Function FormatAge(GebTag: TDateTime; Age: integer):String;
 
@@ -1717,12 +1724,49 @@ procedure TfrmMain.mnuGebListClick(Sender: TObject);
     result := DateToStr(GebTag)+Format(#9'%3d'#9,[iAge])
   end;
 
-var
-  sWhere1,
-  sWhere2,
-  sWhere3,
-  sGebAb   : String;
-  i        : integer;
+  procedure Ausgabe;
+
+  begin
+    frmDM.dsetHelp.sql.Clear;
+    frmDM.dsetHelp.sql.add('select vorname, Nachname, Geburtstag, (strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) as Age from '+global.sPersTablename+' where');
+    frmDM.dsetHelp.sql.add(sWhere1);
+    frmDM.dsetHelp.sql.add(sWhere2);
+    frmDM.dsetHelp.sql.add(sWhere3);
+    frmDM.dsetHelp.sql.add(sWhere4);
+    frmDM.dsetHelp.sql.add('order by strftime(''%j'',geburtstag), nachname, vorname');
+
+    frmDM.dsetHelp.open;
+
+    slAusgabe.add('Geburtstage ab '+sGebAb);
+    while not frmDM.dsetHelp.eof do
+      begin
+        if not (frmDM.dsetHelp.fieldByName('Geburtstag').asstring = '') then
+          slAusgabe.add(FormatAge(frmDM.dsetHelp.fieldByName('Geburtstag').asdateTime, frmDM.dsetHelp.fieldByName('Age').asinteger)+
+                        frmDM.dsetHelp.fieldByName('vorname').asstring+' '+frmDM.dsetHelp.fieldByName('Nachname').asstring);
+        frmDM.dsetHelp.Next;
+      end;
+    frmDM.dsetHelp.Close;
+
+    slAusgabe.add('');
+    slAusgabe.add('Geburtstage bis 14');
+
+    frmDM.dsetHelp.sql.Clear;
+    frmDM.dsetHelp.sql.add('select vorname, Nachname, Geburtstag, (strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) as Age from '+global.sPersTablename+' where');
+    frmDM.dsetHelp.sql.add(sWhere1);
+    frmDM.dsetHelp.sql.add('((strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) <= 14) and');
+    frmDM.dsetHelp.sql.add(sWhere3);
+    frmDM.dsetHelp.sql.add(sWhere4);
+    frmDM.dsetHelp.sql.add('order by strftime(''%j'',geburtstag), nachname, vorname');
+
+    frmDM.dsetHelp.open;
+    while not frmDM.dsetHelp.eof do
+      begin
+        slAusgabe.add(FormatAge(frmDM.dsetHelp.fieldByName('Geburtstag').asdateTime, frmDM.dsetHelp.fieldByName('Age').asinteger)+
+                      frmDM.dsetHelp.fieldByName('vorname').asstring+' '+frmDM.dsetHelp.fieldByName('Nachname').asstring);
+        frmDM.dsetHelp.Next;
+      end;
+    frmDM.dsetHelp.Close;
+  end;
 
 const
   AnzahlMonate = 5;
@@ -1743,44 +1787,28 @@ begin
   sWhere3 := SQL_Where_Add(sWhere3, SQL_Where_IsNull('TodesDatum'));
   sWhere3 := SQL_Where_Add(sWhere3, SQL_Where_IsNull('UebertrittsAbDatum'));
 
-  frmDM.dsetHelp.sql.Clear;
-  frmDM.dsetHelp.sql.add('select vorname, Nachname, Geburtstag, (strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) as Age from '+global.sPersTablename+' where');
-  frmDM.dsetHelp.sql.add(sWhere1);
-  frmDM.dsetHelp.sql.add(sWhere2);
-  frmDM.dsetHelp.sql.add(sWhere3);
-  frmDM.dsetHelp.sql.add('order by strftime(''%j'',geburtstag), nachname, vorname');
-
-  frmDM.dsetHelp.open;
   slAusgabe.Clear;
   slAusgabe.add('Geburtstage für die Monate '+FormatDateTime('mm', now())+' bis '+FormatDateTime('mm', IncMonth(now(), AnzahlMonate)));
   slAusgabe.add('');
-  slAusgabe.add('Geburtstage ab '+sGebAb);
-  while not frmDM.dsetHelp.eof do
-    begin
-      slAusgabe.add(FormatAge(frmDM.dsetHelp.fieldByName('Geburtstag').asdateTime, frmDM.dsetHelp.fieldByName('Age').asinteger)+
-                    frmDM.dsetHelp.fieldByName('vorname').asstring+' '+frmDM.dsetHelp.fieldByName('Nachname').asstring);
-      frmDM.dsetHelp.Next;
-    end;
-  frmDM.dsetHelp.Close;
 
+  frmDM.dsetHelp1.sql.Clear;
+  frmDM.dsetHelp1.sql.add('select distinct Gemeinde from personen');
+  frmDM.dsetHelp1.open;
+  while not frmDM.dsetHelp1.eof do
+    begin
+      sWhere4 := 'and (Gemeinde = ''' + frmDM.dsetHelp1.fieldByName('Gemeinde').asstring +''')';
+      slAusgabe.add('Geburtstage für die Gemeinde "'+frmDM.dsetHelp1.fieldByName('Gemeinde').asstring+'"');
+      slAusgabe.add('');
+      Ausgabe;
+      slAusgabe.add('');
+      frmDM.dsetHelp1.Next;
+    end;
+  frmDM.dsetHelp1.Close;
+
+  sWhere4 := 'and (Gemeinde = '''')';
+  slAusgabe.add('Geburtstage für die Gemeinde ""');
   slAusgabe.add('');
-  slAusgabe.add('Geburtstage bis 14');
-
-  frmDM.dsetHelp.sql.Clear;
-  frmDM.dsetHelp.sql.add('select vorname, Nachname, Geburtstag, (strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) as Age from '+global.sPersTablename+' where');
-  frmDM.dsetHelp.sql.add(sWhere1);
-  frmDM.dsetHelp.sql.add('((strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) <= 14) and');
-  frmDM.dsetHelp.sql.add(sWhere3);
-  frmDM.dsetHelp.sql.add('order by strftime(''%j'',geburtstag), nachname, vorname');
-
-  frmDM.dsetHelp.open;
-  while not frmDM.dsetHelp.eof do
-    begin
-      slAusgabe.add(FormatAge(frmDM.dsetHelp.fieldByName('Geburtstag').asdateTime, frmDM.dsetHelp.fieldByName('Age').asinteger)+
-                    frmDM.dsetHelp.fieldByName('vorname').asstring+' '+frmDM.dsetHelp.fieldByName('Nachname').asstring);
-      frmDM.dsetHelp.Next;
-    end;
-  frmDM.dsetHelp.Close;
+  Ausgabe;
 
   slAusgabe.add('');
   slAusgabe.add('Die "Geburtstage ab '+sGebAb+'" können in der Datei'+#13#10+
@@ -2517,6 +2545,7 @@ var
     erw,
     kinder,
     n_konf_erw,
+    erw_taufe,
     nw,
     nm,
     nw10,      //Weiblich  0-10 Jahre
@@ -2581,6 +2610,7 @@ var
     sPerson,
     sOldYearAbgang,
     sN_Konf_Erw,
+    sErw_Getaufte,
     sNewYearZugang,
     sInvalidGeschlecht,
     sInvalidKomm,
@@ -2597,6 +2627,7 @@ begin
   nRecords           := 0;
   erw                := 0;
   n_konf_erw         := 0;
+  erw_taufe          := 0;
   kinder             := 0;
   konf               := 0;
   k_tauf             := 0;
@@ -2659,6 +2690,7 @@ begin
   sAbgaenge          := '';
   sZugang            := '';
   sN_Konf_Erw        := '';
+  sErw_Getaufte      := '';
   sFilter            := '';
 
   dt := now();
@@ -2691,7 +2723,7 @@ begin
           while not frmDM.dsetPersonen.EOF do
             begin
               inc(nRecords);
-              StatusBar.Panels[0].Text:='Bearbeite Datensatz: '+inttostr(nRecords) + 'von ' + inttostr(frmDM.dsetPersonen.RecordCount);
+              StatusBar.Panels[0].Text:='Bearbeite Datensatz: '+inttostr(nRecords) + ' von ' + inttostr(frmDM.dsetPersonen.RecordCount);
               statusbar.Update;
 
               sPerson := frmDM.dsetPersonen.fieldByName('Vorname').asstring +' ' + frmDM.dsetPersonen.fieldByName('Nachname').asstring;
@@ -2895,7 +2927,16 @@ begin
                         begin
                           if (frmDM.dsetPersonen.fieldByName('KonfDatum').asstring <> '') or
                              ((TaufJahr - GeburtsJahr) > 14)  // Erwachsenentaufe
-                            then inc(erw)
+                            then
+                              begin
+                                inc(erw);
+                                if ((TaufJahr - GeburtsJahr) > 14)
+                                  then
+                                    begin
+                                      inc(erw_taufe);
+                                      sErw_Getaufte += sPerson+ #13#10;
+                                    end;
+                              end
                             else
                               if alter > 17
                                 then
@@ -2994,6 +3035,7 @@ begin
                 einfuegen('Jahresstatistik','');
                 slAusgabe.add(' ');
                 einfuegen('Konfirmierte    : '+inttostr(erw),RealToStr(erw/summe*100,2,2)+ ' %');
+                einfuegen('   davon Erwachsengetaufte: '+inttostr(erw_taufe),'');
                 einfuegen('Nicht-Konfirm.  : '+inttostr(kinder),RealToStr(kinder/summe*100,2,2)+ ' %');
                 einfuegen('Nicht-Konf. Erw : '+inttostr(n_konf_erw),RealToStr(n_konf_erw/summe*100,2,2)+ ' %');
                 einfuegen('Summe           : '+inttostr(summe),'');
@@ -3113,8 +3155,13 @@ begin
                       einfuegen2('Abgänge:',sAbgaenge);
                     end;
                 einfuegen2('Nicht konfirmirte Erwachsene:',sN_Konf_Erw);
-                einfuegen2('Kommunikantenliste:',sKommListe);
-                einfuegen2('Restantenliste:',sRestListe);
+                einfuegen2('Erwachsenengetaufte:',sErw_Getaufte);
+                if (komm>0)
+                  then
+                    begin
+                      einfuegen2('Kommunikantenliste:',sKommListe);
+                      einfuegen2('Restantenliste:',sRestListe);
+                    end;
 
                 slAusgabe.add(#13#10+'Erzeugt von GE_Kart '+ GetProductVersionString +' am: '+datetostr(date));
               end;
