@@ -1,8 +1,8 @@
 object frmKartei: TfrmKartei
-  Left = 531
+  Left = 498
   Height = 675
   Hint = 'Strg-Pos1: Erster Datensatz'#13#10'Bild hoch: Vorhergehender Datensatz'#13#10'Bild runter: Nächster Datensatz'#13#10'Strg-Ende: Letzter Datensatz'#13#10#13#10'Strg-S: Speichern'#13#10'Strg-P: Drucken'#13#10'Strg-F: Schnellsuche'#13#10#13#10'Mausrad: Datensatzwechsel'#13#10#13#10'F1: Hilfe'
-  Top = 132
+  Top = 0
   Width = 1003
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -75,11 +75,11 @@ object frmKartei: TfrmKartei
   object pcDetails: TPageControl
     Left = 6
     Height = 488
-    Top = 160
+    Top = 161
     Width = 888
-    ActivePage = TSKasualien
+    ActivePage = TSAllgemein
     ParentFont = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 1
     OnChange = pcDetailsChange
     object TSAllgemein: TTabSheet
@@ -95,7 +95,7 @@ object frmKartei: TfrmKartei
         Caption = 'Ausbildung'
         DataField = 'Ausbildung'
         DataSource = frmDM.dsPersonen
-        TabOrder = 15
+        TabOrder = 19
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
@@ -218,7 +218,7 @@ object frmKartei: TfrmKartei
         MaxLength = 255
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 5
+        TabOrder = 7
         OnDblClick = dbediInternetDblClick
       end
       object Label22: TLabel
@@ -246,7 +246,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 7
+        TabOrder = 11
       end
       object Label24: TLabel
         Left = 283
@@ -265,7 +265,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 8
+        TabOrder = 12
       end
       object DBCB_Ruhestand: TDBCheckBox
         Left = 802
@@ -275,7 +275,7 @@ object frmKartei: TfrmKartei
         Caption = 'Ruhestand'
         DataField = 'Ruhestand'
         DataSource = frmDM.dsPersonen
-        TabOrder = 19
+        TabOrder = 23
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
@@ -296,7 +296,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 13
+        TabOrder = 17
       end
       object Label44: TLabel
         Left = 701
@@ -315,7 +315,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 14
+        TabOrder = 18
       end
       object Label45: TLabel
         Left = 3
@@ -334,7 +334,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 10
+        TabOrder = 14
       end
       object Label46: TLabel
         Left = 219
@@ -353,7 +353,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 11
+        TabOrder = 15
       end
       object Label47: TLabel
         Left = 420
@@ -372,8 +372,9 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 12
+        TabOrder = 16
         OnDblClick = DatumDblClick
+        OnEnter = DatumExit
       end
       object dbediBerufAusgeuebt: TDBEdit
         Left = 327
@@ -384,7 +385,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 17
+        TabOrder = 21
       end
       object Label49: TLabel
         Left = 327
@@ -403,7 +404,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 18
+        TabOrder = 22
       end
       object Label50: TLabel
         Left = 564
@@ -430,7 +431,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 16
+        TabOrder = 20
       end
       object Label52: TLabel
         Left = 4
@@ -449,7 +450,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 23
+        TabOrder = 28
       end
       object DBCB_AktiverZahler: TDBCheckBox
         Left = 4
@@ -459,7 +460,7 @@ object frmKartei: TfrmKartei
         Caption = 'Aktiver Zahler'
         DataField = 'AktiverZahler'
         DataSource = frmDM.dsPersonen
-        TabOrder = 20
+        TabOrder = 24
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
@@ -471,7 +472,7 @@ object frmKartei: TfrmKartei
         Caption = 'An Zahlung erinnern'
         DataField = 'AnZahlungErinnern'
         DataSource = frmDM.dsPersonen
-        TabOrder = 21
+        TabOrder = 25
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
@@ -491,7 +492,7 @@ object frmKartei: TfrmKartei
         Caption = 'GD-Besuch'
         DataField = 'GDBesuch'
         DataSource = frmDM.dsPersonen
-        TabOrder = 22
+        TabOrder = 26
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
@@ -515,7 +516,8 @@ object frmKartei: TfrmKartei
           'FU (Familienstand unbekannt)'
         )
         MaxLength = 0
-        TabOrder = 9
+        OnMouseEnter = dbcbOnMouseEnter
+        TabOrder = 13
       end
       object dbcbKirche: TDBComboBox
         Left = 3
@@ -526,7 +528,8 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
         MaxLength = 0
-        TabOrder = 6
+        OnMouseEnter = dbcbOnMouseEnter
+        TabOrder = 10
       end
       object Label25: TLabel
         Left = 4
@@ -548,7 +551,7 @@ object frmKartei: TfrmKartei
         MaxLength = 255
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 24
+        TabOrder = 5
         OnDblClick = dbediEMail1DblClick
       end
       object Label26: TLabel
@@ -571,7 +574,7 @@ object frmKartei: TfrmKartei
         MaxLength = 255
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 25
+        TabOrder = 6
         OnDblClick = dbediEMail2DblClick
       end
       object Label27: TLabel
@@ -594,7 +597,7 @@ object frmKartei: TfrmKartei
         MaxLength = 255
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 26
+        TabOrder = 8
         OnDblClick = dbediInternet1DblClick
       end
       object dbediInternet2: TDBEdit
@@ -609,7 +612,7 @@ object frmKartei: TfrmKartei
         MaxLength = 255
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 27
+        TabOrder = 9
         OnDblClick = dbediInternet2DblClick
       end
       object Label28: TLabel
@@ -637,7 +640,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 28
+        TabOrder = 27
       end
     end
     object TSEltern: TTabSheet
@@ -758,7 +761,7 @@ object frmKartei: TfrmKartei
         OnContextPopup = btnNewKindContextPopup
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 13
+        TabOrder = 15
       end
       object btnDelKind: TButton
         Left = 651
@@ -768,7 +771,7 @@ object frmKartei: TfrmKartei
         Caption = 'Kind löschen'
         Enabled = False
         OnClick = btnDelKindClick
-        TabOrder = 14
+        TabOrder = 16
       end
       object Label139: TLabel
         Left = 4
@@ -889,7 +892,7 @@ object frmKartei: TfrmKartei
         ClientWidth = 88
         DataSource = frmDM.dsKinder
         Options = []
-        TabOrder = 12
+        TabOrder = 14
         VisibleButtons = [nbPost, nbCancel, nbRefresh]
       end
       object dbcbKindKirche: TDBComboBox
@@ -901,7 +904,8 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsKinder
         ItemHeight = 15
         MaxLength = 0
-        TabOrder = 15
+        OnMouseEnter = dbcbKindKircheMouseEnter
+        TabOrder = 13
       end
       object dbcbMutterKirche: TDBComboBox
         Left = 716
@@ -912,6 +916,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 5
       end
       object dbcbVaterKirche: TDBComboBox
@@ -923,6 +928,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 2
       end
       object Shape4: TShape
@@ -955,7 +961,7 @@ object frmKartei: TfrmKartei
         Caption = 'Taufdatum'
         ParentColor = False
       end
-      object DBEdiKindGeburtstag1: TDBEdit
+      object DBEdiKindTaufdatum: TDBEdit
         Left = 673
         Height = 23
         Top = 280
@@ -964,7 +970,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsKinder
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 16
+        TabOrder = 12
       end
     end
     object TSKasualien: TTabSheet
@@ -988,7 +994,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 0
+        TabOrder = 34
       end
       object DBEdiTaufDatum: TDBEdit
         Left = 4
@@ -999,8 +1005,9 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 1
+        TabOrder = 0
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label65: TLabel
         Left = 4
@@ -1027,7 +1034,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 2
+        TabOrder = 1
       end
       object Label67: TLabel
         Left = 285
@@ -1046,7 +1053,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 3
+        TabOrder = 2
       end
       object Label68: TLabel
         Left = 484
@@ -1065,7 +1072,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 4
+        TabOrder = 3
       end
       object Label69: TLabel
         Left = 686
@@ -1084,7 +1091,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 5
+        TabOrder = 4
       end
       object Label70: TLabel
         Left = 4
@@ -1103,7 +1110,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 6
+        TabOrder = 5
       end
       object DBEdiTaufPate2: TDBEdit
         Left = 148
@@ -1114,7 +1121,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 7
+        TabOrder = 6
       end
       object DBEdiTaufPate3: TDBEdit
         Left = 292
@@ -1125,7 +1132,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 8
+        TabOrder = 7
       end
       object DBEdiTaufPate6: TDBEdit
         Left = 724
@@ -1136,7 +1143,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 11
+        TabOrder = 10
       end
       object DBEdiTaufPate5: TDBEdit
         Left = 580
@@ -1147,7 +1154,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 10
+        TabOrder = 9
       end
       object DBEdiTaufPate4: TDBEdit
         Left = 436
@@ -1158,7 +1165,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 9
+        TabOrder = 8
       end
       object Label71: TLabel
         Left = 4
@@ -1177,8 +1184,9 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 0
-        TabOrder = 12
+        TabOrder = 11
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label72: TLabel
         Left = 84
@@ -1197,7 +1205,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 13
+        TabOrder = 12
       end
       object Label73: TLabel
         Left = 285
@@ -1216,7 +1224,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 14
+        TabOrder = 13
       end
       object Label74: TLabel
         Left = 484
@@ -1235,7 +1243,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 15
+        TabOrder = 14
       end
       object Label75: TLabel
         Left = 686
@@ -1254,7 +1262,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 16
+        TabOrder = 15
       end
       object Label76: TLabel
         Left = 4
@@ -1273,8 +1281,9 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 0
-        TabOrder = 24
+        TabOrder = 23
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object DBEdiTrauOrt: TDBEdit
         Left = 84
@@ -1285,7 +1294,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 25
+        TabOrder = 24
       end
       object Label77: TLabel
         Left = 84
@@ -1304,7 +1313,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 26
+        TabOrder = 25
       end
       object Label78: TLabel
         Left = 285
@@ -1323,7 +1332,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 27
+        TabOrder = 26
       end
       object Label79: TLabel
         Left = 484
@@ -1342,7 +1351,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 28
+        TabOrder = 27
       end
       object Label80: TLabel
         Left = 686
@@ -1369,7 +1378,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 29
+        TabOrder = 28
       end
       object DBEdiTrauZeuge2: TDBEdit
         Left = 148
@@ -1380,7 +1389,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 30
+        TabOrder = 29
       end
       object DBEdiTrauZeuge3: TDBEdit
         Left = 292
@@ -1391,7 +1400,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 31
+        TabOrder = 30
       end
       object DBEdiTrauZeuge4: TDBEdit
         Left = 436
@@ -1402,7 +1411,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 32
+        TabOrder = 31
       end
       object DBEdiTrauZeuge5: TDBEdit
         Left = 580
@@ -1413,7 +1422,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 33
+        TabOrder = 32
       end
       object DBEdiTrauZeuge6: TDBEdit
         Left = 724
@@ -1424,7 +1433,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 34
+        TabOrder = 33
       end
       object Label82: TLabel
         Left = 4
@@ -1443,8 +1452,9 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 0
-        TabOrder = 21
+        TabOrder = 20
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label83: TLabel
         Left = 84
@@ -1463,7 +1473,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 22
+        TabOrder = 21
       end
       object Label84: TLabel
         Left = 4
@@ -1482,7 +1492,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 17
+        TabOrder = 16
       end
       object Label85: TLabel
         Left = 226
@@ -1501,7 +1511,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 18
+        TabOrder = 17
       end
       object Label86: TLabel
         Left = 686
@@ -1520,7 +1530,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
-        TabOrder = 23
+        TabOrder = 22
       end
       object Label87: TLabel
         Left = 484
@@ -1539,7 +1549,8 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
         MaxLength = 0
-        TabOrder = 20
+        OnMouseEnter = dbcbOnMouseEnter
+        TabOrder = 19
       end
       object Shape1: TShape
         Left = 4
@@ -1579,8 +1590,9 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 0
-        TabOrder = 19
+        TabOrder = 18
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
     end
     object TSZuAbGang: TTabSheet
@@ -1625,6 +1637,7 @@ object frmKartei: TfrmKartei
         MaxLength = 0
         TabOrder = 12
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label93: TLabel
         Left = 4
@@ -1645,6 +1658,7 @@ object frmKartei: TfrmKartei
         MaxLength = 0
         TabOrder = 0
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label94: TLabel
         Left = 108
@@ -1684,6 +1698,7 @@ object frmKartei: TfrmKartei
         MaxLength = 0
         TabOrder = 2
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object DBEdiUebertrittsZuGrund: TDBEdit
         Left = 108
@@ -1723,6 +1738,7 @@ object frmKartei: TfrmKartei
         MaxLength = 0
         TabOrder = 8
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object DBEdiAustrittsGrund: TDBEdit
         Left = 108
@@ -1770,6 +1786,7 @@ object frmKartei: TfrmKartei
         MaxLength = 0
         TabOrder = 10
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object DBEdiAusschlussGrund: TDBEdit
         Left = 108
@@ -1809,6 +1826,7 @@ object frmKartei: TfrmKartei
         MaxLength = 0
         TabOrder = 5
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label103: TLabel
         Left = 108
@@ -1859,6 +1877,7 @@ object frmKartei: TfrmKartei
         MaxLength = 0
         TabOrder = 14
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label106: TLabel
         Left = 411
@@ -1906,6 +1925,7 @@ object frmKartei: TfrmKartei
         MaxLength = 0
         TabOrder = 22
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object DBEdiUeberwiesen_nach: TDBEdit
         Left = 108
@@ -1937,6 +1957,7 @@ object frmKartei: TfrmKartei
         MaxLength = 0
         TabOrder = 24
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label110: TLabel
         Left = 4
@@ -1997,6 +2018,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 4
       end
       object dbcbUebertrittNach: TDBComboBox
@@ -2008,6 +2030,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 26
       end
       object Label146: TLabel
@@ -2040,6 +2063,7 @@ object frmKartei: TfrmKartei
         MaxLength = 0
         TabOrder = 17
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label89: TLabel
         Left = 108
@@ -2240,6 +2264,8 @@ object frmKartei: TfrmKartei
         CharCase = ecNormal
         MaxLength = 0
         TabOrder = 0
+        OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label133: TLabel
         Left = 4
@@ -2635,6 +2661,7 @@ object frmKartei: TfrmKartei
         ShowHint = True
         TabOrder = 10
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label121: TLabel
         Left = 336
@@ -2658,6 +2685,7 @@ object frmKartei: TfrmKartei
         ShowHint = True
         TabOrder = 11
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label122: TLabel
         Left = 420
@@ -2727,6 +2755,7 @@ object frmKartei: TfrmKartei
         ShowHint = True
         TabOrder = 14
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object dbediEndeF2: TDBEdit
         Left = 420
@@ -2742,6 +2771,7 @@ object frmKartei: TfrmKartei
         ShowHint = True
         TabOrder = 15
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label126: TLabel
         Left = 420
@@ -2811,6 +2841,7 @@ object frmKartei: TfrmKartei
         ShowHint = True
         TabOrder = 18
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object dbediEndeF3: TDBEdit
         Left = 420
@@ -2826,6 +2857,7 @@ object frmKartei: TfrmKartei
         ShowHint = True
         TabOrder = 19
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label130: TLabel
         Left = 420
@@ -2924,8 +2956,9 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 0
-        TabOrder = 11
+        TabOrder = 7
         OnDblClick = DatumDblClick
+        OnExit = DatumExit
       end
       object Label3: TLabel
         Left = 499
@@ -2959,6 +2992,7 @@ object frmKartei: TfrmKartei
           ' '
         )
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 0
       end
       object dbediVorname2: TDBEdit
@@ -3043,7 +3077,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 6
+        TabOrder = 8
       end
       object dbediPLZ: TDBEdit
         Left = 52
@@ -3054,7 +3088,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 7
+        TabOrder = 9
       end
       object Label12: TLabel
         Left = 116
@@ -3073,7 +3107,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 8
+        TabOrder = 10
       end
       object Label13: TLabel
         Left = 499
@@ -3092,7 +3126,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
-        TabOrder = 9
+        TabOrder = 11
       end
       object Label14: TLabel
         Left = 588
@@ -3127,7 +3161,8 @@ object frmKartei: TfrmKartei
         )
         MaxLength = 0
         OnChange = DBCBGeschlechtChange
-        TabOrder = 10
+        OnMouseEnter = dbcbOnMouseEnter
+        TabOrder = 6
       end
       object Label5: TLabel
         Left = 420
@@ -3310,8 +3345,8 @@ object frmKartei: TfrmKartei
       Height = 19
       Hint = 'Zeige auch Abgänge an'#13#10'Rechtsklick: Setze Abgänge automatisch'
       Top = 32
-      Width = 68
-      Caption = 'Abgänge'
+      Width = 90
+      Caption = 'inc. Abgänge'
       OnChange = OnFilterChange
       OnContextPopup = cbAbgaengeContextPopup
       ParentShowHint = False

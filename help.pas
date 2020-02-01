@@ -61,7 +61,7 @@ function  WordPosition(    const N             : Integer;
                            const S             : string;
                            const WordSep       : TCharSet): Integer;
 function  OnlyDigits(s: string): boolean;
-function  DigitsOnly(s: string): string;
+function  XCharsOnly(s: string; const XChar: TCharSet): string;
 
 
 // Konvertierung
@@ -523,7 +523,8 @@ begin
               if UTF8
                 then s := Que.FieldDefs[i-1].Name
                 else s := UTF8toCP1252(Que.FieldDefs[i-1].Name{+'('+FieldTypeToString(Que.FieldDefs[i-1].DataType)+')'});
-              if pos(sTrenner, s) > 0 then s := sDelimiter+s+sDelimiter;
+              if (pos(sTrenner, s) > 0) or (Que.FieldDefs[i-1].DataType in [ftString, ftMemo])
+                 then s := sDelimiter+s+sDelimiter;
               Write(F, s);
             end;
       end;
@@ -576,7 +577,8 @@ begin
                                   s := Que.Fields[i-1].asstring;
                     end;
                     s := DeleteChars(s, [#10,#13]);
-                    if pos(sTrenner, s) > 0 then s := sDelimiter+s+sDelimiter;
+                    if (pos(sTrenner, s) > 0) or (Que.FieldDefs[i-1].DataType in [ftString, ftMemo])
+                      then s := sDelimiter+s+sDelimiter;
                     if not UTF8 then s := UTF8toCP1252(s);
                     Write(F, s);
                   end;
@@ -736,7 +738,7 @@ end;
 
 {******************************************************************************}
 
-function DigitsOnly(s: string): string;
+function  XCharsOnly(s: string; const XChar: TCharSet): string;
 
 var i : integer;
     c : char;
@@ -746,7 +748,7 @@ begin
   for i := 1 to UTF8Length(s) do
     begin
       c := s[i];
-      if (c in ['0'..'9']) then result := result + c;
+      if (c in XChar) then result := result + c;
     end;
 end;
 

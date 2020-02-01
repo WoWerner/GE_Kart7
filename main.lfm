@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 275
+  Left = 277
   Height = 415
-  Top = 125
+  Top = 127
   Width = 693
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
@@ -375,13 +375,13 @@ object frmMain: TfrmMain
       end
       object mnuAlle: TMenuItem
         Caption = 'Alle'
-        Checked = True
         GroupIndex = 2
         RadioItem = True
         OnClick = mnuRBClick
       end
       object mnuMarkierte: TMenuItem
         Caption = 'Markierte'
+        Checked = True
         GroupIndex = 2
         RadioItem = True
         OnClick = mnuRBClick

@@ -77,7 +77,7 @@ type
     DbEdiEheGatteGeburtstag: TDBEdit;
     dbediInternet1: TDBEdit;
     dbediInternet2: TDBEdit;
-    DBEdiKindGeburtstag1: TDBEdit;
+    DBEdiKindTaufdatum: TDBEdit;
     DBEdiTodesort: TDBEdit;
     DBEdKindVorname: TDBEdit;
     DBEdKindVorname2: TDBEdit;
@@ -391,9 +391,12 @@ type
     procedure cbMarkiertChange(Sender: TObject);
     procedure DatumDblClick(Sender: TObject);
     procedure DBCBGeschlechtChange(Sender: TObject);
+    procedure dbcbKindKircheMouseEnter(Sender: TObject);
+    procedure dbcbOnMouseEnter(Sender: TObject);
     procedure dbediEMail1DblClick(Sender: TObject);
     procedure dbediEMail2DblClick(Sender: TObject);
     procedure dbediEMailDblClick(Sender: TObject);
+    procedure DatumExit(Sender: TObject);
     procedure dbediInternet1DblClick(Sender: TObject);
     procedure dbediInternet2DblClick(Sender: TObject);
     procedure dbediInternetDblClick(Sender: TObject);
@@ -446,6 +449,7 @@ uses
   LCLIntf, //Openurl
   variants,//VarArrayOf
   Clipbrd,
+  DateUtils,
   global;
 
 {$R *.lfm}
@@ -780,6 +784,7 @@ begin
   frmDM.dsetPERSONEN.FieldByName('Markiert').AsBoolean := cbMarkiert.Checked;
   frmDM.dsetPERSONEN.Post;
   frmDM.dsetPERSONEN.Refresh;
+  SetLastChange := true;
 end;
 
 procedure TfrmKartei.btnDelKommClick(Sender: TObject);
@@ -1027,6 +1032,18 @@ begin
       end;
 end;
 
+procedure TfrmKartei.dbcbKindKircheMouseEnter(Sender: TObject);
+begin
+  ///??? Workaround für Bug in Lazarus 1.8.0 CB geht nicht richtig in EDIT Mode
+  if cbBearbeiten.Checked then frmDM.dsKinder.Edit;
+end;
+
+procedure TfrmKartei.dbcbOnMouseEnter(Sender: TObject);
+begin
+  ///??? Workaround für Bug in Lazarus 1.8.0 CB geht nicht richtig in EDIT Mode
+  if cbBearbeiten.Checked then frmDM.dsetPERSONEN.Edit;
+end;
+
 procedure TfrmKartei.dbediEMail1DblClick(Sender: TObject);
 begin
   Openurl('MailTo:' + frmDM.dsetPERSONEN.FieldByName('eMail2').AsString);
@@ -1040,6 +1057,16 @@ end;
 procedure TfrmKartei.dbediEMailDblClick(Sender: TObject);
 begin
   Openurl('MailTo:' + frmDM.dsetPERSONEN.FieldByName('eMail').AsString);
+end;
+
+procedure TfrmKartei.DatumExit(Sender: TObject);
+begin
+  if frmDM.dsetPERSONEN.State in [dsEdit, dsInsert]
+    then
+      begin
+        if frmDM.dsetPERSONEN.FieldByName(TDBEdit(Sender).datafield).AsDateTime > now
+          then frmDM.dsetPERSONEN.FieldByName(TDBEdit(Sender).datafield).AsDateTime := IncYear(frmDM.dsetPERSONEN.FieldByName(TDBEdit(Sender).datafield).AsDateTime, -100);
+      end;
 end;
 
 procedure TfrmKartei.dbediInternet1DblClick(Sender: TObject);
