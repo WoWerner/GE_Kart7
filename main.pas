@@ -336,7 +336,7 @@ uses
   global,
   help,
   input,
-  LConvEncoding,    //CP1252ToUTF8
+  LConvEncoding,  // CP1252ToUTF8
   LazFileUtils,
   inifiles,
   Ausgabe,
@@ -347,7 +347,8 @@ uses
   Translations,
   PgmUpdate,
   appsettings,
-  LCLIntf,       //Openurl
+  LCLIntf,       // Openurl
+  FileCtrl,      // MinimizeName
   dm,
   gd,
   db;
@@ -597,8 +598,8 @@ begin
   end;
   
   if dtLastSave = StrToDate('01.01.1980')
-    then StatusBar.Panels[0].Text := 'Noch keine Datensicherung gemacht'
-    else StatusBar.Panels[0].Text := 'Letzte Datensicherung: '+DateToStr(dtLastSave);
+    then StatusBar.Panels[1].Text := 'Noch keine Datensicherung gemacht'
+    else StatusBar.Panels[1].Text := 'Letzte Datensicherung: '+DateToStr(dtLastSave);
 	
   randomize;
   if (dtLastSave = StrToDate('01.01.1980')) or
@@ -606,7 +607,7 @@ begin
     then
       Datensicherung(true)  //Automatische Datensicherung
     else
-      if (trunc(random(12)) = 1) then Showmessage('Denken Sie an eine regelmäßige Datensicherung'+#13+StatusBar.Panels[0].Text);
+      if (trunc(random(12)) = 1) then Showmessage('Denken Sie an eine regelmäßige Datensicherung'+#13+StatusBar.Panels[1].Text);
 
   //Releasenote anzeigen
   sRelease := help.ReadIniVal(sIniFile, 'Programm', 'Version', '0', true);
@@ -678,17 +679,20 @@ end;
 procedure TfrmMain.FormShow(Sender: TObject);
 
 var
-  sHelp: string;
-  bHelp: boolean;
+  sHelp  : string;
+  bHelp  : boolean;
+  slHelp : TStringlist;
 
 begin
-  bHelp := (ParamCount = 2) and (lowercase(ParamStr(2)) = 'popup');
+  slHelp := TStringlist.Create;
+  bHelp  := (ParamCount = 2) and (lowercase(ParamStr(2)) = 'popup');
 
   if FileExists(UTF8ToSys(sDatabase))
     then
       begin
         frmDM.SetDBPath({UTF8ToSys}(sDatabase));
-        StatusBar.Panels[1].Text := 'Database : '+sDatabase;
+        Statusbar.Hint           := 'Database : '+sDatabase;
+        Statusbar.Panels[0].Text := MinimizeName(sDatabase, Statusbar.Canvas, Statusbar.Panels[0].Width);
 
         frmDM.dbStatus(true);   //Damit wird die Datenbankstruktur geprüft und ggf. angepasst
         frmDM.dbStatus(false);  //DB schliessen
@@ -723,13 +727,29 @@ begin
         labGemeinde2.caption := frmDM.dsetGemeinde.FieldByName('Adr2').AsString;
         frmDM.dsetGemeinde.close;
         frmDM.dbStatus(false); // DB schliessen
+
+        slHelp.Clear;
+        slHelp.Duplicates := dupIgnore;
+        slHelp.Sorted     := true;
+        slHelp.Add(sGemeindenAlle);
+        frmDM.dsetHelp1.sql.Clear;
+        frmDM.dsetHelp1.sql.add('select distinct Gemeinde from personen order by gemeinde');
+        frmDM.dsetHelp1.open;
+        while not frmDM.dsetHelp1.eof do
+          begin
+             slHelp.Add(frmDM.dsetHelp1.fieldByName('Gemeinde').asstring);
+            frmDM.dsetHelp1.Next;
+          end;
+        frmDM.dsetHelp1.Close;
+        sGemeinden := slHelp.Text;
       end
     else
       begin
-        StatusBar.Panels[1].Text := 'Datenbankdatei unter "'+sDatabase+'" nicht gefunden.';
-        ShowMessage(StatusBar.Panels[1].Text+' Bitte Herrn Werner kontaktieren!');
+        StatusBar.Panels[0].Text := 'Datenbankdatei unter "'+sDatabase+'" nicht gefunden.';
+        ShowMessage(StatusBar.Panels[0].Text+' Bitte Herrn Werner kontaktieren!');
         frmDM.SetDBPath('');
       end;
+  slHelp.Free;
 end;
 
 
@@ -1073,7 +1093,7 @@ begin
             begin
               dtLastSave := now;
               help.WriteIniVal(sIniFile, 'Sicherung', 'Datum', DateToStr(dtLastSave));
-              StatusBar.Panels[0].Text := 'Letzte Datensicherung: '+DateToStr(dtLastSave);
+              StatusBar.Panels[1].Text := 'Letzte Datensicherung: '+DateToStr(dtLastSave);
               help.WriteIniVal(sIniFile, 'Sicherung', 'Verzeichnis', sSavePath);
             end
           else
@@ -1708,6 +1728,7 @@ var
   sWhere4,
   sGebAb   : String;
   i        : integer;
+  slHelp   : TStringlist;
 
   Function FormatAge(GebTag: TDateTime; Age: integer):String;
 
@@ -1773,6 +1794,7 @@ const
 
 begin
   sWhere1 := '';
+  slHelp  := TStringlist.Create;
   for i := 0 to AnzahlMonate do
     sWhere1 := SQL_Where_Add_OR(sWhere1, '(strftime(''%m'',geburtstag) = '''+FormatDateTime('mm', IncMonth(now(), i))+''')');
   sWhere1 := '('+sWhere1+') and';
@@ -1790,25 +1812,18 @@ begin
   slAusgabe.Clear;
   slAusgabe.add('Geburtstage für die Monate '+FormatDateTime('mm', now())+' bis '+FormatDateTime('mm', IncMonth(now(), AnzahlMonate)));
   slAusgabe.add('');
-
-  frmDM.dsetHelp1.sql.Clear;
-  frmDM.dsetHelp1.sql.add('select distinct Gemeinde from personen');
-  frmDM.dsetHelp1.open;
-  while not frmDM.dsetHelp1.eof do
+  slHelp.Text := sGemeinden;
+  for i := 0 to slHelp.Count-1 do
     begin
-      sWhere4 := 'and (Gemeinde = ''' + frmDM.dsetHelp1.fieldByName('Gemeinde').asstring +''')';
-      slAusgabe.add('Geburtstage für die Gemeinde "'+frmDM.dsetHelp1.fieldByName('Gemeinde').asstring+'"');
-      slAusgabe.add('');
-      Ausgabe;
-      slAusgabe.add('');
-      frmDM.dsetHelp1.Next;
+      if (slHelp.strings[i] <> sGemeindenAlle) then
+        begin
+          sWhere4 := 'and (Gemeinde = ''' + slHelp.strings[i] +''')';
+          slAusgabe.add('Geburtstage für die Gemeinde "'+slHelp.strings[i]+'"');
+          slAusgabe.add('');
+          Ausgabe;
+          slAusgabe.add('');
+        end;
     end;
-  frmDM.dsetHelp1.Close;
-
-  sWhere4 := 'and (Gemeinde = '''')';
-  slAusgabe.add('Geburtstage für die Gemeinde ""');
-  slAusgabe.add('');
-  Ausgabe;
 
   slAusgabe.add('');
   slAusgabe.add('Die "Geburtstage ab '+sGebAb+'" können in der Datei'+#13#10+
@@ -1817,7 +1832,7 @@ begin
                 'eingestellt werden.');
   slAusgabe.add(#13#10);
   slAusgabe.add('Erzeugt von GE_Kart '+ GetProductVersionString +' am: '+datetostr(date));
-
+  slHelp.Free;
   ShowDruckenDlg;
 end;
 
@@ -2246,7 +2261,7 @@ begin
 
   y := myval(year(datetostr(date)));
 
-  frmDM.dsetHelp.sql.Text := 'select vorname, nachname, Geburtstag, KonfDatum, TrauDatum from ' + sPersTablename + ' where ';
+  frmDM.dsetHelp.sql.Text := 'select vorname, nachname, Geburtstag, KonfDatum, TrauDatum, Gemeinde from ' + sPersTablename + ' where ';
   frmDM.dsetHelp.sql.add(sWhere);
   frmDM.dsetHelp.open;
   while not frmDM.dsetHelp.eof do
@@ -2261,19 +2276,19 @@ begin
       sTrau := AppendChar(FormatDateTime('mmddyyyy',dtTrau)+' '+FormatDateTime('dd.mm.yyyy',dtTrau)+' '+sName, ' ', 50);
 
       //Auswertung
-      if y-(myval(FormatDateTime('yyyy',dtGeb))) in SetGebTage then slAusgabe.Add(sGeb+ ' ' +  inttostr(Y-myval(FormatDateTime('yyyy',frmDM.dsetHelp.fieldByName('Geburtstag').asdateTime))) + '. Geburtstag');
+      if y-(myval(FormatDateTime('yyyy',dtGeb))) in SetGebTage then slAusgabe.Add(sGeb+ ' ' +  inttostr(Y-myval(FormatDateTime('yyyy',frmDM.dsetHelp.fieldByName('Geburtstag').asdateTime))) + '. Geburtstag            '+frmDM.dsetHelp.fieldByName('Gemeinde').AsString);
 
-      if y-(myval(FormatDateTime('yyyy',dtKonf))) = 25 then slAusgabe.Add(sKonf+ ' Silberne Konfirmation');
-      if y-(myval(FormatDateTime('yyyy',dtKonf))) = 50 then slAusgabe.Add(sKonf+ ' Goldene Konfirmation');
+      if y-(myval(FormatDateTime('yyyy',dtKonf))) = 25 then slAusgabe.Add(sKonf+ ' Silberne Konfirmation     '+frmDM.dsetHelp.fieldByName('Gemeinde').AsString);
+      if y-(myval(FormatDateTime('yyyy',dtKonf))) = 50 then slAusgabe.Add(sKonf+ ' Goldene Konfirmation      '+frmDM.dsetHelp.fieldByName('Gemeinde').AsString);
 
       case y-(myval(FormatDateTime('yyyy',dtTrau))) of
-        25: slAusgabe.Add(sTrau+ ' Silberhochzeit (25)');
+        25: slAusgabe.Add(sTrau+ ' Silberhochzeit (25)       '+frmDM.dsetHelp.fieldByName('Gemeinde').AsString);
 //        40: slAusgabe.Add(sTrau+ ' Rubinhochzeit (40)');     //ab V7.4.1.0
-        50: slAusgabe.Add(sTrau+ ' Goldene Hochzeit (50)');
-        60: slAusgabe.Add(sTrau+ ' Diamantene Hochzeit (60))');
-        65: slAusgabe.Add(sTrau+ ' Eiserne Hochzeit (65)');
-        70: slAusgabe.Add(sTrau+ ' Gnadenhochzeit (70))');
-        75: slAusgabe.Add(sTrau+ ' Kronjuwelenhochzeit (75)');
+        50: slAusgabe.Add(sTrau+ ' Goldene Hochzeit (50)     '+frmDM.dsetHelp.fieldByName('Gemeinde').AsString);
+        60: slAusgabe.Add(sTrau+ ' Diamantene Hochzeit (60)) '+frmDM.dsetHelp.fieldByName('Gemeinde').AsString);
+        65: slAusgabe.Add(sTrau+ ' Eiserne Hochzeit (65)     '+frmDM.dsetHelp.fieldByName('Gemeinde').AsString);
+        70: slAusgabe.Add(sTrau+ ' Gnadenhochzeit (70))      '+frmDM.dsetHelp.fieldByName('Gemeinde').AsString);
+        75: slAusgabe.Add(sTrau+ ' Kronjuwelenhochzeit (75)  '+frmDM.dsetHelp.fieldByName('Gemeinde').AsString);
       end;
 
       frmDM.dsetHelp.next;
@@ -2708,12 +2723,12 @@ begin
           frmDM.ExecSQL(global.sSQL_DelAbgang);
 
           //Filter auf Gemeinde und Kirche
-          if frmStatInfo.stat_gemeinde.Text <> '' then sFilter := 'Gemeinde=''' + frmStatInfo.stat_gemeinde.Text + '''';
-          if frmStatInfo.stat_Kirche.text <> '' then
-            begin
-              if sFilter <> '' then sFilter := sFilter + ' and ';
-              sFilter := sFilter + 'Kirche=''' + frmStatInfo.stat_Kirche.Text + '''';
-            end;
+          if frmStatInfo.stat_gemeinde.Text = ''
+            then sFilter := SQL_Where_Add(sFilter, SQL_Where_IsNull('Gemeinde'))
+            else if frmStatInfo.stat_gemeinde.Text <> sGemeindenAlle
+              then sFilter := SQL_Where_Add(sFilter, 'Gemeinde=''' + frmStatInfo.stat_gemeinde.Text + '''');
+          if frmStatInfo.stat_Kirche.text <> ''
+            then sFilter := SQL_Where_Add(sFilter, 'Kirche=''' + frmStatInfo.stat_Kirche.Text + '''');
           myDebugLN('Setze Filter: ' + sFilter);
           frmDM.dsetPERSONEN.Filter   := sFilter;
           frmDM.dsetPERSONEN.Filtered := (sFilter <> '');
