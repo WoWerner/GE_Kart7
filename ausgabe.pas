@@ -101,7 +101,7 @@ begin
       begin
         sFile := SaveDialog.FileName;
 
-        memo.Lines.SaveToFile(ExtractFilePath(sFile)+StringReplace(ExtractFileName(sFile), '.', '_UTF-8.', []));
+        memo.Lines.SaveToFile(sFile);
 
         //Alternative in anderen Formaten speichern
         AssignFile(myFile, ExtractFilePath(sFile)+StringReplace(ExtractFileName(sFile), '.', '_ANSI_CP1252.', []));

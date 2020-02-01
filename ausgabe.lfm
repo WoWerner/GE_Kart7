@@ -7,7 +7,7 @@ object frmAusgabe: TfrmAusgabe
   ClientHeight = 600
   ClientWidth = 800
   OnShow = FormShow
-  LCLVersion = '1.6.4.0'
+  LCLVersion = '1.8.0.6'
   WindowState = wsMaximized
   object Panel1: TPanel
     Left = 0
