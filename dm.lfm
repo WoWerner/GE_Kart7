@@ -8,7 +8,6 @@ object frmDM: TfrmDM
   object dsPersonen: TDataSource
     AutoEdit = False
     DataSet = dsetPersonen
-    OnStateChange = dsPersonenStateChange
     left = 232
     top = 21
   end
