@@ -114,6 +114,7 @@ function GetComputerName: string;
 function GetUserName: string;
 function GETWORKAREA: TRect;
 function GETMaxWindowsSize: TRect;
+function GetCaptionHeight: integer;
 
 //Files
 function GetFileInfo(const AFileName: String; var FileWriteTime: TDateTime; var FileSize: Int64): Boolean;
@@ -214,6 +215,12 @@ end;
 function GETWORKAREA: TRect;
 begin
   SystemParametersInfo(SPI_GETWORKAREA, 0, @Result, 0);
+end;
+
+function GetCaptionHeight : integer;
+
+begin
+  result := GetSystemMetrics(SM_CYCAPTION)
 end;
 
 function GETMaxWindowsSize: TRect;
