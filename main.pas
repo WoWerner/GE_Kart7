@@ -186,6 +186,7 @@ type
     MenuItem22: TMenuItem;
     MenuItem23: TMenuItem;
     MenuItem27: TMenuItem;
+    mnuGebListSplit: TMenuItem;
     mnuExport: TMenuItem;
     mnuUserDefSQL: TMenuItem;
     mnuOpenDebug: TMenuItem;
@@ -290,6 +291,7 @@ type
     procedure mnuGDBearbeitenClick(Sender: TObject);
     procedure mnuGDStatistikClick(Sender: TObject);
     procedure mnuGebListClick(Sender: TObject);
+    procedure mnuGebListSplitClick(Sender: TObject);
     procedure mnuGemeindeAdresseClick(Sender: TObject);
     procedure mnuGemeindeDefaultClick(Sender: TObject);
     procedure mnuImportClick(Sender: TObject);
@@ -445,6 +447,7 @@ begin
   mnuShowOverView.Checked    := ('1' = help.ReadIniVal(sIniFile, 'Defaults','ShowOverView', '1', true));
   mnuColoredEditMode.Checked := ('1' = help.ReadIniVal(sIniFile, 'Defaults','ColoredEditMode', '1', true));
   mnuShowTaufTag.Checked     := ('1' = help.ReadIniVal(sIniFile, 'Defaults','ShowTaufTag', '1', true));
+  mnuGebListSplit.Checked    := ('1' = help.ReadIniVal(sIniFile, 'Defaults','GebListSplit', '1', true));
   mnuUserDefSQL.Visible      := FileExists(UTF8ToSys(sUserDefSQLFile));
 
   if mnuUserDefSQL.Visible
@@ -1506,9 +1509,11 @@ begin
 
   sWhere        := '';
 
-  frmStatInfo.stat_jahr.Text      := FormatDateTime('YYYY', now());
-  frmStatInfo.stat_Kirche.Enabled := false;
-  frmStatInfo.stat_gemeinde.Text  := sDefaultGemeinde;
+  frmStatInfo.stat_jahr.Text        := FormatDateTime('YYYY', now());
+  frmStatInfo.stat_jahr.Enabled     := true;
+  frmStatInfo.stat_Kirche.Enabled   := false;
+  frmStatInfo.stat_gemeinde.Enabled := true;
+  frmStatInfo.stat_gemeinde.Text    := sDefaultGemeinde;
   if frmStatInfo.ShowModal = mrOK
     then
       begin
@@ -1726,6 +1731,7 @@ var
   sWhere2,
   sWhere3,
   sWhere4,
+  sWhere5,
   sGebAb   : String;
   i        : integer;
   slHelp   : TStringlist;
@@ -1754,6 +1760,7 @@ var
     frmDM.dsetHelp.sql.add(sWhere2);
     frmDM.dsetHelp.sql.add(sWhere3);
     frmDM.dsetHelp.sql.add(sWhere4);
+    frmDM.dsetHelp.sql.add(sWhere5);
     frmDM.dsetHelp.sql.add('order by strftime(''%j'',geburtstag), nachname, vorname');
 
     frmDM.dsetHelp.open;
@@ -1768,72 +1775,110 @@ var
       end;
     frmDM.dsetHelp.Close;
 
-    slAusgabe.add('');
-    slAusgabe.add('Geburtstage bis 14');
-
-    frmDM.dsetHelp.sql.Clear;
-    frmDM.dsetHelp.sql.add('select vorname, Nachname, Geburtstag, (strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) as Age from '+global.sPersTablename+' where');
-    frmDM.dsetHelp.sql.add(sWhere1);
-    frmDM.dsetHelp.sql.add('((strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) <= 14) and');
-    frmDM.dsetHelp.sql.add(sWhere3);
-    frmDM.dsetHelp.sql.add(sWhere4);
-    frmDM.dsetHelp.sql.add('order by strftime(''%j'',geburtstag), nachname, vorname');
-
-    frmDM.dsetHelp.open;
-    while not frmDM.dsetHelp.eof do
+    if sGebAb <> '0' then
       begin
-        slAusgabe.add(FormatAge(frmDM.dsetHelp.fieldByName('Geburtstag').asdateTime, frmDM.dsetHelp.fieldByName('Age').asinteger)+
-                      frmDM.dsetHelp.fieldByName('vorname').asstring+' '+frmDM.dsetHelp.fieldByName('Nachname').asstring);
-        frmDM.dsetHelp.Next;
+        slAusgabe.add('');
+        slAusgabe.add('Geburtstage bis 14');
+
+        frmDM.dsetHelp.sql.Clear;
+        frmDM.dsetHelp.sql.add('select vorname, Nachname, Geburtstag, (strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) as Age from '+global.sPersTablename+' where');
+        frmDM.dsetHelp.sql.add(sWhere1);
+        frmDM.dsetHelp.sql.add('((strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) <= 14) and');
+        frmDM.dsetHelp.sql.add(sWhere3);
+        frmDM.dsetHelp.sql.add(sWhere4);
+        frmDM.dsetHelp.sql.add(sWhere5);
+        frmDM.dsetHelp.sql.add('order by strftime(''%j'',geburtstag), nachname, vorname');
+
+        frmDM.dsetHelp.open;
+        while not frmDM.dsetHelp.eof do
+          begin
+            slAusgabe.add(FormatAge(frmDM.dsetHelp.fieldByName('Geburtstag').asdateTime, frmDM.dsetHelp.fieldByName('Age').asinteger)+
+                          frmDM.dsetHelp.fieldByName('vorname').asstring+' '+frmDM.dsetHelp.fieldByName('Nachname').asstring);
+            frmDM.dsetHelp.Next;
+          end;
+        frmDM.dsetHelp.Close;
       end;
-    frmDM.dsetHelp.Close;
   end;
 
 const
   AnzahlMonate = 5;
 
 begin
-  sWhere1 := '';
-  slHelp  := TStringlist.Create;
-  for i := 0 to AnzahlMonate do
-    sWhere1 := SQL_Where_Add_OR(sWhere1, '(strftime(''%m'',geburtstag) = '''+FormatDateTime('mm', IncMonth(now(), i))+''')');
-  sWhere1 := '('+sWhere1+') and';
+  frmStatInfo.stat_jahr.Enabled     := false;
+  frmStatInfo.stat_Kirche.Enabled   := true;
+  frmStatInfo.stat_gemeinde.Enabled := not mnuGebListSplit.Checked;
+  frmStatInfo.stat_gemeinde.Text    := sDefaultGemeinde;
+  if frmStatInfo.ShowModal = mrOK
+    then
+      begin
+        sWhere1 := '';
+        slHelp  := TStringlist.Create;
+        for i := 0 to AnzahlMonate do
+          sWhere1 := SQL_Where_Add_OR(sWhere1, '(strftime(''%m'',geburtstag) = '''+FormatDateTime('mm', IncMonth(now(), i))+''')');
+        sWhere1 := '('+sWhere1+') and';
 
-  sGebAb  := help.ReadIniVal(sIniFile, 'Defaults','JubiListAlleGebTageAb', '65', true);
-  sWhere2 := '((strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) >= '+sGebAb+') and';
+        sGebAb  := help.ReadIniVal(sIniFile, 'Defaults','JubiListAlleGebTageAb', '65', true);
+        sWhere2 := '((strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) >= '+sGebAb+') and';
 
-  sWhere3 := '';
-  sWhere3 := SQL_Where_Add(sWhere3, SQL_Where_IsNull('Ueberwiesen_nach_Datum'));
-  sWhere3 := SQL_Where_Add(sWhere3, SQL_Where_IsNull('AustrittsDatum'));
-  sWhere3 := SQL_Where_Add(sWhere3, SQL_Where_IsNull('AusschlussDatum'));
-  sWhere3 := SQL_Where_Add(sWhere3, SQL_Where_IsNull('TodesDatum'));
-  sWhere3 := SQL_Where_Add(sWhere3, SQL_Where_IsNull('UebertrittsAbDatum'));
+        sWhere3 := '';
+        sWhere3 := SQL_Where_Add(sWhere3, SQL_Where_IsNull('Ueberwiesen_nach_Datum'));
+        sWhere3 := SQL_Where_Add(sWhere3, SQL_Where_IsNull('AustrittsDatum'));
+        sWhere3 := SQL_Where_Add(sWhere3, SQL_Where_IsNull('AusschlussDatum'));
+        sWhere3 := SQL_Where_Add(sWhere3, SQL_Where_IsNull('TodesDatum'));
+        sWhere3 := SQL_Where_Add(sWhere3, SQL_Where_IsNull('UebertrittsAbDatum'));
 
-  slAusgabe.Clear;
-  slAusgabe.add('Geburtstage für die Monate '+FormatDateTime('mm', now())+' bis '+FormatDateTime('mm', IncMonth(now(), AnzahlMonate)));
-  slAusgabe.add('');
-  slHelp.Text := sGemeinden;
-  for i := 0 to slHelp.Count-1 do
-    begin
-      if (slHelp.strings[i] <> sGemeindenAlle) then
-        begin
-          sWhere4 := 'and (Gemeinde = ''' + slHelp.strings[i] +''')';
-          slAusgabe.add('Geburtstage für die Gemeinde "'+slHelp.strings[i]+'"');
-          slAusgabe.add('');
-          Ausgabe;
-          slAusgabe.add('');
-        end;
-    end;
+        sWhere5 := '';
+        if frmStatInfo.stat_Kirche.text <> ''
+          then sWhere5 := SQL_Where_Add(sWhere5, 'and Kirche=''' + frmStatInfo.stat_Kirche.Text + '''');
 
-  slAusgabe.add('');
-  slAusgabe.add('Die "Geburtstage ab '+sGebAb+'" können in der Datei'+#13#10+
-                '   '+sIniFile+', '+#13#10+
-                '   Variable: JubiListAlleGebTageAb'+#13#10+
-                'eingestellt werden.');
-  slAusgabe.add(#13#10);
-  slAusgabe.add('Erzeugt von GE_Kart '+ GetProductVersionString +' am: '+datetostr(date));
-  slHelp.Free;
-  ShowDruckenDlg;
+        slAusgabe.Clear;
+        slAusgabe.add('Geburtstage für die Monate '+FormatDateTime('mm', now())+' bis '+FormatDateTime('mm', IncMonth(now(), AnzahlMonate)));
+        slAusgabe.add('');
+        if mnuGebListSplit.Checked
+          then
+            begin
+              slHelp.Text := sGemeinden;
+              for i := 0 to slHelp.Count-1 do
+                begin
+                  if (slHelp.strings[i] <> sGemeindenAlle) then
+                    begin
+                      sWhere4 := 'and (Gemeinde = ''' + slHelp.strings[i] +''')';
+                      slAusgabe.add('Geburtstage für die Gemeinde "'+slHelp.strings[i]+'"');
+                      slAusgabe.add('');
+                      Ausgabe;
+                      slAusgabe.add('');
+                    end;
+                end;
+            end
+          else
+            begin
+              sWhere4 := '';
+              if frmStatInfo.stat_gemeinde.Text = ''
+                then sWhere4 := SQL_Where_Add(sWhere4, 'and '+SQL_Where_IsNull('Gemeinde'))
+                else if frmStatInfo.stat_gemeinde.Text <> sGemeindenAlle
+                  then sWhere4 := SQL_Where_Add(sWhere4, 'and Gemeinde=''' + frmStatInfo.stat_gemeinde.Text + '''');
+              slAusgabe.add('Geburtstage für die Gemeinde "'+frmStatInfo.stat_gemeinde.Text+'"');
+              slAusgabe.add('');
+              Ausgabe;
+              slAusgabe.add('');
+            end;
+
+        slAusgabe.add('');
+        slAusgabe.add('Die "Geburtstage ab '+sGebAb+'" können in der Datei '+sIniFile+', Variable: "JubiListAlleGebTageAb" eingestellt werden.');
+        if sGebAb <> '0' then slAusgabe.add('Um alle Geburtstage zu bekommen, dort eine "0" eintragen');
+        slAusgabe.add('');
+        slAusgabe.add('Erzeugt von GE_Kart '+ GetProductVersionString +' am: '+datetostr(date));
+        slHelp.Free;
+        ShowDruckenDlg;
+      end;
+end;
+
+procedure TfrmMain.mnuGebListSplitClick(Sender: TObject);
+begin
+    mnuGebListSplit.Checked := not mnuGebListSplit.Checked;
+  if mnuGebListSplit.Checked
+    then help.WriteIniVal(sIniFile, 'Defaults', 'GebListSplit', '1')
+    else help.WriteIniVal(sIniFile, 'Defaults', 'GebListSplit', '0');
 end;
 
 procedure TfrmMain.mnuGemeindeAdresseClick(Sender: TObject);
@@ -2710,9 +2755,11 @@ begin
 
   dt := now();
   if FormatDateTime('MM', dt) = '01' then dt := dt-365;
-  frmStatInfo.stat_jahr.Text      := FormatDateTime('YYYY', dt);
-  frmStatInfo.stat_Kirche.Enabled := true;
-  frmStatInfo.stat_gemeinde.Text  := sDefaultGemeinde;
+  frmStatInfo.stat_jahr.Text        := FormatDateTime('YYYY', dt);
+  frmStatInfo.stat_jahr.Enabled     := true;
+  frmStatInfo.stat_Kirche.Enabled   := true;
+  frmStatInfo.stat_gemeinde.Enabled := true;
+  frmStatInfo.stat_gemeinde.Text    := sDefaultGemeinde;
   if frmStatInfo.ShowModal = mrOK
     then
       begin

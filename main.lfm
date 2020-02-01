@@ -519,6 +519,11 @@ object frmMain: TfrmMain
         Checked = True
         OnClick = mnuColoredEditModeClick
       end
+      object mnuGebListSplit: TMenuItem
+        Caption = 'Geburtstagsliste f. Gemeindebrief nach Gemeinden getrennt'
+        Checked = True
+        OnClick = mnuGebListSplitClick
+      end
       object MenuItem22: TMenuItem
         Caption = '-'
       end
