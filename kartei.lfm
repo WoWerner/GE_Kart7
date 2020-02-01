@@ -1,8 +1,8 @@
 object frmKartei: TfrmKartei
-  Left = 531
+  Left = 498
   Height = 675
   Hint = 'Strg-Pos1: Erster Datensatz'#13#10'Bild hoch: Vorhergehender Datensatz'#13#10'Bild runter: Nächster Datensatz'#13#10'Strg-Ende: Letzter Datensatz'#13#10#13#10'Strg-S: Speichern'#13#10'Strg-P: Drucken'#13#10'Strg-F: Schnellsuche'#13#10#13#10'Mausrad: Datensatzwechsel'#13#10#13#10'F1: Hilfe'
-  Top = 132
+  Top = 0
   Width = 1003
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -77,9 +77,9 @@ object frmKartei: TfrmKartei
     Height = 488
     Top = 160
     Width = 888
-    ActivePage = TSKasualien
+    ActivePage = TSEltern
     ParentFont = False
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 1
     OnChange = pcDetailsChange
     object TSAllgemein: TTabSheet
@@ -515,6 +515,7 @@ object frmKartei: TfrmKartei
           'FU (Familienstand unbekannt)'
         )
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 9
       end
       object dbcbKirche: TDBComboBox
@@ -526,6 +527,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 6
       end
       object Label25: TLabel
@@ -901,6 +903,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsKinder
         ItemHeight = 15
         MaxLength = 0
+        OnMouseEnter = dbcbKindKircheMouseEnter
         TabOrder = 15
       end
       object dbcbMutterKirche: TDBComboBox
@@ -912,6 +915,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 5
       end
       object dbcbVaterKirche: TDBComboBox
@@ -923,6 +927,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 2
       end
       object Shape4: TShape
@@ -1539,6 +1544,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 20
       end
       object Shape1: TShape
@@ -1997,6 +2003,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 4
       end
       object dbcbUebertrittNach: TDBComboBox
@@ -2008,6 +2015,7 @@ object frmKartei: TfrmKartei
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 26
       end
       object Label146: TLabel
@@ -2959,6 +2967,7 @@ object frmKartei: TfrmKartei
           ' '
         )
         MaxLength = 0
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 0
       end
       object dbediVorname2: TDBEdit
@@ -3127,6 +3136,7 @@ object frmKartei: TfrmKartei
         )
         MaxLength = 0
         OnChange = DBCBGeschlechtChange
+        OnMouseEnter = dbcbOnMouseEnter
         TabOrder = 10
       end
       object Label5: TLabel

@@ -294,9 +294,18 @@ procedure TfrmSuche.FormCreate(Sender: TObject);
 begin
   btnResetClick(Sender);
 
-  Self.Position := poDesigned;
-  Self.Left     := WORKAREA.Left + (WORKAREA.Right div 2) - (self.Width div 2);
-  Self.Top      := WORKAREA.Top  + (WORKAREA.Bottom div 2) - (self.Height div 2);
+  //Position
+  if nDefDPI = screen.PixelsPerInch
+    then
+      begin
+        Self.Position := poDesigned;
+        Self.Left     := WORKAREA.Left + (WORKAREA.Right div 2)  - (self.Width div 2);
+        Self.Top      := WORKAREA.Top  + (WORKAREA.Bottom div 2) - (self.Height div 2);
+      end
+    else
+      begin
+        Self.Position := poScreenCenter;
+      end;
 end;
 
 procedure TfrmSuche.FormKeyPress(Sender: TObject; var Key: char);

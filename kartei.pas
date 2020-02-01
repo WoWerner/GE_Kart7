@@ -391,6 +391,8 @@ type
     procedure cbMarkiertChange(Sender: TObject);
     procedure DatumDblClick(Sender: TObject);
     procedure DBCBGeschlechtChange(Sender: TObject);
+    procedure dbcbKindKircheMouseEnter(Sender: TObject);
+    procedure dbcbOnMouseEnter(Sender: TObject);
     procedure dbediEMail1DblClick(Sender: TObject);
     procedure dbediEMail2DblClick(Sender: TObject);
     procedure dbediEMailDblClick(Sender: TObject);
@@ -780,6 +782,7 @@ begin
   frmDM.dsetPERSONEN.FieldByName('Markiert').AsBoolean := cbMarkiert.Checked;
   frmDM.dsetPERSONEN.Post;
   frmDM.dsetPERSONEN.Refresh;
+  SetLastChange := true;
 end;
 
 procedure TfrmKartei.btnDelKommClick(Sender: TObject);
@@ -1025,6 +1028,18 @@ begin
         Messagedlg('Nur "W", "M" oder " " erlaubt', mtInformation, [mbOK], 0);
         dbcbGeschlecht.SetFocus;
       end;
+end;
+
+procedure TfrmKartei.dbcbKindKircheMouseEnter(Sender: TObject);
+begin
+  ///??? Workaround für Bug in Lazarus 1.8.0 CB geht nicht richtig in EDIT Mode
+  if cbBearbeiten.Checked then frmDM.dsKinder.Edit;
+end;
+
+procedure TfrmKartei.dbcbOnMouseEnter(Sender: TObject);
+begin
+  ///??? Workaround für Bug in Lazarus 1.8.0 CB geht nicht richtig in EDIT Mode
+  if cbBearbeiten.Checked then frmDM.dsetPERSONEN.Edit;
 end;
 
 procedure TfrmKartei.dbediEMail1DblClick(Sender: TObject);
