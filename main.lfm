@@ -1,0 +1,640 @@
+object frmMain: TfrmMain
+  Left = 275
+  Height = 415
+  Top = 125
+  Width = 693
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'frmMain'
+  ClientHeight = 395
+  ClientWidth = 693
+  Icon.Data = {
+    FE0200000000010001002020100000000000E802000016000000280000002000
+    0000400000000100040000000000800200000000000000000000000000000000
+    0000000000000000800000800000008080008000000080008000808000008080
+    8000C0C0C0000000FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFF
+    FF00888888808888888888888888888808888888888088888888888888888888
+    0888888888808888888888888888888808808888888088888888888888888888
+    0888888888808BBB8888BBB8888BBB880888888888808BAB8888BAB8888BAB88
+    0000888888808BAB8888BAB8888BAB888888888888808BAB8888BAB8888BAB88
+    88888BBBB8808BBB8888BBB8888BBB8888888BBBB88088B888888B888888B888
+    88888BAAB8808888888888888888888888888BAAB88088888888888888888888
+    88888BAAB8808888888888888888888888888BBBB88999999999999999999999
+    99998BBBB88999999999999999999999999C8888888999999999999999999999
+    99CC88888889999999999999999999999CCC8888888999999999999999999999
+    CCCC888888899999999999999999999CCCCC8888888CBCCCCCCBCCCCCBCCCCBC
+    CCCB8888888CCBCCCCCCBCCCCBCCCCBCCCCB9999999CCCBBCCCCCBCCCCBCCCBC
+    CCBCC99999CCCCCCBCCCCBCCCCBCCCBCCCBCCC999CCCCCCCCBCCCCBCCCCBCCBC
+    CBCCCCFFFCCCCCCCCCBC7777777777BCCBCCCCFFFCCCCCCCCCC7777777777CBC
+    CBCCCCFFFCCCCCCCCCC777777777BCBCBCCBCCFFFCCCCCCCCCCC77777777CBBC
+    BCBCFFFFFFFCCCCCCCCCC7777777CBBBBBCCFFFFFFFCCCCCCCCCCCCCBBCBBBBB
+    BBCCCCFFFCCCCCCCCCCCCCCCCCBCBBBBBBCCCCFFFCCCCCCCCCCCCCCCCCCBBBBB
+    BBCC000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000
+  }
+  Menu = MainMenu
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  Position = poScreenCenter
+  ShowHint = True
+  LCLVersion = '1.8.0.6'
+  object lb_Name: TLabel
+    Left = 56
+    Height = 63
+    Top = 20
+    Width = 417
+    Caption = 'Gemeinde-Kartei'
+    Font.Color = clPurple
+    Font.Height = 64
+    Font.Name = 'Arial'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 56
+    Height = 15
+    Top = 152
+    Width = 18
+    Caption = 'für:'
+    ParentColor = False
+  end
+  object labVersion: TLabel
+    Left = 56
+    Height = 19
+    Top = 94
+    Width = 60
+    Caption = 'Version:'
+    Font.Height = 19
+    Font.Name = 'Arial'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 56
+    Height = 15
+    Top = 196
+    Width = 23
+    Caption = 'von:'
+    ParentColor = False
+  end
+  object LabMyName: TLabel
+    Left = 84
+    Height = 16
+    Top = 196
+    Width = 112
+    Caption = 'Wolfgang Werner'
+    Font.Color = clNavy
+    Font.Height = 16
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object labMyStreet: TLabel
+    Left = 84
+    Height = 16
+    Top = 216
+    Width = 77
+    Caption = 'Ulmtalstr. 26'
+    Font.Color = clNavy
+    Font.Height = 16
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object labMyCity: TLabel
+    Left = 84
+    Height = 16
+    Top = 236
+    Width = 202
+    Caption = '35753 Greifenstein / Holzhausen'
+    Font.Color = clNavy
+    Font.Height = 16
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object labMyTelNr: TLabel
+    Left = 84
+    Height = 16
+    Top = 256
+    Width = 104
+    Caption = '06478 / 43 29 840'
+    Font.Color = clNavy
+    Font.Height = 16
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object labMyMail: TLabel
+    Cursor = crHandPoint
+    Left = 84
+    Height = 16
+    Top = 276
+    Width = 120
+    Caption = 'mail@w-werner.de'
+    Font.Color = clNavy
+    Font.Height = 16
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnClick = labMyMailClick
+  end
+  object labMyWeb: TLabel
+    Cursor = crHandPoint
+    Left = 84
+    Height = 16
+    Top = 296
+    Width = 116
+    Caption = 'www.w-werner.de'
+    Font.Color = clNavy
+    Font.Height = 16
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnClick = labMyWebClick
+  end
+  object LabGemeinde1: TLabel
+    Cursor = crHandPoint
+    Left = 84
+    Height = 16
+    Top = 152
+    Width = 106
+    Caption = 'Mustergemeinde'
+    Font.Color = clNavy
+    Font.Height = 16
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnDblClick = mnuGemeindeAdresseClick
+  end
+  object LabGemeinde2: TLabel
+    Cursor = crHandPoint
+    Left = 84
+    Height = 16
+    Top = 168
+    Width = 106
+    Caption = 'Mustergemeinde'
+    Font.Color = clNavy
+    Font.Height = 16
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnDblClick = mnuGemeindeAdresseClick
+  end
+  object btnKartei: TButton
+    Left = 16
+    Height = 25
+    Top = 320
+    Width = 120
+    Caption = 'Kartei bearbeiten'
+    OnClick = btnKarteiClick
+    TabOrder = 0
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 372
+    Width = 693
+    Panels = <    
+      item
+        Width = 300
+      end    
+      item
+        Width = 50
+      end>
+    SimplePanel = False
+  end
+  object btnSuchen: TButton
+    Left = 146
+    Height = 25
+    Hint = 'Rechtsklick: Volltextsuche'
+    Top = 320
+    Width = 75
+    Caption = 'Suchen'
+    OnClick = btnSuchenClick
+    OnContextPopup = btnSuchenContextPopup
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 2
+  end
+  object memGeburtstag: TMemo
+    Left = 312
+    Height = 278
+    Top = 86
+    Width = 374
+    ScrollBars = ssAutoBoth
+    TabOrder = 3
+    Visible = False
+  end
+  object btnEnde: TButton
+    Left = 231
+    Height = 25
+    Top = 320
+    Width = 75
+    Caption = 'Ende'
+    OnClick = mnuEndeClick
+    TabOrder = 4
+  end
+  object labVersionNeu: TLabel
+    Left = 56
+    Height = 16
+    Top = 116
+    Width = 140
+    Caption = 'Neue Version verfügbar: '
+    Color = clYellow
+    Font.Height = 16
+    Font.Name = 'Arial'
+    ParentColor = False
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    Transparent = False
+    OnClick = labVersionNeuClick
+  end
+  object btnAktuelles: TButton
+    Left = 16
+    Height = 17
+    Top = 352
+    Width = 290
+    Caption = 'Aktuelles'
+    OnClick = btnAktuellesClick
+    TabOrder = 5
+    Visible = False
+  end
+  object MainMenu: TMainMenu
+    left = 16
+    top = 8
+    object mnuDatei: TMenuItem
+      Caption = 'Datei'
+      object MenuItem26: TMenuItem
+        Caption = 'Datenbank'
+        object mnuSelectDatabase: TMenuItem
+          Caption = 'Auswählen'
+          OnClick = mnuSelectDatabaseClick
+        end
+        object mnuDatensicherung: TMenuItem
+          Caption = 'Datensicherung'
+          OnClick = mnuDatensicherungClick
+        end
+        object mnuDatenRestore: TMenuItem
+          Caption = 'Datensicherung zurücklesen'
+          OnClick = mnuDatenRestoreClick
+        end
+      end
+      object MenuItem25: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem19: TMenuItem
+        Caption = 'Import'
+        object mnuImport: TMenuItem
+          Caption = 'Daten aus GE_Kart 6 importieren'
+          OnClick = mnuImportClick
+        end
+        object mnuImportGD: TMenuItem
+          Caption = 'Gottesdienste aus GE_Kart 6 importieren'
+          OnClick = mnuImportGDClick
+        end
+        object MenuItem1: TMenuItem
+          Caption = '-'
+        end
+        object mnuPrintDBStrukt: TMenuItem
+          Caption = 'Zeige Datenbankstruktur'
+          OnClick = mnuPrintDBStruktClick
+        end
+        object mnuCSVImport: TMenuItem
+          Caption = 'Füge Daten aus einer CSV-Datei an die Datenbank an (UTF8 Kodierung)'
+          OnClick = mnuCSVImportClick
+        end
+      end
+      object mnuExport: TMenuItem
+        Caption = 'Export'
+        OnClick = mnuExportClick
+      end
+      object MenuItem17: TMenuItem
+        Caption = '-'
+      end
+      object mnuEnde: TMenuItem
+        Caption = 'Ende'
+        OnClick = mnuEndeClick
+      end
+    end
+    object mnuDrucken: TMenuItem
+      Caption = 'Drucken'
+      object mnuPrintFormular: TMenuItem
+        Caption = 'Formular laden'
+        OnClick = mnuPrintFormularClick
+      end
+      object MenuItem4: TMenuItem
+        Caption = '-'
+      end
+      object mnuSortName: TMenuItem
+        Caption = 'Sortierung Name'
+        Checked = True
+        GroupIndex = 1
+        RadioItem = True
+        OnClick = mnuRBClick
+      end
+      object mnuSortOrt: TMenuItem
+        Caption = 'Sortierung Plz, Ort +(teil), Straße und Name'
+        GroupIndex = 1
+        RadioItem = True
+        OnClick = mnuRBClick
+      end
+      object mnuSortGeb: TMenuItem
+        Caption = 'Sortierung Geburtstag (Monat, Tag)'
+        GroupIndex = 1
+        RadioItem = True
+        OnClick = mnuRBClick
+      end
+      object mnuSortGebAlter: TMenuItem
+        Caption = 'Sortierung Geburtstag (Alter)'
+        GroupIndex = 1
+        RadioItem = True
+        OnClick = mnuRBClick
+      end
+      object MnuSortTauf: TMenuItem
+        Caption = 'Sortierung Tauftag'
+        GroupIndex = 1
+        RadioItem = True
+        OnClick = mnuRBClick
+      end
+      object MenuItem5: TMenuItem
+        Caption = '-'
+      end
+      object mnuAlle: TMenuItem
+        Caption = 'Alle'
+        Checked = True
+        GroupIndex = 2
+        RadioItem = True
+        OnClick = mnuRBClick
+      end
+      object mnuMarkierte: TMenuItem
+        Caption = 'Markierte'
+        GroupIndex = 2
+        RadioItem = True
+        OnClick = mnuRBClick
+      end
+      object mnuIncludeAbgang: TMenuItem
+        Caption = 'mit Abgängen'
+        OnClick = mnuIncludeAbgangClick
+      end
+      object MenuItem6: TMenuItem
+        Caption = '-'
+      end
+      object mnuDruckNix: TMenuItem
+        Caption = '" " auf Etiketten'
+        Checked = True
+        GroupIndex = 3
+        RadioItem = True
+        OnClick = mnuRBClick
+      end
+      object mnuBuechersendung: TMenuItem
+        Caption = '"Büchersendung" auf Etiketten'
+        GroupIndex = 3
+        RadioItem = True
+        OnClick = mnuRBClick
+      end
+      object mnuDruckWarensendung: TMenuItem
+        Caption = '"Warensendung" auf Etiketten'
+        GroupIndex = 3
+        RadioItem = True
+        OnClick = mnuRBClick
+      end
+      object MenuItem15: TMenuItem
+        Caption = '-'
+      end
+      object mnuAbsToEti: TMenuItem
+        Caption = 'Absender auf Etiketten'
+        Checked = True
+        OnClick = mnuAbsToEtiClick
+      end
+      object MenuItem16: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem24: TMenuItem
+        Caption = 'Sonstiges'
+        object mnuStatistik: TMenuItem
+          Caption = 'Statistik'
+          OnClick = mnuStatistikClick
+        end
+        object mnuJubi: TMenuItem
+          Caption = 'Jubiläumsliste'
+          OnClick = mnuJubiClick
+        end
+        object mnuGebList: TMenuItem
+          Caption = 'Geburtstagsliste für den Gemeindebrief'
+          Hint = 'Für die nächsten 4 Monate'
+          OnClick = mnuGebListClick
+        end
+        object mnuFreeList: TMenuItem
+          Caption = 'Freie Liste (CSV-Format) für Serienbriefe'
+          OnClick = mnuFreeListClick
+        end
+      end
+      object MenuItem3: TMenuItem
+        Caption = '-'
+      end
+      object mnuReportDesigner: TMenuItem
+        Caption = 'Designer aufrufen'
+        OnClick = mnuReportDesignerClick
+      end
+    end
+    object MenuItem7: TMenuItem
+      Caption = 'Bearbeiten'
+      object MenuItem8: TMenuItem
+        Caption = 'Karteikarte bearbeiten'
+        OnClick = btnKarteiClick
+      end
+      object MenuItem9: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem10: TMenuItem
+        Caption = 'Suchen'
+        OnClick = btnSuchenClick
+      end
+      object mnuVolltextsuche: TMenuItem
+        Caption = 'Volltextsuche'
+        OnClick = mnuVolltextsucheClick
+      end
+    end
+    object MenuItem12: TMenuItem
+      Caption = 'Gottesdienstverwaltung'
+      object mnuGDBearbeiten: TMenuItem
+        Caption = 'Bearbeiten'
+        OnClick = mnuGDBearbeitenClick
+      end
+      object mnuGDStatistik: TMenuItem
+        Caption = 'Statistik'
+        OnClick = mnuGDStatistikClick
+      end
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Einstellungen'
+      object mnuGemeindeAdresse: TMenuItem
+        Caption = 'Adressdaten'
+        OnClick = mnuGemeindeAdresseClick
+      end
+      object mnuChangePW: TMenuItem
+        Caption = 'Passwort ändern'
+        OnClick = mnuChangePWClick
+      end
+      object mnuSelectReportFile: TMenuItem
+        Caption = 'Reportdatei für Karteikartendruck auswählen'
+        OnClick = mnuSelectReportFileClick
+      end
+      object mnuDefineKircheEntries: TMenuItem
+        Caption = 'Einträge für Kirche anpassen'
+        OnClick = mnuDefineKircheEntriesClick
+      end
+      object mnuGemeindeDefault: TMenuItem
+        Caption = 'Standard für "Gemeinde" bei neuer Person festlegen'
+        OnClick = mnuGemeindeDefaultClick
+      end
+      object MenuItem14: TMenuItem
+        Caption = '-'
+      end
+      object mnuShowTaufTag: TMenuItem
+        Caption = 'Zeige Tauftag an'
+        OnClick = mnuShowTaufTagClick
+      end
+      object mnuShowOverView: TMenuItem
+        Caption = 'Zeige Überblick in Karteimaske'
+        Checked = True
+        OnClick = mnuShowOverViewClick
+      end
+      object mnuColoredEditMode: TMenuItem
+        Caption = 'Zeige Berarbeitungsmodus farbig an'
+        Checked = True
+        OnClick = mnuColoredEditModeClick
+      end
+      object MenuItem22: TMenuItem
+        Caption = '-'
+      end
+      object mnuDebug: TMenuItem
+        Caption = 'Debug'
+        OnClick = mnuDebugClick
+      end
+      object mnuSQLDebug: TMenuItem
+        Caption = 'SQL Debug'
+        OnClick = mnuSQLDebugClick
+      end
+    end
+    object MenuItem27: TMenuItem
+      Caption = 'Tools'
+      object MenuSetAnrede: TMenuItem
+        Caption = 'Leeres Feld "Anrede" nach Geschlecht setzten'
+        OnClick = MenuSetAnredeClick
+      end
+      object MenuItem18: TMenuItem
+        Caption = '-'
+      end
+      object mnuDelMark: TMenuItem
+        Caption = 'Lösche alle Markierungen'
+        OnClick = mnuDelMarkClick
+      end
+      object mnuInvertMark: TMenuItem
+        Caption = 'Invertiere alle Markierungen'
+        OnClick = mnuInvertMarkClick
+      end
+      object MenuItem11: TMenuItem
+        Caption = '-'
+      end
+      object mnuDelMarkPers: TMenuItem
+        Caption = 'Lösche alle markierten Personen'
+        OnClick = mnuDelMarkPersClick
+      end
+      object MenuItem20: TMenuItem
+        Caption = '-'
+      end
+      object mnuFehlerInKarteiSuchen: TMenuItem
+        Caption = 'Fehlerhafte Karteikarten suchen'
+        OnClick = mnuFehlerInKarteiSuchenClick
+      end
+      object MenuItem21: TMenuItem
+        Caption = '-'
+      end
+      object mnuDruckerrnderanzeigen: TMenuItem
+        Caption = 'Druckerränder anzeigen'
+        OnClick = mnuDruckerrnderanzeigenClick
+      end
+      object MenuItem23: TMenuItem
+        Caption = '-'
+      end
+      object mnuExecSQLSingle: TMenuItem
+        Caption = 'SQL ausführen (einzelner Befehl)'
+        OnClick = mnuExecSQLSingleClick
+      end
+      object mnuExecSQLBatch: TMenuItem
+        Caption = 'SQL ausführen (Batch Mode)'
+        OnClick = mnuExecSQLBatchClick
+      end
+      object mnuUserDefSQL: TMenuItem
+        Caption = 'Benutzerdefinierte SQL Abfrage'
+        OnClick = mnuUserDefSQLClick
+      end
+      object MenuItem13: TMenuItem
+        Caption = '-'
+      end
+      object mnuOpenDebug: TMenuItem
+        Caption = 'Zeige Debug'
+        OnClick = mnuOpenDebugClick
+      end
+    end
+  end
+  object frDBDataSet: TfrDBDataSet
+    DataSet = frmDM.dsetHelp
+    DataSource = frmDM.dsHelp
+    left = 632
+    top = 72
+  end
+  object frReport: TfrReport
+    Dataset = frDBDataSet
+    DefaultCopies = 0
+    InitialZoom = pzDefault
+    Options = []
+    PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
+    DataType = dtDataSet
+    OnGetValue = frReportGetValue
+    left = 632
+    top = 176
+  end
+  object OpenDialog: TOpenDialog
+    left = 16
+    top = 88
+  end
+  object SaveDialog: TSaveDialog
+    left = 16
+    top = 144
+  end
+  object frTextExport: TfrTextExport
+    ShowExportParamsDlg = False
+    left = 632
+    top = 224
+  end
+  object frHTMExport: TfrHTMExport
+    left = 632
+    top = 272
+  end
+  object frCSVExport: TfrCSVExport
+    left = 632
+    top = 320
+  end
+  object frDBDataSetDetail: TfrDBDataSet
+    DataSet = frmDM.dsetHelp1
+    DataSource = frmDM.dsHelp1
+    left = 632
+    top = 128
+  end
+end

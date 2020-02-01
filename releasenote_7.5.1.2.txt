@@ -1,0 +1,7 @@
+﻿Änderungen in der Version 7.5.1.2 (10.02.2018)
+
+Anpassungen für kleine / Notebook Bildschirme
+Export hinzugefügt
+Benutzerdefinierte SQL Abfragen möglich
+
+Soll die Meldung noch einmal angezeigt werden?

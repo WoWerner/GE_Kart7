@@ -1,0 +1,3531 @@
+object frmKartei: TfrmKartei
+  Left = 531
+  Height = 675
+  Hint = 'Strg-Pos1: Erster Datensatz'#13#10'Bild hoch: Vorhergehender Datensatz'#13#10'Bild runter: Nächster Datensatz'#13#10'Strg-Ende: Letzter Datensatz'#13#10#13#10'Strg-S: Speichern'#13#10'Strg-P: Drucken'#13#10'Strg-F: Schnellsuche'#13#10#13#10'Mausrad: Datensatzwechsel'#13#10#13#10'F1: Hilfe'
+  Top = 132
+  Width = 1003
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Kartei'
+  ClientHeight = 675
+  ClientWidth = 1003
+  KeyPreview = True
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  OnKeyPress = FormKeyPress
+  OnMouseWheelDown = FormMouseWheelDown
+  OnMouseWheelUp = FormMouseWheelUp
+  OnShow = FormShow
+  ShowHint = True
+  LCLVersion = '1.8.0.6'
+  object panShowOverview: TPanel
+    Left = 0
+    Height = 649
+    Top = 0
+    Width = 7
+    Align = alLeft
+    BevelOuter = bvNone
+    Color = clHighlight
+    ParentColor = False
+    TabOrder = 13
+    OnMouseEnter = panShowOverviewMouseEnter
+  end
+  object panDatenbankOverview: TPanel
+    Left = 7
+    Height = 649
+    Top = 0
+    Width = 610
+    Align = alLeft
+    BevelOuter = bvNone
+    ClientHeight = 649
+    ClientWidth = 610
+    TabOrder = 12
+    Visible = False
+    OnMouseLeave = panDatenbankOverviewMouseLeave
+    object DBGridOverView: TDBGrid
+      Left = 0
+      Height = 649
+      Hint = 'Zum Scrollen '#13#10'- Cursor oder '#13#10'Bild hoch / runter'#13#10'benutzen.'#13#10' '#13#10'Zum Auswählen auf eine Person klicken.'
+      Top = 0
+      Width = 600
+      Align = alLeft
+      AutoEdit = False
+      Color = clWindow
+      Columns = <>
+      DataSource = frmDM.dsPersonen
+      Scrollbars = ssNone
+      TabOrder = 0
+      OnCellClick = DBGridOverViewCellClick
+    end
+  end
+  object DBGridDetails: TDBGrid
+    Left = 8
+    Height = 170
+    Top = 504
+    Width = 886
+    Color = clWindow
+    Columns = <>
+    DataSource = frmDM.dsKinder
+    ReadOnly = True
+    Scrollbars = ssAutoBoth
+    TabOrder = 2
+    Visible = False
+  end
+  object pcDetails: TPageControl
+    Left = 6
+    Height = 488
+    Top = 160
+    Width = 888
+    ActivePage = TSKasualien
+    ParentFont = False
+    TabIndex = 2
+    TabOrder = 1
+    OnChange = pcDetailsChange
+    object TSAllgemein: TTabSheet
+      Caption = 'Allgemein'
+      ClientHeight = 460
+      ClientWidth = 880
+      ParentFont = False
+      object DBCB_Ausbildung: TDBCheckBox
+        Left = 4
+        Height = 23
+        Top = 304
+        Width = 90
+        Caption = 'Ausbildung'
+        DataField = 'Ausbildung'
+        DataSource = frmDM.dsPersonen
+        TabOrder = 15
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object Label15: TLabel
+        Left = 4
+        Height = 15
+        Top = 4
+        Width = 72
+        Caption = 'Telefon privat'
+        ParentColor = False
+      end
+      object dbediTelPrivat: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 20
+        Width = 200
+        DataField = 'TelPrivat'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 0
+      end
+      object Label16: TLabel
+        Left = 212
+        Height = 15
+        Top = 4
+        Width = 93
+        Caption = 'Telefon dienstlich'
+        ParentColor = False
+      end
+      object dbediTelDienst: TDBEdit
+        Left = 212
+        Height = 23
+        Top = 20
+        Width = 200
+        DataField = 'TelDienst'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 1
+      end
+      object dbediTelMobil: TDBEdit
+        Left = 420
+        Height = 23
+        Top = 20
+        Width = 217
+        DataField = 'TelMobil'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 2
+      end
+      object Label17: TLabel
+        Left = 420
+        Height = 15
+        Top = 4
+        Width = 73
+        Caption = 'Telefon mobil'
+        ParentColor = False
+      end
+      object Label18: TLabel
+        Left = 652
+        Height = 15
+        Top = 4
+        Width = 17
+        Caption = 'Fax'
+        ParentColor = False
+      end
+      object dbediTelFax: TDBEdit
+        Left = 651
+        Height = 23
+        Top = 20
+        Width = 224
+        DataField = 'Fax'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 3
+      end
+      object Label19: TLabel
+        Left = 4
+        Height = 15
+        Top = 52
+        Width = 29
+        Caption = 'eMail'
+        ParentColor = False
+      end
+      object dbediEMail: TDBEdit
+        Left = 4
+        Height = 23
+        Hint = 'Doppelklick für EMail senden'
+        Top = 68
+        Width = 408
+        DataField = 'eMail'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 4
+        OnDblClick = dbediEMailDblClick
+      end
+      object Label20: TLabel
+        Left = 420
+        Height = 15
+        Top = 52
+        Width = 41
+        Caption = 'Internet'
+        ParentColor = False
+      end
+      object dbediInternet: TDBEdit
+        Left = 420
+        Height = 23
+        Hint = 'Doppelklick für Öffnen der Adresse'
+        Top = 68
+        Width = 455
+        DataField = 'Internet'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 5
+        OnDblClick = dbediInternetDblClick
+      end
+      object Label22: TLabel
+        Left = 3
+        Height = 15
+        Top = 192
+        Width = 33
+        Caption = 'Kirche'
+        ParentColor = False
+      end
+      object Label23: TLabel
+        Left = 219
+        Height = 15
+        Top = 192
+        Width = 54
+        Caption = 'Gemeinde'
+        ParentColor = False
+      end
+      object dbediGemeinde: TDBEdit
+        Left = 219
+        Height = 23
+        Top = 208
+        Width = 55
+        DataField = 'Gemeinde'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 7
+      end
+      object Label24: TLabel
+        Left = 283
+        Height = 15
+        Top = 192
+        Width = 41
+        Caption = 'Versand'
+        ParentColor = False
+      end
+      object dbediVersand: TDBEdit
+        Left = 283
+        Height = 23
+        Top = 208
+        Width = 128
+        DataField = 'Versand'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 8
+      end
+      object DBCB_Ruhestand: TDBCheckBox
+        Left = 802
+        Height = 23
+        Top = 304
+        Width = 74
+        Caption = 'Ruhestand'
+        DataField = 'Ruhestand'
+        DataSource = frmDM.dsPersonen
+        TabOrder = 19
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object Label43: TLabel
+        Left = 516
+        Height = 15
+        Top = 240
+        Width = 56
+        Caption = 'GebStAOrt'
+        ParentColor = False
+      end
+      object dbediGebStAOrt: TDBEdit
+        Left = 516
+        Height = 23
+        Top = 256
+        Width = 175
+        DataField = 'GebStAOrt'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 13
+      end
+      object Label44: TLabel
+        Left = 701
+        Height = 15
+        Top = 240
+        Width = 72
+        Caption = 'GebStARegNr'
+        ParentColor = False
+      end
+      object dbediGebStARegNr: TDBEdit
+        Left = 701
+        Height = 23
+        Top = 256
+        Width = 174
+        DataField = 'GebStARegNr'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 14
+      end
+      object Label45: TLabel
+        Left = 3
+        Height = 15
+        Top = 240
+        Width = 53
+        Caption = 'GebName'
+        ParentColor = False
+      end
+      object dbediGebName: TDBEdit
+        Left = 3
+        Height = 23
+        Top = 256
+        Width = 208
+        DataField = 'GebName'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 10
+      end
+      object Label46: TLabel
+        Left = 219
+        Height = 15
+        Top = 240
+        Width = 38
+        Caption = 'GebOrt'
+        ParentColor = False
+      end
+      object dbediGebOrt: TDBEdit
+        Left = 219
+        Height = 23
+        Top = 256
+        Width = 192
+        DataField = 'GebOrt'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 11
+      end
+      object Label47: TLabel
+        Left = 420
+        Height = 15
+        Top = 240
+        Width = 75
+        Caption = 'GebStADatum'
+        ParentColor = False
+      end
+      object dbediGebStADatum: TDBEdit
+        Left = 420
+        Height = 23
+        Top = 256
+        Width = 76
+        DataField = 'GebStADatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 12
+        OnDblClick = DatumDblClick
+      end
+      object dbediBerufAusgeuebt: TDBEdit
+        Left = 327
+        Height = 23
+        Top = 304
+        Width = 230
+        DataField = 'BerufAusgeuebt'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 17
+      end
+      object Label49: TLabel
+        Left = 327
+        Height = 15
+        Top = 288
+        Width = 90
+        Caption = 'ausgeübter Beruf'
+        ParentColor = False
+      end
+      object dbediArbeitgeber: TDBEdit
+        Left = 564
+        Height = 23
+        Top = 304
+        Width = 230
+        DataField = 'Arbeitgeber'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 18
+      end
+      object Label50: TLabel
+        Left = 564
+        Height = 15
+        Top = 288
+        Width = 62
+        Caption = 'Arbeitgeber'
+        ParentColor = False
+      end
+      object Label51: TLabel
+        Left = 92
+        Height = 15
+        Top = 288
+        Width = 75
+        Caption = 'erlernter Beruf'
+        ParentColor = False
+      end
+      object dbediBerufErlernt: TDBEdit
+        Left = 92
+        Height = 23
+        Top = 304
+        Width = 230
+        DataField = 'BerufErlernt'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 16
+      end
+      object Label52: TLabel
+        Left = 4
+        Height = 15
+        Top = 360
+        Width = 64
+        Caption = 'Freies Feld 1'
+        ParentColor = False
+      end
+      object dbediFreiFeld1: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 376
+        Width = 871
+        DataField = 'FreiFeld1'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 23
+      end
+      object DBCB_AktiverZahler: TDBCheckBox
+        Left = 4
+        Height = 23
+        Top = 332
+        Width = 90
+        Caption = 'Aktiver Zahler'
+        DataField = 'AktiverZahler'
+        DataSource = frmDM.dsPersonen
+        TabOrder = 20
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCB_AnZahlungErinnern: TDBCheckBox
+        Left = 108
+        Height = 23
+        Top = 332
+        Width = 138
+        Caption = 'An Zahlung erinnern'
+        DataField = 'AnZahlungErinnern'
+        DataSource = frmDM.dsPersonen
+        TabOrder = 21
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object Label63: TLabel
+        Left = 420
+        Height = 15
+        Top = 192
+        Width = 74
+        Caption = 'Familienstand'
+        ParentColor = False
+      end
+      object DBCB_GD_Besuch: TDBCheckBox
+        Left = 260
+        Height = 23
+        Top = 332
+        Width = 90
+        Caption = 'GD-Besuch'
+        DataField = 'GDBesuch'
+        DataSource = frmDM.dsPersonen
+        TabOrder = 22
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCBFamstand: TDBComboBox
+        Left = 420
+        Height = 23
+        Top = 208
+        Width = 354
+        DataField = 'Familienstand'
+        DataSource = frmDM.dsPersonen
+        ItemHeight = 15
+        Items.Strings = (
+          'LD (ledig)'
+          'VH (verheiratet)'
+          'GT (getrennt lebend)'
+          'GS (geschieden)'
+          'VW (verwitwet)'
+          'LP (verpartnert = Lebenspartnerschaft)'
+          'LA (entpartnert = Lebenspartnerschaft aufgehoben)'
+          'LV (partnerhinterblieben = Lebenspartner verstorben)'
+          'FU (Familienstand unbekannt)'
+        )
+        MaxLength = 0
+        TabOrder = 9
+      end
+      object dbcbKirche: TDBComboBox
+        Left = 3
+        Height = 23
+        Top = 208
+        Width = 208
+        DataField = 'Kirche'
+        DataSource = frmDM.dsPersonen
+        ItemHeight = 15
+        MaxLength = 0
+        TabOrder = 6
+      end
+      object Label25: TLabel
+        Left = 4
+        Height = 15
+        Top = 96
+        Width = 40
+        Caption = 'eMail-2'
+        ParentColor = False
+      end
+      object dbediEMail1: TDBEdit
+        Left = 4
+        Height = 23
+        Hint = 'Doppelklick für EMail senden'
+        Top = 112
+        Width = 408
+        DataField = 'email2'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 24
+        OnDblClick = dbediEMail1DblClick
+      end
+      object Label26: TLabel
+        Left = 4
+        Height = 15
+        Top = 144
+        Width = 40
+        Caption = 'eMail-3'
+        ParentColor = False
+      end
+      object dbediEMail2: TDBEdit
+        Left = 4
+        Height = 23
+        Hint = 'Doppelklick für EMail senden'
+        Top = 160
+        Width = 408
+        DataField = 'email3'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 25
+        OnDblClick = dbediEMail2DblClick
+      end
+      object Label27: TLabel
+        Left = 420
+        Height = 15
+        Top = 96
+        Width = 220
+        Caption = 'Internet / Facebook / Twitter / WKW / u.a.'
+        ParentColor = False
+      end
+      object dbediInternet1: TDBEdit
+        Left = 419
+        Height = 23
+        Hint = 'Doppelklick für Öffnen der Adresse'
+        Top = 112
+        Width = 456
+        DataField = 'Internet2'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 26
+        OnDblClick = dbediInternet1DblClick
+      end
+      object dbediInternet2: TDBEdit
+        Left = 419
+        Height = 23
+        Hint = 'Doppelklick für Öffnen der Adresse'
+        Top = 160
+        Width = 456
+        DataField = 'Internet3'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 27
+        OnDblClick = dbediInternet2DblClick
+      end
+      object Label28: TLabel
+        Left = 420
+        Height = 15
+        Top = 144
+        Width = 220
+        Caption = 'Internet / Facebook / Twitter / WKW / u.a.'
+        ParentColor = False
+      end
+      object Label60: TLabel
+        Left = 420
+        Height = 15
+        Top = 332
+        Width = 91
+        Caption = 'Aufgewachsen in'
+        ParentColor = False
+      end
+      object DBEdiAufgewachsenIn: TDBEdit
+        Left = 420
+        Height = 23
+        Top = 348
+        Width = 455
+        DataField = 'AufgewachsenIn'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 28
+      end
+    end
+    object TSEltern: TTabSheet
+      Caption = 'Eltern / Kinder / Geschwister'
+      ClientHeight = 460
+      ClientWidth = 880
+      ParentFont = False
+      object Label53: TLabel
+        Left = 4
+        Height = 15
+        Top = 8
+        Width = 26
+        Caption = 'Vater'
+        ParentColor = False
+      end
+      object DBEdiVaterName: TDBEdit
+        Left = 4
+        Height = 23
+        Hint = 'Doppelklick für Auswahlliste'
+        Top = 24
+        Width = 408
+        DataField = 'VaterName'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+        OnDblClick = DBEdiVaterNameDblClick
+      end
+      object Label54: TLabel
+        Left = 420
+        Height = 15
+        Top = 8
+        Width = 71
+        Caption = 'Geburtsname'
+        ParentColor = False
+      end
+      object DBEdiVaterGebName: TDBEdit
+        Left = 420
+        Height = 23
+        Top = 24
+        Width = 288
+        DataField = 'VaterGebName'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 1
+      end
+      object Label55: TLabel
+        Left = 716
+        Height = 15
+        Top = 8
+        Width = 33
+        Caption = 'Kirche'
+        ParentColor = False
+      end
+      object Label56: TLabel
+        Left = 4
+        Height = 15
+        Top = 49
+        Width = 36
+        Caption = 'Mutter'
+        ParentColor = False
+      end
+      object DBEdiMutterName: TDBEdit
+        Left = 4
+        Height = 23
+        Hint = 'Doppelklick für Auswahlliste'
+        Top = 65
+        Width = 408
+        DataField = 'MutterName'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 3
+        OnDblClick = DBEdiMutterNameDblClick
+      end
+      object DBEdiMutterGebName: TDBEdit
+        Left = 421
+        Height = 23
+        Top = 65
+        Width = 288
+        DataField = 'MutterGebName'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 4
+      end
+      object DBMemoGeschwister: TDBMemo
+        Left = 4
+        Height = 88
+        Top = 120
+        Width = 872
+        DataField = 'Geschwister'
+        DataSource = frmDM.dsPersonen
+        TabOrder = 6
+      end
+      object Label59: TLabel
+        Left = 4
+        Height = 15
+        Top = 104
+        Width = 63
+        Caption = 'Geschwister'
+        ParentColor = False
+      end
+      object btnNewKind: TButton
+        Left = 516
+        Height = 25
+        Hint = 'Rechtsklick: Kinderauswahlliste'
+        Top = 232
+        Width = 128
+        Caption = 'Kind hinzufügen'
+        Enabled = False
+        OnClick = btnNewKindClick
+        OnContextPopup = btnNewKindContextPopup
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 13
+      end
+      object btnDelKind: TButton
+        Left = 651
+        Height = 25
+        Top = 232
+        Width = 128
+        Caption = 'Kind löschen'
+        Enabled = False
+        OnClick = btnDelKindClick
+        TabOrder = 14
+      end
+      object Label139: TLabel
+        Left = 4
+        Height = 15
+        Top = 264
+        Width = 47
+        Caption = 'Vorname'
+        ParentColor = False
+      end
+      object DBEdKindVorname: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 280
+        Width = 145
+        DataField = 'Vorname'
+        DataSource = frmDM.dsKinder
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 7
+      end
+      object DBEdKindVorname2: TDBEdit
+        Left = 151
+        Height = 23
+        Top = 280
+        Width = 145
+        DataField = 'Vorname2'
+        DataSource = frmDM.dsKinder
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 8
+      end
+      object Label140: TLabel
+        Left = 151
+        Height = 15
+        Top = 264
+        Width = 53
+        Caption = 'Vorname2'
+        ParentColor = False
+      end
+      object DBEdKindNachname: TDBEdit
+        Left = 299
+        Height = 23
+        Top = 280
+        Width = 145
+        DataField = 'Nachname'
+        DataSource = frmDM.dsKinder
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 9
+      end
+      object Label141: TLabel
+        Left = 299
+        Height = 15
+        Top = 264
+        Width = 58
+        Caption = 'Nachname'
+        ParentColor = False
+      end
+      object DBEdiKindGebName: TDBEdit
+        Left = 446
+        Height = 23
+        Top = 280
+        Width = 145
+        DataField = 'GebName'
+        DataSource = frmDM.dsKinder
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 10
+      end
+      object Label142: TLabel
+        Left = 446
+        Height = 15
+        Top = 264
+        Width = 71
+        Caption = 'Geburtsname'
+        ParentColor = False
+      end
+      object DBEdiKindGeburtstag: TDBEdit
+        Left = 592
+        Height = 23
+        Top = 280
+        Width = 80
+        DataField = 'Geburtstag'
+        DataSource = frmDM.dsKinder
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 11
+      end
+      object Label143: TLabel
+        Left = 592
+        Height = 15
+        Top = 264
+        Width = 58
+        Caption = 'Geburtstag'
+        ParentColor = False
+      end
+      object Label144: TLabel
+        Left = 754
+        Height = 15
+        Top = 264
+        Width = 33
+        Caption = 'Kirche'
+        ParentColor = False
+      end
+      object DBNavigator5: TDBNavigator
+        Left = 788
+        Height = 25
+        Top = 232
+        Width = 88
+        BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsScaleChilds
+        ChildSizing.EnlargeVertical = crsScaleChilds
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 100
+        ClientHeight = 25
+        ClientWidth = 88
+        DataSource = frmDM.dsKinder
+        Options = []
+        TabOrder = 12
+        VisibleButtons = [nbPost, nbCancel, nbRefresh]
+      end
+      object dbcbKindKirche: TDBComboBox
+        Left = 754
+        Height = 23
+        Top = 280
+        Width = 122
+        DataField = 'Kirche'
+        DataSource = frmDM.dsKinder
+        ItemHeight = 15
+        MaxLength = 0
+        TabOrder = 15
+      end
+      object dbcbMutterKirche: TDBComboBox
+        Left = 716
+        Height = 23
+        Top = 65
+        Width = 160
+        DataField = 'MutterKirche'
+        DataSource = frmDM.dsPersonen
+        ItemHeight = 15
+        MaxLength = 0
+        TabOrder = 5
+      end
+      object dbcbVaterKirche: TDBComboBox
+        Left = 716
+        Height = 23
+        Top = 24
+        Width = 160
+        DataField = 'VaterKirche'
+        DataSource = frmDM.dsPersonen
+        ItemHeight = 15
+        MaxLength = 0
+        TabOrder = 2
+      end
+      object Shape4: TShape
+        Left = 4
+        Height = 1
+        Top = 96
+        Width = 872
+        Pen.Color = clBlue
+      end
+      object Shape6: TShape
+        Left = 4
+        Height = 1
+        Top = 219
+        Width = 872
+        Pen.Color = clBlue
+      end
+      object Label147: TLabel
+        Left = 4
+        Height = 15
+        Top = 225
+        Width = 34
+        Caption = 'Kinder'
+        ParentColor = False
+      end
+      object Label148: TLabel
+        Left = 673
+        Height = 15
+        Top = 264
+        Width = 58
+        Caption = 'Taufdatum'
+        ParentColor = False
+      end
+      object DBEdiKindGeburtstag1: TDBEdit
+        Left = 673
+        Height = 23
+        Top = 280
+        Width = 80
+        DataField = 'Taufdatum'
+        DataSource = frmDM.dsKinder
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 16
+      end
+    end
+    object TSKasualien: TTabSheet
+      Caption = 'Kasualien 1 (Taufe, Konfirmation, Trauung)'
+      ClientHeight = 460
+      ClientWidth = 880
+      object Label62: TLabel
+        Left = 4
+        Height = 15
+        Top = 333
+        Width = 64
+        Caption = 'Freies Feld 2'
+        ParentColor = False
+      end
+      object DBEdiFreiFeld2: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 351
+        Width = 872
+        DataField = 'FreiFeld2'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 0
+      end
+      object DBEdiTaufDatum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 24
+        Width = 73
+        DataField = 'TaufDatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 1
+        OnDblClick = DatumDblClick
+      end
+      object Label65: TLabel
+        Left = 4
+        Height = 15
+        Top = 8
+        Width = 62
+        Caption = 'Tauf Datum'
+        ParentColor = False
+      end
+      object Label66: TLabel
+        Left = 84
+        Height = 15
+        Top = 8
+        Width = 43
+        Caption = 'Tauf Ort'
+        ParentColor = False
+      end
+      object DBEdiTaufOrt: TDBEdit
+        Left = 84
+        Height = 23
+        Top = 24
+        Width = 190
+        DataField = 'TaufOrt'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 2
+      end
+      object Label67: TLabel
+        Left = 285
+        Height = 15
+        Top = 8
+        Width = 61
+        Caption = 'Tauf Pfarrer'
+        ParentColor = False
+      end
+      object DBEdiTaufPfarrer: TDBEdit
+        Left = 285
+        Height = 23
+        Top = 24
+        Width = 190
+        DataField = 'TaufPfarrer'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 3
+      end
+      object Label68: TLabel
+        Left = 484
+        Height = 15
+        Top = 8
+        Width = 63
+        Caption = 'Tauf Spruch'
+        ParentColor = False
+      end
+      object DBEdiTaufSpruch: TDBEdit
+        Left = 484
+        Height = 23
+        Top = 24
+        Width = 190
+        DataField = 'TaufSpruch'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 4
+      end
+      object Label69: TLabel
+        Left = 686
+        Height = 15
+        Top = 8
+        Width = 71
+        Caption = 'Tauf. Reg. Nr.'
+        ParentColor = False
+      end
+      object DBEdiTaufRegNr: TDBEdit
+        Left = 686
+        Height = 23
+        Top = 24
+        Width = 190
+        DataField = 'TaufRegNr'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 5
+      end
+      object Label70: TLabel
+        Left = 4
+        Height = 15
+        Top = 48
+        Width = 30
+        Caption = 'Paten'
+        ParentColor = False
+      end
+      object DBEdiTaufPate1: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 64
+        Width = 136
+        DataField = 'TaufPate1'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 6
+      end
+      object DBEdiTaufPate2: TDBEdit
+        Left = 148
+        Height = 23
+        Top = 64
+        Width = 136
+        DataField = 'TaufPate2'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 7
+      end
+      object DBEdiTaufPate3: TDBEdit
+        Left = 292
+        Height = 23
+        Top = 64
+        Width = 136
+        DataField = 'TaufPate3'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 8
+      end
+      object DBEdiTaufPate6: TDBEdit
+        Left = 724
+        Height = 23
+        Top = 64
+        Width = 152
+        DataField = 'TaufPate6'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 11
+      end
+      object DBEdiTaufPate5: TDBEdit
+        Left = 580
+        Height = 23
+        Top = 64
+        Width = 136
+        DataField = 'TaufPate5'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 10
+      end
+      object DBEdiTaufPate4: TDBEdit
+        Left = 436
+        Height = 23
+        Top = 64
+        Width = 136
+        DataField = 'TaufPate4'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 9
+      end
+      object Label71: TLabel
+        Left = 4
+        Height = 15
+        Top = 102
+        Width = 64
+        Caption = 'Konf Datum'
+        ParentColor = False
+      end
+      object DBEdiKonfDatum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 118
+        Width = 73
+        DataField = 'KonfDatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 12
+        OnDblClick = DatumDblClick
+      end
+      object Label72: TLabel
+        Left = 84
+        Height = 15
+        Top = 102
+        Width = 45
+        Caption = 'Konf Ort'
+        ParentColor = False
+      end
+      object DBEdiKonfOrt: TDBEdit
+        Left = 84
+        Height = 23
+        Top = 118
+        Width = 190
+        DataField = 'KonfOrt'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 13
+      end
+      object Label73: TLabel
+        Left = 285
+        Height = 15
+        Top = 102
+        Width = 63
+        Caption = 'Konf Pfarrer'
+        ParentColor = False
+      end
+      object DBEdiKonfPfarrer: TDBEdit
+        Left = 285
+        Height = 23
+        Top = 118
+        Width = 190
+        DataField = 'KonfPfarrer'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 14
+      end
+      object Label74: TLabel
+        Left = 484
+        Height = 15
+        Top = 102
+        Width = 65
+        Caption = 'Konf Spruch'
+        ParentColor = False
+      end
+      object DBEdiKonfSpruch: TDBEdit
+        Left = 484
+        Height = 23
+        Top = 118
+        Width = 190
+        DataField = 'KonfSpruch'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 15
+      end
+      object Label75: TLabel
+        Left = 686
+        Height = 15
+        Top = 102
+        Width = 73
+        Caption = 'Konf. Reg. Nr.'
+        ParentColor = False
+      end
+      object DBEdiKonfRegNr: TDBEdit
+        Left = 686
+        Height = 23
+        Top = 118
+        Width = 190
+        DataField = 'KonfRegNr'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 16
+      end
+      object Label76: TLabel
+        Left = 4
+        Height = 15
+        Top = 241
+        Width = 62
+        Caption = 'Trau Datum'
+        ParentColor = False
+      end
+      object DBEdiTrauDatum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 257
+        Width = 73
+        DataField = 'TrauDatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 24
+        OnDblClick = DatumDblClick
+      end
+      object DBEdiTrauOrt: TDBEdit
+        Left = 84
+        Height = 23
+        Top = 257
+        Width = 190
+        DataField = 'TrauOrt'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 25
+      end
+      object Label77: TLabel
+        Left = 84
+        Height = 15
+        Top = 241
+        Width = 43
+        Caption = 'Trau Ort'
+        ParentColor = False
+      end
+      object DBEdiTrauPfarrer: TDBEdit
+        Left = 285
+        Height = 23
+        Top = 257
+        Width = 190
+        DataField = 'TrauPfarrer'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 26
+      end
+      object Label78: TLabel
+        Left = 285
+        Height = 15
+        Top = 241
+        Width = 61
+        Caption = 'Trau Pfarrer'
+        ParentColor = False
+      end
+      object DBEdiTrauSpruch: TDBEdit
+        Left = 484
+        Height = 23
+        Top = 257
+        Width = 190
+        DataField = 'TrauSpruch'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 27
+      end
+      object Label79: TLabel
+        Left = 484
+        Height = 15
+        Top = 241
+        Width = 63
+        Caption = 'Trau Spruch'
+        ParentColor = False
+      end
+      object DBEdiTrauRegNr: TDBEdit
+        Left = 686
+        Height = 23
+        Top = 257
+        Width = 190
+        DataField = 'TrauRegNr'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 28
+      end
+      object Label80: TLabel
+        Left = 686
+        Height = 15
+        Top = 241
+        Width = 71
+        Caption = 'Trau. Reg. Nr.'
+        ParentColor = False
+      end
+      object Label81: TLabel
+        Left = 4
+        Height = 15
+        Top = 282
+        Width = 61
+        Caption = 'Trauzeugen'
+        ParentColor = False
+      end
+      object DBEdiTrauZeuge1: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 298
+        Width = 136
+        DataField = 'TrauZeuge1'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 29
+      end
+      object DBEdiTrauZeuge2: TDBEdit
+        Left = 148
+        Height = 23
+        Top = 298
+        Width = 136
+        DataField = 'TrauZeuge2'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 30
+      end
+      object DBEdiTrauZeuge3: TDBEdit
+        Left = 292
+        Height = 23
+        Top = 298
+        Width = 136
+        DataField = 'TrauZeuge3'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 31
+      end
+      object DBEdiTrauZeuge4: TDBEdit
+        Left = 436
+        Height = 23
+        Top = 298
+        Width = 136
+        DataField = 'TrauZeuge4'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 32
+      end
+      object DBEdiTrauZeuge5: TDBEdit
+        Left = 580
+        Height = 23
+        Top = 298
+        Width = 136
+        DataField = 'TrauZeuge5'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 33
+      end
+      object DBEdiTrauZeuge6: TDBEdit
+        Left = 724
+        Height = 23
+        Top = 298
+        Width = 152
+        DataField = 'TrauZeuge6'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 34
+      end
+      object Label82: TLabel
+        Left = 4
+        Height = 15
+        Top = 200
+        Width = 73
+        Caption = 'EheStADatum'
+        ParentColor = False
+      end
+      object DBEdiEheStADatum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 216
+        Width = 73
+        DataField = 'EheStADatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 21
+        OnDblClick = DatumDblClick
+      end
+      object Label83: TLabel
+        Left = 84
+        Height = 15
+        Top = 200
+        Width = 54
+        Caption = 'EheStAOrt'
+        ParentColor = False
+      end
+      object DBEdiEheStAOrt: TDBEdit
+        Left = 84
+        Height = 23
+        Top = 216
+        Width = 190
+        DataField = 'EheStAOrt'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 22
+      end
+      object Label84: TLabel
+        Left = 4
+        Height = 15
+        Top = 156
+        Width = 107
+        Caption = 'Ehegatte / Ehegattin'
+        ParentColor = False
+      end
+      object DBEdiEhegatteIn: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 172
+        Width = 215
+        DataField = 'EhegatteIn'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 17
+      end
+      object Label85: TLabel
+        Left = 226
+        Height = 15
+        Top = 156
+        Width = 59
+        Caption = 'Geb. Name'
+        ParentColor = False
+      end
+      object DBEdiEheGebName: TDBEdit
+        Left = 226
+        Height = 23
+        Top = 172
+        Width = 158
+        DataField = 'EheGebName'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 18
+      end
+      object Label86: TLabel
+        Left = 686
+        Height = 15
+        Top = 200
+        Width = 129
+        Caption = 'Ehe Standesamt Reg. Nr.'
+        ParentColor = False
+      end
+      object DBEdiEheStARegNr: TDBEdit
+        Left = 686
+        Height = 23
+        Top = 216
+        Width = 190
+        DataField = 'EheStARegNr'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 23
+      end
+      object Label87: TLabel
+        Left = 484
+        Height = 15
+        Top = 156
+        Width = 33
+        Caption = 'Kirche'
+        ParentColor = False
+      end
+      object dbcbEhegatteKirche: TDBComboBox
+        Left = 484
+        Height = 23
+        Top = 172
+        Width = 94
+        DataField = 'EhegatteKirche'
+        DataSource = frmDM.dsPersonen
+        ItemHeight = 15
+        MaxLength = 0
+        TabOrder = 20
+      end
+      object Shape1: TShape
+        Left = 4
+        Height = 1
+        Top = 329
+        Width = 872
+        Pen.Color = clBlue
+      end
+      object Shape2: TShape
+        Left = 4
+        Height = 1
+        Top = 149
+        Width = 872
+        Pen.Color = clBlue
+      end
+      object Shape3: TShape
+        Left = 4
+        Height = 1
+        Top = 96
+        Width = 872
+        Pen.Color = clBlue
+      end
+      object Label29: TLabel
+        Left = 394
+        Height = 15
+        Top = 156
+        Width = 58
+        Caption = 'Geburtstag'
+        ParentColor = False
+      end
+      object DbEdiEheGatteGeburtstag: TDBEdit
+        Left = 394
+        Height = 23
+        Top = 172
+        Width = 81
+        DataField = 'dRes1'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 19
+        OnDblClick = DatumDblClick
+      end
+    end
+    object TSZuAbGang: TTabSheet
+      Caption = 'Kasualien 2 (Zu/Abgang)'
+      ClientHeight = 460
+      ClientWidth = 880
+      object Label61: TLabel
+        Left = 4
+        Height = 15
+        Top = 414
+        Width = 64
+        Caption = 'Freies Feld 3'
+        ParentColor = False
+      end
+      object DBEdiFreiFeld3: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 430
+        Width = 872
+        DataField = 'FreiFeld3'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 27
+      end
+      object Label88: TLabel
+        Left = 4
+        Height = 15
+        Top = 239
+        Width = 66
+        Caption = 'Todesdatum'
+        ParentColor = False
+      end
+      object DBEdiTodesDatum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 255
+        Width = 96
+        DataField = 'TodesDatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 12
+        OnDblClick = DatumDblClick
+      end
+      object Label93: TLabel
+        Left = 4
+        Height = 15
+        Top = 0
+        Width = 75
+        Caption = 'Eintrittsdatum'
+        ParentColor = False
+      end
+      object DBEdiEintrittsDatum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 16
+        Width = 97
+        DataField = 'EintrittsDatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 0
+        OnDblClick = DatumDblClick
+      end
+      object Label94: TLabel
+        Left = 108
+        Height = 15
+        Top = 0
+        Width = 72
+        Caption = 'Eintrittsgrund'
+        ParentColor = False
+      end
+      object DBEdiEintrittsGrund: TDBEdit
+        Left = 108
+        Height = 23
+        Top = 16
+        Width = 768
+        DataField = 'EintrittsGrund'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 1
+      end
+      object Label95: TLabel
+        Left = 4
+        Height = 15
+        Top = 40
+        Width = 84
+        Caption = 'Übertrittsdatum'
+        ParentColor = False
+      end
+      object DBEdiUebertrittsZuDatum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 56
+        Width = 97
+        DataField = 'UebertrittsZuDatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 2
+        OnDblClick = DatumDblClick
+      end
+      object DBEdiUebertrittsZuGrund: TDBEdit
+        Left = 108
+        Height = 23
+        Top = 56
+        Width = 367
+        DataField = 'UebertrittsZuGrund'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 3
+      end
+      object Label96: TLabel
+        Left = 108
+        Height = 15
+        Top = 40
+        Width = 81
+        Caption = 'Übertrittsgrund'
+        ParentColor = False
+      end
+      object Label97: TLabel
+        Left = 484
+        Height = 15
+        Top = 40
+        Width = 65
+        Caption = 'Übertritt aus'
+        ParentColor = False
+      end
+      object DBEdiAustrittsDatum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 170
+        Width = 97
+        DataField = 'AustrittsDatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 8
+        OnDblClick = DatumDblClick
+      end
+      object DBEdiAustrittsGrund: TDBEdit
+        Left = 108
+        Height = 23
+        Top = 170
+        Width = 768
+        DataField = 'AustrittsGrund'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 9
+      end
+      object Label98: TLabel
+        Left = 4
+        Height = 15
+        Top = 154
+        Width = 79
+        Caption = 'Austrittsdatum'
+        ParentColor = False
+      end
+      object Label99: TLabel
+        Left = 108
+        Height = 15
+        Top = 154
+        Width = 76
+        Caption = 'Austrittsgrund'
+        ParentColor = False
+      end
+      object Label100: TLabel
+        Left = 4
+        Height = 15
+        Top = 194
+        Width = 93
+        Caption = 'Ausschlussdatum'
+        ParentColor = False
+      end
+      object DBEdiAusschlussDatum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 210
+        Width = 97
+        DataField = 'AusschlussDatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 10
+        OnDblClick = DatumDblClick
+      end
+      object DBEdiAusschlussGrund: TDBEdit
+        Left = 108
+        Height = 23
+        Top = 210
+        Width = 768
+        DataField = 'AusschlussGrund'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 11
+      end
+      object Label101: TLabel
+        Left = 108
+        Height = 15
+        Top = 194
+        Width = 90
+        Caption = 'Ausschlussgrund'
+        ParentColor = False
+      end
+      object Label102: TLabel
+        Left = 4
+        Height = 15
+        Top = 80
+        Width = 94
+        Caption = 'Überweisungsdat.'
+        ParentColor = False
+      end
+      object DBEdiUeberwiesen_von_Datum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 96
+        Width = 97
+        DataField = 'Ueberwiesen_von_Datum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 5
+        OnDblClick = DatumDblClick
+      end
+      object Label103: TLabel
+        Left = 108
+        Height = 15
+        Top = 80
+        Width = 84
+        Caption = 'Überwiesen von'
+        ParentColor = False
+      end
+      object DBEdiUeberwiesen_von: TDBEdit
+        Left = 108
+        Height = 23
+        Top = 96
+        Width = 768
+        DataField = 'Ueberwiesen_von'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 6
+      end
+      object Label105: TLabel
+        Left = 523
+        Height = 15
+        Top = 239
+        Width = 75
+        Caption = 'Standesamt in'
+        ParentColor = False
+      end
+      object DBEdiTodStAOrt: TDBEdit
+        Left = 523
+        Height = 23
+        Top = 255
+        Width = 191
+        DataField = 'TodStAOrt'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 15
+      end
+      object DBEdiTodStADatum: TDBEdit
+        Left = 411
+        Height = 23
+        Top = 255
+        Width = 102
+        DataField = 'TodStADatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 14
+        OnDblClick = DatumDblClick
+      end
+      object Label106: TLabel
+        Left = 411
+        Height = 15
+        Top = 239
+        Width = 102
+        Caption = 'Standesamtsdatum'
+        ParentColor = False
+      end
+      object DBEdiTodStARegNr: TDBEdit
+        Left = 724
+        Height = 23
+        Top = 255
+        Width = 153
+        DataField = 'TodStARegNr'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 16
+      end
+      object Label107: TLabel
+        Left = 724
+        Height = 15
+        Top = 239
+        Width = 36
+        Caption = 'Reg Nr'
+        ParentColor = False
+      end
+      object Label108: TLabel
+        Left = 4
+        Height = 15
+        Top = 328
+        Width = 94
+        Caption = 'Überweisungsdat.'
+        ParentColor = False
+      end
+      object DBEdiUeberwiesen_nach_Datum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 344
+        Width = 97
+        DataField = 'Ueberwiesen_nach_Datum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 22
+        OnDblClick = DatumDblClick
+      end
+      object DBEdiUeberwiesen_nach: TDBEdit
+        Left = 108
+        Height = 23
+        Top = 344
+        Width = 768
+        DataField = 'Ueberwiesen_nach'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 23
+      end
+      object Label109: TLabel
+        Left = 108
+        Height = 15
+        Top = 328
+        Width = 90
+        Caption = 'Überwiesen nach'
+        ParentColor = False
+      end
+      object DBEdiUebertrittsAbDatum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 385
+        Width = 97
+        DataField = 'UebertrittsAbDatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 24
+        OnDblClick = DatumDblClick
+      end
+      object Label110: TLabel
+        Left = 4
+        Height = 15
+        Top = 369
+        Width = 84
+        Caption = 'Übertrittsdatum'
+        ParentColor = False
+      end
+      object Label111: TLabel
+        Left = 108
+        Height = 15
+        Top = 369
+        Width = 81
+        Caption = 'Übertrittsgrund'
+        ParentColor = False
+      end
+      object DBEdiUebertrittsAbGrund: TDBEdit
+        Left = 108
+        Height = 23
+        Top = 385
+        Width = 367
+        DataField = 'UebertrittsAbGrund'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 25
+      end
+      object Label112: TLabel
+        Left = 484
+        Height = 15
+        Top = 369
+        Width = 73
+        Caption = 'Übertritt nach'
+        ParentColor = False
+      end
+      object DBCBAbgaenge: TDBCheckBox
+        Left = 4
+        Height = 23
+        Hint = 'Kann manuel gesetzt werden und wird von der Statistik automatisch gesetzt'
+        Top = 130
+        Width = 90
+        Caption = 'Abgang'
+        DataField = 'Abgang'
+        DataSource = frmDM.dsPersonen
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 7
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object dbcbUebertrittAus: TDBComboBox
+        Left = 484
+        Height = 23
+        Top = 56
+        Width = 392
+        DataField = 'UebertrittAus'
+        DataSource = frmDM.dsPersonen
+        ItemHeight = 15
+        MaxLength = 0
+        TabOrder = 4
+      end
+      object dbcbUebertrittNach: TDBComboBox
+        Left = 484
+        Height = 23
+        Top = 385
+        Width = 392
+        DataField = 'UebertrittNach'
+        DataSource = frmDM.dsPersonen
+        ItemHeight = 15
+        MaxLength = 0
+        TabOrder = 26
+      end
+      object Label146: TLabel
+        Left = 108
+        Height = 15
+        Hint = 'Sterbeort'
+        Top = 239
+        Width = 46
+        Caption = 'Todesort'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label104: TLabel
+        Left = 4
+        Height = 15
+        Top = 280
+        Width = 82
+        Caption = 'Bestattungsdat.'
+        ParentColor = False
+      end
+      object DBEdiBestattungsDatum: TDBEdit
+        Left = 3
+        Height = 23
+        Top = 298
+        Width = 97
+        DataField = 'BestattungsDatum'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 17
+        OnDblClick = DatumDblClick
+      end
+      object Label89: TLabel
+        Left = 108
+        Height = 15
+        Top = 280
+        Width = 44
+        Caption = 'Friedhof'
+        ParentColor = False
+      end
+      object Label90: TLabel
+        Left = 323
+        Height = 15
+        Top = 282
+        Width = 35
+        Caption = 'Pfarrer'
+        ParentColor = False
+      end
+      object DBEdiBestattungsPfarrer: TDBEdit
+        Left = 323
+        Height = 23
+        Top = 298
+        Width = 190
+        DataField = 'BestattungsPfarrer'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 19
+      end
+      object DBEdiBestattungsText: TDBEdit
+        Left = 523
+        Height = 23
+        Top = 298
+        Width = 190
+        DataField = 'BestattungsText'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 20
+      end
+      object Label91: TLabel
+        Left = 523
+        Height = 15
+        Top = 282
+        Width = 84
+        Caption = 'Bestattungstext '
+        ParentColor = False
+      end
+      object Label92: TLabel
+        Left = 724
+        Height = 15
+        Top = 282
+        Width = 36
+        Caption = 'Reg Nr'
+        ParentColor = False
+      end
+      object DBEdiBestattungsRegNr: TDBEdit
+        Left = 723
+        Height = 23
+        Top = 298
+        Width = 153
+        DataField = 'BestattungsRegNr'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 21
+      end
+      object DBEdiFriedhof: TDBEdit
+        Left = 108
+        Height = 23
+        Top = 298
+        Width = 207
+        DataField = 'Friedhof'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 18
+      end
+      object DBEdiTodesort: TDBEdit
+        Left = 108
+        Height = 23
+        Top = 256
+        Width = 295
+        DataField = 'Todesort'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 100
+        TabOrder = 13
+      end
+      object Shape7: TShape
+        Left = 4
+        Height = 1
+        Top = 126
+        Width = 872
+        Pen.Color = clBlue
+      end
+      object Shape8: TShape
+        Left = 4
+        Height = 1
+        Top = 237
+        Width = 872
+        Pen.Color = clBlue
+        Pen.Style = psDot
+      end
+      object Shape9: TShape
+        Left = 4
+        Height = 1
+        Top = 325
+        Width = 872
+        Pen.Color = clBlue
+        Pen.Style = psDot
+      end
+      object Shape10: TShape
+        Left = 4
+        Height = 1
+        Top = 413
+        Width = 872
+        Pen.Color = clBlue
+      end
+    end
+    object TSKommunionen: TTabSheet
+      Caption = 'Kommunionen'
+      ClientHeight = 460
+      ClientWidth = 880
+      object MemoKomm: TMemo
+        Left = 4
+        Height = 104
+        Top = 24
+        Width = 104
+        Lines.Strings = (
+          'MemoKomm'
+        )
+        ScrollBars = ssAutoVertical
+        TabOrder = 0
+      end
+      object Label132: TLabel
+        Left = 4
+        Height = 15
+        Top = 8
+        Width = 103
+        Caption = 'Abendmahlsgänge:'
+        ParentColor = False
+      end
+      object btnNewKomm: TButton
+        Left = 228
+        Height = 25
+        Top = 24
+        Width = 120
+        Caption = 'Hinzufügen'
+        Enabled = False
+        OnClick = btnNewKommClick
+        TabOrder = 2
+      end
+      object DateEditKomm: TDateEdit
+        Left = 116
+        Height = 23
+        Top = 24
+        Width = 105
+        CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+        DateOrder = doNone
+        ButtonWidth = 23
+        NumGlyphs = 1
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object DBTextAbendmahlsdatum: TDBText
+        Left = 141
+        Height = 16
+        Top = 68
+        Width = 80
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'Abendmahlsdatum'
+        DataSource = frmDM.dsKomm
+        ParentColor = False
+      end
+      object btnDelKomm: TButton
+        Left = 228
+        Height = 25
+        Top = 64
+        Width = 120
+        Caption = 'Löschen'
+        Enabled = False
+        OnClick = btnDelKommClick
+        TabOrder = 3
+      end
+    end
+    object TSBesuch: TTabSheet
+      Caption = 'Besuch'
+      ClientHeight = 460
+      ClientWidth = 880
+      object DBEdiBesuchsDatum: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 16
+        Width = 97
+        DataField = 'BesuchsDatum'
+        DataSource = frmDM.dsBesuch
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object Label133: TLabel
+        Left = 4
+        Height = 15
+        Top = 0
+        Width = 78
+        Caption = 'Besuchsdatum'
+        ParentColor = False
+      end
+      object Label134: TLabel
+        Left = 108
+        Height = 15
+        Top = 0
+        Width = 75
+        Caption = 'Besuchsgrund'
+        ParentColor = False
+      end
+      object DBEdiBesuchsgrund: TDBEdit
+        Left = 108
+        Height = 23
+        Top = 16
+        Width = 768
+        DataField = 'Besuchsgrund'
+        DataSource = frmDM.dsBesuch
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object Label135: TLabel
+        Left = 4
+        Height = 15
+        Top = 48
+        Width = 60
+        Caption = 'Mitbringsel'
+        ParentColor = False
+      end
+      object DBEdiMitbringsel: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 64
+        Width = 252
+        DataField = 'Mitbringsel'
+        DataSource = frmDM.dsBesuch
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 2
+      end
+      object Label136: TLabel
+        Left = 576
+        Height = 15
+        Top = 48
+        Width = 91
+        Caption = 'Terminabsprache'
+        ParentColor = False
+      end
+      object dbEdiTerminabsprache: TDBEdit
+        Left = 576
+        Height = 23
+        Top = 64
+        Width = 300
+        DataField = 'Terminabsprache'
+        DataSource = frmDM.dsBesuch
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 4
+      end
+      object Label137: TLabel
+        Left = 268
+        Height = 15
+        Top = 48
+        Width = 45
+        Caption = 'Bibeltext'
+        ParentColor = False
+      end
+      object DBEdiBibeltext: TDBEdit
+        Left = 266
+        Height = 23
+        Top = 64
+        Width = 300
+        DataField = 'Bibeltext'
+        DataSource = frmDM.dsBesuch
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 3
+      end
+      object DBMemBesuchMemo: TDBMemo
+        Left = 4
+        Height = 192
+        Top = 112
+        Width = 736
+        DataField = 'Memo'
+        DataSource = frmDM.dsBesuch
+        TabOrder = 5
+      end
+      object Label138: TLabel
+        Left = 4
+        Height = 15
+        Top = 96
+        Width = 35
+        Caption = 'Memo'
+        ParentColor = False
+      end
+      object btnDelBesuch: TButton
+        Left = 748
+        Height = 25
+        Top = 152
+        Width = 128
+        Caption = 'Löschen'
+        Enabled = False
+        OnClick = btnDelBesuchClick
+        TabOrder = 7
+      end
+      object btnNewBesuch: TButton
+        Left = 748
+        Height = 25
+        Top = 112
+        Width = 128
+        Caption = 'Hinzufügen'
+        Enabled = False
+        OnClick = btnNewBesuchClick
+        TabOrder = 6
+      end
+      object DBNavigatorBesuch: TDBNavigator
+        Left = 748
+        Height = 25
+        Top = 232
+        Width = 88
+        BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsScaleChilds
+        ChildSizing.EnlargeVertical = crsScaleChilds
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 100
+        ClientHeight = 25
+        ClientWidth = 88
+        DataSource = frmDM.dsBesuch
+        Options = []
+        TabOrder = 8
+        VisibleButtons = [nbPost, nbCancel, nbRefresh]
+      end
+      object btnCopyBesuch: TButton
+        Left = 748
+        Height = 25
+        Hint = 'Kopieren auf weitere Personen'#13#10#13#10'Hilfreich für die Statistik: '#13#10'Besuche mit gleichem Besuchsdatum und Besuchsgrund werden als ein Besuch zusammengefasst'
+        Top = 192
+        Width = 128
+        Caption = 'Kopieren'
+        Enabled = False
+        OnClick = btnCopyBesuchClick
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 9
+      end
+    end
+    object TSMemo: TTabSheet
+      Caption = 'Memo'
+      ClientHeight = 460
+      ClientWidth = 880
+      object DBMemo1: TDBMemo
+        Left = 0
+        Height = 460
+        Top = 0
+        Width = 880
+        Align = alClient
+        DataField = 'Memo'
+        DataSource = frmDM.dsPersonen
+        ScrollBars = ssAutoBoth
+        TabOrder = 0
+      end
+    end
+    object TSMitarbeit: TTabSheet
+      Caption = 'Mitarbeit'
+      ClientHeight = 460
+      ClientWidth = 880
+      object DBEdiFreiFeld4: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 352
+        Width = 872
+        DataField = 'FreiFeld4'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 21
+      end
+      object Label48: TLabel
+        Left = 4
+        Height = 15
+        Top = 336
+        Width = 64
+        Caption = 'Freies Feld 4'
+        ParentColor = False
+      end
+      object dbediAktivSeit: TDBEdit
+        Left = 124
+        Height = 23
+        Hint = 'Format: Datum'#13#10'z.B. 01.01.1999'
+        Top = 24
+        Width = 76
+        DataField = 'AktivSeit'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 1
+        OnDblClick = DatumDblClick
+      end
+      object Label64: TLabel
+        Left = 124
+        Height = 15
+        Top = 8
+        Width = 48
+        Caption = 'Aktiv seit'
+        ParentColor = False
+      end
+      object DBCB_AktivesMitglied: TDBCheckBox
+        Left = 4
+        Height = 23
+        Top = 24
+        Width = 112
+        Caption = 'Aktives Mitglied'
+        DataField = 'AktivesMitglied'
+        DataSource = frmDM.dsPersonen
+        TabOrder = 0
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object dbediAktivitaet1: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 72
+        Width = 408
+        DataField = 'Aktivitaet1'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 3
+      end
+      object Label113: TLabel
+        Left = 4
+        Height = 15
+        Top = 56
+        Width = 53
+        Caption = 'Aktivität 1'
+        ParentColor = False
+      end
+      object Label114: TLabel
+        Left = 420
+        Height = 15
+        Top = 56
+        Width = 63
+        Caption = 'Anmerkung'
+        ParentColor = False
+      end
+      object dbediAnmerkungenZuA1: TDBEdit
+        Left = 420
+        Height = 23
+        Top = 72
+        Width = 456
+        DataField = 'AnmerkungenZuA1'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 4
+      end
+      object Label115: TLabel
+        Left = 4
+        Height = 15
+        Top = 104
+        Width = 53
+        Caption = 'Aktivität 2'
+        ParentColor = False
+      end
+      object dbediAktivitaet2: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 120
+        Width = 408
+        DataField = 'Aktivitaet2'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 5
+      end
+      object dbediAnmerkungenZuA2: TDBEdit
+        Left = 420
+        Height = 23
+        Top = 120
+        Width = 456
+        DataField = 'AnmerkungenZuA2'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 6
+      end
+      object Label116: TLabel
+        Left = 422
+        Height = 15
+        Top = 104
+        Width = 63
+        Caption = 'Anmerkung'
+        ParentColor = False
+      end
+      object Label117: TLabel
+        Left = 4
+        Height = 15
+        Top = 152
+        Width = 53
+        Caption = 'Aktivität 3'
+        ParentColor = False
+      end
+      object dbediAktivitaet3: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 168
+        Width = 408
+        DataField = 'Aktivitaet3'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 7
+      end
+      object dbediAnmerkungenZuA3: TDBEdit
+        Left = 420
+        Height = 23
+        Top = 168
+        Width = 456
+        DataField = 'AnmerkungenZuA3'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 8
+      end
+      object Label118: TLabel
+        Left = 420
+        Height = 15
+        Top = 152
+        Width = 63
+        Caption = 'Anmerkung'
+        ParentColor = False
+      end
+      object dbediEhrungen: TDBEdit
+        Left = 212
+        Height = 23
+        Top = 24
+        Width = 664
+        DataField = 'Ehrungen'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 2
+      end
+      object Label119: TLabel
+        Left = 212
+        Height = 15
+        Top = 8
+        Width = 51
+        Caption = 'Ehrungen'
+        ParentColor = False
+      end
+      object Label120: TLabel
+        Left = 4
+        Height = 15
+        Top = 192
+        Width = 56
+        Caption = 'Funktion 1'
+        ParentColor = False
+      end
+      object dbediFunktion1: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 208
+        Width = 320
+        DataField = 'Funktion1'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 9
+      end
+      object dbediAnfangF1: TDBEdit
+        Left = 336
+        Height = 23
+        Hint = 'Format: Datum'#13#10'z.B. 01.01.1999'
+        Top = 208
+        Width = 76
+        DataField = 'F1Anfang'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 10
+        OnDblClick = DatumDblClick
+      end
+      object Label121: TLabel
+        Left = 336
+        Height = 15
+        Top = 192
+        Width = 37
+        Caption = 'Beginn'
+        ParentColor = False
+      end
+      object dbediEndeF1: TDBEdit
+        Left = 420
+        Height = 23
+        Hint = 'Format: Datum'#13#10'z.B. 01.01.1999'
+        Top = 208
+        Width = 76
+        DataField = 'F1Ende'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 11
+        OnDblClick = DatumDblClick
+      end
+      object Label122: TLabel
+        Left = 420
+        Height = 15
+        Top = 192
+        Width = 26
+        Caption = 'Ende'
+        ParentColor = False
+      end
+      object dbediAnmerkungenZuF1: TDBEdit
+        Left = 500
+        Height = 23
+        Top = 208
+        Width = 376
+        DataField = 'AnmerkungenZuF1'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 12
+      end
+      object Label123: TLabel
+        Left = 500
+        Height = 15
+        Top = 192
+        Width = 63
+        Caption = 'Anmerkung'
+        ParentColor = False
+      end
+      object Label124: TLabel
+        Left = 4
+        Height = 15
+        Top = 240
+        Width = 56
+        Caption = 'Funktion 2'
+        ParentColor = False
+      end
+      object dbediFunktion2: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 256
+        Width = 320
+        DataField = 'Funktion2'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 13
+      end
+      object Label125: TLabel
+        Left = 336
+        Height = 15
+        Top = 240
+        Width = 37
+        Caption = 'Beginn'
+        ParentColor = False
+      end
+      object dbediAnfangF2: TDBEdit
+        Left = 336
+        Height = 23
+        Hint = 'Format: Datum'#13#10'z.B. 01.01.1999'
+        Top = 256
+        Width = 76
+        DataField = 'F2Anfang'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 14
+        OnDblClick = DatumDblClick
+      end
+      object dbediEndeF2: TDBEdit
+        Left = 420
+        Height = 23
+        Hint = 'Format: Datum'#13#10'z.B. 01.01.1999'
+        Top = 256
+        Width = 76
+        DataField = 'F2Ende'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 15
+        OnDblClick = DatumDblClick
+      end
+      object Label126: TLabel
+        Left = 420
+        Height = 15
+        Top = 240
+        Width = 26
+        Caption = 'Ende'
+        ParentColor = False
+      end
+      object dbediAnmerkungenZuF2: TDBEdit
+        Left = 500
+        Height = 23
+        Top = 256
+        Width = 376
+        DataField = 'AnmerkungenZuF2'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 16
+      end
+      object Label127: TLabel
+        Left = 500
+        Height = 15
+        Top = 240
+        Width = 63
+        Caption = 'Anmerkung'
+        ParentColor = False
+      end
+      object Label128: TLabel
+        Left = 4
+        Height = 15
+        Top = 288
+        Width = 56
+        Caption = 'Funktion 3'
+        ParentColor = False
+      end
+      object dbediFunktion3: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 304
+        Width = 320
+        DataField = 'Funktion3'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 17
+      end
+      object Label129: TLabel
+        Left = 336
+        Height = 15
+        Top = 288
+        Width = 37
+        Caption = 'Beginn'
+        ParentColor = False
+      end
+      object dbediAnfangF3: TDBEdit
+        Left = 336
+        Height = 23
+        Hint = 'Format: Datum'#13#10'z.B. 01.01.1999'
+        Top = 304
+        Width = 76
+        DataField = 'F3Anfang'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 18
+        OnDblClick = DatumDblClick
+      end
+      object dbediEndeF3: TDBEdit
+        Left = 420
+        Height = 23
+        Hint = 'Format: Datum'#13#10'z.B. 01.01.1999'
+        Top = 304
+        Width = 76
+        DataField = 'F3Ende'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 19
+        OnDblClick = DatumDblClick
+      end
+      object Label130: TLabel
+        Left = 420
+        Height = 15
+        Top = 288
+        Width = 26
+        Caption = 'Ende'
+        ParentColor = False
+      end
+      object dbediAnmerkungenZuF3: TDBEdit
+        Left = 500
+        Height = 23
+        Top = 304
+        Width = 376
+        DataField = 'AnmerkungenZuF3'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 20
+      end
+      object Label131: TLabel
+        Left = 500
+        Height = 15
+        Top = 288
+        Width = 63
+        Caption = 'Anmerkung'
+        ParentColor = False
+      end
+    end
+  end
+  object pcAdr: TPageControl
+    Left = 8
+    Height = 152
+    Top = 8
+    Width = 888
+    ActivePage = tsAdr
+    ShowTabs = False
+    TabIndex = 0
+    TabOrder = 0
+    object tsAdr: TTabSheet
+      Hint = 'Rechtsklick: Adresse in Zwischenablage kopieren'
+      Caption = 'tsAdr'
+      ClientHeight = 144
+      ClientWidth = 880
+      OnContextPopup = tsAdrContextPopup
+      ParentShowHint = False
+      ShowHint = True
+      object dbediName: TDBEdit
+        Left = 652
+        Height = 23
+        Top = 24
+        Width = 224
+        DataField = 'Nachname'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        Font.Style = [fsBold]
+        MaxLength = 255
+        ParentFont = False
+        TabOrder = 4
+      end
+      object Label1: TLabel
+        Left = 652
+        Height = 15
+        Top = 8
+        Width = 58
+        Caption = 'Nachname'
+        ParentColor = False
+      end
+      object dbediVorname: TDBEdit
+        Left = 172
+        Height = 23
+        Top = 24
+        Width = 240
+        DataField = 'Vorname'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        Font.Style = [fsBold]
+        MaxLength = 255
+        ParentFont = False
+        TabOrder = 2
+      end
+      object Label2: TLabel
+        Left = 172
+        Height = 15
+        Top = 8
+        Width = 47
+        Caption = 'Vorname'
+        ParentColor = False
+      end
+      object DBediGeburtstag: TDBEdit
+        Left = 499
+        Height = 23
+        Top = 68
+        Width = 81
+        DataField = 'Geburtstag'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 11
+        OnDblClick = DatumDblClick
+      end
+      object Label3: TLabel
+        Left = 499
+        Height = 15
+        Top = 52
+        Width = 58
+        Caption = 'Geburtstag'
+        ParentColor = False
+      end
+      object Label4: TLabel
+        Left = 4
+        Height = 15
+        Top = 8
+        Width = 38
+        Caption = 'Anrede'
+        ParentColor = False
+      end
+      object DBCBAnrede: TDBComboBox
+        Left = 4
+        Height = 23
+        Top = 24
+        Width = 64
+        DataField = 'BriefAnrede'
+        DataSource = frmDM.dsPersonen
+        ItemHeight = 15
+        Items.Strings = (
+          'Frau'
+          'Herr'
+          'An'
+          'Fam.'
+          ' '
+        )
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object dbediVorname2: TDBEdit
+        Left = 420
+        Height = 23
+        Top = 24
+        Width = 224
+        DataField = 'Vorname2'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 3
+      end
+      object Label7: TLabel
+        Left = 420
+        Height = 15
+        Top = 8
+        Width = 53
+        Caption = 'Vorname2'
+        ParentColor = False
+      end
+      object Label8: TLabel
+        Left = 76
+        Height = 15
+        Top = 8
+        Width = 23
+        Caption = 'Titel'
+        ParentColor = False
+      end
+      object dbediTitel: TDBEdit
+        Left = 76
+        Height = 23
+        Top = 24
+        Width = 88
+        DataField = 'Titel'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 1
+      end
+      object Label9: TLabel
+        Left = 4
+        Height = 15
+        Top = 100
+        Width = 26
+        Caption = 'Land'
+        ParentColor = False
+      end
+      object Label10: TLabel
+        Left = 52
+        Height = 15
+        Top = 100
+        Width = 20
+        Caption = 'PLZ'
+        ParentColor = False
+      end
+      object Label11: TLabel
+        Left = 4
+        Height = 15
+        Top = 52
+        Width = 33
+        Caption = 'Straße'
+        ParentColor = False
+      end
+      object dbediStrasse: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 68
+        Width = 408
+        DataField = 'Strasse'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 5
+      end
+      object dbediLand: TDBEdit
+        Left = 4
+        Height = 23
+        Top = 116
+        Width = 40
+        DataField = 'Land'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 6
+      end
+      object dbediPLZ: TDBEdit
+        Left = 52
+        Height = 23
+        Top = 116
+        Width = 56
+        DataField = 'PLZ'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 7
+      end
+      object Label12: TLabel
+        Left = 116
+        Height = 15
+        Top = 100
+        Width = 17
+        Caption = 'Ort'
+        ParentColor = False
+      end
+      object dbediOrt: TDBEdit
+        Left = 116
+        Height = 23
+        Top = 116
+        Width = 368
+        DataField = 'Ort'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 8
+      end
+      object Label13: TLabel
+        Left = 499
+        Height = 15
+        Top = 100
+        Width = 38
+        Caption = 'Ortsteil'
+        ParentColor = False
+      end
+      object dbediOrtsteil: TDBEdit
+        Left = 499
+        Height = 23
+        Top = 116
+        Width = 377
+        DataField = 'Ortsteil'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 255
+        TabOrder = 9
+      end
+      object Label14: TLabel
+        Left = 588
+        Height = 15
+        Top = 52
+        Width = 25
+        Caption = 'Alter'
+        ParentColor = False
+      end
+      object labAlter: TLabel
+        Left = 588
+        Height = 16
+        Top = 71
+        Width = 26
+        Alignment = taRightJustify
+        AutoSize = False
+        Caption = 'Alter'
+        ParentColor = False
+      end
+      object DBCBGeschlecht: TDBComboBox
+        Left = 420
+        Height = 23
+        Top = 68
+        Width = 64
+        DataField = 'Geschlecht'
+        DataSource = frmDM.dsPersonen
+        ItemHeight = 15
+        Items.Strings = (
+          'M'
+          'W'
+          ' '
+        )
+        MaxLength = 0
+        OnChange = DBCBGeschlechtChange
+        TabOrder = 10
+      end
+      object Label5: TLabel
+        Left = 420
+        Height = 15
+        Top = 52
+        Width = 58
+        Caption = 'Geschlecht'
+        ParentColor = False
+      end
+      object Label6: TLabel
+        Left = 636
+        Height = 15
+        Top = 52
+        Width = 87
+        Caption = 'Letzte Änderung'
+        ParentColor = False
+      end
+      object DBT_LastChange: TDBText
+        Left = 636
+        Height = 16
+        Top = 71
+        Width = 92
+        AutoSize = False
+        DataField = 'LastChange'
+        DataSource = frmDM.dsPersonen
+        ParentColor = False
+      end
+      object Label21: TLabel
+        Left = 740
+        Height = 15
+        Top = 52
+        Width = 11
+        Caption = 'ID'
+        ParentColor = False
+      end
+      object DBText_PersonenID: TDBText
+        Left = 740
+        Height = 16
+        Top = 71
+        Width = 41
+        AutoSize = False
+        DataField = 'PersonenID'
+        DataSource = frmDM.dsPersonen
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+  end
+  object RG_Sortierung: TRadioGroup
+    Left = 899
+    Height = 129
+    Top = 8
+    Width = 96
+    AutoFill = True
+    Caption = 'Sortierung'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 109
+    ClientWidth = 92
+    ItemIndex = 0
+    Items.Strings = (
+      'Name'
+      'Markiert'
+      'Geburtstag'
+      'Ort'
+    )
+    OnClick = RG_SortierungClick
+    TabOrder = 3
+  end
+  object DBNavigator3: TDBNavigator
+    Left = 896
+    Height = 25
+    Top = 520
+    Width = 99
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 99
+    DataSource = frmDM.dsPersonen
+    Options = []
+    TabOrder = 4
+    VisibleButtons = [nbPost, nbCancel, nbRefresh]
+  end
+  object panNavi: TPanel
+    Left = 0
+    Height = 26
+    Top = 649
+    Width = 1003
+    Align = alBottom
+    BevelOuter = bvNone
+    Caption = 'panNavi'
+    ClientHeight = 26
+    ClientWidth = 1003
+    TabOrder = 5
+    object DBNavigator1: TDBNavigator
+      Left = 0
+      Height = 26
+      Top = 0
+      Width = 60
+      Align = alLeft
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 26
+      ClientWidth = 60
+      DataSource = frmDM.dsPersonen
+      Options = []
+      TabOrder = 0
+      VisibleButtons = [nbFirst, nbPrior]
+    end
+    object scBarKartei: TScrollBar
+      Left = 60
+      Height = 26
+      Hint = 'Anzahl'
+      Top = 0
+      Width = 771
+      Align = alClient
+      PageSize = 0
+      ParentShowHint = False
+      Position = 1
+      ShowHint = True
+      TabOrder = 1
+      OnChange = scBarKarteiChange
+    end
+    object DBNavigator2: TDBNavigator
+      Left = 831
+      Height = 26
+      Top = 0
+      Width = 60
+      Align = alRight
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 26
+      ClientWidth = 60
+      DataSource = frmDM.dsPersonen
+      Options = []
+      TabOrder = 2
+      VisibleButtons = [nbNext, nbLast]
+    end
+    object Panel1: TPanel
+      Left = 891
+      Height = 26
+      Top = 0
+      Width = 112
+      Align = alRight
+      TabOrder = 3
+    end
+  end
+  object gbFilter: TGroupBox
+    Left = 899
+    Height = 144
+    Top = 152
+    Width = 96
+    Caption = 'Filter'
+    ClientHeight = 124
+    ClientWidth = 92
+    TabOrder = 6
+    object cbAbgaenge: TCheckBox
+      Left = 3
+      Height = 19
+      Hint = 'Zeige auch Abgänge an'#13#10'Rechtsklick: Setze Abgänge automatisch'
+      Top = 32
+      Width = 68
+      Caption = 'Abgänge'
+      OnChange = OnFilterChange
+      OnContextPopup = cbAbgaengeContextPopup
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+    end
+    object ediGemFilter: TLabeledEdit
+      Left = 3
+      Height = 23
+      Top = 96
+      Width = 80
+      EditLabel.AnchorSideLeft.Control = ediGemFilter
+      EditLabel.AnchorSideRight.Control = ediGemFilter
+      EditLabel.AnchorSideRight.Side = asrBottom
+      EditLabel.AnchorSideBottom.Control = ediGemFilter
+      EditLabel.Left = 3
+      EditLabel.Height = 15
+      EditLabel.Top = 78
+      EditLabel.Width = 80
+      EditLabel.Caption = 'Gemeinde'
+      EditLabel.ParentColor = False
+      TabOrder = 2
+      OnChange = OnFilterChange
+    end
+    object cbFilterMark: TCheckBox
+      Left = 3
+      Height = 19
+      Hint = 'Zeige nur die Markierten Personen an'
+      Top = 56
+      Width = 64
+      Caption = 'Markiert'
+      OnChange = OnFilterChange
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
+    end
+    object Panel2: TPanel
+      Left = 3
+      Height = 16
+      Top = 8
+      Width = 72
+      BevelOuter = bvNone
+      ClientHeight = 16
+      ClientWidth = 72
+      TabOrder = 3
+      object Label145: TLabel
+        Left = 3
+        Height = 15
+        Top = 0
+        Width = 39
+        Caption = 'Anzahl:'
+        ParentColor = False
+      end
+      object labRecCnt: TLabel
+        Left = 36
+        Height = 16
+        Top = 0
+        Width = 36
+        Align = alRight
+        Alignment = taRightJustify
+        Caption = 'Anzahl'
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+  end
+  object cbBearbeiten: TCheckBox
+    Left = 904
+    Height = 19
+    Hint = 'Erlaubt das Bearbeiten der Daten'
+    Top = 488
+    Width = 76
+    Caption = 'Bearbeiten'
+    OnChange = cbBearbeitenChange
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 7
+  end
+  object btnEnde: TButton
+    Left = 896
+    Height = 25
+    Top = 648
+    Width = 99
+    Caption = 'Ende'
+    OnClick = btnEndeClick
+    TabOrder = 8
+  end
+  object btnNew: TButton
+    Left = 896
+    Height = 25
+    Hint = 'Person neu anlegen'#13#10'Rechtsklick: Person neu anlegen und folgende Felder übernehmen:'#13#10'- Nachname,'#13#10'- Straße,'#13#10'- Land,'#13#10'- PLZ,'#13#10'- Ort,'#13#10'- Ortsteil,'#13#10'- Tel. Privat,'#13#10'- Kirche und '#13#10'- Gemeinde'
+    Top = 584
+    Width = 99
+    Caption = 'Hinzufügen'
+    Enabled = False
+    OnClick = btnNewClick
+    OnContextPopup = btnNewContextPopup
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 9
+  end
+  object btnDel: TButton
+    Left = 896
+    Height = 25
+    Hint = 'Sicherheitsfunktion: zum Löschen Rechtsklick'
+    Top = 616
+    Width = 99
+    Caption = 'Löschen'
+    Enabled = False
+    OnClick = btnDelClick
+    OnContextPopup = btnDelContextPopup
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 10
+  end
+  object gbSchnellsuche: TGroupBox
+    Left = 899
+    Height = 129
+    Top = 320
+    Width = 96
+    Caption = 'Schnellsuche'
+    ClientHeight = 109
+    ClientWidth = 92
+    TabOrder = 11
+    object ediSSNachname: TLabeledEdit
+      Left = 3
+      Height = 23
+      Hint = 'Doppelklick zum Löschen der Eingabefenster'
+      Top = 20
+      Width = 80
+      EditLabel.AnchorSideLeft.Control = ediSSNachname
+      EditLabel.AnchorSideRight.Control = ediSSNachname
+      EditLabel.AnchorSideRight.Side = asrBottom
+      EditLabel.AnchorSideBottom.Control = ediSSNachname
+      EditLabel.Left = 3
+      EditLabel.Height = 15
+      EditLabel.Top = 2
+      EditLabel.Width = 80
+      EditLabel.Caption = 'Nachname'
+      EditLabel.ParentColor = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+      OnClick = ediSSNachnameClick
+      OnDblClick = ediSchnellSucheDblClick
+      OnKeyUp = ediSchnellSucheKeyUp
+    end
+    object ediSSVorname: TLabeledEdit
+      Left = 3
+      Height = 23
+      Hint = 'Doppelklick zum Löschen der Eingabefenster'
+      Top = 72
+      Width = 80
+      EditLabel.AnchorSideLeft.Control = ediSSVorname
+      EditLabel.AnchorSideRight.Control = ediSSVorname
+      EditLabel.AnchorSideRight.Side = asrBottom
+      EditLabel.AnchorSideBottom.Control = ediSSVorname
+      EditLabel.Left = 3
+      EditLabel.Height = 15
+      EditLabel.Top = 54
+      EditLabel.Width = 80
+      EditLabel.Caption = 'Vorname'
+      EditLabel.ParentColor = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
+      OnDblClick = ediSchnellSucheDblClick
+      OnKeyUp = ediSchnellSucheKeyUp
+    end
+  end
+  object btnPrint: TButton
+    Left = 896
+    Height = 25
+    Top = 552
+    Width = 99
+    Caption = 'Drucken'
+    OnClick = btnPrintClick
+    TabOrder = 14
+  end
+  object cbMarkiert: TCheckBox
+    Left = 904
+    Height = 19
+    Hint = 'Rechtsklick für weitere Funktionen'
+    Top = 456
+    Width = 64
+    Caption = 'Markiert'
+    OnChange = cbMarkiertChange
+    ParentShowHint = False
+    PopupMenu = PopupMenuMarkiert
+    ShowHint = True
+    TabOrder = 15
+  end
+  object Shape5: TShape
+    Left = 4
+    Height = 1
+    Top = 96
+    Width = 872
+    Pen.Color = clRed
+  end
+  object TimerBerechnung: TTimer
+    OnTimer = TimerBerechnungTimer
+    left = 840
+    top = 88
+  end
+  object PopupMenuMarkiert: TPopupMenu
+    left = 944
+    top = 448
+    object mnuDelMark: TMenuItem
+      Caption = 'Lösche alle Markierungen'
+      OnClick = mnuDelMarkClick
+    end
+    object mnuMarkThis: TMenuItem
+      Caption = 'Markiere nur diese Person'
+      OnClick = mnuMarkThisClick
+    end
+  end
+end

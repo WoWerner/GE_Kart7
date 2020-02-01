@@ -1,0 +1,480 @@
+object frmSuche: TfrmSuche
+  Left = 409
+  Height = 414
+  Top = 167
+  Width = 692
+  BorderStyle = bsDialog
+  Caption = 'Suchen'
+  ClientHeight = 414
+  ClientWidth = 692
+  KeyPreview = True
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
+  Position = poScreenCenter
+  LCLVersion = '1.6.4.0'
+  object btnStarteSuche: TButton
+    Left = 8
+    Height = 25
+    Top = 360
+    Width = 99
+    Caption = 'Starte Suche'
+    OnClick = btnStarteSucheClick
+    TabOrder = 0
+  end
+  object btnCancel: TButton
+    Left = 120
+    Height = 25
+    Top = 360
+    Width = 75
+    Caption = 'Abbrechen'
+    ModalResult = 2
+    TabOrder = 1
+  end
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 48
+    Top = 0
+    Width = 673
+    Caption = 'Voreinstellungen'
+    ClientHeight = 28
+    ClientWidth = 669
+    TabOrder = 2
+    object cbDelMark: TCheckBox
+      Left = 14
+      Height = 19
+      Top = 6
+      Width = 161
+      Caption = 'Alle Markierungen löschen'
+      TabOrder = 0
+    end
+    object cbAbgaenge: TCheckBox
+      Left = 502
+      Height = 19
+      Top = 6
+      Width = 154
+      Caption = 'Abgänge nicht markieren'
+      Checked = True
+      State = cbChecked
+      TabOrder = 1
+    end
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 391
+    Width = 692
+    Panels = <>
+  end
+  object GroupBox2: TGroupBox
+    Left = 8
+    Height = 96
+    Top = 48
+    Width = 673
+    Caption = 'Adresse'
+    ClientHeight = 76
+    ClientWidth = 669
+    TabOrder = 4
+    object Label1: TLabel
+      Left = 6
+      Height = 15
+      Top = 2
+      Width = 85
+      Caption = 'Name, Vorname'
+      ParentColor = False
+    end
+    object ediName: TEdit
+      Left = 150
+      Height = 23
+      Top = 0
+      Width = 240
+      TabOrder = 0
+    end
+    object ediVorName: TEdit
+      Left = 398
+      Height = 23
+      Top = 0
+      Width = 264
+      TabOrder = 1
+    end
+    object Label2: TLabel
+      Left = 6
+      Height = 15
+      Top = 28
+      Width = 36
+      Caption = 'Strasse'
+      ParentColor = False
+    end
+    object ediStrasse: TEdit
+      Left = 150
+      Height = 23
+      Top = 24
+      Width = 240
+      TabOrder = 2
+    end
+    object ediLand: TEdit
+      Left = 150
+      Height = 23
+      Top = 48
+      Width = 40
+      TabOrder = 3
+    end
+    object Label3: TLabel
+      Left = 6
+      Height = 15
+      Top = 50
+      Width = 118
+      Caption = 'Land, PLZ, Ort/Ortsteil'
+      ParentColor = False
+    end
+    object cbNotPLZ: TCheckBox
+      Left = 198
+      Height = 19
+      Top = 50
+      Width = 63
+      Caption = 'nicht ->'
+      TabOrder = 4
+    end
+    object ediPLZ: TEdit
+      Left = 262
+      Height = 23
+      Top = 48
+      Width = 56
+      TabOrder = 5
+      Text = '00000'
+    end
+    object ediOrt: TEdit
+      Left = 326
+      Height = 23
+      Top = 48
+      Width = 336
+      TabOrder = 6
+    end
+  end
+  object btnReset: TButton
+    Left = 208
+    Height = 25
+    Top = 360
+    Width = 179
+    Caption = 'Eingabefelder zurücksetzen'
+    OnClick = btnResetClick
+    TabOrder = 5
+  end
+  object GroupBox3: TGroupBox
+    Left = 8
+    Height = 128
+    Top = 152
+    Width = 433
+    Caption = 'Kirche'
+    ClientHeight = 108
+    ClientWidth = 429
+    TabOrder = 6
+    object cbNotKirche: TCheckBox
+      Left = 86
+      Height = 19
+      Top = 3
+      Width = 63
+      Caption = 'nicht ->'
+      TabOrder = 0
+    end
+    object ediKirche: TEdit
+      Left = 150
+      Height = 23
+      Top = 1
+      Width = 240
+      TabOrder = 1
+    end
+    object Label4: TLabel
+      Left = 6
+      Height = 15
+      Top = 4
+      Width = 33
+      Caption = 'Kirche'
+      ParentColor = False
+    end
+    object Label5: TLabel
+      Left = 6
+      Height = 15
+      Top = 32
+      Width = 54
+      Caption = 'Gemeinde'
+      ParentColor = False
+    end
+    object cbNotGem: TCheckBox
+      Left = 86
+      Height = 19
+      Top = 31
+      Width = 63
+      Caption = 'nicht ->'
+      TabOrder = 2
+    end
+    object ediGemeinde: TEdit
+      Left = 150
+      Height = 23
+      Top = 29
+      Width = 240
+      TabOrder = 3
+    end
+    object Label6: TLabel
+      Left = 6
+      Height = 15
+      Top = 60
+      Width = 58
+      Caption = 'Taufmonat'
+      ParentColor = False
+    end
+    object ediTaufM: TEdit
+      Left = 70
+      Height = 23
+      Hint = 'Bitte mit führender 0 eingeben (2 stellig)'
+      Top = 57
+      Width = 32
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 4
+      Text = '00'
+    end
+    object Label7: TLabel
+      Left = 110
+      Height = 15
+      Top = 60
+      Width = 26
+      Caption = 'Tauf.'
+      ParentColor = False
+    end
+    object ediTaufJ: TEdit
+      Left = 150
+      Height = 23
+      Hint = '4 stellig eingeben'
+      Top = 57
+      Width = 48
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 5
+      Text = '1900'
+    end
+    object Label8: TLabel
+      Left = 206
+      Height = 15
+      Top = 60
+      Width = 28
+      Caption = 'Konf.'
+      ParentColor = False
+    end
+    object ediKonfJ: TEdit
+      Left = 246
+      Height = 23
+      Hint = '4 stellig eingeben'
+      Top = 57
+      Width = 48
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 6
+      Text = '1900'
+    end
+    object Label9: TLabel
+      Left = 302
+      Height = 15
+      Top = 60
+      Width = 26
+      Caption = 'Trau.'
+      ParentColor = False
+    end
+    object ediTrauJ: TEdit
+      Left = 342
+      Height = 23
+      Hint = '4 stellig eingeben'
+      Top = 57
+      Width = 48
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 7
+      Text = '1900'
+    end
+    object Label10: TLabel
+      Left = 398
+      Height = 15
+      Top = 60
+      Width = 21
+      Caption = 'Jahr'
+      ParentColor = False
+    end
+    object cbKomm: TCheckBox
+      Left = 6
+      Height = 19
+      Top = 86
+      Width = 130
+      Caption = 'Kommunikanten für '
+      TabOrder = 8
+    end
+    object ediKommJ: TEdit
+      Left = 150
+      Height = 23
+      Hint = '4 stellig eingeben'
+      Top = 84
+      Width = 48
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 9
+      Text = '1900'
+    end
+  end
+  object GroupBox4: TGroupBox
+    Left = 448
+    Height = 200
+    Top = 152
+    Width = 233
+    Caption = 'Person'
+    ClientHeight = 180
+    ClientWidth = 229
+    TabOrder = 7
+    object Label14: TLabel
+      Left = 6
+      Height = 15
+      Top = 4
+      Width = 84
+      Caption = 'Geburtsjahr von'
+      ParentColor = False
+    end
+    object ediGebVon: TEdit
+      Left = 94
+      Height = 23
+      Hint = '4 stellig eingeben'
+      Top = 1
+      Width = 48
+      OnChange = ediGebChange
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+      Text = '1900'
+    end
+    object ediGebBis: TEdit
+      Left = 174
+      Height = 23
+      Hint = '4 stellig eingeben'
+      Top = 0
+      Width = 48
+      OnChange = ediGebChange
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
+      Text = '1900'
+    end
+    object Label15: TLabel
+      Left = 150
+      Height = 15
+      Top = 4
+      Width = 15
+      Caption = 'bis'
+      ParentColor = False
+    end
+    object labAlter: TLabel
+      Left = 6
+      Height = 15
+      Top = 32
+      Width = 63
+      Caption = '                     '
+      ParentColor = False
+    end
+    object Label16: TLabel
+      Left = 6
+      Height = 15
+      Top = 60
+      Width = 76
+      Caption = 'Geburtsmonat'
+      ParentColor = False
+    end
+    object ediGebM: TEdit
+      Left = 94
+      Height = 23
+      Hint = 'Bitte mit führender 0 eingeben (2 stellig)'
+      Top = 57
+      Width = 32
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 2
+      Text = '00'
+    end
+    object Label17: TLabel
+      Left = 6
+      Height = 15
+      Top = 91
+      Width = 58
+      Caption = 'Geschlecht'
+      ParentColor = False
+    end
+    object Label63: TLabel
+      Left = 6
+      Height = 15
+      Top = 120
+      Width = 74
+      Caption = 'Familienstand'
+      ParentColor = False
+    end
+    object CBFamstand: TComboBox
+      Left = 6
+      Height = 23
+      Top = 136
+      Width = 216
+      ItemHeight = 15
+      Items.Strings = (
+        'LD (ledig)'
+        'VH (verheiratet)'
+        'GT (getrennt lebend)'
+        'GS (geschieden)'
+        'VW (verwitwet)'
+        'LP (verpartnert = Lebenspartnerschaft)'
+        'LA (entpartnert = Lebenspartnerschaft aufgehoben)'
+        'LV (partnerhinterblieben = Lebenspartner verstorben)'
+        'FU (Familienstand unbekannt)'
+      )
+      TabOrder = 3
+    end
+    object CBGeschlecht: TComboBox
+      Left = 94
+      Height = 23
+      Top = 84
+      Width = 56
+      ItemHeight = 15
+      Items.Strings = (
+        'M'
+        'W'
+        ' '
+      )
+      TabOrder = 4
+    end
+  end
+  object GroupBox5: TGroupBox
+    Left = 8
+    Height = 72
+    Top = 280
+    Width = 433
+    Caption = 'Sonstiges'
+    ClientHeight = 52
+    ClientWidth = 429
+    TabOrder = 8
+    object Label11: TLabel
+      Left = 6
+      Height = 15
+      Top = 13
+      Width = 41
+      Caption = 'Versand'
+      ParentColor = False
+    end
+    object ediVers: TEdit
+      Left = 70
+      Height = 23
+      Top = 8
+      Width = 56
+      TabOrder = 0
+    end
+    object Label12: TLabel
+      Left = 6
+      Height = 15
+      Top = 32
+      Width = 337
+      Caption = 'Zum suchen einer  Mitarbeit benutzen Sie bitte die Volltextsuche'
+      ParentColor = False
+    end
+  end
+end

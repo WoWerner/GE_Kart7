@@ -1,0 +1,115 @@
+object frmStatInfo: TfrmStatInfo
+  Left = 92
+  Height = 146
+  Top = 143
+  Width = 454
+  BorderStyle = bsDialog
+  Caption = 'Jahresstatistik'
+  ClientHeight = 146
+  ClientWidth = 454
+  Color = clBtnFace
+  Font.Color = clBlack
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = [fsBold]
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '0.9.30'
+  object Bevel1: TBevel
+    Left = 8
+    Height = 125
+    Top = 8
+    Width = 329
+    Shape = bsFrame
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 17
+    Top = 16
+    Width = 281
+    Caption = 'Geben Sie die Daten für die Statistik ein:'
+    Font.Color = clRed
+    Font.Height = -15
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 16
+    Height = 14
+    Top = 44
+    Width = 30
+    Caption = 'Jahr:'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 16
+    Height = 14
+    Top = 72
+    Width = 193
+    Caption = 'Konfession/Kirchenzugehörigkeit:'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 16
+    Height = 14
+    Top = 104
+    Width = 62
+    Caption = 'Gemeinde:'
+    ParentColor = False
+  end
+  object stat_jahr: TEdit
+    Left = 216
+    Height = 21
+    Top = 40
+    Width = 41
+    TabOrder = 0
+  end
+  object stat_Kirche: TComboBox
+    Left = 216
+    Height = 21
+    Top = 68
+    Width = 109
+    ItemHeight = 13
+    ItemIndex = 0
+    Items.Strings = (
+      'SELK'
+      'e.v.'
+      'röm.kath.'
+      'Info'
+      'ohne'
+      'andere'
+      'Leerfeld'
+      'badische Kirche'
+      'Methodisten'
+    )
+    TabOrder = 1
+    Text = 'SELK'
+  end
+  object stat_gemeinde: TEdit
+    Left = 216
+    Height = 21
+    Top = 100
+    Width = 33
+    TabOrder = 2
+  end
+  object btnOK: TButton
+    Left = 352
+    Height = 25
+    Top = 40
+    Width = 88
+    Caption = 'Starten'
+    ModalResult = 1
+    TabOrder = 3
+  end
+  object btnCancel: TButton
+    Left = 352
+    Height = 25
+    Top = 88
+    Width = 88
+    Caption = 'Abbrechen'
+    ModalResult = 2
+    TabOrder = 4
+  end
+end

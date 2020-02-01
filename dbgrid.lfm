@@ -1,0 +1,51 @@
+object frmDBGrid: TfrmDBGrid
+  Left = 140
+  Height = 600
+  Top = 207
+  Width = 800
+  Caption = 'Auswahlliste'
+  ClientHeight = 600
+  ClientWidth = 800
+  Position = poScreenCenter
+  LCLVersion = '0.9.30'
+  WindowState = wsMaximized
+  object DBGrid: TDBGrid
+    Left = 0
+    Height = 558
+    Top = 0
+    Width = 800
+    Align = alClient
+    Color = clWindow
+    Columns = <>
+    Scrollbars = ssAutoBoth
+    TabOrder = 0
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 42
+    Top = 558
+    Width = 800
+    Align = alBottom
+    ClientHeight = 42
+    ClientWidth = 800
+    TabOrder = 1
+    object btnOK: TButton
+      Left = 320
+      Height = 25
+      Top = 10
+      Width = 75
+      Caption = 'OK'
+      ModalResult = 1
+      TabOrder = 0
+    end
+    object btnCancel: TButton
+      Left = 408
+      Height = 25
+      Top = 10
+      Width = 75
+      Caption = 'Abbrechen'
+      ModalResult = 2
+      TabOrder = 1
+    end
+  end
+end

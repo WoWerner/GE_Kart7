@@ -1,0 +1,188 @@
+object frmDM: TfrmDM
+  Left = 852
+  Height = 686
+  Top = 6
+  Width = 368
+  Caption = 'frmDM'
+  LCLVersion = '1.6.4.0'
+  object dsPersonen: TDataSource
+    AutoEdit = False
+    DataSet = dsetPersonen
+    left = 232
+    top = 21
+  end
+  object DBF_Help: TDbf
+    FilePath = 'D:\src\GE_Kart\GE_Kart7\Datenbank6\'
+    IndexDefs = <>
+    TableName = 'Ge_kart5.dbf'
+    TableLevel = 4
+    FilterOptions = []
+    left = 152
+    top = 592
+  end
+  object dsKinder: TDataSource
+    AutoEdit = False
+    DataSet = dsetKinder
+    left = 312
+    top = 80
+  end
+  object dsKomm: TDataSource
+    AutoEdit = False
+    DataSet = dsetKomm
+    left = 312
+    top = 136
+  end
+  object dsBesuch: TDataSource
+    AutoEdit = False
+    DataSet = dsetBesuch
+    left = 312
+    top = 192
+  end
+  object dsHelp: TDataSource
+    AutoEdit = False
+    DataSet = dsetHelp
+    left = 232
+    top = 448
+  end
+  object dsetPersonen: TZQuery
+    Connection = ZConGE_Kart7
+    SortedFields = 'TempString'
+    BeforeOpen = dsetBeforeOpen
+    AfterScroll = dsetPersonenAfterScroll
+    BeforePost = dsetPersonenBeforePost
+    SQL.Strings = (
+      'select * from PERSONEN'
+    )
+    Params = <>
+    IndexFieldNames = 'TempString Asc'
+    left = 152
+    top = 21
+  end
+  object dsetHelp: TZQuery
+    Connection = ZConGE_Kart7
+    BeforeOpen = dsetBeforeOpen
+    Params = <>
+    left = 152
+    top = 448
+  end
+  object dsetKinder: TZQuery
+    Connection = ZConGE_Kart7
+    SortedFields = 'Geburtstag'
+    BeforeOpen = dsetBeforeOpen
+    SQL.Strings = (
+      'select KinderID, Vorname, Vorname2, Nachname, GebName, Geburtstag, Taufdatum, Kirche, PersonenID from Kinder'
+    )
+    Params = <>
+    MasterFields = 'PersonenID'
+    MasterSource = dsPersonen
+    LinkedFields = 'PersonenID'
+    IndexFieldNames = 'Geburtstag Asc'
+    left = 232
+    top = 80
+  end
+  object dsetKomm: TZQuery
+    Connection = ZConGE_Kart7
+    SortedFields = 'AbendmahlsDatum'
+    SortType = stDescending
+    BeforeOpen = dsetBeforeOpen
+    SQL.Strings = (
+      'select * from Kommunionen'
+    )
+    Params = <>
+    MasterFields = 'PersonenID'
+    MasterSource = dsPersonen
+    LinkedFields = 'PersonenID'
+    IndexFieldNames = 'AbendmahlsDatum Desc'
+    left = 232
+    top = 136
+  end
+  object dsetBesuch: TZQuery
+    Connection = ZConGE_Kart7
+    SortedFields = 'BesuchsDatum'
+    SortType = stDescending
+    BeforeOpen = dsetBeforeOpen
+    SQL.Strings = (
+      'select * from besuch'
+    )
+    Params = <>
+    MasterFields = 'PersonenID'
+    MasterSource = dsPersonen
+    LinkedFields = 'PersonenID'
+    IndexFieldNames = 'BesuchsDatum Desc'
+    left = 232
+    top = 192
+  end
+  object ZSQLMonitor: TZSQLMonitor
+    FileName = 'sql_debug.txt'
+    MaxTraceCount = 100
+    OnLogTrace = ZSQLMonitorLogTrace
+    left = 40
+    top = 80
+  end
+  object dsetHelp1: TZQuery
+    Connection = ZConGE_Kart7
+    BeforeOpen = dsetBeforeOpen
+    Params = <>
+    MasterSource = dsHelp
+    left = 152
+    top = 512
+  end
+  object dsetGD: TZQuery
+    Connection = ZConGE_Kart7
+    SortedFields = 'GottesdienstDatum'
+    SortType = stDescending
+    BeforeOpen = dsetBeforeOpen
+    AfterScroll = dsetGDAfterScroll
+    SQL.Strings = (
+      'select * from Gottesdienst'
+    )
+    Params = <>
+    IndexFieldNames = 'GottesdienstDatum Desc'
+    left = 152
+    top = 248
+  end
+  object dsGD: TDataSource
+    DataSet = dsetGD
+    left = 232
+    top = 248
+  end
+  object dsetVersion: TZQuery
+    Connection = ZConGE_Kart7
+    BeforeOpen = dsetBeforeOpen
+    AfterScroll = dsetGDAfterScroll
+    SQL.Strings = (
+      'select * from Version'
+    )
+    Params = <>
+    left = 152
+    top = 320
+  end
+  object dsHelp1: TDataSource
+    DataSet = dsetHelp1
+    left = 232
+    top = 512
+  end
+  object ZConGE_Kart7: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = False
+    Properties.Strings = (
+      'AutoEncodeStrings='
+    )
+    Connected = True
+    Port = 0
+    Protocol = 'sqlite-3'
+    left = 40
+    top = 21
+  end
+  object dsetGemeinde: TZQuery
+    Connection = ZConGE_Kart7
+    BeforeOpen = dsetBeforeOpen
+    AfterScroll = dsetGDAfterScroll
+    SQL.Strings = (
+      'select * from Gemeinde'
+    )
+    Params = <>
+    left = 152
+    top = 384
+  end
+end
