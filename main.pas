@@ -477,10 +477,10 @@ begin
   //Skalierung ermitteln für ALLE Fenster
   ScaleFactor  := 1;
   myDebugLN('Screen.PixelsPerInch: '+inttostr(Screen.PixelsPerInch)+', Designwert: '+inttostr(nDefDPI));
-  WORKAREA := GETMaxWindowsSize; //Verfügbarer Platz
   if nDefDPI = screen.PixelsPerInch
     then
       begin
+        WORKAREA         := GETMaxWindowsSize; //Verfügbarer Platz
         ScaleFactorX     := 1;
         ScaleFactorY     := 1;
 
