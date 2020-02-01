@@ -61,7 +61,7 @@ function  WordPosition(    const N             : Integer;
                            const S             : string;
                            const WordSep       : TCharSet): Integer;
 function  OnlyDigits(s: string): boolean;
-function  XCharsOnly(s: string; const XChar: TCharSet): string;
+function  DigitsOnly(s: string): string;
 
 
 // Konvertierung
@@ -736,7 +736,7 @@ end;
 
 {******************************************************************************}
 
-function  XCharsOnly(s: string; const XChar: TCharSet): string;
+function DigitsOnly(s: string): string;
 
 var i : integer;
     c : char;
@@ -746,7 +746,7 @@ begin
   for i := 1 to UTF8Length(s) do
     begin
       c := s[i];
-      if (c in XChar) then result := result + c;
+      if (c in ['0'..'9']) then result := result + c;
     end;
 end;
 
