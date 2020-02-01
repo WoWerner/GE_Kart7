@@ -46,6 +46,7 @@ type
     procedure dsetPersonenAfterScroll(DataSet: TDataSet);
     procedure dsetBeforeOpen(DataSet: TDataSet);
     procedure dsetPersonenBeforePost(DataSet: TDataSet);
+    procedure dsPersonenStateChange(Sender: TObject);
     procedure ZSQLMonitorLogTrace(Sender: TObject; Event: TZLoggingEvent);
   private
     { private declarations }
@@ -296,6 +297,37 @@ begin
     else
       begin
         dsetPersonen.CancelUpdates;
+      end;
+end;
+
+procedure TfrmDM.dsPersonenStateChange(Sender: TObject);
+var
+  sMes: String;
+
+begin
+  if bSQLDebug
+    then
+      begin
+        sMes := 'dsPersonen.State: ';
+        case dsPersonen.State of
+          dsInactive:     sMes := sMes + 'The dataset is not active. No data is available.';
+          dsBrowse:       sMes := sMes + 'The dataset is active, and the cursor can be used to navigate the data.';
+          dsEdit:         sMes := sMes + 'The dataset is in editing mode: the current record can be modified.';
+          dsInsert:       sMes := sMes + 'The dataset is in insert mode: the current record is a new record which can be edited.';
+          dsSetKey:       sMes := sMes + 'The dataset is calculating the primary key.';
+          dsCalcFields:   sMes := sMes + 'The dataset is calculating it''s calculated fields.';
+          dsFilter:       sMes := sMes + 'The dataset is filtering records.';
+          dsNewValue:     sMes := sMes + 'The dataset is showing the new values of a record.';
+          dsOldValue:     sMes := sMes + 'The dataset is showing the old values of a record.';
+          dsCurValue:     sMes := sMes + 'The dataset is showing the current values of a record.';
+          dsBlockRead:    sMes := sMes + 'The dataset is open, but no events are transferred to datasources.';
+          dsInternalCalc: sMes := sMes + 'The dataset is calculating it''s internally calculated fields.';
+          dsOpening:      sMes := sMes + 'The dataset is currently opening, but is not yet completely open.';
+          dsRefreshFields:sMes := sMes + 'Dataset is refreshing field values from server after an update.';
+        else
+                          sMes := sMes + 'Other';
+        end;
+        myDebugLN(sMes);
       end;
 end;
 
