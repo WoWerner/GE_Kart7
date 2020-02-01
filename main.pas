@@ -515,7 +515,7 @@ begin
   //Prüfung auf neue Version
   HTTP := THTTPSend.Create;
   try
-    if not HTTP.HTTPMethod('GET', 'www.w-werner.de/GE_KART/version.txt?V'+GetProductVersionString+'_PC_'+replacechar(GetComputerName, ' ', '_')+'_USER_'+replacechar(GetUserName, ' ', '_'))
+    if not HTTP.HTTPMethod('GET', 'www.w-werner.de/GE_KART/version.txt?V'+GetProductVersionString+'_PC_'+GetComputerName+'_USER_'+GetUserName)
       then
         begin
 	  myDebugLN('ERROR HTTPGET, Resultcode: '+inttostr(Http.Resultcode));
@@ -531,35 +531,26 @@ begin
           myDebugLN('HTTPGET, Resultcode: '+inttostr(Http.Resultcode)+' '+Http.Resultstring);
           myDebugLN('Http.headers.text  : '+#13#10+Http.headers.text);
           myDebugLN('Http.Document      : '+#13#10+slHelp.Text);
-
-          if Http.Resultcode = 200
+          sNewVers := slHelp.Strings[0];
+          if GetProductVersionString < sNewVers
             then
               begin
-                sNewVers := slHelp.Strings[0];
-                if GetProductVersionString < sNewVers
-                  then
-                    begin
-                      slHelp.Delete(0);
-                      labVersionNeu.Caption := labVersionNeu.Caption+sNewVers;
-                      labVersionNeu.Hint    := slHelp.Text;
-                      labVersionNeu.Cursor  := crHandPoint;
-                    end
-                  else
-                    begin
-                      labVersionNeu.Font.Size := -10;
-                      labVersionNeu.OnClick   := nil;
-                      if GetProductVersionString = sNewVers
-                        then
-                          begin
-                            labVersionNeu.Caption   := 'Das Programm ist aktuell';
-                            labVersionNeu.Color     := clNone;
-                          end
-                        else labVersionNeu.Caption   := 'Das Programm ist neuer. Aktuelle Version: '+sNewVers;
-                    end;
+                slHelp.Delete(0);
+                labVersionNeu.Caption := labVersionNeu.Caption+sNewVers;
+                labVersionNeu.Hint    := slHelp.Text;
+                labVersionNeu.Cursor  := crHandPoint;
               end
             else
               begin
-                labVersionNeu.Caption := 'Fehler bei der Abfrage'
+                labVersionNeu.Font.Size := -10;
+                labVersionNeu.OnClick   := nil;
+                if GetProductVersionString = sNewVers
+                  then
+                    begin
+                      labVersionNeu.Caption   := 'Das Programm ist aktuell';
+                      labVersionNeu.Color     := clNone;
+                    end
+                  else labVersionNeu.Caption   := 'Das Programm ist neuer. Aktuelle Version: '+sNewVers;
               end;
        end;
   finally
