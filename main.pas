@@ -1259,7 +1259,7 @@ begin
     slAusgabe.add('PS.: bitte mit Formel.');
     slAusgabe.add(' ');
 
-    frmDM.dsetHelp.SQL.Text:='select * from Personen where upper(Kirche) <> ''INFO'' order by Nachname, Vorname';
+    frmDM.dsetHelp.SQL.Text:='select * from Personen where (kirche is null) or (upper(Kirche) <> ''INFO'') order by Nachname, Vorname';
 
     frmDM.dbStatus(true); //Datenbank öffnen
     frmDM.dsetHelp.Open;
@@ -1273,7 +1273,7 @@ begin
           else
             if (StrToInt(year(DateToStr(date))) - StrToInt(year(frmDM.dsetHelp.FieldByName('Geburtstag').asstring)) > 65) and not frmDM.dsetHelp.fieldByName('ruhestand').asboolean
               then einfuegen(sHelp, ' älter als 65 und nicht im Ruhestand?');
-        if frmDM.dsetHelp.fieldByName('TaufDatum').asstring = ''  then einfuegen(sHelp, ' Kein Taufdatum');
+        if trim(frmDM.dsetHelp.fieldByName('TaufDatum').asstring) = ''  then einfuegen(sHelp, ' Kein Taufdatum');
         if (frmDM.dsetHelp.fieldByName('Geburtstag').asstring <> '') and (frmDM.dsetHelp.fieldByName('TaufDatum').asstring <> '')
           then
             if frmDM.dsetHelp.fieldByName('TaufDatum').asdatetime < frmDM.dsetHelp.fieldByName('Geburtstag').asdatetime
@@ -2551,9 +2551,11 @@ var
     n74,
     n75,
     alter,
+    GeburtsJahr,
     konf,
     k_tauf,
     e_tauf,
+    TaufJahr,
     summe,
     trau,
     zugang,
@@ -2582,7 +2584,8 @@ var
     sNewYearZugang,
     sInvalidGeschlecht,
     sInvalidKomm,
-    sInvalidGebTag : string;
+    sInvalidGebTag,
+    sInvalidTaufTag : string;
     dt : TDateTime;
 
 begin
@@ -2591,66 +2594,67 @@ begin
 
   //Init
   slAusgabe.clear;
-  nRecords  := 0;
-  erw       := 0;
-  n_konf_erw:= 0;
-  kinder    := 0;
-  konf      := 0;
-  k_tauf    := 0;
-  e_tauf    := 0;
-  summe     := 0;
-  trau      := 0;
-  zugang    := 0;
-  uebergetr := 0;
-  ueberweis := 0;
-  uebern    := 0;
-  EinTritt  := 0;
-  ausgesch  := 0;
-  abgang    := 0;
-  abgang_old:= 0;
-  verst     := 0;
-  austr     := 0;
-  konvertzu := 0;
-  komm      := 0;
-  restan    := 0;
-  SummKomm  := 0;
-  nw        := 0;
-  nm        := 0;
-  nw10      := 0;
-  nw20      := 0;
-  nw30      := 0;
-  nw40      := 0;
-  nw50      := 0;
-  nw60      := 0;
-  nw70      := 0;
-  nw80      := 0;
-  nw90      := 0;
-  nw100     := 0;
-  nw101     := 0;
-  nm10      := 0;
-  nm20      := 0;
-  nm30      := 0;
-  nm40      := 0;
-  nm50      := 0;
-  nm60      := 0;
-  nm70      := 0;
-  nm80      := 0;
-  nm90      := 0;
-  nm100     := 0;
-  nm101     := 0;
-  n6        := 0;
-  n13       := 0;
-  n17       := 0;
-  n29       := 0;
-  n39       := 0;
-  n49       := 0;
-  n65       := 0;
-  n74       := 0;
-  n75       := 0;
+  nRecords           := 0;
+  erw                := 0;
+  n_konf_erw         := 0;
+  kinder             := 0;
+  konf               := 0;
+  k_tauf             := 0;
+  e_tauf             := 0;
+  summe              := 0;
+  trau               := 0;
+  zugang             := 0;
+  uebergetr          := 0;
+  ueberweis          := 0;
+  uebern             := 0;
+  EinTritt           := 0;
+  ausgesch           := 0;
+  abgang             := 0;
+  abgang_old         := 0;
+  verst              := 0;
+  austr              := 0;
+  konvertzu          := 0;
+  komm               := 0;
+  restan             := 0;
+  SummKomm           := 0;
+  nw                 := 0;
+  nm                 := 0;
+  nw10               := 0;
+  nw20               := 0;
+  nw30               := 0;
+  nw40               := 0;
+  nw50               := 0;
+  nw60               := 0;
+  nw70               := 0;
+  nw80               := 0;
+  nw90               := 0;
+  nw100              := 0;
+  nw101              := 0;
+  nm10               := 0;
+  nm20               := 0;
+  nm30               := 0;
+  nm40               := 0;
+  nm50               := 0;
+  nm60               := 0;
+  nm70               := 0;
+  nm80               := 0;
+  nm90               := 0;
+  nm100              := 0;
+  nm101              := 0;
+  n6                 := 0;
+  n13                := 0;
+  n17                := 0;
+  n29                := 0;
+  n39                := 0;
+  n49                := 0;
+  n65                := 0;
+  n74                := 0;
+  n75                := 0;
   sKommListe         := '';
   sRestListe         := '';
   sInvalidGeschlecht := '';
   sInvalidGebTag     := '';
+  sInvalidTaufTag    := '';
   sInvalidKomm       := '';
   sAbgaenge          := '';
   sZugang            := '';
@@ -2687,10 +2691,27 @@ begin
           while not frmDM.dsetPersonen.EOF do
             begin
               inc(nRecords);
-              StatusBar.Panels[0].Text:='Bearbeite Datensatz: '+inttostr(nRecords);
+              StatusBar.Panels[0].Text:='Bearbeite Datensatz: '+inttostr(nRecords) + 'von ' + inttostr(frmDM.dsetPersonen.RecordCount);
               statusbar.Update;
 
               sPerson := frmDM.dsetPersonen.fieldByName('Vorname').asstring +' ' + frmDM.dsetPersonen.fieldByName('Nachname').asstring;
+              myDebugLN('Bearbeite Person: ' + sPerson);
+
+              try
+                TaufJahr        := strtoint(year(frmDM.dsetPersonen.fieldByName('TaufDatum').asstring));
+              except
+                TaufJahr        := -1;
+                sInvalidTaufTag += sPerson + #13#10;
+              end;
+
+              try
+                GeburtsJahr    := strtoint(year(frmDM.dsetPersonen.fieldByName('Geburtstag').asstring));
+                alter          := strtoint(frmStatInfo.stat_jahr.text) - GeburtsJahr;
+              except
+                GeburtsJahr    := 0;
+                alter          := -1;
+                sInvalidGebTag += sPerson + #13#10;
+              end;
 
               {die eigentliche statistik}
               if year(frmDM.dsetPersonen.fieldByName('KonfDatum').asstring) = frmStatInfo.stat_jahr.text then inc(konf);
@@ -2700,33 +2721,29 @@ begin
               //Zugänge aus Folgejahren NICHT mitzählen
               if year(frmDM.dsetPersonen.fieldByName('TaufDatum').asstring) = frmStatInfo.stat_jahr.text then
                 begin
-                  try
-                    if strtoint(frmStatInfo.stat_jahr.text) - strtoint(year(frmDM.dsetPersonen.fieldByName('Geburtstag').asstring)) < 15
-                      then inc(k_tauf)
-                      else inc(e_Tauf);
-                  except
-                    inc(k_tauf);
-                  end;
+                  if alter < 15
+                    then inc(k_tauf)
+                    else inc(e_Tauf);
                   inc(zugang);
-                  sZugang := sZugang + sPerson+#13#10;
+                  sZugang += sPerson+#13#10;
                 end;
               if year(frmDM.dsetPersonen.fieldByName('UebertrittsZuDatum').asstring) = frmStatInfo.stat_jahr.text then
                 begin
                   inc(uebergetr);
                   inc(zugang);
-                  sZugang := sZugang + sPerson+#13#10;
+                  sZugang += sPerson+#13#10
                 end;
               if year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_von_Datum').asstring) = frmStatInfo.stat_jahr.text then
                 begin
                   inc(ueberweis);
                   inc(zugang);
-                  sZugang := sZugang + sPerson+#13#10;
+                  sZugang += sPerson+#13#10
                 end;
               if year(frmDM.dsetPersonen.fieldByName('EintrittsDatum').asstring) = frmStatInfo.stat_jahr.text then
                 begin
                   inc(EinTritt);
                   inc(zugang);
-                  sZugang := sZugang + sPerson+#13#10;
+                  sZugang += sPerson+#13#10
                 end;
 
               //Zugänge aus Folgejahren
@@ -2832,7 +2849,7 @@ begin
                   sOldYearAbgang := year(frmDM.dsetPersonen.fieldByName('TodesDatum').asstring);
                 end;
 
-              {kommunikantenberechnung}
+              {Kommunikantenberechnung}
               ok           := false;
               PersSummKomm := 0;
               frmDM.dsetKomm.first;
@@ -2847,26 +2864,27 @@ begin
                       end;
                   frmDM.dsetKomm.next;
                 end;
+
               if not frmDM.dsetPersonen.fieldByName('Abgang').asboolean
                 then
                   begin
                     if (frmDM.dsetPersonen.fieldByName('KonfDatum').asstring <> '') or //Konfimirte
-                       (strtoint(year(frmDM.dsetPersonen.fieldByName('TaufDatum').asstring)) - strtoint(year(frmDM.dsetPersonen.fieldByName('Geburtstag').asstring)) > 14) // Erwachsenentaufe
+                       ((TaufJahr - GeburtsJahr) > 14) // Erwachsenentaufe
                       then
                         begin
                           if ok
                             then
                               begin
                                 inc(komm);
-                                sKommListe := sKommListe + AppendChar(sPerson,' ',32) + Format('%3.0d', [PersSummKomm])+#13#10;
+                                sKommListe += AppendChar(sPerson,' ',32) + Format('%3.0d', [PersSummKomm])+#13#10;
                               end
                             else
                               begin
                                 inc(restan);
-                                sRestListe := sRestListe + AppendChar(sPerson,' ',32) + Format('%3.0d', [PersSummKomm])+#13#10;
+                                sRestListe += AppendChar(sPerson,' ',32) + Format('%3.0d', [PersSummKomm])+#13#10;
                               end;
-                        end
-                      else if ok then sInvalidKomm := sInvalidKomm+sPerson+#13#10;
+                          end
+                        else if ok then sInvalidKomm += sPerson+#13#10;
                   end;
 
               if not frmDM.dsetPersonen.fieldByName('Abgang').asboolean
@@ -2876,28 +2894,18 @@ begin
                       then
                         begin
                           if (frmDM.dsetPersonen.fieldByName('KonfDatum').asstring <> '') or
-                             (strtoint(year(frmDM.dsetPersonen.fieldByName('TaufDatum').asstring)) - strtoint(year(frmDM.dsetPersonen.fieldByName('Geburtstag').asstring)) > 14)  // Erwachsenentaufe
+                             ((TaufJahr - GeburtsJahr) > 14)  // Erwachsenentaufe
                             then inc(erw)
                             else
-                              try
-                                if strtoint(frmStatInfo.stat_jahr.text) - strtoint(year(frmDM.dsetPersonen.fieldByName('Geburtstag').asstring)) > 17
-                                  then
-                                    begin
-                                      inc(n_konf_erw);
-                                      sN_Konf_Erw :=  sN_Konf_Erw + sPerson+ #13#10;
-                                    end
-                                  else inc(kinder);
-                              except
-                                inc(kinder);
-                              end;
+                              if alter > 17
+                                then
+                                  begin
+                                    inc(n_konf_erw);
+                                    sN_Konf_Erw += sPerson+ #13#10;
+                                  end
+                                else inc(kinder);
                           inc(summe);
-                          //Altersstruktur
-                          try
-                            alter := strtoint(frmStatInfo.stat_jahr.text) - strtoint(year(frmDM.dsetPersonen.FieldByName('Geburtstag').asstring));
-                          except
-                            alter := -1;
-                            sInvalidGebTag := sInvalidGebTag + sPerson+ #13#10;
-                          end;
+
                           if uppercase(frmDM.dsetPersonen.fieldByName('Geschlecht').asstring) = 'W'
                             then
                               begin
@@ -2938,7 +2946,7 @@ begin
                                     end
                                   else
                                     begin
-                                       sInvalidGeschlecht := sInvalidGeschlecht + sPerson+ #13#10;
+                                       sInvalidGeschlecht += sPerson+ #13#10;
                                     end;
                               end;
                           case alter of
@@ -2955,14 +2963,14 @@ begin
                         end
                       else
                         begin
-                          sZugang := sZugang + sPerson+ ' (Zugang im Jahr '+sNewYearZugang+'; wird NICHT mitgezählt!)'+#13#10;
+                          sZugang += sPerson+ ' (Zugang im Jahr '+sNewYearZugang+'; wird NICHT mitgezählt!)'+#13#10;
                         end;
                   end
                 else {Abgänge}
                   begin
-                    sAbgaenge := sAbgaenge + sPerson;
-                    if sOldYearAbgang <> '' then sAbgaenge := sAbgaenge + ' (Abgang im Jahr '+sOldYearAbgang+'); wird NICHT mitgezählt!';
-                    sAbgaenge := sAbgaenge + #13#10;
+                    sAbgaenge += sPerson;
+                    if sOldYearAbgang <> '' then sAbgaenge += ' (Abgang im Jahr '+sOldYearAbgang+'); wird NICHT mitgezählt!';
+                    sAbgaenge += #13#10;
                   end;
 
               frmDM.dsetPersonen.Next;
@@ -3031,6 +3039,7 @@ begin
 
                 if sInvalidGeschlecht <> '' then slAusgabe.add('WARNUNG Ungültiges Geschlecht bei folgenden Personen:'+#13#10+sInvalidGeschlecht);
                 if sInvalidGebTag <> ''     then slAusgabe.add('WARNUNG Ungültiges Geburtsdatum bei folgenden Personen:'+#13#10+sInvalidGebTag);
+                if sInvalidTaufTag <> ''    then slAusgabe.add('WARNUNG Ungültiges Taufdatum bei folgenden Personen:'+#13#10+sInvalidTaufTag);
 
                 einfuegen('Kommunikanten  : '+inttostr(komm),'');
                 einfuegen('Restanten      : '+inttostr(restan),'');
