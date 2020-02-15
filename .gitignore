@@ -1,3 +1,4 @@
+*.db
 *.exe
 #Ignore thumbnails created by Windows
 Thumbs.db
@@ -29,3 +30,6 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
+debug.txt
+lib/*
+backup/*
