@@ -1,0 +1,14 @@
+﻿Änderungen in der Version 7.5.2.0 (15.03.2020)
+- "Geburtstagsliste für Gemeindebrief" kann feiner gefiltert werden
+- Anpassungen für Bildschirme mit hoher Auflösung und Zoomfaktoren
+- Drucken: Umschlag "C5" hinzugefügt
+- Gottesdienstverwaltung: Filter für Gemeinde hinzugefügt
+
+Änderungen in der Version 7.5.1.8 (01.01.2020)
+- "Jubiläumsliste" mit Gemeinde Info
+- Filter in der Statistik und Karteikarte zeigen nur verfügbare Gemeindeneinträge an
+
+Änderungen in der Version 7.5.1.7 (30.11.2019)
+- "Geburtstagsliste für Gemeindebrief" nach Gemeinden getrennt
+
+Soll die Meldung noch einmal angezeigt werden?
