@@ -1,7 +1,7 @@
 object frmInput: TfrmInput
-  Left = 327
+  Left = 463
   Height = 136
-  Top = 109
+  Top = 410
   Width = 665
   ActiveControl = Edit1
   Caption = 'Input'
@@ -10,7 +10,7 @@ object frmInput: TfrmInput
   KeyPreview = True
   OnKeyPress = FormKeyPress
   Position = poScreenCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.6.0'
   object Label1: TLabel
     Left = 8
     Height = 15
@@ -64,18 +64,13 @@ object frmInput: TfrmInput
   end
   object labCaption: TLabel
     Left = 8
-    Height = 25
-    Top = 8
+    Height = 24
+    Top = 1
     Width = 648
     Alignment = taCenter
     AutoSize = False
     Caption = 'labCaption'
-    Font.CharSet = ANSI_CHARSET
-    Font.Color = clBlack
-    Font.Height = -21
-    Font.Name = 'Arial'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
+    Font.Height = -19
     ParentBidiMode = False
     ParentColor = False
     ParentFont = False

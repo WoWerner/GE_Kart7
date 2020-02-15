@@ -4,7 +4,7 @@ object frmDM: TfrmDM
   Top = 53
   Width = 368
   Caption = 'frmDM'
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '2.0.6.0'
   object dsPersonen: TDataSource
     AutoEdit = False
     DataSet = dsetPersonen
@@ -165,7 +165,6 @@ object frmDM: TfrmDM
   end
   object ZConGE_Kart7: TZConnection
     ControlsCodePage = cCP_UTF8
-    AutoEncodeStrings = False
     Properties.Strings = (
       'AutoEncodeStrings='
     )
