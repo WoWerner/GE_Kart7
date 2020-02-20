@@ -1,7 +1,7 @@
 object frmGD: TfrmGD
-  Left = 21
+  Left = 661
   Height = 493
-  Top = 155
+  Top = 301
   Width = 716
   BorderStyle = bsDialog
   Caption = 'Gottesdienstverwaltung'
@@ -14,7 +14,7 @@ object frmGD: TfrmGD
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '0.9.30'
+  LCLVersion = '2.0.6.0'
   object Panel1: TPanel
     Left = 0
     Height = 36
@@ -40,6 +40,7 @@ object frmGD: TfrmGD
       ClientHeight = 25
       ClientWidth = 216
       DataSource = frmDM.dsGD
+      Options = []
       TabOrder = 0
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbPost, nbCancel, nbRefresh]
     end
@@ -70,6 +71,24 @@ object frmGD: TfrmGD
       OnClick = btnDelClick
       TabOrder = 3
     end
+    object Label149: TLabel
+      Left = 408
+      Height = 15
+      Top = 12
+      Width = 54
+      Caption = 'Gemeinde'
+      ParentColor = False
+    end
+    object cbGemeinde: TComboBox
+      Left = 472
+      Height = 23
+      Top = 8
+      Width = 85
+      ItemHeight = 15
+      OnChange = cbGemeindeChange
+      TabOrder = 4
+      Text = 'Alle'
+    end
   end
   object DBGrid1: TDBGrid
     Left = 0
@@ -85,9 +104,9 @@ object frmGD: TfrmGD
   end
   object Label1: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 8
-    Width = 37
+    Width = 36
     Caption = 'Datum'
     ParentColor = False
   end
@@ -104,9 +123,9 @@ object frmGD: TfrmGD
   end
   object Label2: TLabel
     Left = 288
-    Height = 16
+    Height = 15
     Top = 8
-    Width = 55
+    Width = 54
     Caption = 'Gemeinde'
     ParentColor = False
   end
@@ -123,9 +142,9 @@ object frmGD: TfrmGD
   end
   object Label3: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 32
-    Width = 33
+    Width = 32
     Caption = 'Name'
     ParentColor = False
   end
@@ -178,9 +197,9 @@ object frmGD: TfrmGD
   end
   object Label4: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 88
-    Width = 17
+    Width = 16
     Caption = 'Art'
     ParentColor = False
   end
@@ -238,9 +257,9 @@ object frmGD: TfrmGD
   end
   object Label5: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 56
-    Width = 21
+    Width = 18
     Caption = 'Tag'
     ParentColor = False
   end
@@ -263,41 +282,41 @@ object frmGD: TfrmGD
   end
   object labTag: TLabel
     Left = 288
-    Height = 16
+    Height = 15
     Top = 56
-    Width = 37
+    Width = 34
     Caption = 'labTag'
     ParentColor = False
   end
   object labGottesdienstForm1: TLabel
     Left = 288
-    Height = 16
+    Height = 15
     Top = 80
-    Width = 117
+    Width = 116
     Caption = 'labGottesdienstForm1'
     ParentColor = False
   end
   object labGottesdienstForm2: TLabel
     Left = 288
-    Height = 16
+    Height = 15
     Top = 104
-    Width = 117
+    Width = 116
     Caption = 'labGottesdienstForm1'
     ParentColor = False
   end
   object labGottesdienstForm3: TLabel
     Left = 288
-    Height = 16
+    Height = 15
     Top = 128
-    Width = 117
+    Width = 116
     Caption = 'labGottesdienstForm1'
     ParentColor = False
   end
   object Label6: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 152
-    Width = 68
+    Width = 67
     Caption = 'Eingangslied'
     ParentColor = False
   end
@@ -314,9 +333,9 @@ object frmGD: TfrmGD
   end
   object Label7: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 176
-    Width = 53
+    Width = 52
     Caption = 'Hauptlied'
     ParentColor = False
   end
@@ -333,9 +352,9 @@ object frmGD: TfrmGD
   end
   object Label8: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 200
-    Width = 84
+    Width = 83
     Caption = 'Lied vor Predigt'
     ParentColor = False
   end
@@ -352,9 +371,9 @@ object frmGD: TfrmGD
   end
   object Label9: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 224
-    Width = 93
+    Width = 92
     Caption = 'Lied nach Predigt'
     ParentColor = False
   end
@@ -371,9 +390,9 @@ object frmGD: TfrmGD
   end
   object Label10: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 248
-    Width = 96
+    Width = 95
     Caption = 'Lied zur Bereitung'
     ParentColor = False
   end
@@ -390,9 +409,9 @@ object frmGD: TfrmGD
   end
   object Label11: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 272
-    Width = 102
+    Width = 101
     Caption = 'Lied zur Austeilung'
     ParentColor = False
   end
@@ -409,9 +428,9 @@ object frmGD: TfrmGD
   end
   object Label12: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 296
-    Width = 59
+    Width = 58
     Caption = 'Schlusslied'
     ParentColor = False
   end
@@ -428,9 +447,9 @@ object frmGD: TfrmGD
   end
   object Label13: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 320
-    Width = 83
+    Width = 82
     Caption = 'Liturg Gesang 1'
     ParentColor = False
   end
@@ -469,25 +488,25 @@ object frmGD: TfrmGD
   end
   object Label14: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 344
-    Width = 83
+    Width = 82
     Caption = 'Liturg Gesang 2'
     ParentColor = False
   end
   object Label15: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 368
-    Width = 83
+    Width = 82
     Caption = 'Liturg Gesang 3'
     ParentColor = False
   end
   object Label16: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 392
-    Width = 45
+    Width = 44
     Caption = 'Introitus'
     ParentColor = False
   end
@@ -504,7 +523,7 @@ object frmGD: TfrmGD
   end
   object Label17: TLabel
     Left = 152
-    Height = 16
+    Height = 15
     Top = 416
     Width = 58
     Caption = 'Predigttext'
@@ -523,9 +542,9 @@ object frmGD: TfrmGD
   end
   object Label18: TLabel
     Left = 431
-    Height = 16
+    Height = 15
     Top = 8
-    Width = 49
+    Width = 48
     Caption = 'Besucher'
     ParentColor = False
   end
@@ -542,9 +561,9 @@ object frmGD: TfrmGD
   end
   object Label19: TLabel
     Left = 568
-    Height = 16
+    Height = 15
     Top = 8
-    Width = 77
+    Width = 76
     Caption = 'Besucher KiGo'
     ParentColor = False
   end
@@ -561,9 +580,9 @@ object frmGD: TfrmGD
   end
   object Label20: TLabel
     Left = 431
-    Height = 16
+    Height = 15
     Top = 32
-    Width = 36
+    Width = 35
     Caption = 'Pfarrer'
     ParentColor = False
   end
@@ -580,9 +599,9 @@ object frmGD: TfrmGD
   end
   object Label21: TLabel
     Left = 431
-    Height = 16
+    Height = 15
     Top = 80
-    Width = 83
+    Width = 82
     Caption = 'Kommunikaten'
     ParentColor = False
   end
@@ -599,9 +618,9 @@ object frmGD: TfrmGD
   end
   object Label22: TLabel
     Left = 431
-    Height = 16
+    Height = 15
     Top = 104
-    Width = 105
+    Width = 104
     Caption = 'Gastkommunikaten'
     ParentColor = False
   end
@@ -618,9 +637,9 @@ object frmGD: TfrmGD
   end
   object Label23: TLabel
     Left = 431
-    Height = 16
+    Height = 15
     Top = 56
-    Width = 34
+    Width = 33
     Caption = 'Küster'
     ParentColor = False
   end
@@ -637,9 +656,9 @@ object frmGD: TfrmGD
   end
   object Label24: TLabel
     Left = 431
-    Height = 16
+    Height = 15
     Top = 128
-    Width = 43
+    Width = 42
     Caption = 'Kollekte'
     ParentColor = False
   end
@@ -656,9 +675,9 @@ object frmGD: TfrmGD
   end
   object Label25: TLabel
     Left = 431
-    Height = 16
+    Height = 15
     Top = 152
-    Width = 61
+    Width = 60
     Caption = 'Kollekte für'
     ParentColor = False
   end

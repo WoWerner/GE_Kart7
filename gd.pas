@@ -26,6 +26,7 @@ type
     btnEnde: TButton;
     btnNew: TButton;
     btnDel: TButton;
+    cbGemeinde: TComboBox;
     DBCBGottesdienstForm1: TDBComboBox;
     DBCBGottesdienstForm2: TDBComboBox;
     DBCBGottesdienstForm3: TDBComboBox;
@@ -62,6 +63,7 @@ type
     Label12: TLabel;
     Label13: TLabel;
     Label14: TLabel;
+    Label149: TLabel;
     Label15: TLabel;
     Label16: TLabel;
     Label17: TLabel;
@@ -89,6 +91,7 @@ type
     procedure btnDelClick(Sender: TObject);
     procedure btnEndeClick(Sender: TObject);
     procedure btnNewClick(Sender: TObject);
+    procedure cbGemeindeChange(Sender: TObject);
     procedure DBCBChange(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -109,6 +112,7 @@ implementation
 
 uses
   global,
+  help,
   dm;
 
 {$R *.lfm}
@@ -118,6 +122,8 @@ uses
 procedure TfrmGD.FormShow(Sender: TObject);
 begin
   frmDM.dsetGD.Open;
+  cbGemeinde.Items.Text := sGemeinden;
+  cbGemeinde.Text       := sGemeindenAlle;
   dbGrid1.SetFocus;
 end;
 
@@ -195,6 +201,24 @@ begin
   frmDM.dsetGD.refresh;
   frmDM.dsetGD.First;
   DBEdiGottesdienstDatum.SetFocus;
+end;
+
+procedure TfrmGD.cbGemeindeChange(Sender: TObject);
+
+var
+  sFilter: string;
+
+begin
+  sFilter := '';
+  if cbGemeinde.Text = ''
+    then sFilter := SQL_Where_Add(sFilter, SQL_Where_IsNull('Gemeinde'))
+    else if cbGemeinde.Text <> sGemeindenAlle
+      then sFilter := SQL_Where_Add(sFilter, 'Gemeinde=''' + cbGemeinde.Text + '''');
+  myDebugLN('Setze Filter: ' + sFilter);
+  frmDM.dsetGD.Filter   := sFilter;
+  frmDM.dsetGD.Filtered := (sFilter <> '');
+  frmDM.dsetGD.Refresh;
+  frmDM.dsetGD.First;
 end;
 
 procedure TfrmGD.DBCBChange(Sender: TObject);
