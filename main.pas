@@ -1520,11 +1520,16 @@ begin
         try
           screen.cursor := crhourglass;
 
-	      //Filter auf Gemeinde und Kirche
-          if frmStatInfo.stat_gemeinde.Text <> '' then sWhere := 'Gemeinde=''' + frmStatInfo.stat_gemeinde.Text + '''';
-	      sWhere := SQL_Where_Add(sWhere, 'strftime(''%Y'',GottesdienstDatum)='''+frmStatInfo.stat_jahr.text+'''');
+	  //Filter auf Gemeinde
+          if frmStatInfo.stat_gemeinde.Text = ''
+            then sWhere := SQL_Where_Add(sWhere, SQL_Where_IsNull('Gemeinde'))
+            else if frmStatInfo.stat_gemeinde.Text <> sGemeindenAlle
+              then sWhere := SQL_Where_Add(sWhere, 'Gemeinde=''' + frmStatInfo.stat_gemeinde.Text + '''');
 
-	      frmDM.dsetHelp.SQL.Text := 'select * from Gottesdienst where '+sWhere;
+          //und Jahr
+          sWhere := SQL_Where_Add(sWhere, 'strftime(''%Y'',GottesdienstDatum)='''+frmStatInfo.stat_jahr.text+'''');
+
+	  frmDM.dsetHelp.SQL.Text := 'select * from Gottesdienst where '+sWhere;
           frmDM.dsetHelp.open;
           frmDM.dsetHelp.first;
           while not frmDM.dsetHelp.eof do
