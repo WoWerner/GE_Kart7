@@ -1296,32 +1296,10 @@ end;
 procedure TfrmKartei.FormCreate(Sender: TObject);
 
 begin
-  pcDetails.ActivePage := TSAllgemein;
-  DateEditKomm.Date    := now();
-  berechnen            := False;
-  SetLastChange        := True;
-
-  //Skalierung
-  if ScaleFactor < 1
-    then
-      begin
-        myDebugLN('frmKartei wird skaliert mit ScaleFactor: '+realtostr(ScaleFactor,4,3));
-        ScaleBy(Round(ScaleFactor*nDefDPI),nDefDPI);
-      end;
-
-  //Position
-  if nDefDPI = Screen.PixelsPerInch
-    then
-      begin
-        Self.Position := poDesigned;
-        Self.Left     := WORKAREA.Left + (WORKAREA.Right div 2)  - (self.Width div 2);
-        Self.Top      := WORKAREA.Top  + (WORKAREA.Bottom div 2) - (self.Height div 2);
-      end
-    else
-      begin
-        Self.Position := poScreenCenter;
-      end;
-
+  pcDetails.ActivePage          := TSAllgemein;
+  DateEditKomm.Date             := now();
+  berechnen                     := False;
+  SetLastChange                 := True;
   dbcbKirche.Items.Text         := sKirchenEintraege;
   dbcbKindKirche.Items.Text     := sKirchenEintraege;
   DBcbVaterKirche.Items.Text    := sKirchenEintraege;

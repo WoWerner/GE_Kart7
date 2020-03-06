@@ -481,40 +481,20 @@ begin
   //Skalierung ermitteln für ALLE Fenster
   ScaleFactor  := 1;
   myDebugLN('Screen.PixelsPerInch: '+inttostr(Screen.PixelsPerInch)+', Designwert: '+inttostr(nDefDPI));
-  WORKAREA := GETMaxWindowsSize; //Verfügbarer Platz
-  if nDefDPI = screen.PixelsPerInch
-    then
-      begin
-        ScaleFactorX     := 1;
-        ScaleFactorY     := 1;
 
-        if WORKAREA.Right  < MaxWindWidth  then ScaleFactorX := WORKAREA.Right  / MaxWindWidth;
-        if WORKAREA.Bottom < MaxWindHeight then ScaleFactorY := WORKAREA.Bottom / MaxWindHeight;
+  WORKAREA      := GETMaxWindowsSize; //Verfügbarer Platz
+  ScaleFactorX  := 1;
+  ScaleFactorY  := 1;
 
-        if ScaleFactorX < ScaleFactor then ScaleFactor := ScaleFactorX;
-        if ScaleFactorY < ScaleFactor then ScaleFactor := ScaleFactorY;
+  if WORKAREA.Right  < MaxWindWidth  then ScaleFactorX := WORKAREA.Right  / MaxWindWidth;
+  if WORKAREA.Bottom < MaxWindHeight then ScaleFactorY := WORKAREA.Bottom / MaxWindHeight;
 
-        myDebugLN('ScaleFactorX '+floattostr(ScaleFactorX));
-        myDebugLN('ScaleFactorY '+floattostr(ScaleFactorY));
-        myDebugLN('ScaleFactor fuer Bildschirmgröße: '+floattostr(ScaleFactor));
-      end
-    else
-      begin
-        myDebugLN('ScaleFactor fuer Bildschirmgröße kann nicht genutzt werden, da bereits eine DPI Skallierung stattfindet');
-      end;
+  if ScaleFactorX < ScaleFactor then ScaleFactor := ScaleFactorX;
+  if ScaleFactorY < ScaleFactor then ScaleFactor := ScaleFactorY;
 
-  //Position
-  if nDefDPI = screen.PixelsPerInch
-    then
-      begin
-        Self.Position := poDesigned;
-        Self.Left     := WORKAREA.Left + (WORKAREA.Right div 2)  - (self.Width div 2);
-        Self.Top      := WORKAREA.Top  + (WORKAREA.Bottom div 2) - (self.Height div 2);
-      end
-    else
-      begin
-        Self.Position := poScreenCenter;
-      end;
+  myDebugLN('ScaleFactorX '+floattostr(ScaleFactorX));
+  myDebugLN('ScaleFactorY '+floattostr(ScaleFactorY));
+  myDebugLN('ScaleFactor fuer Bildschirmgröße: '+floattostr(ScaleFactor));
 
   //Prüfung auf neue Version
   HTTP := THTTPSend.Create;

@@ -29,12 +29,12 @@ uses
   suche,
   gd,
   PgmUpdate,
-  uscaledpi,
   freelist;
 
 {$R *.res}
 
 begin
+  Application.Scaled:=True;
   Application.Title:='GE_Kart Verwaltungsprogramm für Kirchengemeinden';
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
@@ -48,8 +48,6 @@ begin
   Application.CreateForm(TfrmGD, frmGD);
   Application.CreateForm(TfrmFreieListe, frmFreieListe);
   Application.CreateForm(TfrmPgmUpdate,frmPgmUpdate);
-
-  HighDPI(nDefDPI);  //Scaliert alle Formulare bei anderen Schriftarten / Grössen
 
   if isconsole
     then
