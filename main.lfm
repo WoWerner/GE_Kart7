@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 288
+  Left = 509
   Height = 415
-  Top = 124
+  Top = 102
   Width = 693
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
@@ -43,152 +43,129 @@ object frmMain: TfrmMain
   ShowHint = True
   LCLVersion = '2.0.6.0'
   object lb_Name: TLabel
-    Left = 56
-    Height = 63
-    Top = 20
-    Width = 417
+    Left = 152
+    Height = 62
+    Top = 13
+    Width = 372
     Caption = 'Gemeinde-Kartei'
     Font.Color = clPurple
     Font.Height = 64
-    Font.Name = 'Arial'
+    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 56
+    Left = 30
     Height = 15
     Top = 152
     Width = 18
     Caption = 'für:'
     ParentColor = False
+    ParentFont = False
   end
   object labVersion: TLabel
-    Left = 56
-    Height = 19
-    Top = 94
+    Left = 30
+    Height = 23
+    Top = 88
     Width = 60
     Caption = 'Version:'
-    Font.Height = 19
-    Font.Name = 'Arial'
+    Font.Height = 24
     ParentColor = False
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 56
+    Left = 30
     Height = 15
     Top = 196
     Width = 23
     Caption = 'von:'
     ParentColor = False
+    ParentFont = False
   end
   object LabMyName: TLabel
-    Left = 84
-    Height = 16
+    Left = 58
+    Height = 15
     Top = 196
-    Width = 112
+    Width = 93
     Caption = 'Wolfgang Werner'
     Font.Color = clNavy
-    Font.Height = 16
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
   end
   object labMyStreet: TLabel
-    Left = 84
-    Height = 16
+    Left = 58
+    Height = 15
     Top = 216
-    Width = 77
+    Width = 66
     Caption = 'Ulmtalstr. 26'
     Font.Color = clNavy
-    Font.Height = 16
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
   end
   object labMyCity: TLabel
-    Left = 84
-    Height = 16
+    Left = 58
+    Height = 15
     Top = 236
-    Width = 202
+    Width = 169
     Caption = '35753 Greifenstein / Holzhausen'
     Font.Color = clNavy
-    Font.Height = 16
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
   end
   object labMyTelNr: TLabel
-    Left = 84
-    Height = 16
+    Left = 58
+    Height = 15
     Top = 256
-    Width = 104
+    Width = 89
     Caption = '06478 / 43 29 840'
     Font.Color = clNavy
-    Font.Height = 16
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
   end
   object labMyMail: TLabel
     Cursor = crHandPoint
-    Left = 84
-    Height = 16
+    Left = 58
+    Height = 15
     Top = 276
-    Width = 120
+    Width = 100
     Caption = 'mail@w-werner.de'
     Font.Color = clNavy
-    Font.Height = 16
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
     OnClick = labMyMailClick
   end
   object labMyWeb: TLabel
     Cursor = crHandPoint
-    Left = 84
-    Height = 16
+    Left = 58
+    Height = 15
     Top = 296
-    Width = 116
+    Width = 96
     Caption = 'www.w-werner.de'
     Font.Color = clNavy
-    Font.Height = 16
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
     OnClick = labMyWebClick
   end
   object LabGemeinde1: TLabel
     Cursor = crHandPoint
-    Left = 84
-    Height = 16
+    Left = 58
+    Height = 15
     Top = 152
-    Width = 106
+    Width = 90
     Caption = 'Mustergemeinde'
     Font.Color = clNavy
-    Font.Height = 16
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
     OnDblClick = mnuGemeindeAdresseClick
   end
   object LabGemeinde2: TLabel
     Cursor = crHandPoint
-    Left = 84
-    Height = 16
+    Left = 58
+    Height = 15
     Top = 168
-    Width = 106
+    Width = 90
     Caption = 'Mustergemeinde'
     Font.Color = clNavy
-    Font.Height = 16
-    Font.Name = 'Arial'
-    Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
     OnDblClick = mnuGemeindeAdresseClick
@@ -200,6 +177,7 @@ object frmMain: TfrmMain
     Width = 120
     Caption = 'Kartei bearbeiten'
     OnClick = btnKarteiClick
+    ParentFont = False
     TabOrder = 0
   end
   object StatusBar: TStatusBar
@@ -214,6 +192,7 @@ object frmMain: TfrmMain
       item
         Width = 50
       end>
+    ParentFont = False
     SimplePanel = False
   end
   object btnSuchen: TButton
@@ -225,6 +204,7 @@ object frmMain: TfrmMain
     Caption = 'Suchen'
     OnClick = btnSuchenClick
     OnContextPopup = btnSuchenContextPopup
+    ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2
@@ -234,6 +214,7 @@ object frmMain: TfrmMain
     Height = 278
     Top = 86
     Width = 374
+    ParentFont = False
     ScrollBars = ssAutoBoth
     TabOrder = 3
     Visible = False
@@ -245,17 +226,17 @@ object frmMain: TfrmMain
     Width = 75
     Caption = 'Ende'
     OnClick = mnuEndeClick
+    ParentFont = False
     TabOrder = 4
   end
   object labVersionNeu: TLabel
-    Left = 56
-    Height = 16
+    Left = 30
+    Height = 15
     Top = 116
-    Width = 140
+    Width = 129
     Caption = 'Neue Version verfügbar: '
     Color = clYellow
     Font.Height = 16
-    Font.Name = 'Arial'
     ParentColor = False
     ParentFont = False
     ParentShowHint = False
@@ -270,6 +251,7 @@ object frmMain: TfrmMain
     Width = 290
     Caption = 'Aktuelles'
     OnClick = btnAktuellesClick
+    ParentFont = False
     TabOrder = 5
     Visible = False
   end

@@ -237,21 +237,18 @@ begin
   WORKAREA     := GETWORKAREA; //Verfügbarer Platz
   aBorderWidth := GetSystemMetrics(SM_CYSIZEFRAME);
   aCaption     := GetSystemMetrics(SM_CYCAPTION);
-
+  Result.Left   := WORKAREA.Left;
+  Result.Top    := WORKAREA.Top;
+  Result.Right  := WORKAREA.Right  - WORKAREA.Left - 2*aBorderWidth;
+  Result.Bottom := WORKAREA.Bottom - WORKAREA.Top  -   aBorderWidth - aCaption;
   myDebugLN(#13#10+'WORKAREA:'+#13#10+
             'Left   : '+inttostr(WORKAREA.Left)+#13#10+
             'Top    : '+inttostr(WORKAREA.Top)+#13#10+
             'Right  : '+inttostr(WORKAREA.Right)+#13#10+
             'Bottom : '+inttostr(WORKAREA.Bottom)+#13#10+
             'Border : '+inttostr(aBorderWidth)+#13#10+
-            'Caption: '+inttostr(aCaption));
-
-  Result.Left   := WORKAREA.Left;
-  Result.Top    := WORKAREA.Top;
-  Result.Right  := WORKAREA.Right  - WORKAREA.Left - 2*aBorderWidth;
-  Result.Bottom := WORKAREA.Bottom - WORKAREA.Top  -   aBorderWidth - aCaption;
-
-  myDebugLN(#13#10+'PosAndMaxWindowsSize:'+#13#10+
+            'Caption: '+inttostr(aCaption)+#13#10+
+            'PosAndMaxWindowsSize:'+#13#10+
             'Left  : '+inttostr(Result.Left)+#13#10+
             'Top   : '+inttostr(Result.Top)+#13#10+
             'Width : '+inttostr(Result.Right)+' (store in Right)'+#13#10+

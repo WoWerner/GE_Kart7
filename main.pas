@@ -373,7 +373,7 @@ begin
 
   myDebugLN('ScaleFactorX '+floattostr(ScaleFactorX));
   myDebugLN('ScaleFactorY '+floattostr(ScaleFactorY));
-  myDebugLN('ScaleFactor fuer Bildschirmgröße: '+floattostr(ScaleFactor));
+  myDebugLN('ScaleFactor  '+floattostr(ScaleFactor));
 
   //Prüfung auf neue Version
   HTTP := THTTPSend.Create;
