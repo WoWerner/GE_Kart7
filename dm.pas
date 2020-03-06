@@ -101,7 +101,7 @@ begin
          dsetPersonen.SortedFields:='TempString';
          dsetPersonen.Refresh;
          dsetPersonen.SortedFields:='Markiert,TempString';
-         dsetPersonen.IndexFieldNames := StringReplace(dsetPersonen.IndexFieldNames, 'Asc', 'Desc', []);
+         dsetPersonen.IndexFieldNames := StringReplace(dsetPersonen.IndexFieldNames, 'Desc', 'Desc', []);
        end;
     2: begin
          //day of year: 001-366 setzen
