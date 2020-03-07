@@ -40,6 +40,7 @@ type
     frHTMExport: TfrHTMExport;
     frReport: TfrReport;
     frTextExport: TfrTextExport;
+    imgSELK: TImage;
     Label1: TLabel;
     Label2: TLabel;
     LabGemeinde2: TLabel;
@@ -146,6 +147,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure frReportGetValue(const ParName: String; var ParValue: Variant);
+    procedure imgSELKClick(Sender: TObject);
     procedure labMyMailClick(Sender: TObject);
     procedure labMyWebClick(Sender: TObject);
     procedure labVersionNeuClick(Sender: TObject);
@@ -348,6 +350,12 @@ begin
 
   //Dialoge übersetzen
   TranslateUnitResourceStrings('LCLStrConsts','lclstrconsts.%s.po','de','en');
+
+  try
+    imgSELK.Picture.LoadFromFile(sAppDir+'\selk_ohne.png');
+  except
+
+  end;
 
   //Laden der Kircheneinträge
   slHelp.Text       := sKirchenEintraegeDef;
@@ -637,6 +645,11 @@ begin
       end;
   if (ParName = 'Adr1x') then ParValue := labGemeinde1.caption;
   if (ParName = 'Adr2x') then ParValue := labGemeinde2.caption;
+end;
+
+procedure TfrmMain.imgSELKClick(Sender: TObject);
+begin
+  Openurl('www.selk.de');
 end;
 
 procedure TfrmMain.btnKarteiClick(Sender: TObject);

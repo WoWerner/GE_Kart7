@@ -43,19 +43,19 @@ object frmMain: TfrmMain
   ShowHint = True
   LCLVersion = '2.0.6.0'
   object lb_Name: TLabel
-    Left = 152
-    Height = 62
-    Top = 13
-    Width = 372
+    Left = 16
+    Height = 47
+    Top = 24
+    Width = 281
     Caption = 'Gemeinde-Kartei'
     Font.Color = clPurple
-    Font.Height = 64
+    Font.Height = -35
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 30
+    Left = 16
     Height = 15
     Top = 152
     Width = 18
@@ -64,7 +64,7 @@ object frmMain: TfrmMain
     ParentFont = False
   end
   object labVersion: TLabel
-    Left = 30
+    Left = 16
     Height = 23
     Top = 88
     Width = 60
@@ -74,7 +74,7 @@ object frmMain: TfrmMain
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 30
+    Left = 16
     Height = 15
     Top = 196
     Width = 23
@@ -83,7 +83,7 @@ object frmMain: TfrmMain
     ParentFont = False
   end
   object LabMyName: TLabel
-    Left = 58
+    Left = 44
     Height = 15
     Top = 196
     Width = 93
@@ -93,7 +93,7 @@ object frmMain: TfrmMain
     ParentFont = False
   end
   object labMyStreet: TLabel
-    Left = 58
+    Left = 44
     Height = 15
     Top = 216
     Width = 66
@@ -103,7 +103,7 @@ object frmMain: TfrmMain
     ParentFont = False
   end
   object labMyCity: TLabel
-    Left = 58
+    Left = 44
     Height = 15
     Top = 236
     Width = 169
@@ -113,7 +113,7 @@ object frmMain: TfrmMain
     ParentFont = False
   end
   object labMyTelNr: TLabel
-    Left = 58
+    Left = 44
     Height = 15
     Top = 256
     Width = 89
@@ -124,7 +124,7 @@ object frmMain: TfrmMain
   end
   object labMyMail: TLabel
     Cursor = crHandPoint
-    Left = 58
+    Left = 44
     Height = 15
     Top = 276
     Width = 100
@@ -136,7 +136,7 @@ object frmMain: TfrmMain
   end
   object labMyWeb: TLabel
     Cursor = crHandPoint
-    Left = 58
+    Left = 44
     Height = 15
     Top = 296
     Width = 96
@@ -148,7 +148,7 @@ object frmMain: TfrmMain
   end
   object LabGemeinde1: TLabel
     Cursor = crHandPoint
-    Left = 58
+    Left = 44
     Height = 15
     Top = 152
     Width = 90
@@ -160,7 +160,7 @@ object frmMain: TfrmMain
   end
   object LabGemeinde2: TLabel
     Cursor = crHandPoint
-    Left = 58
+    Left = 44
     Height = 15
     Top = 168
     Width = 90
@@ -211,8 +211,8 @@ object frmMain: TfrmMain
   end
   object memGeburtstag: TMemo
     Left = 312
-    Height = 278
-    Top = 86
+    Height = 356
+    Top = 8
     Width = 374
     ParentFont = False
     ScrollBars = ssAutoBoth
@@ -230,7 +230,7 @@ object frmMain: TfrmMain
     TabOrder = 4
   end
   object labVersionNeu: TLabel
-    Left = 30
+    Left = 16
     Height = 15
     Top = 116
     Width = 129
@@ -254,6 +254,15 @@ object frmMain: TfrmMain
     ParentFont = False
     TabOrder = 5
     Visible = False
+  end
+  object imgSELK: TImage
+    Cursor = crHandPoint
+    Left = 312
+    Height = 356
+    Top = 8
+    Width = 356
+    OnClick = imgSELKClick
+    Stretch = True
   end
   object MainMenu: TMainMenu
     left = 16
