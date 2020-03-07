@@ -538,17 +538,14 @@ begin
       end;
     else
       begin
-        DBGridDetails.Visible                  := False;
+        DBGridDetails.Visible := False;
       end;
   end;
+
   case pcDetails.TabIndex of
-    0:   pcDetails.Height := Round(ScaleY(430,nDefDPI)*ScaleFactor); //Allgemein
-    2:   pcDetails.Height := Round(ScaleY(406,nDefDPI)*ScaleFactor); //Kasualien 1
-    3:   pcDetails.Height := Round(ScaleY(492,nDefDPI)*ScaleFactor); //Kasualien 2
-    4:   pcDetails.Height := Round(ScaleY(160,nDefDPI)*ScaleFactor); //Kommunionen
-    6:   pcDetails.Height := Round(ScaleY(504,nDefDPI)*ScaleFactor); //Memo
-    7:   pcDetails.Height := Round(ScaleY(416,nDefDPI)*ScaleFactor); //Mitarbeit
-    else pcDetails.Height := Round(ScaleY(342,nDefDPI)*ScaleFactor);
+    1, 5: pcDetails.Height := Round(ScaleY(342,nDefDPI)*ScaleFactor); //Eltern / Kinder, Besuch
+    4:    pcDetails.Height := Round(ScaleY(160,nDefDPI)*ScaleFactor); //Kommunionen
+    else  pcDetails.Height := Round(ScaleY(488,nDefDPI)*ScaleFactor);
   end;
 
   if DBGridDetails.Visible
