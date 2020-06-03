@@ -66,6 +66,7 @@ type
     MenuItem22: TMenuItem;
     MenuItem23: TMenuItem;
     MenuItem27: TMenuItem;
+    mnuDefineAnredeEntries: TMenuItem;
     mnuGebListSplit: TMenuItem;
     mnuExport: TMenuItem;
     mnuUserDefSQL: TMenuItem;
@@ -159,6 +160,7 @@ type
     procedure mnuDatenRestoreClick(Sender: TObject);
     procedure mnuDatensicherungClick(Sender: TObject);
     procedure mnuDebugClick(Sender: TObject);
+    procedure mnuDefineAnredeEntriesClick(Sender: TObject);
     procedure mnuDefineKircheEntriesClick(Sender: TObject);
     procedure mnuDelMarkClick(Sender: TObject);
     procedure mnuDelMarkPersClick(Sender: TObject);
@@ -361,6 +363,12 @@ begin
   slHelp.Text       := sKirchenEintraegeDef;
   slHelp.CommaText  := help.ReadIniVal(sIniFile, 'Defaults','Kirchen', slHelp.CommaText, true);
   sKirchenEintraege := slHelp.Text;
+  slHelp.Clear;
+
+  //Laden der Anredeneinträge
+  slHelp.Text       := sAnredeEintraegeDef;
+  slHelp.CommaText  := help.ReadIniVal(sIniFile, 'Defaults','Anreden', slHelp.CommaText, true);
+  sAnredenEintraege := slHelp.Text;
   slHelp.Clear;
 
   sDefaultGemeinde  := help.ReadIniVal(sIniFile, 'Defaults','Gemeinde', '', true);
@@ -989,6 +997,17 @@ begin
   if bDebug
     then help.WriteIniVal(sIniFile, 'Debug', 'Debug', 'true')
     else help.WriteIniVal(sIniFile, 'Debug', 'Debug', 'false');
+end;
+
+procedure TfrmMain.mnuDefineAnredeEntriesClick(Sender: TObject);
+begin
+  frmAusgabe.SetDefaults('Anredeneinträge', sAnredenEintraege, '', 'Speichern', 'Abbrechen', true);
+  if frmAusgabe.ShowModal = mrOK
+    then
+      begin
+        help.WriteIniVal(sIniFile, 'Defaults','Anreden', frmAusgabe.Memo.Lines.CommaText);
+        Showmessage('Zum Übernehmen der neuen Einträge bitte GE_Kart neu starten.')
+      end;
 end;
 
 procedure TfrmMain.mnuDefineKircheEntriesClick(Sender: TObject);

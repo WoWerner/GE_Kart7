@@ -489,6 +489,10 @@ object frmMain: TfrmMain
         Caption = 'Einträge für Kirche anpassen'
         OnClick = mnuDefineKircheEntriesClick
       end
+      object mnuDefineAnredeEntries: TMenuItem
+        Caption = 'Einträge für Anrede anpassen'
+        OnClick = mnuDefineAnredeEntriesClick
+      end
       object mnuGemeindeDefault: TMenuItem
         Caption = 'Standard für "Gemeinde" bei neuer Person festlegen'
         OnClick = mnuGemeindeDefaultClick

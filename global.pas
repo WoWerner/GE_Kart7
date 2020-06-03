@@ -209,6 +209,11 @@ const
                         'ev.-meth.'+#13#10+
                         'ohne'+#13#10+
                         'andere';
+  sAnredeEintraegeDef = ''+#13#10+
+                        'Herrn'+#13#10+
+                        'Frau'+#13#10+
+                        'An'+#13#10+
+                        'Fam.';
   sSQL_GD_Table_New =   'CREATE TABLE [Gottesdienst] ('+
                         '[GdID] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,'+
                         '[GottesdienstDatum] DATE  NULL,'+
@@ -258,6 +263,7 @@ var
   bSQLDebug         : boolean;
   sReportFile       : String;
   sKirchenEintraege : String;
+  sAnredenEintraege : String;
   sGemeinden        : String;
   sDefaultGemeinde  : string;
   sNewVers          : String;
