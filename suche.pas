@@ -31,7 +31,7 @@ type
     cbKomm: TCheckBox;
     CBFamstand: TComboBox;
     CBGeschlecht: TComboBox;
-    ediGemeinde: TEdit;
+    cbGemeinde: TComboBox;
     ediGebBis: TEdit;
     ediKommJ: TEdit;
     ediTaufM: TEdit;
@@ -151,11 +151,11 @@ begin
         else sWhere := SQL_Where_Add(sWhere,        SQL_Where_Contains(ediKirche.text, 'Kirche'));
     end;
   //Gemeinde
-  if ediGemeinde.text <> '' then
+  if cbGemeinde.text <> '' then
     begin
       if cbNotGem.Checked
-        then sWhere := SQL_Where_Add(sWhere, 'NOT '+SQL_Where_Contains(ediGemeinde.text, 'Gemeinde'))
-        else sWhere := SQL_Where_Add(sWhere,        SQL_Where_Contains(ediGemeinde.text, 'Gemeinde'));
+        then sWhere := SQL_Where_Add(sWhere, 'NOT '+SQL_Where_Contains(cbGemeinde.text, 'Gemeinde'))
+        else sWhere := SQL_Where_Add(sWhere,        SQL_Where_Contains(cbGemeinde.text, 'Gemeinde'));
     end;
   //Taufmonat
   if ediTaufM.text <> '00'          then sWhere := SQL_Where_Add(sWhere, 'strftime(''%m'',TaufDatum)='''+ediTaufM.text+'''');
@@ -287,6 +287,7 @@ end;
 procedure TfrmSuche.FormActivate(Sender: TObject);
 begin
   ediName.SetFocus;
+  cbGemeinde.Items.Text := sGemeinden;
 end;
 
 procedure TfrmSuche.FormCreate(Sender: TObject);
@@ -309,31 +310,31 @@ end;
 
 procedure TfrmSuche.btnResetClick(Sender: TObject);
 begin
-  cbDelMark.Checked  := false;
-  cbAbgaenge.Checked := true;
-  ediName.Text       := '';
-  ediVorName.Text    := '';
-  ediStrasse.Text    := '';
-  ediLand.Text       := '';
-  cbNotPLZ.Checked   := false;
-  ediPLZ.Text        := '00000';
-  ediOrt.Text        := '';
-  ediKirche.Text     := '';
-  cbNotKirche.Checked:= false;
-  cbNotGem.Checked   := false;
-  ediGemeinde.Text   := '';
-  ediTaufM.Text      := '00';
-  ediTaufJ.Text      := sNotUsedYear;
-  ediKonfJ.Text      := sNotUsedYear;
-  ediTrauJ.Text      := sNotUsedYear;
-  ediVers.Text       := '';
-  ediGebVon.Text     := sNotUsedYear;
-  ediGebBis.Text     := sNotUsedYear;
-  ediGebM.Text       := '00';
-  CBGeschlecht.Text  := '';
-  CBFamstand.Text    := '';
-  cbKomm.Checked     := false;
-  ediKommJ.Text      := year(datetostr(date));
+  cbDelMark.Checked     := false;
+  cbAbgaenge.Checked    := true;
+  ediName.Text          := '';
+  ediVorName.Text       := '';
+  ediStrasse.Text       := '';
+  ediLand.Text          := '';
+  cbNotPLZ.Checked      := false;
+  ediPLZ.Text           := '00000';
+  ediOrt.Text           := '';
+  ediKirche.Text        := '';
+  cbNotKirche.Checked   := false;
+  cbNotGem.Checked      := false;
+  cbGemeinde.Text       := '';
+  ediTaufM.Text         := '00';
+  ediTaufJ.Text         := sNotUsedYear;
+  ediKonfJ.Text         := sNotUsedYear;
+  ediTrauJ.Text         := sNotUsedYear;
+  ediVers.Text          := '';
+  ediGebVon.Text        := sNotUsedYear;
+  ediGebBis.Text        := sNotUsedYear;
+  ediGebM.Text          := '00';
+  CBGeschlecht.Text     := '';
+  CBFamstand.Text       := '';
+  cbKomm.Checked        := false;
+  ediKommJ.Text         := year(datetostr(date));
 end;
 
 end.

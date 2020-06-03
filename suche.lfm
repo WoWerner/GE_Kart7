@@ -208,13 +208,6 @@ object frmSuche: TfrmSuche
       Caption = 'nicht ->'
       TabOrder = 2
     end
-    object ediGemeinde: TEdit
-      Left = 150
-      Height = 23
-      Top = 29
-      Width = 48
-      TabOrder = 3
-    end
     object Label6: TLabel
       Left = 6
       Height = 15
@@ -231,7 +224,7 @@ object frmSuche: TfrmSuche
       Width = 32
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 4
+      TabOrder = 3
       Text = '00'
     end
     object Label7: TLabel
@@ -250,7 +243,7 @@ object frmSuche: TfrmSuche
       Width = 48
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 5
+      TabOrder = 4
       Text = '1900'
     end
     object Label8: TLabel
@@ -269,7 +262,7 @@ object frmSuche: TfrmSuche
       Width = 48
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 6
+      TabOrder = 5
       Text = '1900'
     end
     object Label9: TLabel
@@ -288,7 +281,7 @@ object frmSuche: TfrmSuche
       Width = 48
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 7
+      TabOrder = 6
       Text = '1900'
     end
     object Label10: TLabel
@@ -305,7 +298,7 @@ object frmSuche: TfrmSuche
       Top = 86
       Width = 130
       Caption = 'Kommunikanten für '
-      TabOrder = 8
+      TabOrder = 7
     end
     object ediKommJ: TEdit
       Left = 150
@@ -315,8 +308,16 @@ object frmSuche: TfrmSuche
       Width = 48
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 9
+      TabOrder = 8
       Text = '1900'
+    end
+    object cbGemeinde: TComboBox
+      Left = 150
+      Height = 23
+      Top = 29
+      Width = 84
+      ItemHeight = 15
+      TabOrder = 9
     end
   end
   object GroupBox4: TGroupBox
