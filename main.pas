@@ -730,8 +730,8 @@ end;
 procedure TfrmMain.MenuSetAnredeClick(Sender: TObject);
 
 begin
-  frmDM.ExecSQL('Update personen set Briefanrede=''Herr'' where ((Briefanrede is NULL) or (Briefanrede='''')) and (Geschlecht=''M'')');
-  frmDM.ExecSQL('Update personen set Briefanrede=''Frau'' where ((Briefanrede is NULL) or (Briefanrede='''')) and (Geschlecht=''W'')');
+  frmDM.ExecSQL('Update personen set Briefanrede=''Herrn'' where '+SQL_Where_IsNull('Briefanrede')+' and (Geschlecht=''M'')');
+  frmDM.ExecSQL('Update personen set Briefanrede=''Frau'' where '+SQL_Where_IsNull('Briefanrede')+' and (Geschlecht=''W'')');
 end;
 
 procedure TfrmMain.mnuAbsToEtiClick(Sender: TObject);
