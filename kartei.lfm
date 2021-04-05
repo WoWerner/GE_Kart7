@@ -78,7 +78,7 @@ object frmKartei: TfrmKartei
     Visible = False
   end
   object pcDetails: TPageControl
-    Left = 6
+    Left = 8
     Height = 488
     Top = 161
     Width = 888
@@ -93,116 +93,116 @@ object frmKartei: TfrmKartei
       ClientWidth = 880
       ParentFont = False
       object DBCB_Ausbildung: TDBCheckBox
-        Left = 4
+        Left = 3
         Height = 23
-        Top = 304
+        Top = 356
         Width = 90
         Caption = 'Ausbildung'
         DataField = 'Ausbildung'
         DataSource = frmDM.dsPersonen
         ParentFont = False
-        TabOrder = 19
+        TabOrder = 21
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
       object Label15: TLabel
-        Left = 4
+        Left = 3
         Height = 15
-        Top = 4
+        Top = 56
         Width = 71
         Caption = 'Telefon privat'
         ParentColor = False
         ParentFont = False
       end
       object dbediTelPrivat: TDBEdit
-        Left = 4
+        Left = 3
         Height = 23
-        Top = 20
+        Top = 72
         Width = 200
         DataField = 'TelPrivat'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 0
+        TabOrder = 3
       end
       object Label16: TLabel
-        Left = 212
+        Left = 211
         Height = 15
-        Top = 4
+        Top = 56
         Width = 92
         Caption = 'Telefon dienstlich'
         ParentColor = False
         ParentFont = False
       end
       object dbediTelDienst: TDBEdit
-        Left = 212
+        Left = 211
         Height = 23
-        Top = 20
+        Top = 72
         Width = 200
         DataField = 'TelDienst'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 4
       end
       object dbediTelMobil: TDBEdit
-        Left = 420
+        Left = 419
         Height = 23
-        Top = 20
+        Top = 72
         Width = 217
         DataField = 'TelMobil'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 2
+        TabOrder = 5
       end
       object Label17: TLabel
-        Left = 420
+        Left = 419
         Height = 15
-        Top = 4
+        Top = 56
         Width = 72
         Caption = 'Telefon mobil'
         ParentColor = False
         ParentFont = False
       end
       object Label18: TLabel
-        Left = 652
+        Left = 651
         Height = 15
-        Top = 4
+        Top = 56
         Width = 18
         Caption = 'Fax'
         ParentColor = False
         ParentFont = False
       end
       object dbediTelFax: TDBEdit
-        Left = 651
+        Left = 650
         Height = 23
-        Top = 20
+        Top = 72
         Width = 224
         DataField = 'Fax'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 6
       end
       object Label19: TLabel
-        Left = 4
+        Left = 3
         Height = 15
-        Top = 52
+        Top = 104
         Width = 29
         Caption = 'eMail'
         ParentColor = False
         ParentFont = False
       end
       object dbediEMail: TDBEdit
-        Left = 4
+        Left = 3
         Height = 23
         Hint = 'Doppelklick für EMail senden'
-        Top = 68
+        Top = 120
         Width = 408
         DataField = 'eMail'
         DataSource = frmDM.dsPersonen
@@ -211,23 +211,23 @@ object frmKartei: TfrmKartei
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 4
+        TabOrder = 7
         OnDblClick = dbediEMailDblClick
       end
       object Label20: TLabel
-        Left = 420
+        Left = 419
         Height = 15
-        Top = 52
+        Top = 104
         Width = 41
         Caption = 'Internet'
         ParentColor = False
         ParentFont = False
       end
       object dbediInternet: TDBEdit
-        Left = 420
+        Left = 419
         Height = 23
         Hint = 'Doppelklick für Öffnen der Adresse'
-        Top = 68
+        Top = 120
         Width = 455
         DataField = 'Internet'
         DataSource = frmDM.dsPersonen
@@ -236,119 +236,119 @@ object frmKartei: TfrmKartei
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 7
+        TabOrder = 10
         OnDblClick = dbediInternetDblClick
       end
       object Label22: TLabel
         Left = 3
         Height = 15
-        Top = 192
+        Top = 244
         Width = 33
         Caption = 'Kirche'
         ParentColor = False
         ParentFont = False
       end
       object Label23: TLabel
-        Left = 219
+        Left = 218
         Height = 15
-        Top = 192
+        Top = 244
         Width = 54
         Caption = 'Gemeinde'
         ParentColor = False
         ParentFont = False
       end
       object dbediGemeinde: TDBEdit
-        Left = 219
+        Left = 218
         Height = 23
-        Top = 208
+        Top = 260
         Width = 55
         DataField = 'Gemeinde'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 11
+        TabOrder = 14
       end
       object Label24: TLabel
-        Left = 283
+        Left = 282
         Height = 15
-        Top = 192
+        Top = 244
         Width = 41
         Caption = 'Versand'
         ParentColor = False
         ParentFont = False
       end
       object dbediVersand: TDBEdit
-        Left = 283
+        Left = 282
         Height = 23
-        Top = 208
+        Top = 260
         Width = 128
         DataField = 'Versand'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 12
+        TabOrder = 15
       end
       object DBCB_Ruhestand: TDBCheckBox
-        Left = 802
+        Left = 801
         Height = 23
-        Top = 304
+        Top = 356
         Width = 74
         Caption = 'Ruhestand'
         DataField = 'Ruhestand'
         DataSource = frmDM.dsPersonen
         ParentFont = False
-        TabOrder = 23
+        TabOrder = 25
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
       object Label43: TLabel
-        Left = 508
+        Left = 507
         Height = 15
-        Top = 240
+        Top = 292
         Width = 56
         Caption = 'GebStAOrt'
         ParentColor = False
         ParentFont = False
       end
       object dbediGebStAOrt: TDBEdit
-        Left = 508
+        Left = 507
         Height = 23
-        Top = 256
+        Top = 308
         Width = 183
         DataField = 'GebStAOrt'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 17
+        TabOrder = 19
       end
       object Label44: TLabel
-        Left = 701
+        Left = 700
         Height = 15
-        Top = 240
+        Top = 292
         Width = 72
         Caption = 'GebStARegNr'
         ParentColor = False
         ParentFont = False
       end
       object dbediGebStARegNr: TDBEdit
-        Left = 701
+        Left = 700
         Height = 23
-        Top = 256
+        Top = 308
         Width = 174
         DataField = 'GebStARegNr'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 18
+        TabOrder = 20
       end
       object Label45: TLabel
         Left = 3
         Height = 15
-        Top = 240
+        Top = 292
         Width = 53
         Caption = 'GebName'
         ParentColor = False
@@ -357,195 +357,195 @@ object frmKartei: TfrmKartei
       object dbediGebName: TDBEdit
         Left = 3
         Height = 23
-        Top = 256
+        Top = 308
         Width = 208
         DataField = 'GebName'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 14
+        TabOrder = 16
       end
       object Label46: TLabel
-        Left = 219
+        Left = 218
         Height = 15
-        Top = 240
+        Top = 292
         Width = 38
         Caption = 'GebOrt'
         ParentColor = False
         ParentFont = False
       end
       object dbediGebOrt: TDBEdit
-        Left = 219
+        Left = 218
         Height = 23
-        Top = 256
+        Top = 308
         Width = 192
         DataField = 'GebOrt'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 15
+        TabOrder = 17
       end
       object Label47: TLabel
-        Left = 420
+        Left = 419
         Height = 15
-        Top = 240
+        Top = 292
         Width = 75
         Caption = 'GebStADatum'
         ParentColor = False
         ParentFont = False
       end
       object dbediGebStADatum: TDBEdit
-        Left = 420
+        Left = 419
         Height = 23
-        Top = 256
+        Top = 308
         Width = 76
         DataField = 'GebStADatum'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 16
+        TabOrder = 18
         OnDblClick = DatumDblClick
         OnEnter = DatumExit
       end
       object dbediBerufAusgeuebt: TDBEdit
-        Left = 327
+        Left = 326
         Height = 23
-        Top = 304
+        Top = 356
         Width = 230
         DataField = 'BerufAusgeuebt'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 21
+        TabOrder = 23
       end
       object Label49: TLabel
-        Left = 327
+        Left = 326
         Height = 15
-        Top = 288
+        Top = 340
         Width = 90
         Caption = 'ausgeübter Beruf'
         ParentColor = False
         ParentFont = False
       end
       object dbediArbeitgeber: TDBEdit
-        Left = 564
+        Left = 563
         Height = 23
-        Top = 304
+        Top = 356
         Width = 230
         DataField = 'Arbeitgeber'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 22
+        TabOrder = 24
       end
       object Label50: TLabel
-        Left = 564
+        Left = 563
         Height = 15
-        Top = 288
+        Top = 340
         Width = 62
         Caption = 'Arbeitgeber'
         ParentColor = False
         ParentFont = False
       end
       object Label51: TLabel
-        Left = 92
+        Left = 91
         Height = 15
-        Top = 288
+        Top = 340
         Width = 75
         Caption = 'erlernter Beruf'
         ParentColor = False
         ParentFont = False
       end
       object dbediBerufErlernt: TDBEdit
-        Left = 92
+        Left = 91
         Height = 23
-        Top = 304
+        Top = 356
         Width = 230
         DataField = 'BerufErlernt'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 20
+        TabOrder = 22
       end
       object labFFeld1: TLabel
-        Left = 4
+        Left = 142
         Height = 15
-        Top = 360
+        Top = 408
         Width = 64
         Caption = 'Freies Feld 1'
         ParentColor = False
         ParentFont = False
       end
       object dbediFreiFeld1: TDBEdit
-        Left = 4
+        Left = 142
         Height = 23
-        Top = 376
-        Width = 871
+        Top = 428
+        Width = 732
         DataField = 'FreiFeld1'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 28
+        TabOrder = 30
       end
       object DBCB_AktiverZahler: TDBCheckBox
-        Left = 4
+        Left = 3
         Height = 23
-        Top = 332
+        Top = 386
         Width = 90
         Caption = 'Aktiver Zahler'
         DataField = 'AktiverZahler'
-        DataSource = frmDM.dsPersonen
-        ParentFont = False
-        TabOrder = 24
-        ValueChecked = '1'
-        ValueUnchecked = '0'
-      end
-      object DBCB_AnZahlungErinnern: TDBCheckBox
-        Left = 108
-        Height = 23
-        Top = 332
-        Width = 138
-        Caption = 'An Zahlung erinnern'
-        DataField = 'AnZahlungErinnern'
-        DataSource = frmDM.dsPersonen
-        ParentFont = False
-        TabOrder = 25
-        ValueChecked = '1'
-        ValueUnchecked = '0'
-      end
-      object Label63: TLabel
-        Left = 420
-        Height = 15
-        Top = 192
-        Width = 74
-        Caption = 'Familienstand'
-        ParentColor = False
-        ParentFont = False
-      end
-      object DBCB_GD_Besuch: TDBCheckBox
-        Left = 260
-        Height = 23
-        Top = 332
-        Width = 90
-        Caption = 'GD-Besuch'
-        DataField = 'GDBesuch'
         DataSource = frmDM.dsPersonen
         ParentFont = False
         TabOrder = 26
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
-      object DBCBFamstand: TDBComboBox
-        Left = 420
+      object DBCB_AnZahlungErinnern: TDBCheckBox
+        Left = 3
         Height = 23
-        Top = 208
+        Top = 408
+        Width = 138
+        Caption = 'An Zahlung erinnern'
+        DataField = 'AnZahlungErinnern'
+        DataSource = frmDM.dsPersonen
+        ParentFont = False
+        TabOrder = 27
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object Label63: TLabel
+        Left = 211
+        Height = 15
+        Top = 8
+        Width = 74
+        Caption = 'Familienstand'
+        ParentColor = False
+        ParentFont = False
+      end
+      object DBCB_GD_Besuch: TDBCheckBox
+        Left = 3
+        Height = 23
+        Top = 428
+        Width = 90
+        Caption = 'GD-Besuch'
+        DataField = 'GDBesuch'
+        DataSource = frmDM.dsPersonen
+        ParentFont = False
+        TabOrder = 28
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCBFamstand: TDBComboBox
+        Left = 211
+        Height = 23
+        Top = 24
         Width = 354
         DataField = 'Familienstand'
         DataSource = frmDM.dsPersonen
@@ -564,12 +564,12 @@ object frmKartei: TfrmKartei
         MaxLength = 0
         OnMouseEnter = dbcbOnMouseEnter
         ParentFont = False
-        TabOrder = 13
+        TabOrder = 2
       end
       object dbcbKirche: TDBComboBox
         Left = 3
         Height = 23
-        Top = 208
+        Top = 260
         Width = 208
         DataField = 'Kirche'
         DataSource = frmDM.dsPersonen
@@ -577,22 +577,22 @@ object frmKartei: TfrmKartei
         MaxLength = 0
         OnMouseEnter = dbcbOnMouseEnter
         ParentFont = False
-        TabOrder = 10
+        TabOrder = 13
       end
       object Label25: TLabel
-        Left = 4
+        Left = 3
         Height = 15
-        Top = 96
+        Top = 148
         Width = 40
         Caption = 'eMail-2'
         ParentColor = False
         ParentFont = False
       end
       object dbediEMail1: TDBEdit
-        Left = 4
+        Left = 3
         Height = 23
         Hint = 'Doppelklick für EMail senden'
-        Top = 112
+        Top = 164
         Width = 408
         DataField = 'email2'
         DataSource = frmDM.dsPersonen
@@ -601,23 +601,23 @@ object frmKartei: TfrmKartei
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 5
+        TabOrder = 8
         OnDblClick = dbediEMail1DblClick
       end
       object Label26: TLabel
-        Left = 4
+        Left = 3
         Height = 15
-        Top = 144
+        Top = 196
         Width = 40
         Caption = 'eMail-3'
         ParentColor = False
         ParentFont = False
       end
       object dbediEMail2: TDBEdit
-        Left = 4
+        Left = 3
         Height = 23
         Hint = 'Doppelklick für EMail senden'
-        Top = 160
+        Top = 212
         Width = 408
         DataField = 'email3'
         DataSource = frmDM.dsPersonen
@@ -626,23 +626,23 @@ object frmKartei: TfrmKartei
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 6
+        TabOrder = 9
         OnDblClick = dbediEMail2DblClick
       end
       object Label27: TLabel
-        Left = 420
+        Left = 419
         Height = 15
-        Top = 96
+        Top = 148
         Width = 219
         Caption = 'Internet / Facebook / Twitter / WKW / u.a.'
         ParentColor = False
         ParentFont = False
       end
       object dbediInternet1: TDBEdit
-        Left = 419
+        Left = 418
         Height = 23
         Hint = 'Doppelklick für Öffnen der Adresse'
-        Top = 112
+        Top = 164
         Width = 456
         DataField = 'Internet2'
         DataSource = frmDM.dsPersonen
@@ -651,14 +651,14 @@ object frmKartei: TfrmKartei
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 8
+        TabOrder = 11
         OnDblClick = dbediInternet1DblClick
       end
       object dbediInternet2: TDBEdit
-        Left = 419
+        Left = 418
         Height = 23
         Hint = 'Doppelklick für Öffnen der Adresse'
-        Top = 160
+        Top = 212
         Width = 456
         DataField = 'Internet3'
         DataSource = frmDM.dsPersonen
@@ -667,38 +667,185 @@ object frmKartei: TfrmKartei
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 9
+        TabOrder = 12
         OnDblClick = dbediInternet2DblClick
       end
       object Label28: TLabel
-        Left = 420
+        Left = 419
         Height = 15
-        Top = 144
+        Top = 196
         Width = 219
         Caption = 'Internet / Facebook / Twitter / WKW / u.a.'
         ParentColor = False
         ParentFont = False
       end
       object Label60: TLabel
-        Left = 420
+        Left = 419
         Height = 15
-        Top = 332
+        Top = 384
         Width = 91
         Caption = 'Aufgewachsen in'
         ParentColor = False
         ParentFont = False
       end
       object DBEdiAufgewachsenIn: TDBEdit
-        Left = 420
+        Left = 419
         Height = 23
-        Top = 348
+        Top = 400
         Width = 455
         DataField = 'AufgewachsenIn'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
-        TabOrder = 27
+        TabOrder = 29
+      end
+      object DBCBGeschlecht: TDBComboBox
+        Left = 3
+        Height = 23
+        Top = 24
+        Width = 64
+        DataField = 'Geschlecht'
+        DataSource = frmDM.dsPersonen
+        ItemHeight = 15
+        Items.Strings = (
+          'M'
+          'W'
+          'D'
+          ' '
+        )
+        MaxLength = 0
+        OnChange = DBCBGeschlechtChange
+        OnMouseEnter = dbcbOnMouseEnter
+        ParentFont = False
+        TabOrder = 0
+      end
+      object Label5: TLabel
+        Left = 3
+        Height = 15
+        Top = 7
+        Width = 58
+        Caption = 'Geschlecht'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label3: TLabel
+        Left = 82
+        Height = 15
+        Top = 7
+        Width = 58
+        Caption = 'Geburtstag'
+        ParentColor = False
+        ParentFont = False
+      end
+      object DBediGeburtstag: TDBEdit
+        Left = 82
+        Height = 23
+        Top = 24
+        Width = 81
+        DataField = 'Geburtstag'
+        DataSource = frmDM.dsPersonen
+        CharCase = ecNormal
+        MaxLength = 0
+        ParentFont = False
+        TabOrder = 1
+        OnDblClick = DatumDblClick
+        OnExit = DatumExit
+      end
+      object Label14: TLabel
+        Left = 171
+        Height = 15
+        Top = 7
+        Width = 25
+        Caption = 'Alter'
+        ParentColor = False
+        ParentFont = False
+      end
+      object labAlter: TLabel
+        Left = 171
+        Height = 16
+        Top = 27
+        Width = 26
+        Alignment = taRightJustify
+        AutoSize = False
+        Caption = 'Alter'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label6: TLabel
+        Left = 685
+        Height = 15
+        Top = 27
+        Width = 87
+        Caption = 'Letzte Änderung'
+        ParentColor = False
+        ParentFont = False
+      end
+      object DBT_LastChange: TDBText
+        Left = 782
+        Height = 15
+        Top = 27
+        Width = 92
+        AutoSize = False
+        DataField = 'LastChange'
+        DataSource = frmDM.dsPersonen
+        ParentColor = False
+        ParentFont = False
+      end
+      object DBText_PersonenID: TDBText
+        Left = 782
+        Height = 15
+        Top = 7
+        Width = 41
+        AutoSize = False
+        DataField = 'PersonenID'
+        DataSource = frmDM.dsPersonen
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label21: TLabel
+        Left = 761
+        Height = 15
+        Top = 7
+        Width = 11
+        Caption = 'ID'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Shape11: TShape
+        Left = 3
+        Height = 1
+        Top = 240
+        Width = 872
+        Pen.Color = clBlue
+      end
+      object Shape12: TShape
+        Left = 3
+        Height = 1
+        Top = 336
+        Width = 872
+        Pen.Color = clBlue
+      end
+      object Shape13: TShape
+        Left = 3
+        Height = 1
+        Top = 383
+        Width = 872
+        Pen.Color = clBlue
+      end
+      object Shape14: TShape
+        Left = 3
+        Height = 1
+        Top = 288
+        Width = 872
+        Pen.Color = clBlue
+      end
+      object Shape15: TShape
+        Left = 3
+        Height = 1
+        Top = 52
+        Width = 872
+        Pen.Color = clBlue
       end
     end
     object TSEltern: TTabSheet
@@ -1774,7 +1921,7 @@ object frmKartei: TfrmKartei
         Left = 4
         Height = 15
         Top = 239
-        Width = 66
+        Width = 65
         Caption = 'Todesdatum'
         ParentColor = False
         ParentFont = False
@@ -2231,7 +2378,7 @@ object frmKartei: TfrmKartei
         Height = 15
         Hint = 'Sterbeort'
         Top = 239
-        Width = 46
+        Width = 45
         Caption = 'Todesort'
         ParentColor = False
         ParentFont = False
@@ -2307,7 +2454,7 @@ object frmKartei: TfrmKartei
         Left = 523
         Height = 15
         Top = 282
-        Width = 84
+        Width = 85
         Caption = 'Bestattungstext '
         ParentColor = False
         ParentFont = False
@@ -2536,7 +2683,7 @@ object frmKartei: TfrmKartei
         Left = 576
         Height = 15
         Top = 48
-        Width = 91
+        Width = 90
         Caption = 'Terminabsprache'
         ParentColor = False
         ParentFont = False
@@ -2557,7 +2704,7 @@ object frmKartei: TfrmKartei
         Left = 268
         Height = 15
         Top = 48
-        Width = 45
+        Width = 46
         Caption = 'Bibeltext'
         ParentColor = False
         ParentFont = False
@@ -3226,31 +3373,8 @@ object frmKartei: TfrmKartei
         ParentColor = False
         ParentFont = False
       end
-      object DBediGeburtstag: TDBEdit
-        Left = 499
-        Height = 23
-        Top = 68
-        Width = 81
-        DataField = 'Geburtstag'
-        DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
-        MaxLength = 0
-        ParentFont = False
-        TabOrder = 7
-        OnDblClick = DatumDblClick
-        OnExit = DatumExit
-      end
-      object Label3: TLabel
-        Left = 499
-        Height = 15
-        Top = 52
-        Width = 58
-        Caption = 'Geburtstag'
-        ParentColor = False
-        ParentFont = False
-      end
       object Label4: TLabel
-        Left = 4
+        Left = 1
         Height = 15
         Top = 8
         Width = 38
@@ -3259,7 +3383,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
       end
       object DBCBAnrede: TDBComboBox
-        Left = 4
+        Left = 1
         Height = 23
         Top = 24
         Width = 64
@@ -3321,7 +3445,7 @@ object frmKartei: TfrmKartei
         TabOrder = 1
       end
       object Label9: TLabel
-        Left = 4
+        Left = 1
         Height = 15
         Top = 100
         Width = 26
@@ -3339,20 +3463,20 @@ object frmKartei: TfrmKartei
         ParentFont = False
       end
       object Label11: TLabel
-        Left = 4
+        Left = 1
         Height = 15
         Top = 52
-        Width = 33
-        Caption = 'Straße'
+        Width = 67
+        Caption = 'Adresszusatz'
         ParentColor = False
         ParentFont = False
       end
-      object dbediStrasse: TDBEdit
-        Left = 4
+      object dbedisAdresszusatz: TDBEdit
+        Left = 1
         Height = 23
-        Top = 68
+        Top = 72
         Width = 408
-        DataField = 'Strasse'
+        DataField = 'sRes1'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
         MaxLength = 255
@@ -3360,7 +3484,7 @@ object frmKartei: TfrmKartei
         TabOrder = 5
       end
       object dbediLand: TDBEdit
-        Left = 4
+        Left = 1
         Height = 23
         Top = 116
         Width = 40
@@ -3369,7 +3493,7 @@ object frmKartei: TfrmKartei
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 8
+        TabOrder = 7
       end
       object dbediPLZ: TDBEdit
         Left = 52
@@ -3381,7 +3505,7 @@ object frmKartei: TfrmKartei
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 9
+        TabOrder = 8
       end
       object Label12: TLabel
         Left = 116
@@ -3402,7 +3526,7 @@ object frmKartei: TfrmKartei
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 10
+        TabOrder = 9
       end
       object Label13: TLabel
         Left = 499
@@ -3423,95 +3547,28 @@ object frmKartei: TfrmKartei
         CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 11
+        TabOrder = 10
       end
-      object Label14: TLabel
-        Left = 588
+      object Label30: TLabel
+        Left = 420
         Height = 15
         Top = 52
-        Width = 25
-        Caption = 'Alter'
+        Width = 33
+        Caption = 'Straße'
         ParentColor = False
         ParentFont = False
       end
-      object labAlter: TLabel
-        Left = 588
-        Height = 16
-        Top = 71
-        Width = 26
-        Alignment = taRightJustify
-        AutoSize = False
-        Caption = 'Alter'
-        ParentColor = False
-        ParentFont = False
-      end
-      object DBCBGeschlecht: TDBComboBox
+      object dbediStrasse: TDBEdit
         Left = 420
         Height = 23
-        Top = 68
-        Width = 64
-        DataField = 'Geschlecht'
+        Top = 72
+        Width = 456
+        DataField = 'Strasse'
         DataSource = frmDM.dsPersonen
-        ItemHeight = 15
-        Items.Strings = (
-          'M'
-          'W'
-          ' '
-        )
-        MaxLength = 0
-        OnChange = DBCBGeschlechtChange
-        OnMouseEnter = dbcbOnMouseEnter
+        CharCase = ecNormal
+        MaxLength = 255
         ParentFont = False
         TabOrder = 6
-      end
-      object Label5: TLabel
-        Left = 420
-        Height = 15
-        Top = 52
-        Width = 58
-        Caption = 'Geschlecht'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label6: TLabel
-        Left = 636
-        Height = 15
-        Top = 52
-        Width = 87
-        Caption = 'Letzte Änderung'
-        ParentColor = False
-        ParentFont = False
-      end
-      object DBT_LastChange: TDBText
-        Left = 636
-        Height = 16
-        Top = 71
-        Width = 92
-        AutoSize = False
-        DataField = 'LastChange'
-        DataSource = frmDM.dsPersonen
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label21: TLabel
-        Left = 740
-        Height = 15
-        Top = 52
-        Width = 11
-        Caption = 'ID'
-        ParentColor = False
-        ParentFont = False
-      end
-      object DBText_PersonenID: TDBText
-        Left = 740
-        Height = 16
-        Top = 71
-        Width = 41
-        AutoSize = False
-        DataField = 'PersonenID'
-        DataSource = frmDM.dsPersonen
-        ParentColor = False
-        ParentFont = False
       end
     end
   end
@@ -3864,8 +3921,8 @@ object frmKartei: TfrmKartei
   end
   object TimerBerechnung: TTimer
     OnTimer = TimerBerechnungTimer
-    Left = 840
-    Top = 88
+    Left = 616
+    Top = 192
   end
   object PopupMenuMarkiert: TPopupMenu
     Left = 952

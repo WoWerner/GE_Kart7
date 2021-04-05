@@ -44,8 +44,8 @@ type
     cbGemeinde: TComboBox;
     DateEditKomm: TDateEdit;
     DBCBAnrede: TDBComboBox;
-    dbcbUebertrittAus: TDBComboBox;
     DBCBGeschlecht: TDBComboBox;
+    dbcbUebertrittAus: TDBComboBox;
     dbcbKindKirche: TDBComboBox;
     dbcbMutterKirche: TDBComboBox;
     dbcbEhegatteKirche: TDBComboBox;
@@ -76,9 +76,11 @@ type
     dbediEMail1: TDBEdit;
     dbediEMail2: TDBEdit;
     DbEdiEheGatteGeburtstag: TDBEdit;
+    DBediGeburtstag: TDBEdit;
     dbediInternet1: TDBEdit;
     dbediInternet2: TDBEdit;
     DBEdiKindTaufdatum: TDBEdit;
+    dbediStrasse: TDBEdit;
     DBEdiTodesort: TDBEdit;
     DBEdKindVorname: TDBEdit;
     DBEdKindVorname2: TDBEdit;
@@ -139,7 +141,6 @@ type
     DBEdiTaufDatum: TDBEdit;
     dbediGebOrt: TDBEdit;
     dbediInternet: TDBEdit;
-    DBediGeburtstag: TDBEdit;
     dbediGemeinde: TDBEdit;
     dbediGebName: TDBEdit;
     dbediLand: TDBEdit;
@@ -147,7 +148,7 @@ type
     dbediOrt: TDBEdit;
     dbediOrtsteil: TDBEdit;
     dbediPLZ: TDBEdit;
-    dbediStrasse: TDBEdit;
+    dbedisAdresszusatz: TDBEdit;
     DBEdiFreiFeld4: TDBEdit;
     DBEdiMutterGebName: TDBEdit;
     DBEdiTaufOrt: TDBEdit;
@@ -267,6 +268,10 @@ type
     Label27: TLabel;
     Label28: TLabel;
     Label29: TLabel;
+    Label3: TLabel;
+    Label30: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
     Label60: TLabel;
     Label89: TLabel;
     Label90: TLabel;
@@ -282,7 +287,6 @@ type
     Label22: TLabel;
     Label23: TLabel;
     Label24: TLabel;
-    Label3: TLabel;
     Label4: TLabel;
     Label43: TLabel;
     Label44: TLabel;
@@ -291,7 +295,6 @@ type
     Label47: TLabel;
     labFFeld4: TLabel;
     Label49: TLabel;
-    Label5: TLabel;
     Label50: TLabel;
     Label51: TLabel;
     labFFeld1: TLabel;
@@ -300,7 +303,6 @@ type
     Label55: TLabel;
     Label56: TLabel;
     Label59: TLabel;
-    Label6: TLabel;
     labFFeld3: TLabel;
     labFFeld2: TLabel;
     Label63: TLabel;
@@ -354,6 +356,11 @@ type
     scBarKartei: TScrollBar;
     Shape1: TShape;
     Shape10: TShape;
+    Shape11: TShape;
+    Shape12: TShape;
+    Shape13: TShape;
+    Shape14: TShape;
+    Shape15: TShape;
     Shape2: TShape;
     Shape3: TShape;
     Shape4: TShape;
@@ -639,9 +646,20 @@ procedure TfrmKartei.tsAdrContextPopup(Sender: TObject; MousePos: TPoint; var Ha
 var sAdr : string;
 
 begin
-  sAdr := frmDM.dsetPERSONEN.FieldByName('Vorname').AsString + ' ' + frmDM.dsetPERSONEN.FieldByName('Nachname').AsString+#13#10+
-          frmDM.dsetPERSONEN.FieldByName('Strasse').AsString+#13#10+
-          frmDM.dsetPERSONEN.FieldByName('PLZ').AsString + ' ' + frmDM.dsetPERSONEN.FieldByName('Ort').AsString;
+  sAdr := '';
+  if frmDM.dsetPERSONEN.FieldByName('BriefAnrede').AsString <> ''
+    then sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('BriefAnrede').AsString;
+  if frmDM.dsetPERSONEN.FieldByName('Titel').AsString <> ''
+    then sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('Titel').AsString;
+  if sAdr <> ''
+    then sAdr := trim(sAdr) + #13#10;
+  sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('Vorname').AsString + ' ' + frmDM.dsetPERSONEN.FieldByName('Nachname').AsString+#13#10;
+  if frmDM.dsetPERSONEN.FieldByName('sRes1').AsString <> ''
+    then sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('sRes1').AsString+#13#10;
+  sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('Strasse').AsString+#13#10;
+  if frmDM.dsetPERSONEN.FieldByName('Land').AsString <> ''
+    then sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('Land').AsString + ' ';
+  sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('PLZ').AsString + ' ' + frmDM.dsetPERSONEN.FieldByName('Ort').AsString;
   Clipboard.AsText := sAdr;
   Handled := true;
 end;
@@ -1023,7 +1041,7 @@ end;
 
 procedure TfrmKartei.DBCBGeschlechtChange(Sender: TObject);
 begin
-  if not ((dbcbGeschlecht.Text = 'M') or (dbcbGeschlecht.Text = 'W') or (dbcbGeschlecht.Text = 'W') or (dbcbGeschlecht.Text = ' '))
+  if not ((dbcbGeschlecht.Text = 'M') or (dbcbGeschlecht.Text = 'W') or (dbcbGeschlecht.Text = 'D') or (dbcbGeschlecht.Text = ' '))
     then
       begin
         Messagedlg('Nur "W", "M", "D" oder " " erlaubt', mtInformation, [mbOK], 0);

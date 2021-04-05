@@ -218,7 +218,7 @@ begin
                       ExecSQL('alter table Personen add column [Internet2] VARCHAR(100) NULL');
                       ExecSQL('alter table Personen add column [Internet3] VARCHAR(100) NULL');
                       ExecSQL('alter table Personen add column [Todesort] VARCHAR(100) NULL');
-                      ExecSQL('alter table Personen add column [sRes1] VARCHAR(100) NULL');
+                      ExecSQL('alter table Personen add column [sRes1] VARCHAR(100) NULL');      //Adresszusatz
                       ExecSQL('alter table Personen add column [sRes2] VARCHAR(100) NULL');
                       ExecSQL('alter table Personen add column [sRes3] VARCHAR(100) NULL');
                       ExecSQL('alter table Personen add column [sRes4] VARCHAR(100) NULL');

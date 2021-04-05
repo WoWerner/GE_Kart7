@@ -4,7 +4,7 @@ object frmDM: TfrmDM
   Top = 100
   Width = 368
   Caption = 'frmDM'
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.12.0'
   object dsPersonen: TDataSource
     AutoEdit = False
     DataSet = dsetPersonen
@@ -170,7 +170,6 @@ object frmDM: TfrmDM
       'AutoEncodeStrings=ON'
       'controls_cp=CP_UTF8'
     )
-    Connected = True
     Port = 0
     Protocol = 'sqlite-3'
     Left = 40
