@@ -1231,8 +1231,11 @@ end;
 
 procedure TfrmKartei.ediSchnellSucheKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-  if ediSSNachname.Text <> '' then
-    frmDM.dsetPERSONEN.Locate('Nachname, Vorname', VarArrayOf([ediSSNachname.Text, ediSSVorname.Text]), [loCaseInsensitive, loPartialKey]);
+  if ediSSNachname.Text <> ''
+    then
+      frmDM.dsetPERSONEN.Locate('Nachname, Vorname', VarArrayOf([ediSSNachname.Text, ediSSVorname.Text]), [loCaseInsensitive, loPartialKey])
+    else
+      frmDM.dsetPERSONEN.Locate('Vorname', VarArrayOf([ediSSVorname.Text]), [loCaseInsensitive, loPartialKey]);
 end;
 
 procedure TfrmKartei.SetScrollBar;
