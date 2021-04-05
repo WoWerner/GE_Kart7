@@ -105,8 +105,8 @@ begin
          dsetPersonen.IndexFieldNames := StringReplace(dsetPersonen.IndexFieldNames, 'Desc', 'Desc', []);
        end;
     2: begin
-         //day of year: 001-366 setzen
-         ExecSQL('Update PERSONEN SET Tempinteger=strftime(''%j'',geburtstag)');
+         //ExecSQL('Update PERSONEN SET Tempinteger=strftime(''%j'',geburtstag)');   //j = day of year: 001-366 setzen (geht nicht bei Schaltjahren)
+         ExecSQL('Update PERSONEN SET Tempinteger=strftime(''%m'', geburtstag)*31+strftime(''%d'', geburtstag)');
          dsetPersonen.SortedFields:='Tempinteger';
          dsetPersonen.Refresh;
        end;

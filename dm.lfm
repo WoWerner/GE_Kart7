@@ -1,16 +1,16 @@
 object frmDM: TfrmDM
-  Left = 407
+  Left = 705
   Height = 686
-  Top = 53
+  Top = 100
   Width = 368
   Caption = 'frmDM'
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object dsPersonen: TDataSource
     AutoEdit = False
     DataSet = dsetPersonen
     OnStateChange = dsPersonenStateChange
-    left = 232
-    top = 21
+    Left = 232
+    Top = 21
   end
   object DBF_Help: TDbf
     FilePath = 'D:\src\GE_Kart\GE_Kart7\Datenbank6\'
@@ -18,32 +18,32 @@ object frmDM: TfrmDM
     TableName = 'Ge_kart5.dbf'
     TableLevel = 4
     FilterOptions = []
-    left = 152
-    top = 592
+    Left = 152
+    Top = 648
   end
   object dsKinder: TDataSource
     AutoEdit = False
     DataSet = dsetKinder
-    left = 312
-    top = 80
+    Left = 312
+    Top = 80
   end
   object dsKomm: TDataSource
     AutoEdit = False
     DataSet = dsetKomm
-    left = 312
-    top = 136
+    Left = 312
+    Top = 136
   end
   object dsBesuch: TDataSource
     AutoEdit = False
     DataSet = dsetBesuch
-    left = 312
-    top = 192
+    Left = 312
+    Top = 192
   end
   object dsHelp: TDataSource
     AutoEdit = False
     DataSet = dsetHelp
-    left = 232
-    top = 448
+    Left = 232
+    Top = 448
   end
   object dsetPersonen: TZQuery
     Connection = ZConGE_Kart7
@@ -56,15 +56,16 @@ object frmDM: TfrmDM
     )
     Params = <>
     IndexFieldNames = 'TempString Asc'
-    left = 152
-    top = 21
+    Left = 152
+    Top = 21
   end
   object dsetHelp: TZQuery
     Connection = ZConGE_Kart7
     BeforeOpen = dsetBeforeOpen
     Params = <>
-    left = 152
-    top = 448
+    MasterSource = dsBesuch
+    Left = 152
+    Top = 448
   end
   object dsetKinder: TZQuery
     Connection = ZConGE_Kart7
@@ -78,8 +79,8 @@ object frmDM: TfrmDM
     MasterSource = dsPersonen
     LinkedFields = 'PersonenID'
     IndexFieldNames = 'Geburtstag Asc'
-    left = 232
-    top = 80
+    Left = 232
+    Top = 80
   end
   object dsetKomm: TZQuery
     Connection = ZConGE_Kart7
@@ -94,8 +95,8 @@ object frmDM: TfrmDM
     MasterSource = dsPersonen
     LinkedFields = 'PersonenID'
     IndexFieldNames = 'AbendmahlsDatum Desc'
-    left = 232
-    top = 136
+    Left = 232
+    Top = 136
   end
   object dsetBesuch: TZQuery
     Connection = ZConGE_Kart7
@@ -110,23 +111,22 @@ object frmDM: TfrmDM
     MasterSource = dsPersonen
     LinkedFields = 'PersonenID'
     IndexFieldNames = 'BesuchsDatum Desc'
-    left = 232
-    top = 192
+    Left = 232
+    Top = 192
   end
   object ZSQLMonitor: TZSQLMonitor
     FileName = 'sql_debug.txt'
     MaxTraceCount = 100
     OnLogTrace = ZSQLMonitorLogTrace
-    left = 40
-    top = 80
+    Left = 40
+    Top = 80
   end
   object dsetHelp1: TZQuery
     Connection = ZConGE_Kart7
     BeforeOpen = dsetBeforeOpen
     Params = <>
-    MasterSource = dsHelp
-    left = 152
-    top = 512
+    Left = 152
+    Top = 512
   end
   object dsetGD: TZQuery
     Connection = ZConGE_Kart7
@@ -139,13 +139,13 @@ object frmDM: TfrmDM
     )
     Params = <>
     IndexFieldNames = 'GottesdienstDatum Desc'
-    left = 152
-    top = 248
+    Left = 152
+    Top = 248
   end
   object dsGD: TDataSource
     DataSet = dsetGD
-    left = 232
-    top = 248
+    Left = 232
+    Top = 248
   end
   object dsetVersion: TZQuery
     Connection = ZConGE_Kart7
@@ -155,24 +155,26 @@ object frmDM: TfrmDM
       'select * from Version'
     )
     Params = <>
-    left = 152
-    top = 320
+    Left = 152
+    Top = 320
   end
   object dsHelp1: TDataSource
     DataSet = dsetHelp1
-    left = 232
-    top = 512
+    Left = 232
+    Top = 512
   end
   object ZConGE_Kart7: TZConnection
     ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = True
     Properties.Strings = (
-      'AutoEncodeStrings='
+      'AutoEncodeStrings=ON'
+      'controls_cp=CP_UTF8'
     )
     Connected = True
     Port = 0
     Protocol = 'sqlite-3'
-    left = 40
-    top = 21
+    Left = 40
+    Top = 21
   end
   object dsetGemeinde: TZQuery
     Connection = ZConGE_Kart7
@@ -182,7 +184,14 @@ object frmDM: TfrmDM
       'select * from Gemeinde'
     )
     Params = <>
-    left = 152
-    top = 384
+    Left = 152
+    Top = 384
+  end
+  object dsetHelp2: TZQuery
+    Connection = ZConGE_Kart7
+    BeforeOpen = dsetBeforeOpen
+    Params = <>
+    Left = 152
+    Top = 584
   end
 end
