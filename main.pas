@@ -245,7 +245,7 @@ procedure TfrmMain.HandleException(Sender: TObject; E: Exception);
 begin
   LogAndShowError('Unbehandelter Fehler.'+#13+
                   'Nachricht: '+e.Message+#13#13+
-                  'Das Programm wird beendet ');				  
+                  'Das Programm wird beendet.');
   frmDM.dbStatus(false); // DB schliessen
   
   FlushDebug;
