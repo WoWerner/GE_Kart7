@@ -1,8 +1,8 @@
 object frmKartei: TfrmKartei
-  Left = 789
+  Left = 512
   Height = 675
   Hint = 'Strg-Pos1: Erster Datensatz'#13#10'Bild hoch: Vorhergehender Datensatz'#13#10'Bild runter: Nächster Datensatz'#13#10'Strg-Ende: Letzter Datensatz'#13#10#13#10'Strg-S: Speichern'#13#10'Strg-P: Drucken'#13#10'Strg-F: Schnellsuche'#13#10#13#10'Mausrad: Datensatzwechsel'#13#10#13#10'F1: Hilfe'
-  Top = 81
+  Top = 107
   Width = 1003
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -19,7 +19,7 @@ object frmKartei: TfrmKartei
   OnShow = FormShow
   Position = poScreenCenter
   ShowHint = True
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.12.0'
   object panShowOverview: TPanel
     Left = 0
     Height = 649
@@ -82,9 +82,9 @@ object frmKartei: TfrmKartei
     Height = 488
     Top = 161
     Width = 888
-    ActivePage = TSKasualien
+    ActivePage = TSAllgemein
     ParentFont = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 1
     OnChange = pcDetailsChange
     object TSAllgemein: TTabSheet
@@ -304,7 +304,7 @@ object frmKartei: TfrmKartei
         ValueUnchecked = '0'
       end
       object Label43: TLabel
-        Left = 516
+        Left = 508
         Height = 15
         Top = 240
         Width = 56
@@ -313,10 +313,10 @@ object frmKartei: TfrmKartei
         ParentFont = False
       end
       object dbediGebStAOrt: TDBEdit
-        Left = 516
+        Left = 508
         Height = 23
         Top = 256
-        Width = 175
+        Width = 183
         DataField = 'GebStAOrt'
         DataSource = frmDM.dsPersonen
         CharCase = ecNormal
@@ -3864,12 +3864,12 @@ object frmKartei: TfrmKartei
   end
   object TimerBerechnung: TTimer
     OnTimer = TimerBerechnungTimer
-    left = 840
-    top = 88
+    Left = 840
+    Top = 88
   end
   object PopupMenuMarkiert: TPopupMenu
-    left = 952
-    top = 440
+    Left = 952
+    Top = 440
     object mnuDelMark: TMenuItem
       Caption = 'Lösche alle Markierungen'
       OnClick = mnuDelMarkClick

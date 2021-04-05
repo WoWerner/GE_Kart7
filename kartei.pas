@@ -738,7 +738,6 @@ begin
   frmDM.dsetHelp1.IndexFieldNames := '';
   frmDM.dsetHelp1.LinkedFields    := '';
   frmDM.dsetHelp1.MasterFields    := '';
-  frmDM.dsetHelp1.MasterSource    := Nil;
   frmDM.dsetHelp1.SortedFields    := '';
   frmDM.dsetHelp1.SQL.Text        := '';
 end;
@@ -1024,10 +1023,10 @@ end;
 
 procedure TfrmKartei.DBCBGeschlechtChange(Sender: TObject);
 begin
-  if not ((dbcbGeschlecht.Text = 'M') or (dbcbGeschlecht.Text = 'W') or (dbcbGeschlecht.Text = ' '))
+  if not ((dbcbGeschlecht.Text = 'M') or (dbcbGeschlecht.Text = 'W') or (dbcbGeschlecht.Text = 'W') or (dbcbGeschlecht.Text = ' '))
     then
       begin
-        Messagedlg('Nur "W", "M" oder " " erlaubt', mtInformation, [mbOK], 0);
+        Messagedlg('Nur "W", "M", "D" oder " " erlaubt', mtInformation, [mbOK], 0);
         dbcbGeschlecht.SetFocus;
       end;
 end;

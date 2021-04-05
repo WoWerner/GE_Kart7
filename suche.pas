@@ -209,11 +209,11 @@ begin
       if cbKomm.Checked
         then
           begin
-            frmDM.dsetHelp1.SQL.Text:='select count(*) as c from Kommunionen where PersonenID='+frmDM.dsetHelp.FieldByName('PersonenID').asstring+
+            frmDM.dsetHelp2.SQL.Text:='select count(*) as c from Kommunionen where PersonenID='+frmDM.dsetHelp.FieldByName('PersonenID').asstring+
                                       ' and strftime(''%Y'',Abendmahlsdatum) = '''+ediKommJ.Text+'''';
-            frmDM.dsetHelp1.Open;
-            if frmDM.dsetHelp1.FieldByName('c').asinteger = 0 then gut := false;
-            frmDM.dsetHelp1.Close;
+            frmDM.dsetHelp2.Open;
+            if frmDM.dsetHelp2.FieldByName('c').asinteger = 0 then gut := false;
+            frmDM.dsetHelp2.Close;
           end;
 
       if gut {Alle Bedingungen erfüllt ?}
