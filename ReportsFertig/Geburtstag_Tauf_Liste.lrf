@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CONFIG>
   <LazReport>
-    <Version Value="26"/>
+    <Version Value="31"/>
     <Title Value=""/>
     <Subject Value=""/>
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2014-03-13 13:56:49"/>
-    <ReportLastChange Value="2014-03-13 13:58:43"/>
+    <ReportLastChange Value="2021-04-05 18:37:21"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -17,7 +17,7 @@
     <Pages>
       <PrintToDefault Value="False"/>
       <DoublePass Value="False"/>
-      <SelectedPrinter Value="Brother HL-4050CDN"/>
+      <SelectedPrinter Value="Samsung M2070 Series"/>
       <PageCount Value="1"/>
       <Page1>
         <Name Value="Page2"/>
@@ -39,7 +39,6 @@
         <ColCount Value="1"/>
         <ColGap Value="0"/>
         <LayoutOrder Value="loColumns"/>
-        <ObjectCount Value="20"/>
         <Object1>
           <Name Value="Band1"/>
           <ClassName Value="TfrBandView"/>
@@ -55,12 +54,18 @@
           <Flags Value="48"/>
           <Data>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
+          <Frames>
+            <Restrictions Value=""/>
+          </Frames>
           <BandType Value="btPageHeader"/>
           <Condition Value=""/>
           <DatasetStr Value=""/>
+          <Child Value=""/>
         </Object1>
         <Object2>
           <Name Value="Band2"/>
@@ -77,14 +82,48 @@
           <Flags Value="48"/>
           <Data>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
+          <Frames>
+            <Restrictions Value=""/>
+          </Frames>
           <BandType Value="btMasterData"/>
           <Condition Value=""/>
           <DatasetStr Value="frDBDataSet"/>
+          <Child Value=""/>
         </Object2>
         <Object3>
+          <Name Value="Band3"/>
+          <ClassName Value="TfrBandView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtBand"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="0"/>
+            <Top Value="240"/>
+            <Width Value="1064"/>
+            <Height Value="32"/>
+          </Size>
+          <Flags Value="48"/>
+          <Data>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Frames>
+            <Restrictions Value=""/>
+          </Frames>
+          <BandType Value="btReportSummary"/>
+          <Condition Value=""/>
+          <DatasetStr Value=""/>
+          <Child Value=""/>
+        </Object3>
+        <Object4>
           <Name Value="Memo1"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -103,12 +142,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="Vorname&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -129,8 +177,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object3>
-        <Object4>
+          <Cursor Value="0"/>
+        </Object4>
+        <Object5>
           <Name Value="Memo2"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -149,12 +198,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="[frmDM.dsetHelp.&quot;Vorname&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -175,8 +233,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object4>
-        <Object5>
+          <Cursor Value="0"/>
+        </Object5>
+        <Object6>
           <Name Value="Memo3"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -195,12 +254,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="Nachname&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -221,8 +289,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object5>
-        <Object6>
+          <Cursor Value="0"/>
+        </Object6>
+        <Object7>
           <Name Value="Memo4"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -241,12 +310,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="[frmDM.dsetHelp.&quot;Nachname&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -267,8 +345,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object6>
-        <Object7>
+          <Cursor Value="0"/>
+        </Object7>
+        <Object8>
           <Name Value="Memo5"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -287,12 +366,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="Strasse&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -313,8 +401,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object7>
-        <Object8>
+          <Cursor Value="0"/>
+        </Object8>
+        <Object9>
           <Name Value="Memo6"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -333,12 +422,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="[frmDM.dsetHelp.&quot;Strasse&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -359,8 +457,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object8>
-        <Object9>
+          <Cursor Value="0"/>
+        </Object9>
+        <Object10>
           <Name Value="Memo7"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -379,12 +478,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="PLZ&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -405,8 +513,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object9>
-        <Object10>
+          <Cursor Value="0"/>
+        </Object10>
+        <Object11>
           <Name Value="Memo8"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -425,12 +534,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="[frmDM.dsetHelp.&quot;PLZ&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -451,8 +569,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object10>
-        <Object11>
+          <Cursor Value="0"/>
+        </Object11>
+        <Object12>
           <Name Value="Memo9"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -471,12 +590,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="Ort&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -497,8 +625,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object11>
-        <Object12>
+          <Cursor Value="0"/>
+        </Object12>
+        <Object13>
           <Name Value="Memo10"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -517,12 +646,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="[frmDM.dsetHelp.&quot;Ort&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -543,8 +681,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object12>
-        <Object13>
+          <Cursor Value="0"/>
+        </Object13>
+        <Object14>
           <Name Value="Memo11"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -563,12 +702,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="Ortsteil&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -589,8 +737,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object13>
-        <Object14>
+          <Cursor Value="0"/>
+        </Object14>
+        <Object15>
           <Name Value="Memo12"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -609,12 +758,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="[frmDM.dsetHelp.&quot;Ortsteil&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -635,8 +793,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object14>
-        <Object15>
+          <Cursor Value="0"/>
+        </Object15>
+        <Object16>
           <Name Value="Memo13"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -655,12 +814,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="Geburtstag&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -681,8 +849,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object15>
-        <Object16>
+          <Cursor Value="0"/>
+        </Object16>
+        <Object17>
           <Name Value="Memo14"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -701,12 +870,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="[frmDM.dsetHelp.&quot;Geburtstag&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -727,8 +905,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object16>
-        <Object17>
+          <Cursor Value="0"/>
+        </Object17>
+        <Object18>
           <Name Value="Memo15"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -747,12 +926,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="TaufDatum&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -773,8 +961,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object17>
-        <Object18>
+          <Cursor Value="0"/>
+        </Object18>
+        <Object19>
           <Name Value="Memo16"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -793,12 +982,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="[frmDM.dsetHelp.&quot;TaufDatum&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -819,8 +1017,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object18>
-        <Object19>
+          <Cursor Value="0"/>
+        </Object19>
+        <Object20>
           <Name Value="Memo17"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -839,12 +1038,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="TelPrivat&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -865,8 +1073,9 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object19>
-        <Object20>
+          <Cursor Value="0"/>
+        </Object20>
+        <Object21>
           <Name Value="Memo18"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
@@ -885,12 +1094,21 @@
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
             <FrameBorders Value=""/>
+            <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
             <Memo Value="[frmDM.dsetHelp.&quot;TelPrivat&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
           </Data>
           <Tag Value=""/>
           <FURLInfo Value=""/>
@@ -911,12 +1129,73 @@
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
-        </Object20>
+          <Cursor Value="0"/>
+        </Object21>
+        <Object22>
+          <Name Value="Memo19"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="851"/>
+            <Top Value="248"/>
+            <Width Value="176"/>
+            <Height Value="18"/>
+          </Size>
+          <Flags Value="3"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsSolid"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value=""/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="556"/>
+            <FormatStr Value=""/>
+            <Memo Value="Gedruckt am [DATE]&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Arial"/>
+            <Size Value="10"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value=""/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taRightJustify"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object22>
+        <ObjectCount Value="22"/>
       </Page1>
       <FVal>
         <Count Value="0"/>
       </FVal>
       <ParentVars Value=""/>
     </Pages>
+    <DetailReports>
+      <Count Value="0"/>
+    </DetailReports>
   </LazReport>
 </CONFIG>
