@@ -610,15 +610,15 @@ begin
         slHelp.Duplicates := dupIgnore;
         slHelp.Sorted     := true;
         slHelp.Add(sGemeindenAlle);
-        frmDM.dsetHelp1.sql.Clear;
-        frmDM.dsetHelp1.sql.add('select distinct Gemeinde from personen order by gemeinde');
-        frmDM.dsetHelp1.open;
-        while not frmDM.dsetHelp1.eof do
+        frmDM.dsetHelp2.sql.Clear;
+        frmDM.dsetHelp2.sql.add('select distinct Gemeinde from personen order by gemeinde');
+        frmDM.dsetHelp2.open;
+        while not frmDM.dsetHelp2.eof do
           begin
-             slHelp.Add(frmDM.dsetHelp1.fieldByName('Gemeinde').asstring);
-            frmDM.dsetHelp1.Next;
+             slHelp.Add(frmDM.dsetHelp2.fieldByName('Gemeinde').asstring);
+            frmDM.dsetHelp2.Next;
           end;
-        frmDM.dsetHelp1.Close;
+        frmDM.dsetHelp2.Close;
         sGemeinden := slHelp.Text;
       end
     else

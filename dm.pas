@@ -23,6 +23,7 @@ type
   { TfrmDM }
 
   TfrmDM = class(TForm)
+    dsetHelp2: TZQuery;
     dsetVersion: TZQuery;
     dsetGemeinde: TZQuery;
     dsGD: TDatasource;
