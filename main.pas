@@ -1201,8 +1201,9 @@ begin
         if frmDM.dsetHelp.fieldByName('Geschlecht').asstring = ''     then einfuegen(sHelp, ' Kein Geschlecht');
 
         if not ((frmDM.dsetHelp.fieldByName('Geschlecht').asstring = 'W') or
-                (frmDM.dsetHelp.fieldByName('Geschlecht').asstring = 'M'))
-        	  then einfuegen(sHelp, ' falsches Geschlecht');
+                (frmDM.dsetHelp.fieldByName('Geschlecht').asstring = 'M') or
+                (frmDM.dsetHelp.fieldByName('Geschlecht').asstring = 'D'))
+        	  then einfuegen(sHelp, ' kein oder falsches Geschlecht');
         if frmDM.dsetHelp.fieldByName('BriefAnrede').asstring = ''    then einfuegen(sHelp, ' Keine Anrede');
         if frmDM.dsetHelp.fieldByName('vorname').asstring = ''        then einfuegen(sHelp, ' Kein Vorname');
         if frmDM.dsetHelp.fieldByName('Kirche').asstring = ''         then einfuegen(sHelp, ' Keine Kirche');
