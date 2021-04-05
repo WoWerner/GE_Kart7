@@ -148,7 +148,7 @@ begin
         end;
         screen.Cursor:=crdefault;
       end;
-  myDebugLN(inttostr(nRow) +' Zeilen aktualsiert');
+  myDebugLN(inttostr(nRow) +' Zeilen aktualisiert');
 end;
 
 procedure TfrmDM.SetDBPath(Path: string);
