@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2019-10-26 18:08:59"/>
-    <ReportLastChange Value="2021-04-06 21:51:11"/>
+    <ReportLastChange Value="2021-04-06 21:45:59"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -23,10 +23,10 @@
         <Name Value="Page1"/>
         <ClassName Value="TfrPageReport"/>
         <Visible Value="True"/>
-        <Width Value="459"/>
-        <Height Value="323"/>
+        <Width Value="1001"/>
+        <Height Value="709"/>
         <Script Value=""/>
-        <PgSize Value="31"/>
+        <PgSize Value="33"/>
         <Margins>
           <left Value="0"/>
           <Top Value="0"/>
@@ -47,9 +47,9 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="0"/>
-            <Top Value="226"/>
-            <Width Value="580"/>
-            <Height Value="151"/>
+            <Top Value="568"/>
+            <Width Value="1265"/>
+            <Height Value="169"/>
           </Size>
           <Flags Value="48"/>
           <Data>
@@ -76,8 +76,8 @@
           <Size>
             <Left Value="0"/>
             <Top Value="4"/>
-            <Width Value="580"/>
-            <Height Value="202"/>
+            <Width Value="1265"/>
+            <Height Value="544"/>
           </Size>
           <Flags Value="48"/>
           <Data>
@@ -102,8 +102,8 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="310"/>
-            <Top Value="294"/>
+            <Left Value="850"/>
+            <Top Value="636"/>
             <Width Value="220"/>
             <Height Value="18"/>
           </Size>
@@ -158,8 +158,8 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="310"/>
-            <Top Value="336"/>
+            <Left Value="850"/>
+            <Top Value="672"/>
             <Width Value="220"/>
             <Height Value="18"/>
           </Size>
@@ -214,8 +214,8 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="310"/>
-            <Top Value="354"/>
+            <Left Value="850"/>
+            <Top Value="690"/>
             <Width Value="220"/>
             <Height Value="18"/>
           </Size>
@@ -270,8 +270,8 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="310"/>
-            <Top Value="230"/>
+            <Left Value="850"/>
+            <Top Value="572"/>
             <Width Value="220"/>
             <Height Value="14"/>
           </Size>
@@ -326,8 +326,8 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="310"/>
-            <Top Value="246"/>
+            <Left Value="850"/>
+            <Top Value="588"/>
             <Width Value="220"/>
             <Height Value="14"/>
           </Size>
@@ -382,8 +382,8 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="310"/>
-            <Top Value="266"/>
+            <Left Value="850"/>
+            <Top Value="608"/>
             <Width Value="220"/>
             <Height Value="18"/>
           </Size>
@@ -438,8 +438,8 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="316"/>
-            <Top Value="186"/>
+            <Left Value="766"/>
+            <Top Value="528"/>
             <Width Value="96"/>
             <Height Value="18"/>
           </Size>
@@ -494,8 +494,8 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="311"/>
-            <Top Value="313"/>
+            <Left Value="850"/>
+            <Top Value="655"/>
             <Width Value="220"/>
             <Height Value="18"/>
           </Size>

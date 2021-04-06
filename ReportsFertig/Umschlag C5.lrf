@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2019-10-26 18:08:59"/>
-    <ReportLastChange Value="2020-02-16 11:19:39"/>
+    <ReportLastChange Value="2021-04-06 21:48:26"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -49,7 +49,7 @@
             <Left Value="0"/>
             <Top Value="376"/>
             <Width Value="820"/>
-            <Height Value="133"/>
+            <Height Value="151"/>
           </Size>
           <Flags Value="48"/>
           <Data>
@@ -159,7 +159,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="506"/>
-            <Top Value="462"/>
+            <Top Value="487"/>
             <Width Value="220"/>
             <Height Value="18"/>
           </Size>
@@ -215,7 +215,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="506"/>
-            <Top Value="480"/>
+            <Top Value="505"/>
             <Width Value="220"/>
             <Height Value="18"/>
           </Size>
@@ -487,7 +487,63 @@
           <Justify Value="False"/>
           <Cursor Value="0"/>
         </Object9>
-        <ObjectCount Value="9"/>
+        <Object10>
+          <Name Value="Memo8"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="507"/>
+            <Top Value="463"/>
+            <Width Value="220"/>
+            <Height Value="18"/>
+          </Size>
+          <Flags Value="3"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsSolid"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value=""/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="556"/>
+            <FormatStr Value=""/>
+            <Memo Value="[frmDM.dsetHelp.&quot;sRes1&quot;]&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Arial"/>
+            <Size Value="10"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value=""/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taLeftJustify"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object10>
+        <ObjectCount Value="10"/>
       </Page1>
       <FVal>
         <Count Value="3"/>
