@@ -646,20 +646,12 @@ procedure TfrmKartei.tsAdrContextPopup(Sender: TObject; MousePos: TPoint; var Ha
 var sAdr : string;
 
 begin
-  sAdr := '';
-  if frmDM.dsetPERSONEN.FieldByName('BriefAnrede').AsString <> ''
-    then sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('BriefAnrede').AsString;
-  if frmDM.dsetPERSONEN.FieldByName('Titel').AsString <> ''
-    then sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('Titel').AsString;
-  if sAdr <> ''
-    then sAdr := trim(sAdr) + #13#10;
+  sAdr := trim(frmDM.dsetPERSONEN.FieldByName('BriefAnrede').AsString +  ' ' + frmDM.dsetPERSONEN.FieldByName('Titel').AsString);
+  if sAdr <> '' then sAdr := sAdr + #13#10;
   sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('Vorname').AsString + ' ' + frmDM.dsetPERSONEN.FieldByName('Nachname').AsString+#13#10;
-  if frmDM.dsetPERSONEN.FieldByName('sRes1').AsString <> ''
-    then sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('sRes1').AsString+#13#10;
+  if frmDM.dsetPERSONEN.FieldByName('sRes1').AsString <> '' then sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('sRes1').AsString+#13#10;
   sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('Strasse').AsString+#13#10;
-  if frmDM.dsetPERSONEN.FieldByName('Land').AsString <> ''
-    then sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('Land').AsString + ' ';
-  sAdr := sAdr + frmDM.dsetPERSONEN.FieldByName('PLZ').AsString + ' ' + frmDM.dsetPERSONEN.FieldByName('Ort').AsString;
+  sAdr := sAdr + trim(frmDM.dsetPERSONEN.FieldByName('Land').AsString + ' ' + frmDM.dsetPERSONEN.FieldByName('PLZ').AsString + ' ' + frmDM.dsetPERSONEN.FieldByName('Ort').AsString);
   Clipboard.AsText := sAdr;
   Handled := true;
 end;
