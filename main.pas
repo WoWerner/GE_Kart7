@@ -1236,7 +1236,9 @@ begin
         then slAusgabe.Add(frmDM.dsetHelp.FieldDefs[i].Name);
     end;
 
-  frmFreieListe.SrcList.Items.Text:=slAusgabe.Text;
+  frmFreieListe.SrcList.Items.Text := slAusgabe.Text;
+  frmFreieListe.SrcList.Hint := 'Adresszusatz = sRes1'+#13#10+'Ehegatten Geburtsdatum = dRes1';
+  frmFreieListe.SrcList.ShowHint:=true;
   frmFreieListe.DstList.Items.Clear;
   slAusgabe.Clear;  //slAusgabe wieder leeren
 
@@ -2351,14 +2353,13 @@ end;
 Procedure TfrmMain.CloseDatabaseAfterPrint;
 begin
   //DB wieder schliessen
-  frmDM.dsetHelp.Close;
   frmDM.dsetHelp1.Close;
+  frmDM.dsetHelp.Close;
 
   //aufräumen
   frmDM.dsetHelp1.IndexFieldNames := '';
   frmDM.dsetHelp1.LinkedFields    := '';
   frmDM.dsetHelp1.MasterFields    := '';
-  frmDM.dsetHelp1.MasterSource    := Nil;
   frmDM.dsetHelp1.SortedFields    := '';
   frmDM.dsetHelp1.SQL.Text        := '';
 
@@ -2678,6 +2679,7 @@ begin
           frmDM.dsetPERSONEN.Filtered := (sFilter <> '');
           frmDM.dsetPERSONEN.Refresh;
           frmDM.dsetPERSONEN.First;
+          myDebugLN(inttostr(frmDM.dsetPersonen.RecordCount));
 
           while not frmDM.dsetPersonen.EOF do
             begin
