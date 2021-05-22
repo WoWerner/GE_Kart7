@@ -22,7 +22,7 @@
       <MajorVersionNr Value="7"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="2"/>
-      <BuildNr Value="1"/>
+      <BuildNr Value="2"/>
       <Language Value="0407"/>
       <StringTable CompanyName="Wolfgang Werner" FileDescription="GE_Kart: Verwaltungsprogramm für Kirchengemeinden" InternalName="GE_Kart.exe" LegalCopyright="Wolfgang Werner" OriginalFilename="GE_Kart.exe" ProductName="GE_Kart"/>
     </VersionInfo>
@@ -77,7 +77,7 @@
         <PackageName Value="LCL"/>
       </Item8>
     </RequiredPackages>
-    <Units Count="18">
+    <Units Count="19">
       <Unit0>
         <Filename Value="GE_Kart.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -92,8 +92,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
-        <TopLine Value="1242"/>
-        <CursorPos X="56" Y="1240"/>
+        <TopLine Value="846"/>
+        <CursorPos X="46" Y="865"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -102,18 +102,18 @@
         <Filename Value="global.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Global"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="26" Y="88"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="help.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="111"/>
-        <CursorPos X="26" Y="1157"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="321"/>
+        <CursorPos Y="342"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit3>
@@ -133,12 +133,10 @@
         <ComponentName Value="frmDM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="208"/>
         <CursorPos X="65" Y="225"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="kartei.pas"/>
@@ -146,13 +144,10 @@
         <ComponentName Value="frmKartei"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="831"/>
         <CursorPos X="28" Y="869"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="vinfo.pas"/>
@@ -208,11 +203,10 @@
         <ComponentName Value="frmSuche"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="105"/>
         <CursorPos X="100" Y="136"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
       </Unit12>
       <Unit13>
         <Filename Value="gd.pas"/>
@@ -232,12 +226,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Freelist"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="51"/>
         <CursorPos X="34" Y="58"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit14>
       <Unit15>
         <Filename Value="uscaledpi.pas"/>
@@ -265,128 +257,89 @@
         <CursorPos X="10" Y="34"/>
         <UsageCount Value="200"/>
       </Unit17>
+      <Unit18>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\regexpr\src\regexpr.pas"/>
+        <UnitName Value="RegExpr"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="5234"/>
+        <CursorPos X="3" Y="5246"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit18>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="18" HistoryIndex="17">
       <Position1>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="583" Column="25" TopLine="546"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="802" Column="20" TopLine="784"/>
       </Position1>
       <Position2>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="652" Column="49" TopLine="644"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="802" Column="20" TopLine="784"/>
       </Position2>
       <Position3>
-        <Filename Value="dm.pas"/>
-        <Caret Line="116" Column="86" TopLine="97"/>
-      </Position3>
-      <Position4>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="480" Column="43" TopLine="461"/>
-      </Position4>
-      <Position5>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="652" Column="49" TopLine="633"/>
-      </Position5>
-      <Position6>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="855" Column="46" TopLine="836"/>
-      </Position6>
-      <Position7>
-        <Filename Value="suche.pas"/>
-        <Caret Line="136" Column="100" TopLine="105"/>
-      </Position7>
-      <Position8>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="655" Column="36" TopLine="636"/>
-      </Position8>
-      <Position9>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="653" Column="57" TopLine="636"/>
-      </Position9>
-      <Position10>
-        <Filename Value="main.pas"/>
-        <Caret Line="802" Column="20" TopLine="784"/>
-      </Position10>
-      <Position11>
-        <Filename Value="global.pas"/>
-        <Caret Line="88" Column="26" TopLine="69"/>
-      </Position11>
-      <Position12>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="851" Column="27" TopLine="832"/>
-      </Position12>
-      <Position13>
-        <Filename Value="main.pas"/>
-        <Caret Line="802" Column="20" TopLine="784"/>
-      </Position13>
-      <Position14>
-        <Filename Value="freelist.pas"/>
-        <Caret Line="158" Column="24"/>
-      </Position14>
-      <Position15>
-        <Filename Value="freelist.pas"/>
-        <Caret Line="96" Column="16" TopLine="51"/>
-      </Position15>
-      <Position16>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="867" Column="7" TopLine="832"/>
-      </Position16>
-      <Position17>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="866" Column="7" TopLine="831"/>
-      </Position17>
-      <Position18>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="865" Column="7" TopLine="830"/>
-      </Position18>
-      <Position19>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="864" Column="7" TopLine="829"/>
-      </Position19>
-      <Position20>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="863" Column="7" TopLine="828"/>
-      </Position20>
-      <Position21>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="862" Column="7" TopLine="827"/>
-      </Position21>
-      <Position22>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="861" Column="7" TopLine="826"/>
-      </Position22>
-      <Position23>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="860" Column="7" TopLine="825"/>
-      </Position23>
-      <Position24>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="859" Column="7" TopLine="824"/>
-      </Position24>
-      <Position25>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="858" Column="7" TopLine="823"/>
-      </Position25>
-      <Position26>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="857" Column="7" TopLine="822"/>
-      </Position26>
-      <Position27>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="856" Column="7" TopLine="821"/>
-      </Position27>
-      <Position28>
-        <Filename Value="kartei.pas"/>
-        <Caret Line="866" Column="7" TopLine="831"/>
-      </Position28>
-      <Position29>
         <Filename Value="main.pas"/>
         <Caret Line="1241" Column="39" TopLine="1220"/>
-      </Position29>
-      <Position30>
+      </Position3>
+      <Position4>
         <Filename Value="main.pas"/>
         <Caret Line="2291" Column="13" TopLine="2268"/>
-      </Position30>
+      </Position4>
+      <Position5>
+        <Filename Value="main.pas"/>
+        <Caret Line="863" Column="55" TopLine="841"/>
+      </Position5>
+      <Position6>
+        <Filename Value="help.pas"/>
+        <Caret Line="53" Column="27" TopLine="43"/>
+      </Position6>
+      <Position7>
+        <Filename Value="help.pas"/>
+        <Caret Line="853" Column="40" TopLine="833"/>
+      </Position7>
+      <Position8>
+        <Filename Value="main.pas"/>
+        <Caret Line="868" Column="46" TopLine="850"/>
+      </Position8>
+      <Position9>
+        <Filename Value="help.pas"/>
+        <Caret Line="78" Column="22" TopLine="59"/>
+      </Position9>
+      <Position10>
+        <Filename Value="help.pas"/>
+        <Caret Line="335" Column="17" TopLine="321"/>
+      </Position10>
+      <Position11>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\regexpr\src\regexpr.pas"/>
+        <Caret Line="442" Column="18" TopLine="435"/>
+      </Position11>
+      <Position12>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\regexpr\src\regexpr.pas"/>
+        <Caret Line="4094" Column="17" TopLine="4089"/>
+      </Position12>
+      <Position13>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\regexpr\src\regexpr.pas"/>
+        <Caret Line="442" Column="14" TopLine="421"/>
+      </Position13>
+      <Position14>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\regexpr\src\regexpr.pas"/>
+        <Caret Line="4094" Column="21" TopLine="4090"/>
+      </Position14>
+      <Position15>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\regexpr\src\regexpr.pas"/>
+        <Caret Line="414" Column="14" TopLine="397"/>
+      </Position15>
+      <Position16>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\regexpr\src\regexpr.pas"/>
+        <Caret Line="4179" Column="7" TopLine="4159"/>
+      </Position16>
+      <Position17>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\regexpr\src\regexpr.pas"/>
+        <Caret Line="351" Column="15" TopLine="333"/>
+      </Position17>
+      <Position18>
+        <Filename Value="main.pas"/>
+        <Caret Line="865" Column="49" TopLine="850"/>
+      </Position18>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
