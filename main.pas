@@ -836,7 +836,7 @@ begin
                       if (Item = 'PERSONENID') or
                          (Item = 'MARKIERT') or
                          (Item = 'ABGANG')
-                        then Raise Exception.CreateFmt('Ungültiger Staltenname "%s" in der Tabelle. Die Funktion wird abgebrochen.', [Item]);
+                        then Raise Exception.CreateFmt('Ungültiger Spaltenname "%s" in der Tabelle. Die Funktion wird abgebrochen.', [Item]);
 
                       if Item <> '' then
                         begin
@@ -862,7 +862,7 @@ begin
                             begin
                               Item := GetCSVRecordItem(i, Line, [CSV_Delimiter, #9], '"');
                               //Auf Datum prüfen
-                              if IsDateFormat(Item, DefaultFormatSettings.DateSeparator)
+                              if (Item <> '') and IsDateFormat(Item, DefaultFormatSettings.DateSeparator)
                                 then Item := FormatDateTime('yyyy-mm-dd', StrToDate(Item));
                               sSQL := sSQL + '''' + Item + ''', ';
                             end;
