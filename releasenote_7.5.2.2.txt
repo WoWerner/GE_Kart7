@@ -1,4 +1,7 @@
-﻿Änderungen in der Version 7.5.2.1 (11.04.2021)
+﻿Änderungen in der Version 7.5.2.2 (22.05.2021)
+- Beim CSV-Import gab es einen Fehler wenn leere Felder vorhanden waren.
+
+Änderungen in der Version 7.5.2.1 (11.04.2021)
 - Kartei: Feld Adresszusatz eingefügt
 - Kartei: Schnellsuche nur nach Vorname möglich
 - Drucken: Verschiedene Briefumschlagsformate eingefügt
