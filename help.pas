@@ -115,9 +115,11 @@ Procedure PrintText(sDruckText, sTitel: String; PrtDlg: TPrintDialog);
 //Windows
 function GetComputerName: string;
 function GetUserName: string;
-function GETWORKAREA: TRect;
-function GETMaxWindowsSize: TRect;
+function GetWorkArea: TRect;
+function GetMaxWindowsSize: TRect;
 function GetCaptionHeight: integer;
+function GetMonitorCount: Integer;
+function GetVirtualScreenSize: TRect;
 
 //Files
 function GetFileInfo(const AFileName: String; var FileWriteTime: TDateTime; var FileSize: Int64): Boolean;
@@ -215,9 +217,39 @@ begin
   result := trim(result);
 end;
 
-function GETWORKAREA: TRect;
+function GetMonitorCount: Integer;
+begin
+  Result := GetSystemMetrics(SM_CMONITORS);
+  myDebugLN('MonitorCount: '+inttostr(Result));
+end;
+
+function GetVirtualScreenSize: TRect;
+
+//In Right  -->  Width
+//In Bottom -->  Height
+
+begin
+  result.Left   := GetSystemMetrics(SM_XVIRTUALSCREEN);
+  result.Top    := GetSystemMetrics(SM_YVIRTUALSCREEN);
+  result.Right  := result.Left + GetSystemMetrics(SM_CXVIRTUALSCREEN);
+  result.Bottom := result.Top  + GetSystemMetrics(SM_CYVIRTUALSCREEN);
+  myDebugLN(#13#10+
+            'VirtualScreenSize:'+#13#10+
+            'Left  : '+inttostr(Result.Left)+#13#10+
+            'Top   : '+inttostr(Result.Top)+#13#10+
+            'Width : '+inttostr(Result.Right)+' (store in Right)'+#13#10+
+            'Heigth: '+inttostr(Result.Bottom)+' (store in Bottom)');
+end;
+
+function GetWorkArea: TRect;
 begin
   SystemParametersInfo(SPI_GETWORKAREA, 0, @Result, 0);
+  myDebugLN(#13#10+
+            'WorkArea:'+#13#10+
+            'Left  : '+inttostr(Result.Left)+#13#10+
+            'Top   : '+inttostr(Result.Top)+#13#10+
+            'Width : '+inttostr(Result.Right)+' (store in Right)'+#13#10+
+            'Heigth: '+inttostr(Result.Bottom)+' (store in Bottom)');
 end;
 
 function GetCaptionHeight : integer;
@@ -226,7 +258,7 @@ begin
   result := GetSystemMetrics(SM_CYCAPTION)
 end;
 
-function GETMaxWindowsSize: TRect;
+function GetMaxWindowsSize: TRect;
 
 //In Right  -->  Width
 //In Bottom -->  Height
@@ -237,20 +269,14 @@ var
   WORKAREA     : TRect;
 
 begin
-  WORKAREA     := GETWORKAREA; //Verfügbarer Platz
+  WORKAREA     := GetWorkArea; //Verfügbarer Platz
   aBorderWidth := GetSystemMetrics(SM_CYSIZEFRAME);
   aCaption     := GetSystemMetrics(SM_CYCAPTION);
   Result.Left   := WORKAREA.Left;
   Result.Top    := WORKAREA.Top;
   Result.Right  := WORKAREA.Right  - WORKAREA.Left - 2*aBorderWidth;
   Result.Bottom := WORKAREA.Bottom - WORKAREA.Top  -   aBorderWidth - aCaption;
-  myDebugLN(#13#10+'WORKAREA:'+#13#10+
-            'Left   : '+inttostr(WORKAREA.Left)+#13#10+
-            'Top    : '+inttostr(WORKAREA.Top)+#13#10+
-            'Right  : '+inttostr(WORKAREA.Right)+#13#10+
-            'Bottom : '+inttostr(WORKAREA.Bottom)+#13#10+
-            'Border : '+inttostr(aBorderWidth)+#13#10+
-            'Caption: '+inttostr(aCaption)+#13#10+
+  myDebugLN(#13#10+
             'PosAndMaxWindowsSize:'+#13#10+
             'Left  : '+inttostr(Result.Left)+#13#10+
             'Top   : '+inttostr(Result.Top)+#13#10+
