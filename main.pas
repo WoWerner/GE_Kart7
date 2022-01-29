@@ -225,6 +225,7 @@ uses
   LazFileUtils,
   inifiles,
   Ausgabe,
+  ssl_openssl,   // die dll Files gehen nur bis 1.0.2u. Die Version 1.1.1 geht nicht
   httpsend,
   Statinfo,
   suche,
@@ -394,7 +395,7 @@ begin
   //Prüfung auf neue Version
   HTTP := THTTPSend.Create;
   try
-    if not HTTP.HTTPMethod('GET', 'www.w-werner.de/GE_KART/version.txt?V'+GetProductVersionString+'_PC_'+replacechar(GetComputerName, ' ', '_')+'_USER_'+replacechar(GetUserName, ' ', '_'))
+    if not HTTP.HTTPMethod('GET', 'https://'+sHomePage+'/GE_KART/version.txt?;V'+GetProductVersionString+';'+replacechar(GetComputerName, ' ', '_')+';'+replacechar(GetUserName, ' ', '_'))
       then
         begin
 	  myDebugLN('ERROR HTTPGET, Resultcode: '+inttostr(Http.Resultcode));
@@ -447,7 +448,7 @@ begin
 
   HTTP := THTTPSend.Create;
   try
-    if HTTP.HTTPMethod('GET', 'www.w-werner.de/GE_KART/aktuelles.txt')
+    if HTTP.HTTPMethod('GET', 'https://'+sHomePage+'/GE_KART/aktuelles.txt')
       then
         begin
           slHelp.loadfromstream(Http.Document);
@@ -688,41 +689,13 @@ end;
 
 procedure TfrmMain.labMyWebClick(Sender: TObject);
 begin
-  Openurl(sHomePage+'/GE_Kart.html');
+  Openurl('https://'+sHomePage+'/GE_Kart.html');
 end;
 
 procedure TfrmMain.labVersionNeuClick(Sender: TObject);
 
-{
-var
-  HTTPSender: THTTPSend;
-  sHelp     : String;
-  sTarget   : String;
-
 begin
-  //Openurl(sHomePage+'/GE_KART/v'+sNewVers+'.zip');
-  HTTPSender := THTTPSend.Create;
-  sHelp      := 'Fehler beim herunterladen';
-  sTarget    := sAppDir+'v'+sNewVers+'.zip';
-  labVersionNeu.Caption := 'Bitte warten';
-  labVersionNeu.Refresh;
-  application.processmessages;
-  try
-    HTTPSender.HTTPMethod('GET', sHomePage+'/GE_KART/v'+sNewVers+'.zip');
-    if (HTTPSender.ResultCode >= 100) and (HTTPSender.ResultCode<=299) then
-      begin
-        HTTPSender.Document.SaveToFile(sTarget);
-        sHelp := 'Datei '+sTarget+' heruntergeladen';
-        labVersionNeu.Caption := sHelp;
-        sHelp := sHelp + #13+'Zum Updaten: GE_Kart beenden und '+sTarget+' entpacken';
-      end;
-  finally
-    HTTPSender.Free;
-  end;
-  LogAndShow(sHelp);
-  }
-begin
-  frmPgmUpdate.URL      := sHomePage+'/GE_KART/v'+sNewVers+'.zip';
+  frmPgmUpdate.URL      := 'https://'+sHomePage+'/GE_KART/v'+sNewVers+'.zip';
   frmPgmUpdate.FileName := sAppDir+'v'+sNewVers+'.zip';
   frmPgmUpdate.showmodal;
 end;
