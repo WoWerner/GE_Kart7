@@ -1395,20 +1395,25 @@ function ReadIniVal(FileName, Section, Keyword, DefVal: string; StoreDef : boole
 //Wenn er nicht da ist, wird er mit dem DefVal angelegt
 
 Var
- INI   : TINIFile;
- sHelp : string;
+ INI    : TINIFile;
+ slText : TStringlist;
 
 begin
   INI := TINIFile.Create(UTF8ToSys(FileName));
-  sHelp := INI.ReadString(Section, Keyword, '');
-  if sHelp = ''
+  slText := TStringlist.Create;
+  slText.Delimiter := ',';
+  slText.QuoteChar := '"';
+  slText.StrictDelimiter := true;
+  slText.DelimitedText := INI.ReadString(Section, Keyword, '');
+  if slText.Text = ''
     then
       begin
         if StoreDef then INI.WriteString(Section, Keyword, DefVal);
-        sHelp := DefVal;
+        slText.DelimitedText := DefVal;
       end;
   INI.Free;
-  Result := sHelp;
+  result := RemoveLastCRLF(slText.Text);
+  slText.Free;
 end;
 
 {==============================================================================}
@@ -1440,12 +1445,19 @@ end;
 procedure WriteIniVal(FileName, Section, Keyword, Val: string);
 
 Var
- INI: TINIFile;
+ INI    : TINIFile;
+ slText : TStringlist;
 
 begin
   INI := TINIFile.Create(UTF8ToSys(FileName));
-  INI.WriteString(Section, Keyword, Val);
+  slText := TStringlist.Create;
+  slText.Delimiter := ',';
+  slText.QuoteChar := '"';
+  slText.StrictDelimiter := true;
+  slText.Text      := Val;
+  INI.WriteString(Section, Keyword, slText.DelimitedText);
   INI.Free;
+  slText.Free;
 end;
 
 {==============================================================================}
