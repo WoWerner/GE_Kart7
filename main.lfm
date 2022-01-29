@@ -41,7 +41,7 @@ object frmMain: TfrmMain
   OnShow = FormShow
   Position = poScreenCenter
   ShowHint = True
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.0.4'
   object lb_Name: TLabel
     Left = 16
     Height = 47
@@ -51,7 +51,6 @@ object frmMain: TfrmMain
     Font.Color = clPurple
     Font.Height = -35
     Font.Style = [fsBold]
-    ParentColor = False
     ParentFont = False
   end
   object Label1: TLabel
@@ -60,7 +59,6 @@ object frmMain: TfrmMain
     Top = 152
     Width = 18
     Caption = 'für:'
-    ParentColor = False
     ParentFont = False
   end
   object labVersion: TLabel
@@ -70,7 +68,6 @@ object frmMain: TfrmMain
     Width = 60
     Caption = 'Version:'
     Font.Height = 24
-    ParentColor = False
     ParentFont = False
   end
   object Label2: TLabel
@@ -79,7 +76,6 @@ object frmMain: TfrmMain
     Top = 196
     Width = 23
     Caption = 'von:'
-    ParentColor = False
     ParentFont = False
   end
   object LabMyName: TLabel
@@ -89,7 +85,6 @@ object frmMain: TfrmMain
     Width = 93
     Caption = 'Wolfgang Werner'
     Font.Color = clNavy
-    ParentColor = False
     ParentFont = False
   end
   object labMyStreet: TLabel
@@ -99,7 +94,6 @@ object frmMain: TfrmMain
     Width = 66
     Caption = 'Ulmtalstr. 26'
     Font.Color = clNavy
-    ParentColor = False
     ParentFont = False
   end
   object labMyCity: TLabel
@@ -109,7 +103,6 @@ object frmMain: TfrmMain
     Width = 169
     Caption = '35753 Greifenstein / Holzhausen'
     Font.Color = clNavy
-    ParentColor = False
     ParentFont = False
   end
   object labMyTelNr: TLabel
@@ -119,7 +112,6 @@ object frmMain: TfrmMain
     Width = 89
     Caption = '06478 / 43 29 840'
     Font.Color = clNavy
-    ParentColor = False
     ParentFont = False
   end
   object labMyMail: TLabel
@@ -130,7 +122,6 @@ object frmMain: TfrmMain
     Width = 100
     Caption = 'mail@w-werner.de'
     Font.Color = clNavy
-    ParentColor = False
     ParentFont = False
     OnClick = labMyMailClick
   end
@@ -142,7 +133,6 @@ object frmMain: TfrmMain
     Width = 96
     Caption = 'www.w-werner.de'
     Font.Color = clNavy
-    ParentColor = False
     ParentFont = False
     OnClick = labMyWebClick
   end
@@ -154,7 +144,6 @@ object frmMain: TfrmMain
     Width = 90
     Caption = 'Mustergemeinde'
     Font.Color = clNavy
-    ParentColor = False
     ParentFont = False
     OnDblClick = mnuGemeindeAdresseClick
   end
@@ -166,7 +155,6 @@ object frmMain: TfrmMain
     Width = 90
     Caption = 'Mustergemeinde'
     Font.Color = clNavy
-    ParentColor = False
     ParentFont = False
     OnDblClick = mnuGemeindeAdresseClick
   end
@@ -237,7 +225,6 @@ object frmMain: TfrmMain
     Caption = 'Neue Version verfügbar: '
     Color = clYellow
     Font.Height = 16
-    ParentColor = False
     ParentFont = False
     ParentShowHint = False
     ShowHint = True

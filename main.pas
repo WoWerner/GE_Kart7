@@ -208,6 +208,7 @@ type
     procedure HandleException(Sender: TObject; E: Exception);
   public
     { public declarations }
+    slHelp   : TStringlist;
   end; 
 
 var
@@ -305,7 +306,6 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 var
   HTTP     : THTTPSend;
   sRelease : String;
-  slHelp   : TStringlist;
   INI      : TINIFile;
 
 begin
@@ -509,8 +509,6 @@ begin
   INI := TINIFile.Create(UTF8ToSys(sIniFile));
   INI.EraseSection('Gemeinde');
   INI.Free;
-
-  slHelp.Free;
 end;
 
 procedure tfrmMain.ShowDruckenDlg;
@@ -550,6 +548,7 @@ end;
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   slAusgabe.Free;
+  slHelp.Free;
   myDebugLN('Beende GE_Kart');
   myDebugLN('************************************************************************************');
   FlushDebug;
@@ -560,10 +559,9 @@ procedure TfrmMain.FormShow(Sender: TObject);
 var
   sHelp  : string;
   bHelp  : boolean;
-  slHelp : TStringlist;
 
 begin
-  slHelp := TStringlist.Create;
+  slHelp.Clear;
   bHelp  := (ParamCount = 2) and (lowercase(ParamStr(2)) = 'popup');
 
   if FileExists(UTF8ToSys(sDatabase))
@@ -628,7 +626,6 @@ begin
         ShowMessage(StatusBar.Panels[0].Text+' Bitte Herrn Werner kontaktieren!');
         frmDM.SetDBPath('');
       end;
-  slHelp.Free;
 end;
 
 
@@ -752,8 +749,7 @@ end;
 
 procedure TfrmMain.mnuCSVImportClick(Sender: TObject);
 
-var StringList : TStringList;
-    Line       : String;
+var Line       : String;
     Item       : String;
     ErrorText  : string;
     FeldNamen  : String;
@@ -781,7 +777,7 @@ begin
         Lines     := 0;
         ItemNo    := 1;
         ErrorText := '';
-        StringList:= TStringList.create;
+        slHelp.Clear;
         try
           openDialog.Title       := 'Selektiere eine CSV Import Datei';
           openDialog.InitialDir  := UTF8ToSys(sAppDir);          // Set up the starting directory to be the current one
@@ -794,15 +790,15 @@ begin
             begin
               myDebugLN('Import: '+ OpenDialog.Filename);
 
-              StringList.loadfromfile(UTF8ToSys(OpenDialog.Filename));
-              StringList.text := RemoveBOM(StringList.text);
+              slHelp.loadfromfile(UTF8ToSys(OpenDialog.Filename));
+              slHelp.text := RemoveBOM(slHelp.text);
 
               FeldNamen := 'INSERT INTO '+sPersTablename+  ' (';
               //Header lesen
-              if StringList.count > 1
+              if slHelp.count > 1
                 then
                   begin
-                    Line := StringList.strings[0];
+                    Line := slHelp.strings[0];
                     repeat
                       Item := UPPERCASE(GetCSVRecordItem(ItemNo, Line, [CSV_Delimiter, #9], '"'));
 
@@ -822,10 +818,10 @@ begin
               myDebugLN(FeldNamen);
 
               //Daten einfügen
-              if StringList.count > 1 then
-                for ActLine := 1 to StringList.count-1 do
+              if slHelp.count > 1 then
+                for ActLine := 1 to slHelp.count-1 do
                   begin
-                    Line := StringList.strings[ActLine];
+                    Line := slHelp.strings[ActLine];
                     Line := Trim(Line);
                     if Line <> ''
                       then
@@ -860,7 +856,6 @@ begin
         except
           on E: Exception do LogAndShowError(E.Message);
         end;
-        StringList.free;
       end
     else
       Showmessage('Funktion abgebrochen.');
@@ -1606,7 +1601,6 @@ var
   sWhere5,
   sGebAb   : String;
   i        : integer;
-  slHelp   : TStringlist;
 
   Function FormatAge(GebTag: TDateTime; Age: integer):String;
 
@@ -1684,7 +1678,7 @@ begin
     then
       begin
         sWhere1 := '';
-        slHelp  := TStringlist.Create;
+        slHelp.Clear;
         for i := 0 to AnzahlMonate do
           sWhere1 := SQL_Where_Add_OR(sWhere1, '(strftime(''%m'',geburtstag) = '''+FormatDateTime('mm', IncMonth(now(), i))+''')');
         sWhere1 := '('+sWhere1+') and';
@@ -1740,7 +1734,6 @@ begin
         if sGebAb <> '0' then slAusgabe.add('Um alle Geburtstage zu bekommen, dort eine "0" eintragen');
         slAusgabe.add('');
         slAusgabe.add('Erzeugt von GE_Kart '+ GetProductVersionString +' am: '+datetostr(date));
-        slHelp.Free;
         ShowDruckenDlg;
       end;
 end;
@@ -3111,18 +3104,14 @@ end;
 
 procedure TfrmMain.mnuUserDefSQLClick(Sender: TObject);
 
-var
-  slHelp   : TStringlist;
-
 begin
-  slHelp := TStringlist.Create;
+  slHelp.Clear;
   try
     slHelp.LoadFromFile(sUserDefSQLFile);
   except
     slHelp.Text := '';
   end;
   ExecSQL(slHelp.Text, frmDM.dsetHelp, false);
-  slHelp.Free;
 end;
 
 procedure TfrmMain.mnuVolltextsucheClick(Sender: TObject);
