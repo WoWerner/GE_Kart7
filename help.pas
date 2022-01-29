@@ -82,6 +82,9 @@ function GetProductVersionString: String;
 
 //Debug
 Procedure myDebugLN(s: string);
+Procedure myDebugStart(s: string);
+Procedure myDebugAdd(s: string);
+Procedure myDebugFinish(s: string);
 Procedure WriteDebug(s: string);
 Procedure FlushDebug();
 procedure GetPrinterMargins();
@@ -1165,8 +1168,27 @@ end;
 Procedure myDebugLN(s: string);
 
 begin
-  sDebug := sDebug + FormatDateTime('dd.mm.yyyy hh:nn:ss.zzz', now())+' '+RemoveLastCRLF(s)+#13#10;
-  if Length(sDebug) > 1024
+  myDebugStart(s);
+  myDebugFinish('');
+end;
+
+Procedure myDebugStart(s: string);
+
+begin
+  sDebug := sDebug + FormatDateTime('dd.mm.yyyy hh:nn:ss.zzz', now()) + ' ' + RemoveLastCRLF(s);
+end;
+
+Procedure myDebugAdd(s: string);
+
+begin
+  sDebug := sDebug + s;
+end;
+
+Procedure myDebugFinish(s: string);
+
+begin
+  sDebug := sDebug + RemoveLastCRLF(s)+#13#10;
+  if Length(sDebug) > 1000
     then
       begin
         WriteDebug(sDebug);
@@ -1175,6 +1197,7 @@ begin
 end;
 
 Procedure FlushDebug;
+
 begin
   WriteDebug(sDebug);
   sDebug := '';
@@ -1202,7 +1225,7 @@ begin
                     if GetFileInfo(sDebugFile, dtFileDate, nFileSize)
                       then
                         begin
-                          if nFileSize > 1024*1024
+                          if nFileSize > 1000*1024
                             then
                               begin
                                 NewFileName := ExtractFilePath(sDebugFile)+FormatDateTime('yyyymmdd_hhnnss_', now())+ExtractFileName(sDebugFile);
