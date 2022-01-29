@@ -304,11 +304,11 @@ begin
   try
     Query.Open;
     result := Query.FieldByName('MySum').AsLongint;
+    Query.Close;
   except
     //Tritt auf, wenn alte Jahre ohne Daten gewählt werden
     result := 0;
   end;
-  if Query.Active then Query.Close;
 end;
 
 //****************************************************************
@@ -521,8 +521,6 @@ var f: TextFile;
     j: integer;
     s: String;
 
-//{$DEFINE Field_DEBUG}
-
 begin
   Screen.Cursor := crHourglass;
 
@@ -556,6 +554,7 @@ begin
       end;
     WriteLn(F, '');
 
+ //{$DEFINE Field_DEBUG}
 {$ifdef Field_DEBUG}
     //Debug Feldtypeausgabe
     for i := 1 to que.FieldCount do
@@ -594,13 +593,13 @@ begin
                                       then s := format('%.2n',[Que.Fields[i-1].AsCurrency])
                                       else s := format('%.2f',[Que.Fields[i-1].AsCurrency]);
                                   end;	
-		      ftMemo    : begin
-		                    s := ReplaceChar(Que.Fields[i-1].asstring, #13, ' ');
-				    s := ReplaceChar(s, #10, ' ');
-				    s := StringReplace(s, '  ', ' ', [rfReplaceAll]);
-		                  end;
+		                  ftMemo    : begin
+		                                s := ReplaceChar(Que.Fields[i-1].asstring, #13, ' ');
+				                            s := ReplaceChar(s, #10, ' ');
+				                            s := StringReplace(s, '  ', ' ', [rfReplaceAll]);
+		                              end;
                       else
-                                  s := Que.Fields[i-1].asstring;
+                                    s := Que.Fields[i-1].asstring;
                     end;
                     s := DeleteChars(s, [#10,#13]);
                     if (pos(sTrenner, s) > 0) or (Que.FieldDefs[i-1].DataType in [ftString, ftMemo])
@@ -1105,11 +1104,11 @@ begin
           SQLForm.ShowModal;
 
           //Exportieren?
-          case MessageDlg('Sollen die noch exportiert werden?'+#13+
-                          'Ja = ANSI Format, Wiederholen = UTF8 Format', mtConfirmation, [mbYes, mbNo, mbRetry],0) of
-            mrYes:    ExportQueToCSVFile(myQue, sAppDir+'Export.csv', ';', '"', true, false);
-            mrRetry : ExportQueToCSVFile(myQue, sAppDir+'Export.csv', ';', '"', true, true);
-          end;
+          if MessageDlg('Sollen die Daten noch exportiert werden?', mtConfirmation, [mbYes, mbNo],0) = mrYes then
+            begin
+              ExportQueToCSVFile(myQue, sAppDir+'Export_UTF8.csv', ';', '"', false, true);
+              ExportQueToCSVFile(myQue, sAppDir+'Export_ANSI.csv', ';', '"', true, false);
+            end;
 
           myQue.Close;
           MyGrid.Free;
