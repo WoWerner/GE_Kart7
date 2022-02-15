@@ -146,14 +146,6 @@ begin
 
                 OldFileName := CurrentFileName + '.OLD';
 
-                //Aufräumen
-                if fileexists(OldFileName)
-                  then
-                    begin
-                      Logger('Lösche: '+OldFileName);
-                      sysutils.deletefile(OldFileName);
-                    end;
-
                 //Backup erstellen
                 if fileexists(CurrentFileName)
                   then
@@ -161,12 +153,16 @@ begin
                       if GetFileInfo(CurrentFileName, dtOrgFileDate, nOrgFileSize)
                         then
                           begin
-                            //Logger('Org content: '+CurrentFileName+' '+DateTimeToStr(dtOrgFileDate)+' '+Inttostr(nOrgFileSize));
-                                                            //Ein paar Sek. Zeitversatz erlauben
-                            if (Abs(UnZipper.Entries.Entries[i].DateTime-dtOrgFileDate)*86400 > 3) or
-                               (UnZipper.Entries.Entries[i].Size <> nOrgFileSize) //Größe wird genau geprüft
+                            if (Abs(UnZipper.Entries.Entries[i].DateTime-dtOrgFileDate)*86400 > 3) or  //Ein paar Sek. Zeitversatz erlauben
+                               (UnZipper.Entries.Entries[i].Size <> nOrgFileSize)                      //Größe wird genau geprüft
                               then
                                 begin
+                                  //Aufräumen
+                                  if fileexists(OldFileName) then
+                                    begin
+                                      Logger('Lösche: '+OldFileName);
+                                      sysutils.deletefile(OldFileName);
+                                    end;
                                   Logger('Umbenennen von : '+CurrentFileName+' nach ' +OldFileName);
                                   renamefile(CurrentFileName, OldFileName);
                                 end
