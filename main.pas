@@ -1337,6 +1337,7 @@ var a_s,
     kommunikanten,
     gastkomm        : integer;
     sWhere          : String;
+    dt              : TDateTime;
 
 begin
   //Datenbank öffnen
@@ -1382,7 +1383,9 @@ begin
 
   sWhere        := '';
 
-  frmStatInfo.stat_jahr.Text        := FormatDateTime('YYYY', now());
+  dt := now();
+  if FormatDateTime('MM', dt) = '01' then dt := dt-365;
+  frmStatInfo.stat_jahr.Text        := FormatDateTime('YYYY', dt);
   frmStatInfo.stat_jahr.Enabled     := true;
   frmStatInfo.stat_Kirche.Enabled   := false;
   frmStatInfo.stat_gemeinde.Enabled := true;
@@ -2254,7 +2257,7 @@ begin
   frmDM.dsetHelp.open;
   for i := 0 to frmDM.dsetHelp.FieldDefs.Count-1 do
     slAusgabe.add(appendChar(frmDM.dsetHelp.FieldDefs.Items[i].Name,' ', 25)+
-                  Format('%5s ',[inttostr(frmDM.dsetHelp.FieldDefs.Items[i].Size div 4)])+
+                  Format('%5s ',[inttostr(frmDM.dsetHelp.FieldDefs.Items[i].Size)])+
                   FieldTypeToString(frmDM.dsetHelp.FieldDefs.Items[i].DataType));
   frmDM.dsetHelp.close;
   frmDM.dbStatus(false); //Datenbank schliessen
