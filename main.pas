@@ -203,6 +203,7 @@ type
     procedure CloseDatabaseAfterPrint;
     procedure ShowDruckenDlg;
     procedure ShowDruckenMnu;
+    procedure GetGemeindenFromDB;
     Procedure Datensicherung(Auto: boolean);
     function  HeutigeGebTage(datum:TDateTime): String;
     procedure HandleException(Sender: TObject; E: Exception);
@@ -605,20 +606,7 @@ begin
         frmDM.dsetGemeinde.close;
         frmDM.dbStatus(false); // DB schliessen
 
-        slHelp.Clear;
-        slHelp.Duplicates := dupIgnore;
-        slHelp.Sorted     := true;
-        slHelp.Add(sGemeindenAlle);
-        frmDM.dsetHelp2.sql.Clear;
-        frmDM.dsetHelp2.sql.add('select distinct Gemeinde from personen order by gemeinde');
-        frmDM.dsetHelp2.open;
-        while not frmDM.dsetHelp2.eof do
-          begin
-             slHelp.Add(frmDM.dsetHelp2.fieldByName('Gemeinde').asstring);
-            frmDM.dsetHelp2.Next;
-          end;
-        frmDM.dsetHelp2.Close;
-        sGemeinden := slHelp.Text;
+        GetGemeindenFromDB;
       end
     else
       begin
@@ -628,6 +616,23 @@ begin
       end;
 end;
 
+
+procedure TfrmMain.GetGemeindenFromDB;
+begin
+  //Suchen der in der Datenbank verwendeten Gemeinden
+  slHelp.Clear;
+  slHelp.Add(sGemeindenAlle);
+  frmDM.dsetHelp2.sql.Clear;
+  frmDM.dsetHelp2.sql.add('select Gemeinde from personen group by gemeinde order by gemeinde');
+  frmDM.dsetHelp2.open;
+  while not frmDM.dsetHelp2.eof do
+    begin
+       slHelp.Add(frmDM.dsetHelp2.fieldByName('Gemeinde').asstring);
+      frmDM.dsetHelp2.Next;
+    end;
+  frmDM.dsetHelp2.Close;
+  sGemeinden := slHelp.Text;
+end;
 
 procedure TfrmMain.frReportGetValue(const ParName: String; var ParValue: Variant);
 begin
