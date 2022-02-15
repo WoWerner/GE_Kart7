@@ -1,10 +1,10 @@
 object frmDM: TfrmDM
   Left = 705
-  Height = 686
+  Height = 722
   Top = 100
   Width = 368
   Caption = 'frmDM'
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.0.4'
   object dsPersonen: TDataSource
     AutoEdit = False
     DataSet = dsetPersonen

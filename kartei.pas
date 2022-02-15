@@ -45,6 +45,7 @@ type
     DateEditKomm: TDateEdit;
     DBCBAnrede: TDBComboBox;
     DBCBGeschlecht: TDBComboBox;
+    DBCBGemeinde: TDBComboBox;
     dbcbUebertrittAus: TDBComboBox;
     dbcbKindKirche: TDBComboBox;
     dbcbMutterKirche: TDBComboBox;
@@ -145,7 +146,6 @@ type
     DBEdiEheGebName: TDBEdit;
     DBEdiTaufDatum: TDBEdit;
     dbediInternet: TDBEdit;
-    dbediGemeinde: TDBEdit;
     dbediLand: TDBEdit;
     dbediName: TDBEdit;
     dbediOrt: TDBEdit;
@@ -479,8 +479,10 @@ begin
   DBGridOverView.Columns.Add.FieldName := 'Strasse';      DBGridOverView.Columns.Items[3].Width := 140;
   DBGridOverView.Columns.Add.FieldName := 'Geburtstag';   DBGridOverView.Columns.Items[4].Width :=  80;
   panShowOverview.Visible              := frmMain.mnuShowOverView.Checked;
-  cbGemeinde.Items.Text := sGemeinden;
-  cbGemeinde.Text       := sGemeindenAlle;
+  cbGemeinde.Items.Text   := sGemeinden;
+  cbGemeinde.Text         := sGemeindenAlle;
+  DBCBGemeinde.Items.Text := sGemeinden;
+  DBCBGemeinde.Items.Delete(0);  //sGemeindenAlle
 end;
 
 procedure TfrmKartei.panDatenbankOverviewMouseLeave(Sender: TObject);

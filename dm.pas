@@ -255,6 +255,20 @@ begin
                       myDebugLN('DB-Version now: '+sHelp);
                     end;
 
+                //Update auf DB-Format 7.5.2
+                if sHelp = '7.5.1'
+                  then
+                    begin
+                      ExecSQL('update Personen set sRes2 = Gemeinde');
+                      ExecSQL('alter table Personen drop column [Gemeinde]');
+                      ExecSQL('alter table Personen add column [Gemeinde] VARCHAR(10) NULL');
+                      ExecSQL('update Personen set Gemeinde = sRes2');
+                      ExecSQL('update Personen set sRes2 = ""');
+                      ExecSQL('update Version set V=''7.5.2''');
+                      sHelp := '7.5.2';
+                      myDebugLN('DB-Version now: '+sHelp);
+                    end;
+
                 bDatabaseVersionChecked := true;
               end;
           if OpenDatabases

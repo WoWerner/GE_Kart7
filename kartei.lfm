@@ -19,7 +19,7 @@ object frmKartei: TfrmKartei
   OnShow = FormShow
   Position = poScreenCenter
   ShowHint = True
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.0.4'
   object panShowOverview: TPanel
     Left = 0
     Height = 649
@@ -101,7 +101,7 @@ object frmKartei: TfrmKartei
         DataField = 'Ausbildung'
         DataSource = frmDM.dsPersonen
         ParentFont = False
-        TabOrder = 22
+        TabOrder = 21
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
@@ -111,7 +111,6 @@ object frmKartei: TfrmKartei
         Top = 102
         Width = 71
         Caption = 'Telefon privat'
-        ParentColor = False
         ParentFont = False
       end
       object dbediTelPrivat: TDBEdit
@@ -121,7 +120,6 @@ object frmKartei: TfrmKartei
         Width = 200
         DataField = 'TelPrivat'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 8
@@ -132,7 +130,6 @@ object frmKartei: TfrmKartei
         Top = 102
         Width = 92
         Caption = 'Telefon dienstlich'
-        ParentColor = False
         ParentFont = False
       end
       object dbediTelDienst: TDBEdit
@@ -142,7 +139,6 @@ object frmKartei: TfrmKartei
         Width = 200
         DataField = 'TelDienst'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 9
@@ -154,7 +150,6 @@ object frmKartei: TfrmKartei
         Width = 217
         DataField = 'TelMobil'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 10
@@ -165,7 +160,6 @@ object frmKartei: TfrmKartei
         Top = 102
         Width = 72
         Caption = 'Telefon mobil'
-        ParentColor = False
         ParentFont = False
       end
       object Label18: TLabel
@@ -174,7 +168,6 @@ object frmKartei: TfrmKartei
         Top = 102
         Width = 18
         Caption = 'Fax'
-        ParentColor = False
         ParentFont = False
       end
       object dbediTelFax: TDBEdit
@@ -184,7 +177,6 @@ object frmKartei: TfrmKartei
         Width = 224
         DataField = 'Fax'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 11
@@ -195,7 +187,6 @@ object frmKartei: TfrmKartei
         Top = 150
         Width = 29
         Caption = 'eMail'
-        ParentColor = False
         ParentFont = False
       end
       object dbediEMail: TDBEdit
@@ -206,7 +197,6 @@ object frmKartei: TfrmKartei
         Width = 408
         DataField = 'eMail'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -220,7 +210,6 @@ object frmKartei: TfrmKartei
         Top = 150
         Width = 41
         Caption = 'Internet'
-        ParentColor = False
         ParentFont = False
       end
       object dbediInternet: TDBEdit
@@ -231,7 +220,6 @@ object frmKartei: TfrmKartei
         Width = 455
         DataField = 'Internet'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -245,50 +233,34 @@ object frmKartei: TfrmKartei
         Top = 291
         Width = 33
         Caption = 'Kirche'
-        ParentColor = False
         ParentFont = False
       end
       object Label23: TLabel
-        Left = 218
+        Left = 172
         Height = 15
         Top = 291
         Width = 54
         Caption = 'Gemeinde'
-        ParentColor = False
         ParentFont = False
-      end
-      object dbediGemeinde: TDBEdit
-        Left = 218
-        Height = 23
-        Top = 307
-        Width = 55
-        DataField = 'Gemeinde'
-        DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
-        MaxLength = 255
-        ParentFont = False
-        TabOrder = 19
       end
       object Label24: TLabel
-        Left = 282
+        Left = 312
         Height = 15
         Top = 291
         Width = 41
         Caption = 'Versand'
-        ParentColor = False
         ParentFont = False
       end
       object dbediVersand: TDBEdit
-        Left = 282
+        Left = 312
         Height = 23
         Top = 307
-        Width = 128
+        Width = 98
         DataField = 'Versand'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
-        MaxLength = 255
+        MaxLength = 10
         ParentFont = False
-        TabOrder = 20
+        TabOrder = 19
       end
       object DBCB_Ruhestand: TDBCheckBox
         Left = 801
@@ -299,7 +271,7 @@ object frmKartei: TfrmKartei
         DataField = 'Ruhestand'
         DataSource = frmDM.dsPersonen
         ParentFont = False
-        TabOrder = 26
+        TabOrder = 25
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
@@ -310,10 +282,9 @@ object frmKartei: TfrmKartei
         Width = 230
         DataField = 'BerufAusgeuebt'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 24
+        TabOrder = 23
       end
       object Label49: TLabel
         Left = 326
@@ -321,7 +292,6 @@ object frmKartei: TfrmKartei
         Top = 340
         Width = 90
         Caption = 'ausgeübter Beruf'
-        ParentColor = False
         ParentFont = False
       end
       object dbediArbeitgeber: TDBEdit
@@ -331,10 +301,9 @@ object frmKartei: TfrmKartei
         Width = 230
         DataField = 'Arbeitgeber'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 25
+        TabOrder = 24
       end
       object Label50: TLabel
         Left = 563
@@ -342,7 +311,6 @@ object frmKartei: TfrmKartei
         Top = 340
         Width = 62
         Caption = 'Arbeitgeber'
-        ParentColor = False
         ParentFont = False
       end
       object Label51: TLabel
@@ -351,7 +319,6 @@ object frmKartei: TfrmKartei
         Top = 340
         Width = 75
         Caption = 'erlernter Beruf'
-        ParentColor = False
         ParentFont = False
       end
       object dbediBerufErlernt: TDBEdit
@@ -361,10 +328,9 @@ object frmKartei: TfrmKartei
         Width = 230
         DataField = 'BerufErlernt'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 23
+        TabOrder = 22
       end
       object labFFeld1: TLabel
         Left = 142
@@ -372,7 +338,6 @@ object frmKartei: TfrmKartei
         Top = 386
         Width = 64
         Caption = 'Freies Feld 1'
-        ParentColor = False
         ParentFont = False
       end
       object dbediFreiFeld1: TDBEdit
@@ -382,10 +347,9 @@ object frmKartei: TfrmKartei
         Width = 732
         DataField = 'FreiFeld1'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
-        TabOrder = 30
+        TabOrder = 29
       end
       object DBCB_AktiverZahler: TDBCheckBox
         Left = 3
@@ -396,7 +360,7 @@ object frmKartei: TfrmKartei
         DataField = 'AktiverZahler'
         DataSource = frmDM.dsPersonen
         ParentFont = False
-        TabOrder = 27
+        TabOrder = 26
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
@@ -409,7 +373,7 @@ object frmKartei: TfrmKartei
         DataField = 'AnZahlungErinnern'
         DataSource = frmDM.dsPersonen
         ParentFont = False
-        TabOrder = 28
+        TabOrder = 27
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
@@ -419,7 +383,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 74
         Caption = 'Familienstand'
-        ParentColor = False
         ParentFont = False
       end
       object DBCB_GD_Besuch: TDBCheckBox
@@ -431,7 +394,7 @@ object frmKartei: TfrmKartei
         DataField = 'GDBesuch'
         DataSource = frmDM.dsPersonen
         ParentFont = False
-        TabOrder = 29
+        TabOrder = 28
         ValueChecked = '1'
         ValueUnchecked = '0'
       end
@@ -454,7 +417,7 @@ object frmKartei: TfrmKartei
           'LV (partnerhinterblieben = Lebenspartner verstorben)'
           'FU (Familienstand unbekannt)'
         )
-        MaxLength = 0
+        MaxLength = 20
         OnMouseEnter = dbcbOnMouseEnter
         ParentFont = False
         TabOrder = 2
@@ -463,7 +426,7 @@ object frmKartei: TfrmKartei
         Left = 3
         Height = 23
         Top = 307
-        Width = 208
+        Width = 165
         DataField = 'Kirche'
         DataSource = frmDM.dsPersonen
         ItemHeight = 15
@@ -478,7 +441,6 @@ object frmKartei: TfrmKartei
         Top = 194
         Width = 40
         Caption = 'eMail-2'
-        ParentColor = False
         ParentFont = False
       end
       object dbediEMail1: TDBEdit
@@ -489,7 +451,6 @@ object frmKartei: TfrmKartei
         Width = 408
         DataField = 'email2'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -503,7 +464,6 @@ object frmKartei: TfrmKartei
         Top = 242
         Width = 40
         Caption = 'eMail-3'
-        ParentColor = False
         ParentFont = False
       end
       object dbediEMail2: TDBEdit
@@ -514,7 +474,6 @@ object frmKartei: TfrmKartei
         Width = 408
         DataField = 'email3'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -528,7 +487,6 @@ object frmKartei: TfrmKartei
         Top = 194
         Width = 219
         Caption = 'Internet / Facebook / Twitter / WKW / u.a.'
-        ParentColor = False
         ParentFont = False
       end
       object dbediInternet1: TDBEdit
@@ -539,7 +497,6 @@ object frmKartei: TfrmKartei
         Width = 456
         DataField = 'Internet2'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -555,7 +512,6 @@ object frmKartei: TfrmKartei
         Width = 456
         DataField = 'Internet3'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -569,7 +525,6 @@ object frmKartei: TfrmKartei
         Top = 242
         Width = 219
         Caption = 'Internet / Facebook / Twitter / WKW / u.a.'
-        ParentColor = False
         ParentFont = False
       end
       object Label60: TLabel
@@ -578,7 +533,6 @@ object frmKartei: TfrmKartei
         Top = 291
         Width = 91
         Caption = 'Aufgewachsen in'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiAufgewachsenIn: TDBEdit
@@ -588,10 +542,9 @@ object frmKartei: TfrmKartei
         Width = 455
         DataField = 'AufgewachsenIn'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
-        TabOrder = 21
+        TabOrder = 20
       end
       object DBCBGeschlecht: TDBComboBox
         Left = 3
@@ -619,7 +572,6 @@ object frmKartei: TfrmKartei
         Top = 7
         Width = 58
         Caption = 'Geschlecht'
-        ParentColor = False
         ParentFont = False
       end
       object Label3: TLabel
@@ -628,7 +580,6 @@ object frmKartei: TfrmKartei
         Top = 7
         Width = 58
         Caption = 'Geburtstag'
-        ParentColor = False
         ParentFont = False
       end
       object DBediGeburtstag: TDBEdit
@@ -638,7 +589,6 @@ object frmKartei: TfrmKartei
         Width = 81
         DataField = 'Geburtstag'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 1
@@ -651,7 +601,6 @@ object frmKartei: TfrmKartei
         Top = 7
         Width = 25
         Caption = 'Alter'
-        ParentColor = False
         ParentFont = False
       end
       object labAlter: TLabel
@@ -662,7 +611,6 @@ object frmKartei: TfrmKartei
         Alignment = taRightJustify
         AutoSize = False
         Caption = 'Alter'
-        ParentColor = False
         ParentFont = False
       end
       object Label6: TLabel
@@ -671,7 +619,6 @@ object frmKartei: TfrmKartei
         Top = 27
         Width = 87
         Caption = 'Letzte Änderung'
-        ParentColor = False
         ParentFont = False
       end
       object DBT_LastChange: TDBText
@@ -682,7 +629,6 @@ object frmKartei: TfrmKartei
         AutoSize = False
         DataField = 'LastChange'
         DataSource = frmDM.dsPersonen
-        ParentColor = False
         ParentFont = False
       end
       object DBText_PersonenID: TDBText
@@ -693,7 +639,6 @@ object frmKartei: TfrmKartei
         AutoSize = False
         DataField = 'PersonenID'
         DataSource = frmDM.dsPersonen
-        ParentColor = False
         ParentFont = False
       end
       object Label21: TLabel
@@ -702,7 +647,6 @@ object frmKartei: TfrmKartei
         Top = 27
         Width = 11
         Caption = 'ID'
-        ParentColor = False
         ParentFont = False
       end
       object Shape11: TShape
@@ -740,7 +684,6 @@ object frmKartei: TfrmKartei
         Width = 174
         DataField = 'GebStARegNr'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 7
@@ -751,7 +694,6 @@ object frmKartei: TfrmKartei
         Top = 48
         Width = 72
         Caption = 'GebStARegNr'
-        ParentColor = False
         ParentFont = False
       end
       object dbediGebStAOrt: TDBEdit
@@ -761,7 +703,6 @@ object frmKartei: TfrmKartei
         Width = 183
         DataField = 'GebStAOrt'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 6
@@ -772,7 +713,6 @@ object frmKartei: TfrmKartei
         Top = 48
         Width = 56
         Caption = 'GebStAOrt'
-        ParentColor = False
         ParentFont = False
       end
       object Label47: TLabel
@@ -781,7 +721,6 @@ object frmKartei: TfrmKartei
         Top = 48
         Width = 75
         Caption = 'GebStADatum'
-        ParentColor = False
         ParentFont = False
       end
       object dbediGebStADatum: TDBEdit
@@ -791,7 +730,6 @@ object frmKartei: TfrmKartei
         Width = 76
         DataField = 'GebStADatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 5
@@ -805,7 +743,6 @@ object frmKartei: TfrmKartei
         Width = 192
         DataField = 'GebOrt'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 4
@@ -816,7 +753,6 @@ object frmKartei: TfrmKartei
         Top = 48
         Width = 38
         Caption = 'GebOrt'
-        ParentColor = False
         ParentFont = False
       end
       object Label45: TLabel
@@ -825,7 +761,6 @@ object frmKartei: TfrmKartei
         Top = 48
         Width = 53
         Caption = 'GebName'
-        ParentColor = False
         ParentFont = False
       end
       object dbediGebName: TDBEdit
@@ -835,10 +770,29 @@ object frmKartei: TfrmKartei
         Width = 208
         DataField = 'GebName'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 3
+      end
+      object DBCBGemeinde: TDBComboBox
+        Left = 172
+        Height = 23
+        Top = 307
+        Width = 132
+        DataField = 'Gemeinde'
+        DataSource = frmDM.dsPersonen
+        ItemHeight = 15
+        Items.Strings = (
+          'M'
+          'W'
+          'D'
+          ' '
+        )
+        MaxLength = 10
+        OnChange = DBCBGeschlechtChange
+        OnMouseEnter = dbcbOnMouseEnter
+        ParentFont = False
+        TabOrder = 30
       end
     end
     object TSEltern: TTabSheet
@@ -852,7 +806,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 26
         Caption = 'Vater'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiVaterName: TDBEdit
@@ -863,7 +816,6 @@ object frmKartei: TfrmKartei
         Width = 408
         DataField = 'VaterName'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         ParentShowHint = False
@@ -877,7 +829,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 71
         Caption = 'Geburtsname'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiVaterGebName: TDBEdit
@@ -887,7 +838,6 @@ object frmKartei: TfrmKartei
         Width = 288
         DataField = 'VaterGebName'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 1
@@ -898,7 +848,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 33
         Caption = 'Kirche'
-        ParentColor = False
         ParentFont = False
       end
       object Label56: TLabel
@@ -907,7 +856,6 @@ object frmKartei: TfrmKartei
         Top = 49
         Width = 36
         Caption = 'Mutter'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiMutterName: TDBEdit
@@ -918,7 +866,6 @@ object frmKartei: TfrmKartei
         Width = 408
         DataField = 'MutterName'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         ParentShowHint = False
@@ -933,7 +880,6 @@ object frmKartei: TfrmKartei
         Width = 288
         DataField = 'MutterGebName'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 4
@@ -954,7 +900,6 @@ object frmKartei: TfrmKartei
         Top = 104
         Width = 63
         Caption = 'Geschwister'
-        ParentColor = False
         ParentFont = False
       end
       object btnNewKind: TButton
@@ -989,7 +934,6 @@ object frmKartei: TfrmKartei
         Top = 264
         Width = 47
         Caption = 'Vorname'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdKindVorname: TDBEdit
@@ -999,7 +943,6 @@ object frmKartei: TfrmKartei
         Width = 145
         DataField = 'Vorname'
         DataSource = frmDM.dsKinder
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 7
@@ -1011,7 +954,6 @@ object frmKartei: TfrmKartei
         Width = 145
         DataField = 'Vorname2'
         DataSource = frmDM.dsKinder
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 8
@@ -1022,7 +964,6 @@ object frmKartei: TfrmKartei
         Top = 264
         Width = 53
         Caption = 'Vorname2'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdKindNachname: TDBEdit
@@ -1032,7 +973,6 @@ object frmKartei: TfrmKartei
         Width = 145
         DataField = 'Nachname'
         DataSource = frmDM.dsKinder
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 9
@@ -1043,7 +983,6 @@ object frmKartei: TfrmKartei
         Top = 264
         Width = 58
         Caption = 'Nachname'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiKindGebName: TDBEdit
@@ -1053,7 +992,6 @@ object frmKartei: TfrmKartei
         Width = 145
         DataField = 'GebName'
         DataSource = frmDM.dsKinder
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 10
@@ -1064,7 +1002,6 @@ object frmKartei: TfrmKartei
         Top = 264
         Width = 71
         Caption = 'Geburtsname'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiKindGeburtstag: TDBEdit
@@ -1074,7 +1011,6 @@ object frmKartei: TfrmKartei
         Width = 80
         DataField = 'Geburtstag'
         DataSource = frmDM.dsKinder
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 11
@@ -1085,7 +1021,6 @@ object frmKartei: TfrmKartei
         Top = 264
         Width = 58
         Caption = 'Geburtstag'
-        ParentColor = False
         ParentFont = False
       end
       object Label144: TLabel
@@ -1094,7 +1029,6 @@ object frmKartei: TfrmKartei
         Top = 264
         Width = 33
         Caption = 'Kirche'
-        ParentColor = False
         ParentFont = False
       end
       object DBNavigator5: TDBNavigator
@@ -1176,7 +1110,6 @@ object frmKartei: TfrmKartei
         Top = 225
         Width = 34
         Caption = 'Kinder'
-        ParentColor = False
         ParentFont = False
       end
       object Label148: TLabel
@@ -1185,7 +1118,6 @@ object frmKartei: TfrmKartei
         Top = 264
         Width = 57
         Caption = 'Taufdatum'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiKindTaufdatum: TDBEdit
@@ -1195,7 +1127,6 @@ object frmKartei: TfrmKartei
         Width = 80
         DataField = 'Taufdatum'
         DataSource = frmDM.dsKinder
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 12
@@ -1212,7 +1143,6 @@ object frmKartei: TfrmKartei
         Top = 333
         Width = 64
         Caption = 'Freies Feld 2'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiFreiFeld2: TDBEdit
@@ -1222,7 +1152,6 @@ object frmKartei: TfrmKartei
         Width = 872
         DataField = 'FreiFeld2'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 34
@@ -1234,7 +1163,6 @@ object frmKartei: TfrmKartei
         Width = 73
         DataField = 'TaufDatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 0
@@ -1247,7 +1175,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 61
         Caption = 'Tauf Datum'
-        ParentColor = False
         ParentFont = False
       end
       object Label66: TLabel
@@ -1256,7 +1183,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 42
         Caption = 'Tauf Ort'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTaufOrt: TDBEdit
@@ -1266,7 +1192,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'TaufOrt'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 1
@@ -1277,7 +1202,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 60
         Caption = 'Tauf Pfarrer'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTaufPfarrer: TDBEdit
@@ -1287,7 +1211,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'TaufPfarrer'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 2
@@ -1298,7 +1221,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 62
         Caption = 'Tauf Spruch'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTaufSpruch: TDBEdit
@@ -1308,7 +1230,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'TaufSpruch'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 3
@@ -1319,7 +1240,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 70
         Caption = 'Tauf. Reg. Nr.'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTaufRegNr: TDBEdit
@@ -1329,7 +1249,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'TaufRegNr'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 4
@@ -1340,7 +1259,6 @@ object frmKartei: TfrmKartei
         Top = 48
         Width = 30
         Caption = 'Paten'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTaufPate1: TDBEdit
@@ -1350,7 +1268,6 @@ object frmKartei: TfrmKartei
         Width = 136
         DataField = 'TaufPate1'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 5
@@ -1362,7 +1279,6 @@ object frmKartei: TfrmKartei
         Width = 136
         DataField = 'TaufPate2'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 6
@@ -1374,7 +1290,6 @@ object frmKartei: TfrmKartei
         Width = 136
         DataField = 'TaufPate3'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 7
@@ -1386,7 +1301,6 @@ object frmKartei: TfrmKartei
         Width = 152
         DataField = 'TaufPate6'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 10
@@ -1398,7 +1312,6 @@ object frmKartei: TfrmKartei
         Width = 136
         DataField = 'TaufPate5'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 9
@@ -1410,7 +1323,6 @@ object frmKartei: TfrmKartei
         Width = 136
         DataField = 'TaufPate4'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 8
@@ -1421,7 +1333,6 @@ object frmKartei: TfrmKartei
         Top = 102
         Width = 64
         Caption = 'Konf Datum'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiKonfDatum: TDBEdit
@@ -1431,7 +1342,6 @@ object frmKartei: TfrmKartei
         Width = 73
         DataField = 'KonfDatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 11
@@ -1444,7 +1354,6 @@ object frmKartei: TfrmKartei
         Top = 102
         Width = 45
         Caption = 'Konf Ort'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiKonfOrt: TDBEdit
@@ -1454,7 +1363,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'KonfOrt'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 12
@@ -1465,7 +1373,6 @@ object frmKartei: TfrmKartei
         Top = 102
         Width = 63
         Caption = 'Konf Pfarrer'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiKonfPfarrer: TDBEdit
@@ -1475,7 +1382,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'KonfPfarrer'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 13
@@ -1486,7 +1392,6 @@ object frmKartei: TfrmKartei
         Top = 102
         Width = 65
         Caption = 'Konf Spruch'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiKonfSpruch: TDBEdit
@@ -1496,7 +1401,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'KonfSpruch'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 14
@@ -1507,7 +1411,6 @@ object frmKartei: TfrmKartei
         Top = 102
         Width = 73
         Caption = 'Konf. Reg. Nr.'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiKonfRegNr: TDBEdit
@@ -1517,7 +1420,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'KonfRegNr'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 15
@@ -1528,7 +1430,6 @@ object frmKartei: TfrmKartei
         Top = 241
         Width = 61
         Caption = 'Trau Datum'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTrauDatum: TDBEdit
@@ -1538,7 +1439,6 @@ object frmKartei: TfrmKartei
         Width = 73
         DataField = 'TrauDatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 23
@@ -1552,7 +1452,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'TrauOrt'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 24
@@ -1563,7 +1462,6 @@ object frmKartei: TfrmKartei
         Top = 241
         Width = 42
         Caption = 'Trau Ort'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTrauPfarrer: TDBEdit
@@ -1573,7 +1471,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'TrauPfarrer'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 25
@@ -1584,7 +1481,6 @@ object frmKartei: TfrmKartei
         Top = 241
         Width = 60
         Caption = 'Trau Pfarrer'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTrauSpruch: TDBEdit
@@ -1594,7 +1490,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'TrauSpruch'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 26
@@ -1605,7 +1500,6 @@ object frmKartei: TfrmKartei
         Top = 241
         Width = 62
         Caption = 'Trau Spruch'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTrauRegNr: TDBEdit
@@ -1615,7 +1509,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'TrauRegNr'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 27
@@ -1626,7 +1519,6 @@ object frmKartei: TfrmKartei
         Top = 241
         Width = 70
         Caption = 'Trau. Reg. Nr.'
-        ParentColor = False
         ParentFont = False
       end
       object Label81: TLabel
@@ -1635,7 +1527,6 @@ object frmKartei: TfrmKartei
         Top = 282
         Width = 60
         Caption = 'Trauzeugen'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTrauZeuge1: TDBEdit
@@ -1645,7 +1536,6 @@ object frmKartei: TfrmKartei
         Width = 136
         DataField = 'TrauZeuge1'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 28
@@ -1657,7 +1547,6 @@ object frmKartei: TfrmKartei
         Width = 136
         DataField = 'TrauZeuge2'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 29
@@ -1669,7 +1558,6 @@ object frmKartei: TfrmKartei
         Width = 136
         DataField = 'TrauZeuge3'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 30
@@ -1681,7 +1569,6 @@ object frmKartei: TfrmKartei
         Width = 136
         DataField = 'TrauZeuge4'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 31
@@ -1693,7 +1580,6 @@ object frmKartei: TfrmKartei
         Width = 136
         DataField = 'TrauZeuge5'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 32
@@ -1705,7 +1591,6 @@ object frmKartei: TfrmKartei
         Width = 152
         DataField = 'TrauZeuge6'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 33
@@ -1716,7 +1601,6 @@ object frmKartei: TfrmKartei
         Top = 200
         Width = 73
         Caption = 'EheStADatum'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiEheStADatum: TDBEdit
@@ -1726,7 +1610,6 @@ object frmKartei: TfrmKartei
         Width = 73
         DataField = 'EheStADatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 20
@@ -1739,7 +1622,6 @@ object frmKartei: TfrmKartei
         Top = 200
         Width = 54
         Caption = 'EheStAOrt'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiEheStAOrt: TDBEdit
@@ -1749,7 +1631,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'EheStAOrt'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 21
@@ -1760,7 +1641,6 @@ object frmKartei: TfrmKartei
         Top = 156
         Width = 107
         Caption = 'Ehegatte / Ehegattin'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiEhegatteIn: TDBEdit
@@ -1770,7 +1650,6 @@ object frmKartei: TfrmKartei
         Width = 215
         DataField = 'EhegatteIn'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 16
@@ -1781,7 +1660,6 @@ object frmKartei: TfrmKartei
         Top = 156
         Width = 59
         Caption = 'Geb. Name'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiEheGebName: TDBEdit
@@ -1791,7 +1669,6 @@ object frmKartei: TfrmKartei
         Width = 158
         DataField = 'EheGebName'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 17
@@ -1802,7 +1679,6 @@ object frmKartei: TfrmKartei
         Top = 200
         Width = 129
         Caption = 'Ehe Standesamt Reg. Nr.'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiEheStARegNr: TDBEdit
@@ -1812,7 +1688,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'EheStARegNr'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 22
@@ -1823,7 +1698,6 @@ object frmKartei: TfrmKartei
         Top = 156
         Width = 33
         Caption = 'Kirche'
-        ParentColor = False
         ParentFont = False
       end
       object dbcbEhegatteKirche: TDBComboBox
@@ -1866,7 +1740,6 @@ object frmKartei: TfrmKartei
         Top = 156
         Width = 58
         Caption = 'Geburtstag'
-        ParentColor = False
         ParentFont = False
       end
       object DbEdiEheGatteGeburtstag: TDBEdit
@@ -1876,7 +1749,6 @@ object frmKartei: TfrmKartei
         Width = 81
         DataField = 'dRes1'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 18
@@ -1895,7 +1767,6 @@ object frmKartei: TfrmKartei
         Top = 414
         Width = 64
         Caption = 'Freies Feld 3'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiFreiFeld3: TDBEdit
@@ -1905,7 +1776,6 @@ object frmKartei: TfrmKartei
         Width = 872
         DataField = 'FreiFeld3'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 27
@@ -1916,7 +1786,6 @@ object frmKartei: TfrmKartei
         Top = 239
         Width = 65
         Caption = 'Todesdatum'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTodesDatum: TDBEdit
@@ -1926,7 +1795,6 @@ object frmKartei: TfrmKartei
         Width = 96
         DataField = 'TodesDatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 12
@@ -1939,7 +1807,6 @@ object frmKartei: TfrmKartei
         Top = 0
         Width = 75
         Caption = 'Eintrittsdatum'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiEintrittsDatum: TDBEdit
@@ -1949,7 +1816,6 @@ object frmKartei: TfrmKartei
         Width = 97
         DataField = 'EintrittsDatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 0
@@ -1962,7 +1828,6 @@ object frmKartei: TfrmKartei
         Top = 0
         Width = 72
         Caption = 'Eintrittsgrund'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiEintrittsGrund: TDBEdit
@@ -1972,7 +1837,6 @@ object frmKartei: TfrmKartei
         Width = 768
         DataField = 'EintrittsGrund'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 1
@@ -1983,7 +1847,6 @@ object frmKartei: TfrmKartei
         Top = 40
         Width = 84
         Caption = 'Übertrittsdatum'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiUebertrittsZuDatum: TDBEdit
@@ -1993,7 +1856,6 @@ object frmKartei: TfrmKartei
         Width = 97
         DataField = 'UebertrittsZuDatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 2
@@ -2007,7 +1869,6 @@ object frmKartei: TfrmKartei
         Width = 367
         DataField = 'UebertrittsZuGrund'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 3
@@ -2018,7 +1879,6 @@ object frmKartei: TfrmKartei
         Top = 40
         Width = 81
         Caption = 'Übertrittsgrund'
-        ParentColor = False
         ParentFont = False
       end
       object Label97: TLabel
@@ -2027,7 +1887,6 @@ object frmKartei: TfrmKartei
         Top = 40
         Width = 65
         Caption = 'Übertritt aus'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiAustrittsDatum: TDBEdit
@@ -2037,7 +1896,6 @@ object frmKartei: TfrmKartei
         Width = 97
         DataField = 'AustrittsDatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 8
@@ -2051,7 +1909,6 @@ object frmKartei: TfrmKartei
         Width = 768
         DataField = 'AustrittsGrund'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 9
@@ -2062,7 +1919,6 @@ object frmKartei: TfrmKartei
         Top = 154
         Width = 79
         Caption = 'Austrittsdatum'
-        ParentColor = False
         ParentFont = False
       end
       object Label99: TLabel
@@ -2071,7 +1927,6 @@ object frmKartei: TfrmKartei
         Top = 154
         Width = 76
         Caption = 'Austrittsgrund'
-        ParentColor = False
         ParentFont = False
       end
       object Label100: TLabel
@@ -2080,7 +1935,6 @@ object frmKartei: TfrmKartei
         Top = 194
         Width = 93
         Caption = 'Ausschlussdatum'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiAusschlussDatum: TDBEdit
@@ -2090,7 +1944,6 @@ object frmKartei: TfrmKartei
         Width = 97
         DataField = 'AusschlussDatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 10
@@ -2104,7 +1957,6 @@ object frmKartei: TfrmKartei
         Width = 768
         DataField = 'AusschlussGrund'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 11
@@ -2115,7 +1967,6 @@ object frmKartei: TfrmKartei
         Top = 194
         Width = 90
         Caption = 'Ausschlussgrund'
-        ParentColor = False
         ParentFont = False
       end
       object Label102: TLabel
@@ -2124,7 +1975,6 @@ object frmKartei: TfrmKartei
         Top = 80
         Width = 94
         Caption = 'Überweisungsdat.'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiUeberwiesen_von_Datum: TDBEdit
@@ -2134,7 +1984,6 @@ object frmKartei: TfrmKartei
         Width = 97
         DataField = 'Ueberwiesen_von_Datum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 5
@@ -2147,7 +1996,6 @@ object frmKartei: TfrmKartei
         Top = 80
         Width = 84
         Caption = 'Überwiesen von'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiUeberwiesen_von: TDBEdit
@@ -2157,7 +2005,6 @@ object frmKartei: TfrmKartei
         Width = 768
         DataField = 'Ueberwiesen_von'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 6
@@ -2168,7 +2015,6 @@ object frmKartei: TfrmKartei
         Top = 239
         Width = 75
         Caption = 'Standesamt in'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTodStAOrt: TDBEdit
@@ -2178,7 +2024,6 @@ object frmKartei: TfrmKartei
         Width = 191
         DataField = 'TodStAOrt'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 15
@@ -2190,7 +2035,6 @@ object frmKartei: TfrmKartei
         Width = 102
         DataField = 'TodStADatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 14
@@ -2203,7 +2047,6 @@ object frmKartei: TfrmKartei
         Top = 239
         Width = 102
         Caption = 'Standesamtsdatum'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiTodStARegNr: TDBEdit
@@ -2213,7 +2056,6 @@ object frmKartei: TfrmKartei
         Width = 153
         DataField = 'TodStARegNr'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 16
@@ -2224,7 +2066,6 @@ object frmKartei: TfrmKartei
         Top = 239
         Width = 36
         Caption = 'Reg Nr'
-        ParentColor = False
         ParentFont = False
       end
       object Label108: TLabel
@@ -2233,7 +2074,6 @@ object frmKartei: TfrmKartei
         Top = 328
         Width = 94
         Caption = 'Überweisungsdat.'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiUeberwiesen_nach_Datum: TDBEdit
@@ -2243,7 +2083,6 @@ object frmKartei: TfrmKartei
         Width = 97
         DataField = 'Ueberwiesen_nach_Datum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 22
@@ -2257,7 +2096,6 @@ object frmKartei: TfrmKartei
         Width = 768
         DataField = 'Ueberwiesen_nach'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 23
@@ -2268,7 +2106,6 @@ object frmKartei: TfrmKartei
         Top = 328
         Width = 90
         Caption = 'Überwiesen nach'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiUebertrittsAbDatum: TDBEdit
@@ -2278,7 +2115,6 @@ object frmKartei: TfrmKartei
         Width = 97
         DataField = 'UebertrittsAbDatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 24
@@ -2291,7 +2127,6 @@ object frmKartei: TfrmKartei
         Top = 369
         Width = 84
         Caption = 'Übertrittsdatum'
-        ParentColor = False
         ParentFont = False
       end
       object Label111: TLabel
@@ -2300,7 +2135,6 @@ object frmKartei: TfrmKartei
         Top = 369
         Width = 81
         Caption = 'Übertrittsgrund'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiUebertrittsAbGrund: TDBEdit
@@ -2310,7 +2144,6 @@ object frmKartei: TfrmKartei
         Width = 367
         DataField = 'UebertrittsAbGrund'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 25
@@ -2321,7 +2154,6 @@ object frmKartei: TfrmKartei
         Top = 369
         Width = 73
         Caption = 'Übertritt nach'
-        ParentColor = False
         ParentFont = False
       end
       object DBCBAbgaenge: TDBCheckBox
@@ -2373,7 +2205,6 @@ object frmKartei: TfrmKartei
         Top = 239
         Width = 45
         Caption = 'Todesort'
-        ParentColor = False
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
@@ -2384,7 +2215,6 @@ object frmKartei: TfrmKartei
         Top = 280
         Width = 82
         Caption = 'Bestattungsdat.'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiBestattungsDatum: TDBEdit
@@ -2394,7 +2224,6 @@ object frmKartei: TfrmKartei
         Width = 97
         DataField = 'BestattungsDatum'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 17
@@ -2407,7 +2236,6 @@ object frmKartei: TfrmKartei
         Top = 280
         Width = 44
         Caption = 'Friedhof'
-        ParentColor = False
         ParentFont = False
       end
       object Label90: TLabel
@@ -2416,7 +2244,6 @@ object frmKartei: TfrmKartei
         Top = 282
         Width = 35
         Caption = 'Pfarrer'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiBestattungsPfarrer: TDBEdit
@@ -2426,7 +2253,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'BestattungsPfarrer'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 19
@@ -2438,7 +2264,6 @@ object frmKartei: TfrmKartei
         Width = 190
         DataField = 'BestattungsText'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 20
@@ -2449,7 +2274,6 @@ object frmKartei: TfrmKartei
         Top = 282
         Width = 85
         Caption = 'Bestattungstext '
-        ParentColor = False
         ParentFont = False
       end
       object Label92: TLabel
@@ -2458,7 +2282,6 @@ object frmKartei: TfrmKartei
         Top = 282
         Width = 36
         Caption = 'Reg Nr'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiBestattungsRegNr: TDBEdit
@@ -2468,7 +2291,6 @@ object frmKartei: TfrmKartei
         Width = 153
         DataField = 'BestattungsRegNr'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 21
@@ -2480,7 +2302,6 @@ object frmKartei: TfrmKartei
         Width = 207
         DataField = 'Friedhof'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 18
@@ -2492,7 +2313,6 @@ object frmKartei: TfrmKartei
         Width = 295
         DataField = 'Todesort'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 100
         ParentFont = False
         TabOrder = 13
@@ -2551,7 +2371,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 103
         Caption = 'Abendmahlsgänge:'
-        ParentColor = False
         ParentFont = False
       end
       object btnNewKomm: TButton
@@ -2587,7 +2406,6 @@ object frmKartei: TfrmKartei
         AutoSize = False
         DataField = 'Abendmahlsdatum'
         DataSource = frmDM.dsKomm
-        ParentColor = False
         ParentFont = False
       end
       object btnDelKomm: TButton
@@ -2614,7 +2432,6 @@ object frmKartei: TfrmKartei
         Width = 97
         DataField = 'BesuchsDatum'
         DataSource = frmDM.dsBesuch
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 0
@@ -2627,7 +2444,6 @@ object frmKartei: TfrmKartei
         Top = 0
         Width = 78
         Caption = 'Besuchsdatum'
-        ParentColor = False
         ParentFont = False
       end
       object Label134: TLabel
@@ -2636,7 +2452,6 @@ object frmKartei: TfrmKartei
         Top = 0
         Width = 75
         Caption = 'Besuchsgrund'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiBesuchsgrund: TDBEdit
@@ -2646,7 +2461,6 @@ object frmKartei: TfrmKartei
         Width = 768
         DataField = 'Besuchsgrund'
         DataSource = frmDM.dsBesuch
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 1
@@ -2657,7 +2471,6 @@ object frmKartei: TfrmKartei
         Top = 48
         Width = 60
         Caption = 'Mitbringsel'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiMitbringsel: TDBEdit
@@ -2667,7 +2480,6 @@ object frmKartei: TfrmKartei
         Width = 252
         DataField = 'Mitbringsel'
         DataSource = frmDM.dsBesuch
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 2
@@ -2678,7 +2490,6 @@ object frmKartei: TfrmKartei
         Top = 48
         Width = 90
         Caption = 'Terminabsprache'
-        ParentColor = False
         ParentFont = False
       end
       object dbEdiTerminabsprache: TDBEdit
@@ -2688,7 +2499,6 @@ object frmKartei: TfrmKartei
         Width = 300
         DataField = 'Terminabsprache'
         DataSource = frmDM.dsBesuch
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 4
@@ -2699,7 +2509,6 @@ object frmKartei: TfrmKartei
         Top = 48
         Width = 46
         Caption = 'Bibeltext'
-        ParentColor = False
         ParentFont = False
       end
       object DBEdiBibeltext: TDBEdit
@@ -2709,7 +2518,6 @@ object frmKartei: TfrmKartei
         Width = 300
         DataField = 'Bibeltext'
         DataSource = frmDM.dsBesuch
-        CharCase = ecNormal
         MaxLength = 0
         ParentFont = False
         TabOrder = 3
@@ -2730,7 +2538,6 @@ object frmKartei: TfrmKartei
         Top = 96
         Width = 35
         Caption = 'Memo'
-        ParentColor = False
         ParentFont = False
       end
       object btnDelBesuch: TButton
@@ -2820,7 +2627,6 @@ object frmKartei: TfrmKartei
         Width = 872
         DataField = 'FreiFeld4'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 21
@@ -2831,7 +2637,6 @@ object frmKartei: TfrmKartei
         Top = 336
         Width = 64
         Caption = 'Freies Feld 4'
-        ParentColor = False
         ParentFont = False
       end
       object dbediAktivSeit: TDBEdit
@@ -2842,7 +2647,6 @@ object frmKartei: TfrmKartei
         Width = 76
         DataField = 'AktivSeit'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -2856,7 +2660,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 48
         Caption = 'Aktiv seit'
-        ParentColor = False
         ParentFont = False
       end
       object DBCB_AktivesMitglied: TDBCheckBox
@@ -2879,7 +2682,6 @@ object frmKartei: TfrmKartei
         Width = 408
         DataField = 'Aktivitaet1'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 3
@@ -2890,7 +2692,6 @@ object frmKartei: TfrmKartei
         Top = 56
         Width = 53
         Caption = 'Aktivität 1'
-        ParentColor = False
         ParentFont = False
       end
       object Label114: TLabel
@@ -2899,7 +2700,6 @@ object frmKartei: TfrmKartei
         Top = 56
         Width = 63
         Caption = 'Anmerkung'
-        ParentColor = False
         ParentFont = False
       end
       object dbediAnmerkungenZuA1: TDBEdit
@@ -2909,7 +2709,6 @@ object frmKartei: TfrmKartei
         Width = 456
         DataField = 'AnmerkungenZuA1'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 4
@@ -2920,7 +2719,6 @@ object frmKartei: TfrmKartei
         Top = 104
         Width = 53
         Caption = 'Aktivität 2'
-        ParentColor = False
         ParentFont = False
       end
       object dbediAktivitaet2: TDBEdit
@@ -2930,7 +2728,6 @@ object frmKartei: TfrmKartei
         Width = 408
         DataField = 'Aktivitaet2'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 5
@@ -2942,7 +2739,6 @@ object frmKartei: TfrmKartei
         Width = 456
         DataField = 'AnmerkungenZuA2'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 6
@@ -2953,7 +2749,6 @@ object frmKartei: TfrmKartei
         Top = 104
         Width = 63
         Caption = 'Anmerkung'
-        ParentColor = False
         ParentFont = False
       end
       object Label117: TLabel
@@ -2962,7 +2757,6 @@ object frmKartei: TfrmKartei
         Top = 152
         Width = 53
         Caption = 'Aktivität 3'
-        ParentColor = False
         ParentFont = False
       end
       object dbediAktivitaet3: TDBEdit
@@ -2972,7 +2766,6 @@ object frmKartei: TfrmKartei
         Width = 408
         DataField = 'Aktivitaet3'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 7
@@ -2984,7 +2777,6 @@ object frmKartei: TfrmKartei
         Width = 456
         DataField = 'AnmerkungenZuA3'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 8
@@ -2995,7 +2787,6 @@ object frmKartei: TfrmKartei
         Top = 152
         Width = 63
         Caption = 'Anmerkung'
-        ParentColor = False
         ParentFont = False
       end
       object dbediEhrungen: TDBEdit
@@ -3005,7 +2796,6 @@ object frmKartei: TfrmKartei
         Width = 664
         DataField = 'Ehrungen'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 2
@@ -3016,7 +2806,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 51
         Caption = 'Ehrungen'
-        ParentColor = False
         ParentFont = False
       end
       object Label120: TLabel
@@ -3025,7 +2814,6 @@ object frmKartei: TfrmKartei
         Top = 192
         Width = 56
         Caption = 'Funktion 1'
-        ParentColor = False
         ParentFont = False
       end
       object dbediFunktion1: TDBEdit
@@ -3035,7 +2823,6 @@ object frmKartei: TfrmKartei
         Width = 320
         DataField = 'Funktion1'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 9
@@ -3048,7 +2835,6 @@ object frmKartei: TfrmKartei
         Width = 76
         DataField = 'F1Anfang'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -3063,7 +2849,6 @@ object frmKartei: TfrmKartei
         Top = 192
         Width = 37
         Caption = 'Beginn'
-        ParentColor = False
         ParentFont = False
       end
       object dbediEndeF1: TDBEdit
@@ -3074,7 +2859,6 @@ object frmKartei: TfrmKartei
         Width = 76
         DataField = 'F1Ende'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -3089,7 +2873,6 @@ object frmKartei: TfrmKartei
         Top = 192
         Width = 26
         Caption = 'Ende'
-        ParentColor = False
         ParentFont = False
       end
       object dbediAnmerkungenZuF1: TDBEdit
@@ -3099,7 +2882,6 @@ object frmKartei: TfrmKartei
         Width = 376
         DataField = 'AnmerkungenZuF1'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 12
@@ -3110,7 +2892,6 @@ object frmKartei: TfrmKartei
         Top = 192
         Width = 63
         Caption = 'Anmerkung'
-        ParentColor = False
         ParentFont = False
       end
       object Label124: TLabel
@@ -3119,7 +2900,6 @@ object frmKartei: TfrmKartei
         Top = 240
         Width = 56
         Caption = 'Funktion 2'
-        ParentColor = False
         ParentFont = False
       end
       object dbediFunktion2: TDBEdit
@@ -3129,7 +2909,6 @@ object frmKartei: TfrmKartei
         Width = 320
         DataField = 'Funktion2'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 13
@@ -3140,7 +2919,6 @@ object frmKartei: TfrmKartei
         Top = 240
         Width = 37
         Caption = 'Beginn'
-        ParentColor = False
         ParentFont = False
       end
       object dbediAnfangF2: TDBEdit
@@ -3151,7 +2929,6 @@ object frmKartei: TfrmKartei
         Width = 76
         DataField = 'F2Anfang'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -3168,7 +2945,6 @@ object frmKartei: TfrmKartei
         Width = 76
         DataField = 'F2Ende'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -3183,7 +2959,6 @@ object frmKartei: TfrmKartei
         Top = 240
         Width = 26
         Caption = 'Ende'
-        ParentColor = False
         ParentFont = False
       end
       object dbediAnmerkungenZuF2: TDBEdit
@@ -3193,7 +2968,6 @@ object frmKartei: TfrmKartei
         Width = 376
         DataField = 'AnmerkungenZuF2'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 16
@@ -3204,7 +2978,6 @@ object frmKartei: TfrmKartei
         Top = 240
         Width = 63
         Caption = 'Anmerkung'
-        ParentColor = False
         ParentFont = False
       end
       object Label128: TLabel
@@ -3213,7 +2986,6 @@ object frmKartei: TfrmKartei
         Top = 288
         Width = 56
         Caption = 'Funktion 3'
-        ParentColor = False
         ParentFont = False
       end
       object dbediFunktion3: TDBEdit
@@ -3223,7 +2995,6 @@ object frmKartei: TfrmKartei
         Width = 320
         DataField = 'Funktion3'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 17
@@ -3234,7 +3005,6 @@ object frmKartei: TfrmKartei
         Top = 288
         Width = 37
         Caption = 'Beginn'
-        ParentColor = False
         ParentFont = False
       end
       object dbediAnfangF3: TDBEdit
@@ -3245,7 +3015,6 @@ object frmKartei: TfrmKartei
         Width = 76
         DataField = 'F3Anfang'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -3262,7 +3031,6 @@ object frmKartei: TfrmKartei
         Width = 76
         DataField = 'F3Ende'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         ParentShowHint = False
@@ -3277,7 +3045,6 @@ object frmKartei: TfrmKartei
         Top = 288
         Width = 26
         Caption = 'Ende'
-        ParentColor = False
         ParentFont = False
       end
       object dbediAnmerkungenZuF3: TDBEdit
@@ -3287,7 +3054,6 @@ object frmKartei: TfrmKartei
         Width = 376
         DataField = 'AnmerkungenZuF3'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 20
@@ -3298,7 +3064,6 @@ object frmKartei: TfrmKartei
         Top = 288
         Width = 63
         Caption = 'Anmerkung'
-        ParentColor = False
         ParentFont = False
       end
     end
@@ -3329,7 +3094,6 @@ object frmKartei: TfrmKartei
         Width = 224
         DataField = 'Nachname'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         Font.Style = [fsBold]
         MaxLength = 255
         ParentFont = False
@@ -3341,7 +3105,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 58
         Caption = 'Nachname'
-        ParentColor = False
         ParentFont = False
       end
       object dbediVorname: TDBEdit
@@ -3351,7 +3114,6 @@ object frmKartei: TfrmKartei
         Width = 240
         DataField = 'Vorname'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         Font.Style = [fsBold]
         MaxLength = 255
         ParentFont = False
@@ -3363,7 +3125,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 47
         Caption = 'Vorname'
-        ParentColor = False
         ParentFont = False
       end
       object Label4: TLabel
@@ -3372,7 +3133,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 38
         Caption = 'Anrede'
-        ParentColor = False
         ParentFont = False
       end
       object DBCBAnrede: TDBComboBox
@@ -3402,7 +3162,6 @@ object frmKartei: TfrmKartei
         Width = 224
         DataField = 'Vorname2'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 3
@@ -3413,7 +3172,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 53
         Caption = 'Vorname2'
-        ParentColor = False
         ParentFont = False
       end
       object Label8: TLabel
@@ -3422,7 +3180,6 @@ object frmKartei: TfrmKartei
         Top = 8
         Width = 22
         Caption = 'Titel'
-        ParentColor = False
         ParentFont = False
       end
       object dbediTitel: TDBEdit
@@ -3432,7 +3189,6 @@ object frmKartei: TfrmKartei
         Width = 88
         DataField = 'Titel'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 1
@@ -3443,7 +3199,6 @@ object frmKartei: TfrmKartei
         Top = 100
         Width = 26
         Caption = 'Land'
-        ParentColor = False
         ParentFont = False
       end
       object Label10: TLabel
@@ -3452,7 +3207,6 @@ object frmKartei: TfrmKartei
         Top = 100
         Width = 20
         Caption = 'PLZ'
-        ParentColor = False
         ParentFont = False
       end
       object Label11: TLabel
@@ -3461,7 +3215,6 @@ object frmKartei: TfrmKartei
         Top = 52
         Width = 67
         Caption = 'Adresszusatz'
-        ParentColor = False
         ParentFont = False
       end
       object dbedisAdresszusatz: TDBEdit
@@ -3471,7 +3224,6 @@ object frmKartei: TfrmKartei
         Width = 408
         DataField = 'sRes1'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 5
@@ -3483,8 +3235,7 @@ object frmKartei: TfrmKartei
         Width = 40
         DataField = 'Land'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
-        MaxLength = 255
+        MaxLength = 3
         ParentFont = False
         TabOrder = 7
       end
@@ -3495,8 +3246,7 @@ object frmKartei: TfrmKartei
         Width = 56
         DataField = 'PLZ'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
-        MaxLength = 255
+        MaxLength = 5
         ParentFont = False
         TabOrder = 8
       end
@@ -3506,7 +3256,6 @@ object frmKartei: TfrmKartei
         Top = 100
         Width = 17
         Caption = 'Ort'
-        ParentColor = False
         ParentFont = False
       end
       object dbediOrt: TDBEdit
@@ -3516,7 +3265,6 @@ object frmKartei: TfrmKartei
         Width = 368
         DataField = 'Ort'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 9
@@ -3527,7 +3275,6 @@ object frmKartei: TfrmKartei
         Top = 100
         Width = 38
         Caption = 'Ortsteil'
-        ParentColor = False
         ParentFont = False
       end
       object dbediOrtsteil: TDBEdit
@@ -3537,7 +3284,6 @@ object frmKartei: TfrmKartei
         Width = 377
         DataField = 'Ortsteil'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 10
@@ -3548,7 +3294,6 @@ object frmKartei: TfrmKartei
         Top = 52
         Width = 33
         Caption = 'Straße'
-        ParentColor = False
         ParentFont = False
       end
       object dbediStrasse: TDBEdit
@@ -3558,7 +3303,6 @@ object frmKartei: TfrmKartei
         Width = 456
         DataField = 'Strasse'
         DataSource = frmDM.dsPersonen
-        CharCase = ecNormal
         MaxLength = 255
         ParentFont = False
         TabOrder = 6
@@ -3590,7 +3334,9 @@ object frmKartei: TfrmKartei
       'Ort'
     )
     OnClick = RG_SortierungClick
+    ParentBackground = False
     ParentFont = False
+    ParentColor = False
     TabOrder = 3
   end
   object DBNavigator3: TDBNavigator
@@ -3744,7 +3490,6 @@ object frmKartei: TfrmKartei
         Top = 0
         Width = 39
         Caption = 'Anzahl:'
-        ParentColor = False
         ParentFont = False
       end
       object labRecCnt: TLabel
@@ -3755,7 +3500,6 @@ object frmKartei: TfrmKartei
         Align = alRight
         Alignment = taRightJustify
         Caption = 'Anzahl'
-        ParentColor = False
         ParentFont = False
       end
     end
@@ -3776,7 +3520,6 @@ object frmKartei: TfrmKartei
       Top = 80
       Width = 54
       Caption = 'Gemeinde'
-      ParentColor = False
       ParentFont = False
     end
   end
@@ -3852,7 +3595,6 @@ object frmKartei: TfrmKartei
       EditLabel.Height = 15
       EditLabel.Width = 80
       EditLabel.Caption = 'Nachname'
-      EditLabel.ParentColor = False
       EditLabel.ParentFont = False
       ParentFont = False
       ParentShowHint = False
@@ -3871,7 +3613,6 @@ object frmKartei: TfrmKartei
       EditLabel.Height = 15
       EditLabel.Width = 80
       EditLabel.Caption = 'Vorname'
-      EditLabel.ParentColor = False
       EditLabel.ParentFont = False
       ParentFont = False
       ParentShowHint = False
