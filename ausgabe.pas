@@ -102,15 +102,9 @@ begin
         sFile := SaveDialog.FileName;
 
         memo.Lines.SaveToFile(sFile);
-
         //Alternative in anderen Formaten speichern
-        AssignFile(myFile, ExtractFilePath(sFile)+StringReplace(ExtractFileName(sFile), '.', '_ANSI_CP1252.', []));
-        Rewrite(myFile);
-        try
-          WriteLn(myFile, UTF8toCP1252(memo.Text));
-        finally
-          CloseFile(myFile);
-        end;
+        memo.Text:=UTF8toCP1252(memo.Text);
+        memo.Lines.SaveToFile(ExtractFilePath(sFile)+StringReplace(ExtractFileName(sFile), '.', '_ANSI_CP1252.', []));
 
         //Dialog schliessen
         close;
