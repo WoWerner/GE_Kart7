@@ -1109,6 +1109,7 @@ end;
 procedure TfrmMain.mnuFehlerInKarteiSuchenClick(Sender: TObject);
 var
   sHelp : string;
+  i     : integer;
 
     procedure einfuegen(text,text2:string);                   {textformatierung}
 
@@ -1121,7 +1122,7 @@ begin
   try
     slAusgabe.clear;
     slAusgabe.Add('Fehlerhafte Datensätze');
-    slAusgabe.add(' ');
+    slAusgabe.add('');
     slAusgabe.add('Folgende Prüfungen sind eingebaut:');
     slAusgabe.add('    Kein Geburtsdatum');
     slAusgabe.add('    Kein Taufdatum');
@@ -1133,10 +1134,11 @@ begin
     slAusgabe.add('    Taufdatum < Geb.Datum');
     slAusgabe.add('    Konf.Datum < Taufdatum');
     slAusgabe.add('    Alter > 65 und kein Ruhestand');
-    slAusgabe.add(' ');
-    slAusgabe.add('Alle Personen, die unter "Kirche" INFO eingetragen haben,');
-    slAusgabe.add('werden bei der Suche NICHT berücksichtigt.');
-    slAusgabe.add(' ');
+    slAusgabe.add('');
+    slAusgabe.add('Alle Personen, die unter "Kirche" INFO eingetragen haben, werden bei der Suche NICHT berücksichtigt.');
+    slAusgabe.add('');
+    slAusgabe.add('Längenüberprüfung');
+    slAusgabe.add('');
     slAusgabe.add('Falls Sie weitere Prüfungen wünschen, teilen Sie es mit mit!');
     slAusgabe.add('PS.: bitte mit Formel.');
     slAusgabe.add(' ');
@@ -1176,6 +1178,15 @@ begin
         if frmDM.dsetHelp.fieldByName('vorname').asstring = ''        then einfuegen(sHelp, ' Kein Vorname');
         if frmDM.dsetHelp.fieldByName('Kirche').asstring = ''         then einfuegen(sHelp, ' Keine Kirche');
 
+        //Längenüberprüfung
+        for i := 0 to frmDM.dsetHelp.FieldDefs.Count-1 do
+          if frmDM.dsetHelp.FieldDefs.Items[i].DataType = ftString then
+            begin
+              if length(frmDM.dsetHelp.fieldByName(frmDM.dsetHelp.FieldDefs.Items[i].Name).asstring) > frmDM.dsetHelp.FieldDefs.Items[i].Size then
+                begin
+                  einfuegen(sHelp, ' Text im Feld "'+frmDM.dsetHelp.FieldDefs.Items[i].Name+'" zu lang');
+                end;
+            end;
         frmDM.dsetHelp.next;
       end;
     frmDM.dsetHelp.close;
