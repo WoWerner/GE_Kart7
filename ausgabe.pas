@@ -53,7 +53,6 @@ var
 implementation
 
 uses
-  windows,
   global,
   LConvEncoding,
   help;
@@ -82,7 +81,6 @@ procedure TfrmAusgabe.btnSaveClick(Sender: TObject);
 
 var
   sFile  : string;
-  myFile : TextFile;
 
 begin
   if sFileName = '' then sFileName := sAppDir+'Ausgabe.txt';
@@ -113,8 +111,7 @@ end;
 
 procedure TfrmAusgabe.FormShow(Sender: TObject);
 begin
-  memo.selstart:=UTF8Length(memo.text);
-  Memo.Perform(EM_SCROLLCARET, 0, 0);
+  memo.TopLine := 0;
   memo.SetFocus;
 end;
 

@@ -7,7 +7,7 @@ object frmAusgabe: TfrmAusgabe
   ClientHeight = 600
   ClientWidth = 800
   OnShow = FormShow
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '2.2.0.4'
   WindowState = wsMaximized
   object Panel1: TPanel
     Left = 0
@@ -567,16 +567,16 @@ object frmAusgabe: TfrmAusgabe
     end
   end
   object SaveDialog: TSaveDialog
-    left = 280
-    top = 616
+    Left = 280
+    Top = 616
   end
   object PrintDialog: TPrintDialog
-    left = 48
-    top = 616
+    Left = 48
+    Top = 616
   end
   object PopupMenuMemo: TPopupMenu
-    left = 200
-    top = 177
+    Left = 200
+    Top = 177
     object mnuClear: TMenuItem
       Caption = 'Lösche alles'
       OnClick = mnuClearClick
