@@ -96,11 +96,11 @@ function SQL_Where_Contains(s, Feld : String): string;
 function SQL_Where_IsNull(Feld : String): string;
 Function SQL_Where_Add(sWhere, sAdd:string): string;
 Function SQL_Where_Add_OR(sWhere, sAdd:string):string;
-function FieldTypeToString(FT: TFieldtype): string;
-function SQLiteDateFormat(d: TDateTime): string;
 function SQL_UTF8UmlautReplace(Feld : String): string;
 function SQL_DeleteComment(SQL_IN : String): string;
 function SQL_QuotedStr(SQL_IN : String): string;
+function FieldTypeToString(FT: TFieldtype): string;
+function SQLiteDateFormat(d: TDateTime): string;
 
 //Datenbank
 function  ExecSQL(SQLCommand : string; MyQue: TZQuery; ShowUpdateMessage: boolean):integer;
@@ -190,31 +190,6 @@ begin
             end;
         SysUtils.FindClose(SR);
       end;
-end;
-
-function SQL_QuotedStr(SQL_IN : String): string;
-
-begin
-  result := StringReplace(SQL_IN, '"', '""', [rfReplaceAll]);
-end;
-
-function SQL_DeleteComment(SQL_IN : String): string;
-
-var
-  p1, p2 : integer;
-
-begin
-  result := SQL_IN;
-  p1 := UTF8Pos('--', result);
-  if p1 > 0 then UTF8Delete(result, p1, 9999);
-
-  p1 := UTF8Pos('/*', result);
-  p2 := UTF8Pos('*/', result);
-
-  if (p1 > 0) and (p2 > 0) then UTF8Delete(result, p1, p2 - p1 + 2);
-  if (p1 > 0) and (p2 = 0) then UTF8Delete(result, p1, 9999);
-
-  result := trim(result);
 end;
 
 function GetMonitorCount: Integer;
@@ -460,14 +435,6 @@ begin
       end; //Case
     until false;
   until false;
-end;
-
-{******************************************************************************}
-
-function SQL_UTF8UmlautReplace(Feld : String): string;
-
-begin
-  result := format('REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(%s,''ö'',''oe''),''Ä'',''Ae''),''Ö'',''Oe''),''ä'',''ae''),''ü'',''ue''),''Ü'',''Ue''),''ß'',''ss''),''é'',''e''),''è'',''e'')', [feld]);
 end;
 
 {******************************************************************************}
@@ -1186,6 +1153,43 @@ function SQL_Where_IsNull(Feld: String): string;
 
 begin
   result := '(('+Feld+' is null) or ('+Feld+'=''''))';
+end;
+
+{******************************************************************************}
+
+function SQL_QuotedStr(SQL_IN : String): string;
+
+begin
+  result := StringReplace(SQL_IN, '"', '""', [rfReplaceAll]);
+end;
+
+{******************************************************************************}
+
+function SQL_UTF8UmlautReplace(Feld : String): string;
+
+begin
+  result := format('REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(%s,''ö'',''oe''),''Ä'',''Ae''),''Ö'',''Oe''),''ä'',''ae''),''ü'',''ue''),''Ü'',''Ue''),''ß'',''ss''),''é'',''e''),''è'',''e'')', [feld]);
+end;
+
+{******************************************************************************}
+
+function SQL_DeleteComment(SQL_IN : String): string;
+
+var
+  p1, p2 : integer;
+
+begin
+  result := SQL_IN;
+  p1 := UTF8Pos('--', result);
+  if p1 > 0 then UTF8Delete(result, p1, 9999);
+
+  p1 := UTF8Pos('/*', result);
+  p2 := UTF8Pos('*/', result);
+
+  if (p1 > 0) and (p2 > 0) then UTF8Delete(result, p1, p2 - p1 + 2);
+  if (p1 > 0) and (p2 = 0) then UTF8Delete(result, p1, 9999);
+
+  result := trim(result);
 end;
 
 {******************************************************************************}
