@@ -10,7 +10,7 @@ object frmPgmUpdate: TfrmPgmUpdate
   ClientWidth = 948
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.0.4'
   object edtUrl: TEdit
     Left = 72
     Height = 23
@@ -30,7 +30,6 @@ object frmPgmUpdate: TfrmPgmUpdate
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 5
     Caption = 'URL'
-    ParentColor = False
   end
   object ProgressBarDownload: TProgressBar
     Left = 72
@@ -49,7 +48,6 @@ object frmPgmUpdate: TfrmPgmUpdate
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 5
     Caption = 'Download'
-    ParentColor = False
   end
   object Memo1: TMemo
     Left = 8
@@ -71,7 +69,6 @@ object frmPgmUpdate: TfrmPgmUpdate
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 5
     Caption = 'Unzip'
-    ParentColor = False
   end
   object ProgressBarUnZip: TProgressBar
     Left = 72
