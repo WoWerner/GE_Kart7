@@ -45,7 +45,6 @@ type
     ZSQLMonitor: TZSQLMonitor;
     procedure dsetGDAfterScroll(DataSet: TDataSet);
     procedure dsetPersonenAfterScroll(DataSet: TDataSet);
-    procedure dsetBeforeOpen(DataSet: TDataSet);
     procedure dsetPersonenBeforePost(DataSet: TDataSet);
     procedure dsPersonenStateChange(Sender: TObject);
     procedure ZSQLMonitorLogTrace(Sender: TObject; Event: TZLoggingEvent);
@@ -382,12 +381,6 @@ begin
   frmKartei.AfterScroll;
 end;
 
-procedure TfrmDM.dsetBeforeOpen(DataSet: TDataSet);
-begin
-  //Aktiviert, weil in ZeosLib 7.1.4 der Monitor nicht mehr funktioniert
-  //deaktiviert, weil in ZeosLib 7.2 der Monitor wieder funktioniert
-  //if bSQLDebug then myDebugLN(RemoveLastCRLF(TZQuery(DataSet).SQL.Text));
-end;
 
 procedure TfrmDM.dsetGDAfterScroll(DataSet: TDataSet);
 begin
