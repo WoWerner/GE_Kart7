@@ -206,7 +206,7 @@ begin
                 dsetVersion.Open;
                 sHelp := dsetVersion.FieldByName('V').asstring;
                 dsetVersion.Close;
-                myDebugLN('DB-Version: '+sHelp);
+                myDebugLN('Aktuelle DB-Version: '+sHelp);
 
                 //Update auf DB-Format 7.2
                 if sHelp = '7.1'
@@ -268,8 +268,22 @@ begin
                       myDebugLN('DB-Version now: '+sHelp);
                     end;
 
+                //Update auf DB-Format 7.5.3
+                if sHelp = '7.5.2'
+                  then
+                    begin
+                      ExecSQL('create table if not exists [Users] ([Name] varchar (200) null);');
+                      ExecSQL('update Version set V=''7.5.3''');
+                      sHelp := '7.5.3';
+                      myDebugLN('DB-Version now: '+sHelp);
+                    end;
+
+                //Eigenen User in UserTabelle eintragen
+                ExecSQL('insert into '+sUsersTablename+' (Name) values('''+sUserAndPCName+''')');
+
                 bDatabaseVersionChecked := true;
               end;
+
           if OpenDatabases
             then
               begin

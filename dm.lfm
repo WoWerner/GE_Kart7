@@ -1,10 +1,10 @@
 object frmDM: TfrmDM
   Left = 705
-  Height = 722
+  Height = 657
   Top = 100
   Width = 368
   Caption = 'frmDM'
-  LCLVersion = '2.2.0.4'
+  LCLVersion = '2.2.4.0'
   object dsPersonen: TDataSource
     AutoEdit = False
     DataSet = dsetPersonen
@@ -19,7 +19,7 @@ object frmDM: TfrmDM
     TableLevel = 4
     FilterOptions = []
     Left = 152
-    Top = 648
+    Top = 599
   end
   object dsKinder: TDataSource
     AutoEdit = False
@@ -43,12 +43,11 @@ object frmDM: TfrmDM
     AutoEdit = False
     DataSet = dsetHelp
     Left = 232
-    Top = 448
+    Top = 443
   end
   object dsetPersonen: TZQuery
     Connection = ZConGE_Kart7
     SortedFields = 'TempString'
-    BeforeOpen = dsetBeforeOpen
     AfterScroll = dsetPersonenAfterScroll
     BeforePost = dsetPersonenBeforePost
     SQL.Strings = (
@@ -61,16 +60,14 @@ object frmDM: TfrmDM
   end
   object dsetHelp: TZQuery
     Connection = ZConGE_Kart7
-    BeforeOpen = dsetBeforeOpen
     Params = <>
     MasterSource = dsBesuch
     Left = 152
-    Top = 448
+    Top = 443
   end
   object dsetKinder: TZQuery
     Connection = ZConGE_Kart7
     SortedFields = 'Geburtstag'
-    BeforeOpen = dsetBeforeOpen
     SQL.Strings = (
       'select KinderID, Vorname, Vorname2, Nachname, GebName, Geburtstag, Taufdatum, Kirche, PersonenID from Kinder'
     )
@@ -86,7 +83,6 @@ object frmDM: TfrmDM
     Connection = ZConGE_Kart7
     SortedFields = 'AbendmahlsDatum'
     SortType = stDescending
-    BeforeOpen = dsetBeforeOpen
     SQL.Strings = (
       'select * from Kommunionen'
     )
@@ -102,7 +98,6 @@ object frmDM: TfrmDM
     Connection = ZConGE_Kart7
     SortedFields = 'BesuchsDatum'
     SortType = stDescending
-    BeforeOpen = dsetBeforeOpen
     SQL.Strings = (
       'select * from besuch'
     )
@@ -123,16 +118,14 @@ object frmDM: TfrmDM
   end
   object dsetHelp1: TZQuery
     Connection = ZConGE_Kart7
-    BeforeOpen = dsetBeforeOpen
     Params = <>
     Left = 152
-    Top = 512
+    Top = 495
   end
   object dsetGD: TZQuery
     Connection = ZConGE_Kart7
     SortedFields = 'GottesdienstDatum'
     SortType = stDescending
-    BeforeOpen = dsetBeforeOpen
     AfterScroll = dsetGDAfterScroll
     SQL.Strings = (
       'select * from Gottesdienst'
@@ -149,19 +142,17 @@ object frmDM: TfrmDM
   end
   object dsetVersion: TZQuery
     Connection = ZConGE_Kart7
-    BeforeOpen = dsetBeforeOpen
-    AfterScroll = dsetGDAfterScroll
     SQL.Strings = (
       'select * from Version'
     )
     Params = <>
     Left = 152
-    Top = 320
+    Top = 299
   end
   object dsHelp1: TDataSource
     DataSet = dsetHelp1
     Left = 232
-    Top = 512
+    Top = 495
   end
   object ZConGE_Kart7: TZConnection
     ControlsCodePage = cCP_UTF8
@@ -177,20 +168,17 @@ object frmDM: TfrmDM
   end
   object dsetGemeinde: TZQuery
     Connection = ZConGE_Kart7
-    BeforeOpen = dsetBeforeOpen
-    AfterScroll = dsetGDAfterScroll
     SQL.Strings = (
       'select * from Gemeinde'
     )
     Params = <>
     Left = 152
-    Top = 384
+    Top = 351
   end
   object dsetHelp2: TZQuery
     Connection = ZConGE_Kart7
-    BeforeOpen = dsetBeforeOpen
     Params = <>
     Left = 152
-    Top = 584
+    Top = 549
   end
 end

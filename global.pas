@@ -26,6 +26,7 @@ const
   sKindTablename     = 'KINDER';
   sBesuchTablename   = 'BESUCH';
   sGDTablename       = 'GOTTESDIENST';
+  sUsersTablename    = 'Users';
 
   //SQL
   sSQL_KOMM_PER_JAHR = 'select count(strftime(''%%Y'', AbendmahlsDatum)) as C,'+
@@ -254,20 +255,21 @@ type
 
 var
   sPW, sPW1         : string; //Verschlüsseltes PW
-  sAppDir           : String;
-  sSavePath         : String;
-  sDatabase         : string;
-  sIniFile          : String;
-  sDebugFile        : String;
-  sUserDefSQLFile   : String = 'UserDefSQL.SQL';
-  bSQLDebug         : boolean;
-  sReportFile       : String;
-  sKirchenEintraege : String;
-  sAnredenEintraege : String;
-  sGemeinden        : String;
-  sDefaultGemeinde  : string;
-  sNewVers          : String;
   sAktuelles        : String;
+  sAnredenEintraege : String;
+  sAppDir           : String;
+  sDatabase         : string;
+  sDebugFile        : String;
+  sDefaultGemeinde  : string;
+  sGemeinden        : String;
+  sIniFile          : String;
+  sKirchenEintraege : String;
+  sNewVers          : String;
+  sReportFile       : String;
+  sSavePath         : String;
+  sUserDefSQLFile   : String = 'UserDefSQL.SQL';
+  sUserAndPCName    : String;
+  bSQLDebug         : boolean;
   dtLastSave        : TDateTime;
   ScaleFactor,
   ScaleFactorY,

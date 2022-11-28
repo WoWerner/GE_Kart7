@@ -43,6 +43,7 @@ type
     imgSELK: TImage;
     Label1: TLabel;
     Label2: TLabel;
+    labMultiUser: TLabel;
     LabGemeinde2: TLabel;
     labMyCity: TLabel;
     LabGemeinde1: TLabel;
@@ -140,10 +141,12 @@ type
     OpenDialog: TOpenDialog;
     SaveDialog: TSaveDialog;
     StatusBar: TStatusBar;
+    timUpdateMultiUser: TTimer;
     procedure btnAktuellesClick(Sender: TObject);
     procedure btnKarteiClick(Sender: TObject);
     procedure btnSuchenClick(Sender: TObject);
     procedure btnSuchenContextPopup(Sender: TObject; MousePos: TPoint; var Handled: Boolean);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -195,6 +198,7 @@ type
     procedure mnuStatistikClick(Sender: TObject);
     procedure mnuUserDefSQLClick(Sender: TObject);
     procedure mnuVolltextsucheClick(Sender: TObject);
+    procedure timUpdateMultiUserTimer(Sender: TObject);
   private
     { private declarations }
     slAusgabe : TStringList;
@@ -393,10 +397,12 @@ begin
   myDebugLN('ScaleFactorY '+floattostr(ScaleFactorY));
   myDebugLN('ScaleFactor  '+floattostr(ScaleFactor));
 
+  sUserAndPCName := replacechar(GetComputerName, ' ', '_')+';'+replacechar(GetUserName, ' ', '_');
+
   //Prüfung auf neue Version
   HTTP := THTTPSend.Create;
   try
-    if not HTTP.HTTPMethod('GET', 'https://'+sHomePage+'/GE_KART/version.txt?;V'+GetProductVersionString+';'+replacechar(GetComputerName, ' ', '_')+';'+replacechar(GetUserName, ' ', '_'))
+    if not HTTP.HTTPMethod('GET', 'https://'+sHomePage+'/GE_KART/version.txt?;V'+GetProductVersionString+';'+sUserAndPCName)
       then
         begin
 	  myDebugLN('ERROR HTTPGET, Resultcode: '+inttostr(Http.Resultcode));
@@ -550,6 +556,7 @@ procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   slAusgabe.Free;
   slHelp.Free;
+
   myDebugLN('Beende GE_Kart');
   myDebugLN('************************************************************************************');
   FlushDebug;
@@ -607,6 +614,7 @@ begin
         frmDM.dbStatus(false); // DB schliessen
 
         GetGemeindenFromDB;
+        timUpdateMultiUserTimer(Sender); //Einmal sofort ausführen
       end
     else
       begin
@@ -615,7 +623,6 @@ begin
         frmDM.SetDBPath('');
       end;
 end;
-
 
 procedure TfrmMain.GetGemeindenFromDB;
 begin
@@ -627,7 +634,7 @@ begin
   frmDM.dsetHelp2.open;
   while not frmDM.dsetHelp2.eof do
     begin
-       slHelp.Add(frmDM.dsetHelp2.fieldByName('Gemeinde').asstring);
+      slHelp.Add(frmDM.dsetHelp2.fieldByName('Gemeinde').asstring);
       frmDM.dsetHelp2.Next;
     end;
   frmDM.dsetHelp2.Close;
@@ -682,6 +689,12 @@ end;
 procedure TfrmMain.btnSuchenContextPopup(Sender: TObject; MousePos: TPoint; var Handled: Boolean);
 begin
   mnuVolltextSucheClick(Sender);
+end;
+
+procedure TfrmMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  //Eigenen User in UserTabelle entfernen
+  frmDM.ExecSQL('Delete from ' + sUsersTablename + ' where Name='''+sUserAndPCName+'''');
 end;
 
 procedure TfrmMain.labMyMailClick(Sender: TObject);
@@ -1225,7 +1238,6 @@ begin
   frmFreieListe.SrcList.ShowHint:=true;
   frmFreieListe.DstList.Items.Clear;
   slAusgabe.Clear;  //slAusgabe wieder leeren
-
   if frmFreieListe.ShowModal = mrOK
     then
       begin
@@ -1401,7 +1413,7 @@ begin
         try
           screen.cursor := crhourglass;
 
-	  //Filter auf Gemeinde
+	        //Filter auf Gemeinde
           if frmStatInfo.stat_gemeinde.Text = ''
             then sWhere := SQL_Where_Add(sWhere, SQL_Where_IsNull('Gemeinde'))
             else if frmStatInfo.stat_gemeinde.Text <> sGemeindenAlle
@@ -1410,7 +1422,7 @@ begin
           //und Jahr
           sWhere := SQL_Where_Add(sWhere, 'strftime(''%Y'',GottesdienstDatum)='''+frmStatInfo.stat_jahr.text+'''');
 
-	  frmDM.dsetHelp.SQL.Text := 'select * from Gottesdienst where '+sWhere;
+	        frmDM.dsetHelp.SQL.Text := 'select * from Gottesdienst where '+sWhere;
           frmDM.dsetHelp.open;
           frmDM.dsetHelp.first;
           while not frmDM.dsetHelp.eof do
@@ -1759,7 +1771,7 @@ end;
 
 procedure TfrmMain.mnuGebListSplitClick(Sender: TObject);
 begin
-    mnuGebListSplit.Checked := not mnuGebListSplit.Checked;
+  mnuGebListSplit.Checked := not mnuGebListSplit.Checked;
   if mnuGebListSplit.Checked
     then help.WriteIniVal(sIniFile, 'Defaults', 'GebListSplit', '1')
     else help.WriteIniVal(sIniFile, 'Defaults', 'GebListSplit', '0');
@@ -3197,6 +3209,33 @@ begin
           end;
     end;
   frmDM.dbStatus(false); //Datenbank schliessen
+end;
+
+procedure TfrmMain.timUpdateMultiUserTimer(Sender: TObject);
+var
+  bHelp: boolean;
+begin
+  slHelp.Clear;
+  frmDM.dsetHelp2.sql.Clear;
+  frmDM.dsetHelp2.sql.add('select Name from '+sUsersTablename+' where Name <> '''+sUserAndPCName+''' group by Name order by Name');
+  bHelp := bSQLDebug;
+  bSQLDebug := false;
+  frmDM.dsetHelp2.open;
+  labMultiUser.Visible := frmDM.dsetHelp2.RecordCount > 0;
+  if labMultiUser.Visible
+    then
+      begin
+        labMultiUser.Visible:=true;
+        while not frmDM.dsetHelp2.eof do
+          begin
+            slHelp.Add(frmDM.dsetHelp2.fieldByName('Name').asstring);
+            frmDM.dsetHelp2.Next;
+          end;
+        labMultiUser.Hint:=RemoveLastCRLF(slHelp.Text);
+      end;
+  frmDM.dsetHelp2.Close;
+  bSQLDebug := bHelp;
+  labMultiUser.Refresh;
 end;
 
 end.
