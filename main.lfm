@@ -67,7 +67,7 @@ object frmMain: TfrmMain
   object labVersion: TLabel
     Left = 16
     Height = 23
-    Top = 88
+    Top = 72
     Width = 60
     Caption = 'Version:'
     Font.Height = 24
@@ -268,7 +268,7 @@ object frmMain: TfrmMain
   object labMultiUser: TLabel
     Left = 16
     Height = 15
-    Top = 72
+    Top = 96
     Width = 269
     Caption = 'Die Datenbank wird von weiteren Benutzen genutzt'
     Color = clLime
@@ -277,8 +277,8 @@ object frmMain: TfrmMain
     Visible = False
   end
   object MainMenu: TMainMenu
-    Left = 16
-    Top = 8
+    Left = 368
+    Top = 32
     object mnuDatei: TMenuItem
       Caption = 'Datei'
       object MenuItem26: TMenuItem
@@ -608,8 +608,8 @@ object frmMain: TfrmMain
   object frDBDataSet: TfrDBDataSet
     DataSet = frmDM.dsetHelp
     DataSource = frmDM.dsHelp
-    Left = 632
-    Top = 72
+    Left = 600
+    Top = 32
   end
   object frReport: TfrReport
     Dataset = frDBDataSet
@@ -619,40 +619,40 @@ object frmMain: TfrmMain
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     DataType = dtDataSet
     OnGetValue = frReportGetValue
-    Left = 632
-    Top = 176
+    Left = 600
+    Top = 128
   end
   object OpenDialog: TOpenDialog
-    Left = 32
-    Top = 88
+    Left = 368
+    Top = 128
   end
   object SaveDialog: TSaveDialog
-    Left = 16
-    Top = 144
+    Left = 368
+    Top = 176
   end
   object frTextExport: TfrTextExport
     ShowExportParamsDlg = False
-    Left = 632
-    Top = 224
+    Left = 600
+    Top = 176
   end
   object frHTMExport: TfrHTMExport
-    Left = 632
-    Top = 272
+    Left = 600
+    Top = 224
   end
   object frCSVExport: TfrCSVExport
-    Left = 632
-    Top = 320
+    Left = 600
+    Top = 272
   end
   object frDBDataSetDetail: TfrDBDataSet
     DataSet = frmDM.dsetHelp1
     DataSource = frmDM.dsHelp1
-    Left = 632
-    Top = 128
+    Left = 600
+    Top = 80
   end
   object timUpdateMultiUser: TTimer
     Interval = 60000
     OnTimer = timUpdateMultiUserTimer
-    Left = 233
-    Top = 125
+    Left = 368
+    Top = 80
   end
 end

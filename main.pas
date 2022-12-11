@@ -619,7 +619,7 @@ begin
     else
       begin
         StatusBar.Panels[0].Text := 'Datenbankdatei unter "'+sDatabase+'" nicht gefunden.';
-        ShowMessage(StatusBar.Panels[0].Text+' Bitte Herrn Werner kontaktieren!');
+        ShowMessage(StatusBar.Panels[0].Text+#13'Bitte über Datei-Datenbank-Auswählen eine gültige Datenbank auswählen.!');
         frmDM.SetDBPath('');
       end;
 end;
@@ -3212,30 +3212,34 @@ begin
 end;
 
 procedure TfrmMain.timUpdateMultiUserTimer(Sender: TObject);
+
 var
   bHelp: boolean;
+
 begin
-  slHelp.Clear;
-  frmDM.dsetHelp2.sql.Clear;
-  frmDM.dsetHelp2.sql.add('select Name from '+sUsersTablename+' where Name <> '''+sUserAndPCName+''' group by Name order by Name');
-  bHelp := bSQLDebug;
-  bSQLDebug := false;
-  frmDM.dsetHelp2.open;
-  labMultiUser.Visible := frmDM.dsetHelp2.RecordCount > 0;
-  if labMultiUser.Visible
-    then
-      begin
-        labMultiUser.Visible:=true;
-        while not frmDM.dsetHelp2.eof do
+  if bDatabaseVersionChecked and frmMain.Visible then
+    begin
+      slHelp.Clear;
+      frmDM.dsetHelp2.sql.Clear;
+      frmDM.dsetHelp2.sql.add('select Name from '+sUsersTablename+' where Name <> '''+sUserAndPCName+''' group by Name order by Name');
+      bHelp := bSQLDebug;
+      bSQLDebug := false;         //Nicht in den Log aufnehmen
+      frmDM.dsetHelp2.open;
+      labMultiUser.Visible := frmDM.dsetHelp2.RecordCount > 0;
+      if labMultiUser.Visible
+        then
           begin
-            slHelp.Add(frmDM.dsetHelp2.fieldByName('Name').asstring);
-            frmDM.dsetHelp2.Next;
+            while not frmDM.dsetHelp2.eof do
+              begin
+                slHelp.Add(frmDM.dsetHelp2.fieldByName('Name').asstring);
+                frmDM.dsetHelp2.Next;
+              end;
+            labMultiUser.Hint := RemoveLastCRLF(slHelp.Text);
           end;
-        labMultiUser.Hint:=RemoveLastCRLF(slHelp.Text);
-      end;
-  frmDM.dsetHelp2.Close;
-  bSQLDebug := bHelp;
-  labMultiUser.Refresh;
+      frmDM.dsetHelp2.Close;
+      bSQLDebug := bHelp;  //log wieder an
+      labMultiUser.Refresh;
+    end;
 end;
 
 end.
