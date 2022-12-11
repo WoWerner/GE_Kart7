@@ -1,0 +1,16 @@
+﻿Änderungen in der Version 7.5.3.0 (10.12.2022)
+
+- Drucken: neue Listen
+- Kartei: Im Feld Gemeinde können 10 Zeichen eingegeben werden
+- Tools: "Fehlerhafte Karteikarten suchen" wurde erweitert
+- Allgemein: Nur ein Start der Anwendung ist möglich
+
+- Allgemein: Falls die Datenbank auf einem geteilten Laufwerk liegt (z.B. OneDrive oder GoogleDrive) und weitere Nutzer diese Datenbank gleichzeitig nutzen wird auf dem Startbildschirm ein Hinweis auf weitere Nutzer angezeigt. Wenn man mit der Maus auf diesen Hinweis geht, wird angezeigt wer (PC-Name und Benutzername) die Datenbank noch nutzt. Achtung: GE-Kart wird dadurch NICHT Mehrbenutzerfähig. Es sollte sich dann abgestimmt werden, wer Änderungen macht. Hintergrund: Die Synchronisation dauert immer ein paar Sekunden. Auch suchen mit markieren der gefundenen Personen sind Änderungen in der Datenbank.
+
+Interne Änderungen:
+- Lazarus 2.2.4
+- SQLite 3.39.3
+- Zeos 7.2.14
+- SSL openssl-1.0.2u 
+
+Soll die Meldung noch einmal angezeigt werden?
