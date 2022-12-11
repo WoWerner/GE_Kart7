@@ -309,6 +309,7 @@ begin
 end;
 
 procedure TfrmSuche.btnResetClick(Sender: TObject);
+
 begin
   cbDelMark.Checked     := false;
   cbAbgaenge.Checked    := true;

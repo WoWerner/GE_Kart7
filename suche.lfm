@@ -12,7 +12,7 @@ object frmSuche: TfrmSuche
   OnCreate = FormCreate
   OnKeyPress = FormKeyPress
   Position = poScreenCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.2.4.0'
   object btnStarteSuche: TButton
     Left = 8
     Height = 25
@@ -43,7 +43,7 @@ object frmSuche: TfrmSuche
     object cbDelMark: TCheckBox
       Left = 14
       Height = 19
-      Top = 6
+      Top = 2
       Width = 161
       Caption = 'Alle Markierungen löschen'
       TabOrder = 0
@@ -51,7 +51,7 @@ object frmSuche: TfrmSuche
     object cbAbgaenge: TCheckBox
       Left = 502
       Height = 19
-      Top = 6
+      Top = 2
       Width = 154
       Caption = 'Abgänge nicht markieren'
       Checked = True
@@ -407,7 +407,7 @@ object frmSuche: TfrmSuche
     object Label63: TLabel
       Left = 6
       Height = 15
-      Top = 120
+      Top = 117
       Width = 74
       Caption = 'Familienstand'
       ParentColor = False
@@ -415,7 +415,7 @@ object frmSuche: TfrmSuche
     object CBFamstand: TComboBox
       Left = 6
       Height = 23
-      Top = 136
+      Top = 133
       Width = 216
       ItemHeight = 15
       Items.Strings = (
@@ -457,7 +457,7 @@ object frmSuche: TfrmSuche
     object Label11: TLabel
       Left = 6
       Height = 15
-      Top = 13
+      Top = 10
       Width = 41
       Caption = 'Versand'
       ParentColor = False
@@ -465,7 +465,7 @@ object frmSuche: TfrmSuche
     object ediVers: TEdit
       Left = 70
       Height = 23
-      Top = 8
+      Top = 5
       Width = 126
       TabOrder = 0
     end
@@ -473,8 +473,8 @@ object frmSuche: TfrmSuche
       Left = 6
       Height = 15
       Top = 32
-      Width = 338
-      Caption = 'Zum suchen einer  Mitarbeit benutzen Sie bitte die Volltextsuche'
+      Width = 339
+      Caption = 'Zum Suchen einer  Mitarbeit benutzen Sie bitte die Volltextsuche'
       ParentColor = False
     end
   end
