@@ -24,7 +24,6 @@ type
 
   TfrmDM = class(TForm)
     dsetHelp2: TZQuery;
-    dsetVersion: TZQuery;
     dsetGemeinde: TZQuery;
     dsGD: TDatasource;
     dsetHelp1: TZQuery;
@@ -203,9 +202,10 @@ begin
                 end;
 
                 //Version auslesen
-                dsetVersion.Open;
-                sHelp := dsetVersion.FieldByName('V').asstring;
-                dsetVersion.Close;
+                dsetHelp.SQL.Text := 'select * from Version';
+                dsetHelp.Open;
+                sHelp := dsetHelp.FieldByName('V').asstring;
+                dsetHelp.Close;
                 myDebugLN('Aktuelle DB-Version: '+sHelp);
 
                 //Update auf DB-Format 7.2
