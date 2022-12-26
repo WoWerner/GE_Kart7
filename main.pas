@@ -398,6 +398,7 @@ begin
   myDebugLN('ScaleFactorY '+floattostr(ScaleFactorY));
   myDebugLN('ScaleFactor  '+floattostr(ScaleFactor));
 
+  //PC und User Name ermitteln
   sUserAndPCName := replacechar(GetComputerName, ' ', '_')+';'+replacechar(GetUserName, ' ', '_');
 
   //Prüfung auf neue Version
@@ -605,8 +606,11 @@ begin
             end;
 
         frmDM.dbStatus(true);
+
         //Sortierreihenfolge Karteikarte vorbereiten
         frmDM.ExecSQL('Update PERSONEN SET TempString='+SQL_UTF8UmlautReplace('Nachname')+'||'' ''||'+SQL_UTF8UmlautReplace('Vorname'));
+        //NULL Werte aus Gemeinde entfernen
+        frmDM.ExecSQL('Update PERSONEN SET Gemeinde='''' where '+ SQL_Where_IsNull('Gemeinde'));
 
         frmDM.dsetGemeinde.Open;
         labGemeinde1.caption := frmDM.dsetGemeinde.FieldByName('Adr1').AsString;
