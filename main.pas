@@ -152,6 +152,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure frReportGetValue(const ParName: String; var ParValue: Variant);
     procedure imgSELKClick(Sender: TObject);
+    procedure labMultiUserDblClick(Sender: TObject);
     procedure labMyMailClick(Sender: TObject);
     procedure labMyWebClick(Sender: TObject);
     procedure labVersionNeuClick(Sender: TObject);
@@ -670,8 +671,17 @@ begin
   Openurl('www.selk.de');
 end;
 
+procedure TfrmMain.labMultiUserDblClick(Sender: TObject);
+begin
+  //Andere User in UserTabelle entfernen
+  frmDM.ExecSQL('Delete from ' + sUsersTablename + ' where Name<>'''+sUserAndPCName+'''');
+  labMultiUser.Hint:='';
+  labMultiUser.Visible:=false;
+end;
+
 procedure TfrmMain.btnKarteiClick(Sender: TObject);
 begin
+  GetGemeindenFromDB;
   kartei.frmKartei.ShowModal;
 end;
 
@@ -3237,6 +3247,7 @@ begin
             labMultiUser.Hint := RemoveLastCRLF(slHelp.Text);
           end;
       frmDM.dsetHelp2.Close;
+      labMultiUser.Hint := labMultiUser.Hint +#13#13'Wenn sie sicher sind, dass sie der einzige User sind, können sie mit einem Doppelklick diese Meldung löschen.';
       bSQLDebug := bHelp;  //log wieder an
       labMultiUser.Refresh;
     end;

@@ -233,7 +233,7 @@ object frmMain: TfrmMain
   object labVersionNeu: TLabel
     Left = 16
     Height = 15
-    Top = 116
+    Top = 96
     Width = 129
     Caption = 'Neue Version verfügbar: '
     Color = clYellow
@@ -268,13 +268,14 @@ object frmMain: TfrmMain
   object labMultiUser: TLabel
     Left = 16
     Height = 15
-    Top = 96
+    Top = 120
     Width = 269
     Caption = 'Die Datenbank wird von weiteren Benutzen genutzt'
     Color = clLime
     ParentColor = False
     Transparent = False
     Visible = False
+    OnDblClick = labMultiUserDblClick
   end
   object MainMenu: TMainMenu
     Left = 368
