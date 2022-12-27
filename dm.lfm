@@ -1,7 +1,7 @@
 object frmDM: TfrmDM
-  Left = 705
-  Height = 612
-  Top = 100
+  Left = 991
+  Height = 516
+  Top = 98
   Width = 368
   Caption = 'frmDM'
   LCLVersion = '2.2.4.0'
@@ -19,7 +19,7 @@ object frmDM: TfrmDM
     TableLevel = 4
     FilterOptions = []
     Left = 152
-    Top = 552
+    Top = 460
   end
   object dsKinder: TDataSource
     AutoEdit = False
@@ -43,7 +43,7 @@ object frmDM: TfrmDM
     AutoEdit = False
     DataSet = dsetHelp
     Left = 232
-    Top = 396
+    Top = 304
   end
   object dsetPersonen: TZQuery
     Connection = ZConGE_Kart7
@@ -63,7 +63,7 @@ object frmDM: TfrmDM
     Params = <>
     MasterSource = dsBesuch
     Left = 152
-    Top = 396
+    Top = 304
   end
   object dsetKinder: TZQuery
     Connection = ZConGE_Kart7
@@ -120,7 +120,7 @@ object frmDM: TfrmDM
     Connection = ZConGE_Kart7
     Params = <>
     Left = 152
-    Top = 448
+    Top = 356
   end
   object dsetGD: TZQuery
     Connection = ZConGE_Kart7
@@ -143,7 +143,7 @@ object frmDM: TfrmDM
   object dsHelp1: TDataSource
     DataSet = dsetHelp1
     Left = 232
-    Top = 448
+    Top = 356
   end
   object ZConGE_Kart7: TZConnection
     ControlsCodePage = cCP_UTF8
@@ -157,19 +157,10 @@ object frmDM: TfrmDM
     Left = 40
     Top = 21
   end
-  object dsetGemeinde: TZQuery
-    Connection = ZConGE_Kart7
-    SQL.Strings = (
-      'select * from Gemeinde'
-    )
-    Params = <>
-    Left = 152
-    Top = 304
-  end
   object dsetHelp2: TZQuery
     Connection = ZConGE_Kart7
     Params = <>
     Left = 152
-    Top = 502
+    Top = 410
   end
 end

@@ -612,10 +612,11 @@ begin
         //NULL Werte aus Gemeinde entfernen
         frmDM.ExecSQL('Update PERSONEN SET Gemeinde='''' where '+ SQL_Where_IsNull('Gemeinde'));
 
-        frmDM.dsetGemeinde.Open;
-        labGemeinde1.caption := frmDM.dsetGemeinde.FieldByName('Adr1').AsString;
-        labGemeinde2.caption := frmDM.dsetGemeinde.FieldByName('Adr2').AsString;
-        frmDM.dsetGemeinde.close;
+        frmDM.dsetHelp.SQL.Text:='Select * from Gemeinde';
+        frmDM.dsetHelp.Open;
+        labGemeinde1.caption := frmDM.dsetHelp.FieldByName('Adr1').AsString;
+        labGemeinde2.caption := frmDM.dsetHelp.FieldByName('Adr2').AsString;
+        frmDM.dsetHelp.close;
         frmDM.dbStatus(false); // DB schliessen
 
         GetGemeindenFromDB;
@@ -1799,12 +1800,7 @@ begin
       begin
         labGemeinde1.caption := frmInput.Edit1.Text;
         labGemeinde2.caption := frmInput.Edit2.Text;
-        frmDM.dsetGemeinde.Open;
-        frmDM.dsetGemeinde.Edit;
-        frmDM.dsetGemeinde.FieldByName('Adr1').AsString := labGemeinde1.caption;
-        frmDM.dsetGemeinde.FieldByName('Adr2').AsString := labGemeinde2.caption;
-        frmDM.dsetGemeinde.Post;
-        frmDM.dsetGemeinde.close;
+        frmDM.ExecSQL('Update Gemeinde SET Adr1="'+frmInput.Edit1.Text+'", Adr2="'+frmInput.Edit2.Text+'"');
       end;
 end;
 

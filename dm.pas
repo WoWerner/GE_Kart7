@@ -24,7 +24,6 @@ type
 
   TfrmDM = class(TForm)
     dsetHelp2: TZQuery;
-    dsetGemeinde: TZQuery;
     dsGD: TDatasource;
     dsetHelp1: TZQuery;
     dsetKomm: TZQuery;
@@ -292,7 +291,6 @@ begin
                 dsetKinder.Active   := true;
                 dsetKomm.Active     := true;
                 dsetBesuch.Active   := true;
-                dsetGemeinde.Active := true;
               end;
         except
           // Log Exception..
@@ -310,7 +308,6 @@ begin
         dsetKinder.Active      := false;
         dsetKomm.Active        := false;
         dsetBesuch.Active      := false;
-        dsetGemeinde.Active    := false;
         ZConGE_KART7.Connected := false;
       end;
 end;
