@@ -434,6 +434,7 @@ type
     { private declarations }
     SetLastChange: boolean;
     berechnen: boolean;
+    procedure SetSortPersonen(typ : integer);
   public
     { public declarations }
     function BeforePost: boolean;
@@ -465,6 +466,44 @@ uses
 
 var
   weiter_mit_enter : boolean;
+
+procedure TfrmKartei.SetSortPersonen(typ : integer);
+
+begin
+  case typ of
+    //Umlautsortierung in Version 7.2.0.5 umgebaut
+    0: begin
+         // dsetPersonen.SortedFields:='Nachname,Vorname'; //Alte Version
+         frmDM.ExecSQL('Update PERSONEN SET TempString='+SQL_UTF8UmlautReplace('Nachname')+'||'' ''||'+SQL_UTF8UmlautReplace('Vorname'));
+         frmDM.dsetPersonen.SortedFields:='TempString';
+         frmDM.dsetPersonen.Refresh;
+       end;
+    1: begin
+         frmDM.ExecSQL('Update PERSONEN SET TempString='+SQL_UTF8UmlautReplace('Nachname')+'||'' ''||'+SQL_UTF8UmlautReplace('Vorname'));
+         frmDM.dsetPersonen.SortedFields:='TempString';
+         frmDM.dsetPersonen.Refresh;
+         frmDM.dsetPersonen.SortedFields:='Markiert,TempString';
+         frmDM.dsetPersonen.IndexFieldNames := StringReplace(frmDM.dsetPersonen.IndexFieldNames, 'Desc', 'Desc', []);
+       end;
+    2: begin
+         //frmDM.ExecSQL('Update PERSONEN SET Tempinteger=strftime(''%j'',geburtstag)');   //j = day of year: 001-366 setzen (geht nicht bei Schaltjahren)
+         frmDM.ExecSQL('Update PERSONEN SET Tempinteger=strftime(''%m'', geburtstag)*31+strftime(''%d'', geburtstag)');
+         frmDM.dsetPersonen.SortedFields:='Tempinteger';
+         frmDM.dsetPersonen.Refresh;
+       end;
+    3: begin
+         //frmDM.dsetPersonen.SortedFields:='Ort,Strasse,Nachname,Vorname'; //Alte Version
+         frmDM.ExecSQL('Update PERSONEN SET TempString='+
+                 SQL_UTF8UmlautReplace('Ort')     +'||'' ''||'+SQL_UTF8UmlautReplace('Strasse')+'||'' ''||'+
+                 SQL_UTF8UmlautReplace('Nachname')+'||'' ''||'+SQL_UTF8UmlautReplace('Vorname'));
+         frmDM.dsetPersonen.SortedFields:='TempString';
+         frmDM.dsetPersonen.Refresh;
+       end;
+  end;
+  myDebugLN('dsetPERSONEN.SortedFields:    '+frmDM.dsetPersonen.SortedFields);
+  myDebugLN('dsetPERSONEN.IndexFieldNames: '+frmDM.dsetPersonen.IndexFieldNames);
+  frmDM.dsetPersonen.First;
+end;
 
 procedure TfrmKartei.FormShow(Sender: TObject);
 begin
@@ -568,7 +607,7 @@ end;
 
 procedure TfrmKartei.RG_SortierungClick(Sender: TObject);
 begin
-  frmDM.SetSortPersonen(RG_Sortierung.ItemIndex);
+  SetSortPersonen(RG_Sortierung.ItemIndex);
   scBarKartei.Position := 0;
 end;
 

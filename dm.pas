@@ -54,8 +54,7 @@ type
     procedure SetDBPath(Path: string);
     Procedure AutoEdit(Activ : boolean);
     Procedure ExecSQL(SQL: string; ExternProtected: boolean = false);
-    procedure SetSortPersonen(typ : integer);
-  end; 
+  end;
 
 var
   frmDM: TfrmDM;
@@ -81,44 +80,6 @@ begin
   dsKomm.AutoEdit     := Activ;
   dsBesuch.AutoEdit   := Activ;
   dsHelp.AutoEdit     := Activ;
-end;
-
-procedure TfrmDM.SetSortPersonen(typ : integer);
-
-begin
-  case typ of
-    //Umlautsortierung in Version 7.2.0.5 umgebaut
-    0: begin
-         // dsetPersonen.SortedFields:='Nachname,Vorname'; //Alte Version
-         ExecSQL('Update PERSONEN SET TempString='+SQL_UTF8UmlautReplace('Nachname')+'||'' ''||'+SQL_UTF8UmlautReplace('Vorname'));
-         dsetPersonen.SortedFields:='TempString';
-         dsetPersonen.Refresh;
-       end;
-    1: begin
-         ExecSQL('Update PERSONEN SET TempString='+SQL_UTF8UmlautReplace('Nachname')+'||'' ''||'+SQL_UTF8UmlautReplace('Vorname'));
-         dsetPersonen.SortedFields:='TempString';
-         dsetPersonen.Refresh;
-         dsetPersonen.SortedFields:='Markiert,TempString';
-         dsetPersonen.IndexFieldNames := StringReplace(dsetPersonen.IndexFieldNames, 'Desc', 'Desc', []);
-       end;
-    2: begin
-         //ExecSQL('Update PERSONEN SET Tempinteger=strftime(''%j'',geburtstag)');   //j = day of year: 001-366 setzen (geht nicht bei Schaltjahren)
-         ExecSQL('Update PERSONEN SET Tempinteger=strftime(''%m'', geburtstag)*31+strftime(''%d'', geburtstag)');
-         dsetPersonen.SortedFields:='Tempinteger';
-         dsetPersonen.Refresh;
-       end;
-    3: begin
-         //dsetPersonen.SortedFields:='Ort,Strasse,Nachname,Vorname'; //Alte Version
-         ExecSQL('Update PERSONEN SET TempString='+
-                 SQL_UTF8UmlautReplace('Ort')     +'||'' ''||'+SQL_UTF8UmlautReplace('Strasse')+'||'' ''||'+
-                 SQL_UTF8UmlautReplace('Nachname')+'||'' ''||'+SQL_UTF8UmlautReplace('Vorname'));
-         dsetPersonen.SortedFields:='TempString';
-         dsetPersonen.Refresh;
-       end;
-  end;
-  myDebugLN('dsetPERSONEN.SortedFields:    '+dsetPersonen.SortedFields);
-  myDebugLN('dsetPERSONEN.IndexFieldNames: '+dsetPersonen.IndexFieldNames);
-  dsetPersonen.First;
 end;
 
 Procedure TfrmDM.ExecSQL(SQL: string; ExternProtected: boolean = false);
