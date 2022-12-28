@@ -798,14 +798,14 @@ var
   sWhere : String;
 
 begin
+  frmDM.ExecSQL(global.sSQL_DelAbgang);
   sWhere := '';
   sWhere := SQL_Where_Add_OR(sWhere, 'Ueberwiesen_nach_Datum<>''''');
   sWhere := SQL_Where_Add_OR(sWhere, 'AustrittsDatum<>''''');
   sWhere := SQL_Where_Add_OR(sWhere, 'AusschlussDatum<>''''');
   sWhere := SQL_Where_Add_OR(sWhere, 'TodesDatum<>''''');
   sWhere := SQL_Where_Add_OR(sWhere, 'UebertrittsAbDatum<>''''');
-  ExecSQL('Update Personen set Abgang=''0''', frmDM.dsetHelp, false); // Zuerst alles löschen
-  ExecSQL('Update Personen set Abgang=''Y'' where '+sWhere, frmDM.dsetHelp, true);
+  ExecSQL('Update Personen set Abgang=1 where '+sWhere, frmDM.dsetHelp, true);
   SetScrollbar;
 end;
 
@@ -1331,8 +1331,8 @@ begin
     then sFilter := SQL_Where_Add(sFilter, SQL_Where_IsNull('Gemeinde'))
     else if cbGemeinde.Text <> sGemeindenAlle
       then sFilter := SQL_Where_Add(sFilter, 'Gemeinde=''' + cbGemeinde.Text + '''');
-  if not cbAbgaenge.Checked then sFilter := SQL_Where_Add(sFilter, 'Abgang=''0''');
-  if cbFilterMark.Checked   then sFilter := SQL_Where_Add(sFilter, 'Markiert=''1''');
+  if not cbAbgaenge.Checked then sFilter := SQL_Where_Add(sFilter, 'Abgang=0');
+  if cbFilterMark.Checked   then sFilter := SQL_Where_Add(sFilter, 'Markiert=1');
   myDebugLN('Setze Filter: ' + sFilter);
   frmDM.dsetPERSONEN.Filter   := sFilter;
   frmDM.dsetPERSONEN.Filtered := (sFilter <> '');

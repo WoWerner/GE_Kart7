@@ -609,6 +609,11 @@ begin
 
         //Sortierreihenfolge Karteikarte vorbereiten
         frmDM.ExecSQL('Update PERSONEN SET TempString='+SQL_UTF8UmlautReplace('Nachname')+'||'' ''||'+SQL_UTF8UmlautReplace('Vorname'));
+        //DB bereinigen
+        frmDM.ExecSQL(sSQL_ClearMark1);
+        frmDM.ExecSQL(sSQL_ClearMark2);
+        frmDM.ExecSQL(sSQL_ClearAbgang1);
+        frmDM.ExecSQL(sSQL_ClearAbgang2);
         //NULL Werte aus Gemeinde entfernen
         frmDM.ExecSQL('Update PERSONEN SET Gemeinde='''' where '+ SQL_Where_IsNull('Gemeinde'));
 
@@ -2311,8 +2316,8 @@ begin
   else if mnuSortTauf.checked     then sOrder := ' order by strftime(''%m%d'',TaufDatum), Upper(tempstring)';
 
   //Filter
-  if mnuMarkierte.checked          then sWhere := SQL_Where_Add(sWhere, 'Markiert<>''0''');
-  if not mnuIncludeAbgang.Checked  then sWhere := SQL_Where_Add(sWhere, 'Abgang=''0''');
+  if mnuMarkierte.checked          then sWhere := SQL_Where_Add(sWhere, 'Markiert<>0');
+  if not mnuIncludeAbgang.Checked  then sWhere := SQL_Where_Add(sWhere, 'Abgang=0');
   if sWhere <> '' then sWhere := ' where ' + sWhere;
 
   //DB bereinigen
