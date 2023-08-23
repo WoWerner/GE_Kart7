@@ -265,6 +265,7 @@ var
   sIniFile          : String;
   sKirchenEintraege : String;
   sNewVers          : String;
+  sPrintPath        : String;
   sReportFile       : String;
   sSavePath         : String;
   sUserDefSQLFile   : String = 'UserDefSQL.SQL';

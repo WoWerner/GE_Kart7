@@ -1060,6 +1060,7 @@ begin
           myGrid.Parent       := SQLForm;
           myGrid.Align        := alClient;
           myGrid.DataSource   := myDS;
+          myGrid.Options      := myGrid.Options + [dgDisplayMemoText];
           MyQue.Open;
 
           //Spaltenberenzung
@@ -1073,8 +1074,8 @@ begin
           //Exportieren?
           if MessageDlg('Sollen die Daten noch exportiert werden?', mtConfirmation, [mbYes, mbNo],0) = mrYes then
             begin
-              ExportQueToCSVFile(myQue, sAppDir+'Export_UTF8.csv', ';', '"', false, true);
-              ExportQueToCSVFile(myQue, sAppDir+'Export_ANSI.csv', ';', '"', true, false);
+              ExportQueToCSVFile(myQue, sPrintPath+'Export_UTF8.csv', ';', '"', false, true);
+              ExportQueToCSVFile(myQue, sPrintPath+'Export_ANSI.csv', ';', '"', true, false);
             end;
 
           myQue.Close;

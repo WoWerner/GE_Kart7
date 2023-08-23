@@ -83,7 +83,7 @@ var
   sFile  : string;
 
 begin
-  if sFileName = '' then sFileName := sAppDir+'Ausgabe.txt';
+  if sFileName = '' then sFileName := sPrintPath+'Ausgabe.txt';
   // Set up the starting directory to be the current one
   SaveDialog.InitialDir := ExtractFilePath(sFileName);
   SaveDialog.Options    := [];
