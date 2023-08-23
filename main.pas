@@ -67,6 +67,7 @@ type
     MenuItem22: TMenuItem;
     MenuItem23: TMenuItem;
     MenuItem27: TMenuItem;
+    mnuEMailVersand: TMenuItem;
     mnuDefineAnredeEntries: TMenuItem;
     mnuGebListSplit: TMenuItem;
     mnuExport: TMenuItem;
@@ -156,6 +157,7 @@ type
     procedure labMyMailClick(Sender: TObject);
     procedure labMyWebClick(Sender: TObject);
     procedure labVersionNeuClick(Sender: TObject);
+    procedure mnuEMailVersandClick(Sender: TObject);
     procedure MenuSetAnredeClick(Sender: TObject);
     procedure mnuAbsToEtiClick(Sender: TObject);
     procedure mnuChangePWClick(Sender: TObject);
@@ -240,6 +242,7 @@ uses
   Translations,
   PgmUpdate,
   appsettings,
+  Clipbrd,
   LCLIntf,       // Openurl
   FileCtrl,      // MinimizeName
   dm,
@@ -322,6 +325,7 @@ begin
   sIniFile                   := vConfigurations.ConfigFile;
   sSavePath                  := sAppDir+'Sicherung';
   sSavePath                  := help.ReadIniVal(sIniFile, 'Sicherung', 'Verzeichnis', sSavePath, true);
+  sPrintPath                 := help.ReadIniVal(sIniFile, 'Ausgaben'  , 'Verzeichnis', sAppDir+'Ausgaben\', true);
   sDatabase                  := help.ReadIniVal(sIniFile, 'Datenbank','Datei',sAppDir+'ge_kart7.db', true);
   sDebugFile                 := help.ReadIniVal(sIniFile, 'Debug', 'Name', sAppDir+'debug.txt', true);
   bSQLDebug                  := 'TRUE' = Uppercase(help.ReadIniVal(sIniFile, 'Debug', 'SQLDebug', 'true', true));
@@ -351,11 +355,15 @@ begin
         if slHelp.Text <> '' then mnuUserDefSQL.Hint:=slHelp.Text;
       end;
 
+  sPrintPath  := IncludeTrailingPathDelimiter(sPrintPath);
+  ForceDirectories(UTF8ToSys(sPrintPath));
+
   myDebugLN('Starte GE_Kart '+labVersion.Caption);
-  myDebugLN('AppDir   : '+sAppDir);
-  myDebugLN('sIniFile : '+sIniFile);
-  myDebugLN('sSavePath: '+sSavePath);
-  myDebugLN('Database : '+sDatabase);
+  myDebugLN('AppDir    : '+sAppDir);
+  myDebugLN('sIniFile  : '+sIniFile);
+  myDebugLN('sSavePath : '+sSavePath);
+  myDebugLN('sPrintPath: '+sPrintPath);    //??? prüfen wo der noch gebraucht wird
+  myDebugLN('Database  : '+sDatabase);
 
   //Dialoge übersetzen
   TranslateUnitResourceStrings('LCLStrConsts','lclstrconsts.%s.po','de','en');
@@ -733,6 +741,33 @@ begin
   frmPgmUpdate.URL      := 'https://'+sHomePage+'/GE_KART/v'+sNewVers+'.zip';
   frmPgmUpdate.FileName := sAppDir+'v'+sNewVers+'.zip';
   frmPgmUpdate.showmodal;
+end;
+
+procedure TfrmMain.mnuEMailVersandClick(Sender: TObject);
+var
+  sEMail: String;
+begin
+  PerpareDatabaseForPrint;
+  sEMail := '';
+  while not frmDM.dsetHelp.eof do
+    begin
+      if frmDM.dsetHelp.fieldByName('eMail').asstring <> ''  then sEMail := sEMail + Trim(LowerCase(frmDM.dsetHelp.fieldByName('eMail').asstring))+';';
+      if frmDM.dsetHelp.fieldByName('email2').asstring <> '' then sEMail := sEMail + Trim(LowerCase(frmDM.dsetHelp.fieldByName('email2').asstring))+';';
+      if frmDM.dsetHelp.fieldByName('email3').asstring <> '' then sEMail := sEMail + Trim(LowerCase(frmDM.dsetHelp.fieldByName('email3').asstring))+';';
+      frmDM.dsetHelp.next;
+    end;
+
+  if sEMail <> ''
+    then
+      begin
+        Clipboard.AsText := sEMail;
+        Showmessage('Die EMail-Adressen wurden in die Zwischenablage kopiert');
+      end
+    else
+      begin
+        Showmessage('Keine EMail-Adressen gefunden');
+      end;
+  CloseDatabaseAfterPrint;
 end;
 
 procedure TfrmMain.MenuSetAnredeClick(Sender: TObject);

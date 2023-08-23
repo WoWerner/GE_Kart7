@@ -42,7 +42,7 @@ object frmMain: TfrmMain
   OnShow = FormShow
   Position = poScreenCenter
   ShowHint = True
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '2.2.6.0'
   object lb_Name: TLabel
     Left = 16
     Height = 47
@@ -445,6 +445,10 @@ object frmMain: TfrmMain
         object mnuFreeList: TMenuItem
           Caption = 'Freie Liste (CSV-Format) für Serienbriefe'
           OnClick = mnuFreeListClick
+        end
+        object mnuEMailVersand: TMenuItem
+          Caption = 'EMail Adressen für Versand'
+          OnClick = mnuEMailVersandClick
         end
       end
       object MenuItem3: TMenuItem
