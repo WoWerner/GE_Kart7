@@ -1084,6 +1084,8 @@ begin
         end
       else
         begin
+          //Insert oder
+          //Update
           MyQue.ExecSQL;
           result := MyQue.RowsAffected;
           screen.cursor := crdefault;

@@ -1,7 +1,7 @@
 object frmSuche: TfrmSuche
-  Left = 409
+  Left = 410
   Height = 414
-  Top = 167
+  Top = 168
   Width = 692
   BorderStyle = bsDialog
   Caption = 'Suchen'

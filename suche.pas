@@ -13,7 +13,8 @@ uses
   Graphics,
   Dialogs,
   StdCtrls,
-  ComCtrls, DbCtrls;
+  ComCtrls,
+  DbCtrls;
 
 type
 

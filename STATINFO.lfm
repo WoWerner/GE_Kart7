@@ -1,7 +1,7 @@
 object frmStatInfo: TfrmStatInfo
-  Left = 129
+  Left = 130
   Height = 146
-  Top = 365
+  Top = 366
   Width = 454
   BorderStyle = bsDialog
   Caption = 'Jahresstatistik'
@@ -12,7 +12,7 @@ object frmStatInfo: TfrmStatInfo
   Font.Style = [fsBold]
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.2.4.0'
   object Bevel1: TBevel
     Left = 8
     Height = 125
