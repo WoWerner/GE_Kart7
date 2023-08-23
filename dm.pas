@@ -42,10 +42,12 @@ type
     ZConGE_Kart7: TZConnection;
     ZSQLMonitor: TZSQLMonitor;
     procedure dsetGDAfterScroll(DataSet: TDataSet);
+    procedure dsetPostError(DataSet: TDataSet; E: EDatabaseError; var DataAction: TDataAction);
     procedure dsetPersonenAfterScroll(DataSet: TDataSet);
     procedure dsetPersonenBeforePost(DataSet: TDataSet);
     procedure dsPersonenStateChange(Sender: TObject);
     procedure ZSQLMonitorLogTrace(Sender: TObject; Event: TZLoggingEvent);
+    procedure ZSQLMonitorTrace(Sender: TObject; Event: TZLoggingEvent; var LogTrace: Boolean);
   private
     { private declarations }
   public
@@ -74,6 +76,7 @@ uses
 {$R *.lfm}
 
 Procedure TfrmDM.AutoEdit(Activ : boolean);
+
 begin
   dsPersonen.AutoEdit := Activ;
   dsKinder.AutoEdit   := Activ;
@@ -348,17 +351,34 @@ begin
       end;
 end;
 
+procedure TfrmDM.ZSQLMonitorTrace(Sender: TObject; Event: TZLoggingEvent; var LogTrace: Boolean);
+begin
+  //myDebugLN(Event.Message);
+end;
+
 procedure TfrmDM.dsetPersonenAfterScroll(DataSet: TDataSet);
 begin
   frmKartei.AfterScroll;
 end;
-
 
 procedure TfrmDM.dsetGDAfterScroll(DataSet: TDataSet);
 begin
   frmGD.AfterScroll;
 end;
 
+procedure TfrmDM.dsetPostError(DataSet: TDataSet; E: EDatabaseError; var DataAction: TDataAction);
+
+var
+  sMes: String;
+
+begin
+  if bSQLDebug
+    then
+      begin
+        sMes := 'Fehler in '+DataSet.Name+': ' + E.Message;
+        myDebugLN(sMes);
+      end;
+end;
 
 end.
 

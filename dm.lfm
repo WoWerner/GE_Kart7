@@ -1,7 +1,7 @@
 object frmDM: TfrmDM
-  Left = 991
+  Left = 706
   Height = 516
-  Top = 98
+  Top = 64
   Width = 368
   Caption = 'frmDM'
   LCLVersion = '2.2.4.0'
@@ -50,6 +50,7 @@ object frmDM: TfrmDM
     SortedFields = 'TempString'
     AfterScroll = dsetPersonenAfterScroll
     BeforePost = dsetPersonenBeforePost
+    OnPostError = dsetPostError
     SQL.Strings = (
       'select * from PERSONEN'
     )
@@ -60,6 +61,7 @@ object frmDM: TfrmDM
   end
   object dsetHelp: TZQuery
     Connection = ZConGE_Kart7
+    OnPostError = dsetPostError
     Params = <>
     MasterSource = dsBesuch
     Left = 152
@@ -68,6 +70,7 @@ object frmDM: TfrmDM
   object dsetKinder: TZQuery
     Connection = ZConGE_Kart7
     SortedFields = 'Geburtstag'
+    OnPostError = dsetPostError
     SQL.Strings = (
       'select KinderID, Vorname, Vorname2, Nachname, GebName, Geburtstag, Taufdatum, Kirche, PersonenID from Kinder'
     )
@@ -83,6 +86,7 @@ object frmDM: TfrmDM
     Connection = ZConGE_Kart7
     SortedFields = 'AbendmahlsDatum'
     SortType = stDescending
+    OnPostError = dsetPostError
     SQL.Strings = (
       'select * from Kommunionen'
     )
@@ -98,6 +102,7 @@ object frmDM: TfrmDM
     Connection = ZConGE_Kart7
     SortedFields = 'BesuchsDatum'
     SortType = stDescending
+    OnPostError = dsetPostError
     SQL.Strings = (
       'select * from besuch'
     )
@@ -112,12 +117,14 @@ object frmDM: TfrmDM
   object ZSQLMonitor: TZSQLMonitor
     FileName = 'sql_debug.txt'
     MaxTraceCount = 100
+    OnTrace = ZSQLMonitorTrace
     OnLogTrace = ZSQLMonitorLogTrace
     Left = 40
     Top = 80
   end
   object dsetHelp1: TZQuery
     Connection = ZConGE_Kart7
+    OnPostError = dsetPostError
     Params = <>
     Left = 152
     Top = 356
@@ -127,6 +134,7 @@ object frmDM: TfrmDM
     SortedFields = 'GottesdienstDatum'
     SortType = stDescending
     AfterScroll = dsetGDAfterScroll
+    OnPostError = dsetPostError
     SQL.Strings = (
       'select * from Gottesdienst'
     )
@@ -159,6 +167,7 @@ object frmDM: TfrmDM
   end
   object dsetHelp2: TZQuery
     Connection = ZConGE_Kart7
+    OnPostError = dsetPostError
     Params = <>
     Left = 152
     Top = 410
