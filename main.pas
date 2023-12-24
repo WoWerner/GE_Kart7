@@ -206,7 +206,7 @@ type
     { private declarations }
     slAusgabe : TStringList;
     procedure PerparePrint(Formular: string; CallDesigner: boolean);
-    procedure PerpareDatabaseForPrint;
+    procedure PerpareDatabaseForPrint(AskForAge: boolean = true);
     procedure CloseDatabaseAfterPrint;
     procedure ShowDruckenDlg;
     procedure ShowDruckenMnu;
@@ -744,10 +744,12 @@ begin
 end;
 
 procedure TfrmMain.mnuEMailVersandClick(Sender: TObject);
+
 var
   sEMail: String;
+
 begin
-  PerpareDatabaseForPrint;
+  PerpareDatabaseForPrint(false);
   sEMail := '';
   while not frmDM.dsetHelp.eof do
     begin
@@ -2335,7 +2337,7 @@ begin
 end;
 
 
-Procedure TfrmMain.PerpareDatabaseForPrint;
+Procedure TfrmMain.PerpareDatabaseForPrint(AskForAge: boolean = true);
 
 var sOrder, sWhere:  String;
 
@@ -2362,7 +2364,8 @@ begin
   frmDM.ExecSQL(sSQL_ClearAbgang2);
 
   // Altersberechnung:
-  if (StrToInt(FormatDateTime('MM',Now)) > 10) and
+  if AskForAge and
+     (StrToInt(FormatDateTime('MM',Now)) > 10) and
      (MessageDlg('Für Listen mit Alter: Ausgeben für das Folgejahr?', mtConfirmation, [mbYes, mbNo],0) = mrYes) //Ab November für das Folgejahr?
     then frmDM.dsetHelp.SQL.Text:='select *, (strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) + 1 as Age from personen'
     else frmDM.dsetHelp.SQL.Text:='select *, (strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) as Age from personen';

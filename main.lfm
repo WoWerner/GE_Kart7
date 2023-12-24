@@ -6,7 +6,7 @@ object frmMain: TfrmMain
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'frmMain'
-  ClientHeight = 395
+  ClientHeight = 415
   ClientWidth = 693
   Icon.Data = {
     FE0200000000010001002020100000000000E802000016000000280000002000
@@ -42,7 +42,7 @@ object frmMain: TfrmMain
   OnShow = FormShow
   Position = poScreenCenter
   ShowHint = True
-  LCLVersion = '2.2.6.0'
+  LCLVersion = '3.0.0.3'
   object lb_Name: TLabel
     Left = 16
     Height = 47
@@ -177,14 +177,14 @@ object frmMain: TfrmMain
     Top = 320
     Width = 120
     Caption = 'Kartei bearbeiten'
-    OnClick = btnKarteiClick
     ParentFont = False
     TabOrder = 0
+    OnClick = btnKarteiClick
   end
   object StatusBar: TStatusBar
     Left = 0
     Height = 23
-    Top = 372
+    Top = 392
     Width = 693
     Panels = <    
       item
@@ -203,12 +203,12 @@ object frmMain: TfrmMain
     Top = 320
     Width = 75
     Caption = 'Suchen'
-    OnClick = btnSuchenClick
-    OnContextPopup = btnSuchenContextPopup
     ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2
+    OnClick = btnSuchenClick
+    OnContextPopup = btnSuchenContextPopup
   end
   object memGeburtstag: TMemo
     Left = 312
@@ -226,9 +226,9 @@ object frmMain: TfrmMain
     Top = 320
     Width = 75
     Caption = 'Ende'
-    OnClick = mnuEndeClick
     ParentFont = False
     TabOrder = 4
+    OnClick = mnuEndeClick
   end
   object labVersionNeu: TLabel
     Left = 16
@@ -251,10 +251,10 @@ object frmMain: TfrmMain
     Top = 352
     Width = 290
     Caption = 'Aktuelles'
-    OnClick = btnAktuellesClick
     ParentFont = False
     TabOrder = 5
     Visible = False
+    OnClick = btnAktuellesClick
   end
   object imgSELK: TImage
     Cursor = crHandPoint
