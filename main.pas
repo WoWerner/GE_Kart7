@@ -362,7 +362,7 @@ begin
   myDebugLN('AppDir    : '+sAppDir);
   myDebugLN('sIniFile  : '+sIniFile);
   myDebugLN('sSavePath : '+sSavePath);
-  myDebugLN('sPrintPath: '+sPrintPath);    //??? prüfen wo der noch gebraucht wird
+  myDebugLN('sPrintPath: '+sPrintPath);
   myDebugLN('Database  : '+sDatabase);
 
   //Dialoge übersetzen

@@ -52,8 +52,8 @@ begin
       else
         begin
           Try
-            Application.Scaled:=True;
-            Application.Title:='GE_Kart Verwaltungsprogramm für Kirchengemeinden';
+  Application.Scaled:=True;
+  Application.Title:='GE_Kart Verwaltungsprogramm für Kirchengemeinden';
             Application.Initialize;
             Application.CreateForm(TfrmMain, frmMain);
             Application.CreateForm(TfrmDM, frmDM);
