@@ -18,7 +18,7 @@ uses
   ExtCtrls,
   DBGrids,
   EditBtn,
-  Menus,
+  Menus, 
   types;
 
 type
@@ -400,6 +400,7 @@ type
     procedure DBCBGeschlechtChange(Sender: TObject);
     procedure dbcbKindKircheMouseEnter(Sender: TObject);
     procedure dbcbOnMouseEnter(Sender: TObject);
+    procedure DatumEditDone(Sender: TObject);
     procedure dbediEMail1DblClick(Sender: TObject);
     procedure dbediEMail2DblClick(Sender: TObject);
     procedure dbediEMailDblClick(Sender: TObject);
@@ -1091,6 +1092,24 @@ procedure TfrmKartei.dbcbOnMouseEnter(Sender: TObject);
 begin
   ///??? Workaround für Bug in Lazarus 1.8.0 CB geht nicht richtig in EDIT Mode
   if cbBearbeiten.Checked then frmDM.dsetPERSONEN.Edit;
+end;
+
+procedure TfrmKartei.DatumEditDone(Sender: TObject);
+
+var
+  date: TDateTime;
+begin
+  if (frmDM.dsetPERSONEN.State in [dsEdit, dsInsert]) and (TDBEdit(Sender).Text<>'')
+    then
+      begin
+        try
+          date := strtodate(TDBEdit(Sender).Text);
+        except
+          Messagedlg('Die Eingabe "' + TDBEdit(Sender).Text + '" im Feld "' +TDBEdit(Sender).datafield+ '" ist ein ungültiges Datumsformat.'+#13#13+'Bitte das Datum im Format TT.MM.YYYY eingeben', mtInformation, [mbOK], 0);
+          frmDM.dsetPERSONEN.FieldByName(TDBEdit(Sender).datafield).AsString := '';
+          TDBEdit(Sender).SetFocus;
+        end;
+      end;
 end;
 
 procedure TfrmKartei.dbediEMail1DblClick(Sender: TObject);
