@@ -1,8 +1,8 @@
 object frmKartei: TfrmKartei
-  Left = 367
+  Left = 431
   Height = 675
   Hint = 'Strg-Pos1: Erster Datensatz'#13#10'Bild hoch: Vorhergehender Datensatz'#13#10'Bild runter: Nächster Datensatz'#13#10'Strg-Ende: Letzter Datensatz'#13#10#13#10'Strg-S: Speichern'#13#10'Strg-P: Drucken'#13#10'Strg-F: Schnellsuche'#13#10#13#10'Mausrad: Datensatzwechsel'#13#10#13#10'F1: Hilfe'
-  Top = 273
+  Top = 209
   Width = 1003
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -19,7 +19,7 @@ object frmKartei: TfrmKartei
   OnShow = FormShow
   Position = poScreenCenter
   ShowHint = True
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '3.0.0.3'
   object panShowOverview: TPanel
     Left = 0
     Height = 649
@@ -28,6 +28,7 @@ object frmKartei: TfrmKartei
     Align = alLeft
     BevelOuter = bvNone
     Color = clHighlight
+    ParentBackground = False
     ParentColor = False
     ParentFont = False
     TabOrder = 13
@@ -78,7 +79,7 @@ object frmKartei: TfrmKartei
     Visible = False
   end
   object pcDetails: TPageControl
-    Left = 8
+    Left = 7
     Height = 488
     Top = 161
     Width = 888
@@ -614,6 +615,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 1
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label14: TLabel
@@ -764,7 +766,8 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 5
         OnDblClick = DatumDblClick
-        OnEnter = DatumExit
+        OnEditingDone = DatumEditDone
+        OnExit = DatumExit
       end
       object dbediGebOrt: TDBEdit
         Left = 218
@@ -947,12 +950,12 @@ object frmKartei: TfrmKartei
         Width = 128
         Caption = 'Kind hinzufügen'
         Enabled = False
-        OnClick = btnNewKindClick
-        OnContextPopup = btnNewKindContextPopup
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 15
+        OnClick = btnNewKindClick
+        OnContextPopup = btnNewKindContextPopup
       end
       object btnDelKind: TButton
         Left = 651
@@ -961,9 +964,9 @@ object frmKartei: TfrmKartei
         Width = 128
         Caption = 'Kind löschen'
         Enabled = False
-        OnClick = btnDelKindClick
         ParentFont = False
         TabOrder = 16
+        OnClick = btnDelKindClick
       end
       object Label139: TLabel
         Left = 4
@@ -1213,6 +1216,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 0
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label65: TLabel
@@ -1399,6 +1403,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 11
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label72: TLabel
@@ -1501,6 +1506,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 23
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object DBEdiTrauOrt: TDBEdit
@@ -1678,6 +1684,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 20
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label83: TLabel
@@ -1823,6 +1830,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 18
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
     end
@@ -1871,6 +1879,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 12
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label93: TLabel
@@ -1893,6 +1902,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 0
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label94: TLabel
@@ -1935,6 +1945,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 2
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object DBEdiUebertrittsZuGrund: TDBEdit
@@ -1977,6 +1988,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 8
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object DBEdiAustrittsGrund: TDBEdit
@@ -2028,6 +2040,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 10
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object DBEdiAusschlussGrund: TDBEdit
@@ -2070,6 +2083,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 5
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label103: TLabel
@@ -2123,6 +2137,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 14
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label106: TLabel
@@ -2174,6 +2189,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 22
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object DBEdiUeberwiesen_nach: TDBEdit
@@ -2207,6 +2223,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 24
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label110: TLabel
@@ -2321,6 +2338,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 17
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label89: TLabel
@@ -2478,9 +2496,9 @@ object frmKartei: TfrmKartei
         Width = 120
         Caption = 'Hinzufügen'
         Enabled = False
-        OnClick = btnNewKommClick
         ParentFont = False
         TabOrder = 2
+        OnClick = btnNewKommClick
       end
       object DateEditKomm: TDateEdit
         Left = 116
@@ -2514,9 +2532,9 @@ object frmKartei: TfrmKartei
         Width = 120
         Caption = 'Löschen'
         Enabled = False
-        OnClick = btnDelKommClick
         ParentFont = False
         TabOrder = 3
+        OnClick = btnDelKommClick
       end
     end
     object TSBesuch: TTabSheet
@@ -2535,6 +2553,7 @@ object frmKartei: TfrmKartei
         ParentFont = False
         TabOrder = 0
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label133: TLabel
@@ -2652,9 +2671,9 @@ object frmKartei: TfrmKartei
         Width = 128
         Caption = 'Löschen'
         Enabled = False
-        OnClick = btnDelBesuchClick
         ParentFont = False
         TabOrder = 7
+        OnClick = btnDelBesuchClick
       end
       object btnNewBesuch: TButton
         Left = 748
@@ -2663,9 +2682,9 @@ object frmKartei: TfrmKartei
         Width = 128
         Caption = 'Hinzufügen'
         Enabled = False
-        OnClick = btnNewBesuchClick
         ParentFont = False
         TabOrder = 6
+        OnClick = btnNewBesuchClick
       end
       object DBNavigatorBesuch: TDBNavigator
         Left = 748
@@ -2695,11 +2714,11 @@ object frmKartei: TfrmKartei
         Width = 128
         Caption = 'Kopieren'
         Enabled = False
-        OnClick = btnCopyBesuchClick
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 9
+        OnClick = btnCopyBesuchClick
       end
     end
     object TSMemo: TTabSheet
@@ -2759,6 +2778,8 @@ object frmKartei: TfrmKartei
         ShowHint = True
         TabOrder = 1
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
+        OnExit = DatumExit
       end
       object Label64: TLabel
         Left = 124
@@ -2950,12 +2971,13 @@ object frmKartei: TfrmKartei
         Width = 76
         DataField = 'F1Anfang'
         DataSource = frmDM.dsPersonen
-        MaxLength = 255
+        MaxLength = 0
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 10
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label121: TLabel
@@ -2981,6 +3003,7 @@ object frmKartei: TfrmKartei
         ShowHint = True
         TabOrder = 11
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label122: TLabel
@@ -3055,6 +3078,7 @@ object frmKartei: TfrmKartei
         ShowHint = True
         TabOrder = 14
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object dbediEndeF2: TDBEdit
@@ -3071,6 +3095,7 @@ object frmKartei: TfrmKartei
         ShowHint = True
         TabOrder = 15
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label126: TLabel
@@ -3145,6 +3170,7 @@ object frmKartei: TfrmKartei
         ShowHint = True
         TabOrder = 18
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object dbediEndeF3: TDBEdit
@@ -3161,6 +3187,7 @@ object frmKartei: TfrmKartei
         ShowHint = True
         TabOrder = 19
         OnDblClick = DatumDblClick
+        OnEditingDone = DatumEditDone
         OnExit = DatumExit
       end
       object Label130: TLabel
@@ -3589,27 +3616,27 @@ object frmKartei: TfrmKartei
       Height = 19
       Hint = 'Zeige auch Abgänge an'#13#10'Rechtsklick: Setze Abgänge automatisch'
       Top = 32
-      Width = 90
+      Width = 88
       Caption = 'inc. Abgänge'
-      OnChange = OnFilterChange
-      OnContextPopup = cbAbgaengeContextPopup
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
+      OnChange = OnFilterChange
+      OnContextPopup = cbAbgaengeContextPopup
     end
     object cbFilterMark: TCheckBox
       Left = 3
       Height = 19
       Hint = 'Zeige nur die Markierten Personen an'
       Top = 56
-      Width = 64
+      Width = 62
       Caption = 'Markiert'
-      OnChange = OnFilterChange
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
       TabOrder = 1
+      OnChange = OnFilterChange
     end
     object Panel2: TPanel
       Left = 3
@@ -3648,10 +3675,10 @@ object frmKartei: TfrmKartei
       Top = 96
       Width = 85
       ItemHeight = 15
-      OnChange = OnFilterChange
       ParentFont = False
       TabOrder = 3
       Text = 'Alle'
+      OnChange = OnFilterChange
     end
     object Label149: TLabel
       Left = 3
@@ -3668,13 +3695,13 @@ object frmKartei: TfrmKartei
     Height = 19
     Hint = 'Erlaubt das Bearbeiten der Daten'
     Top = 488
-    Width = 76
+    Width = 74
     Caption = 'Bearbeiten'
-    OnChange = cbBearbeitenChange
     ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 7
+    OnChange = cbBearbeitenChange
   end
   object btnEnde: TButton
     Left = 896
@@ -3682,9 +3709,9 @@ object frmKartei: TfrmKartei
     Top = 648
     Width = 99
     Caption = 'Ende'
-    OnClick = btnEndeClick
     ParentFont = False
     TabOrder = 8
+    OnClick = btnEndeClick
   end
   object btnNew: TButton
     Left = 896
@@ -3694,12 +3721,12 @@ object frmKartei: TfrmKartei
     Width = 99
     Caption = 'Hinzufügen'
     Enabled = False
-    OnClick = btnNewClick
-    OnContextPopup = btnNewContextPopup
     ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 9
+    OnClick = btnNewClick
+    OnContextPopup = btnNewContextPopup
   end
   object btnDel: TButton
     Left = 896
@@ -3709,12 +3736,12 @@ object frmKartei: TfrmKartei
     Width = 99
     Caption = 'Löschen'
     Enabled = False
-    OnClick = btnDelClick
-    OnContextPopup = btnDelContextPopup
     ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 10
+    OnClick = btnDelClick
+    OnContextPopup = btnDelContextPopup
   end
   object gbSchnellsuche: TGroupBox
     Left = 899
@@ -3770,23 +3797,23 @@ object frmKartei: TfrmKartei
     Top = 552
     Width = 99
     Caption = 'Drucken'
-    OnClick = btnPrintClick
     ParentFont = False
     TabOrder = 14
+    OnClick = btnPrintClick
   end
   object cbMarkiert: TCheckBox
     Left = 904
     Height = 19
     Hint = 'Rechtsklick für weitere Funktionen'
     Top = 456
-    Width = 64
+    Width = 62
     Caption = 'Markiert'
-    OnChange = cbMarkiertChange
     ParentFont = False
     ParentShowHint = False
     PopupMenu = PopupMenuMarkiert
     ShowHint = True
     TabOrder = 15
+    OnChange = cbMarkiertChange
   end
   object Shape5: TShape
     Left = 4
