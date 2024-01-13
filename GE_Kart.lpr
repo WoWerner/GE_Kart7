@@ -7,29 +7,9 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms,
-  Main,
-  Global,
-  help,
-  input,
-  Controls,
-  Dialogs,
-  dm,
-  dbflaz,
-  lazcontrols,
-  printer4lazarus,
-  zcomponent,
-  lazreport,
-  kartei,
-  vinfo,
-  appsettings,
-  DBGrid,
-  Ausgabe,
-  STATINFO,
-  suche,
-  gd,
-  PgmUpdate,
-  freelist,
+  Forms, Main, Global, Controls, Dialogs, appsettings, Ausgabe, Freelist,
+  help, input, PgmUpdate, uhttpdownloader, dm, dbflaz, lazcontrols,
+  printer4lazarus, zcomponent, lazreport, kartei, DBGrid, STATINFO, suche, gd,
   Windows;   //Mutex
 
 {$R *.res}
@@ -52,20 +32,21 @@ begin
       else
         begin
           Try
-  Application.Scaled:=True;
-  Application.Title:='GE_Kart Verwaltungsprogramm für Kirchengemeinden';
+	    Application.Scaled:=True;
+            Application.Scaled:=True;
+            Application.Title:='GE_Kart Verwaltungsprogramm für Kirchengemeinden';
             Application.Initialize;
             Application.CreateForm(TfrmMain, frmMain);
             Application.CreateForm(TfrmDM, frmDM);
-            Application.CreateForm(TfrmInput, frmInput);
-            Application.CreateForm(TfrmAusgabe, frmAusgabe);
             Application.CreateForm(TfrmKartei, frmKartei);
             Application.CreateForm(TfrmDBGrid, frmDBGrid);
             Application.CreateForm(TfrmStatInfo, frmStatInfo);
             Application.CreateForm(TfrmSuche, frmSuche);
             Application.CreateForm(TfrmGD, frmGD);
+            Application.CreateForm(TfrmAusgabe, frmAusgabe);
             Application.CreateForm(TfrmFreieListe, frmFreieListe);
-            Application.CreateForm(TfrmPgmUpdate,frmPgmUpdate);
+            Application.CreateForm(TfrmInput, frmInput);
+            Application.CreateForm(TfrmPgmUpdate, frmPgmUpdate);
 
             if isconsole
               then
