@@ -451,7 +451,11 @@ begin
                             labVersionNeu.Caption   := 'Das Programm ist aktuell';
                             labVersionNeu.Color     := clNone;
                           end
-                        else labVersionNeu.Caption   := 'Das Programm ist neuer. Aktuelle Version: '+sNewVers;
+                        else
+                          begin
+                            labVersionNeu.Caption   := 'Das Programm ist neuer. Aktuelle Version: '+sNewVers;
+                            labVersionNeu.Color     := clAqua;
+                          end;
                     end;
               end
             else
