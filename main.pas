@@ -627,7 +627,12 @@ begin
         frmDM.ExecSQL(sSQL_ClearAbgang1);
         frmDM.ExecSQL(sSQL_ClearAbgang2);
         //NULL Werte aus Gemeinde entfernen
-        frmDM.ExecSQL('Update PERSONEN SET Gemeinde='''' where '+ SQL_Where_IsNull('Gemeinde'));
+        frmDM.ExecSQL('Update PERSONEN SET Gemeinde=''''               where '+ SQL_Where_IsNull('Gemeinde'));
+        frmDM.ExecSQL('Update PERSONEN SET Ueberwiesen_nach_Datum='''' where Ueberwiesen_nach_Datum=="30.12.1899"');
+        frmDM.ExecSQL('Update PERSONEN SET AustrittsDatum=''''         where AustrittsDatum="30.12.1899"');
+        frmDM.ExecSQL('Update PERSONEN SET AusschlussDatum=''''        where AusschlussDatum="30.12.1899"');
+        frmDM.ExecSQL('Update PERSONEN SET TodesDatum=''''             where TodesDatum="30.12.1899"');
+        frmDM.ExecSQL('Update PERSONEN SET UebertrittsAbDatum=''''     where UebertrittsAbDatum="30.12.1899"');
 
         frmDM.dsetHelp.SQL.Text:='Select * from Gemeinde';
         frmDM.dsetHelp.Open;
