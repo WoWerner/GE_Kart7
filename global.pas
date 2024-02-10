@@ -258,6 +258,7 @@ var
   sAnredenEintraege : String;
   sAppDir           : String;
   sDatabase         : string;
+  sDatabaseLock     : string;
   sDebugFile        : String;
   sDefaultGemeinde  : string;
   sGemeinden        : String;
