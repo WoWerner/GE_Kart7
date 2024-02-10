@@ -240,10 +240,6 @@ begin
                       sHelp := '7.5.3';
                       myDebugLN('DB-Version now: '+sHelp);
                     end;
-
-                //Eigenen User in UserTabelle eintragen
-                ExecSQL('insert into '+sUsersTablename+' (Name) values('''+sUserAndPCName+''')');
-
                 bDatabaseVersionChecked := true;
               end;
 

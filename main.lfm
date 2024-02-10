@@ -265,18 +265,6 @@ object frmMain: TfrmMain
     OnClick = imgSELKClick
     Stretch = True
   end
-  object labMultiUser: TLabel
-    Left = 16
-    Height = 15
-    Top = 120
-    Width = 269
-    Caption = 'Die Datenbank wird von weiteren Benutzen genutzt'
-    Color = clLime
-    ParentColor = False
-    Transparent = False
-    Visible = False
-    OnDblClick = labMultiUserDblClick
-  end
   object MainMenu: TMainMenu
     Left = 368
     Top = 32
@@ -652,12 +640,6 @@ object frmMain: TfrmMain
     DataSet = frmDM.dsetHelp1
     DataSource = frmDM.dsHelp1
     Left = 600
-    Top = 80
-  end
-  object timUpdateMultiUser: TTimer
-    Interval = 60000
-    OnTimer = timUpdateMultiUserTimer
-    Left = 368
     Top = 80
   end
 end

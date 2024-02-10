@@ -43,7 +43,6 @@ type
     imgSELK: TImage;
     Label1: TLabel;
     Label2: TLabel;
-    labMultiUser: TLabel;
     LabGemeinde2: TLabel;
     labMyCity: TLabel;
     LabGemeinde1: TLabel;
@@ -142,7 +141,6 @@ type
     OpenDialog: TOpenDialog;
     SaveDialog: TSaveDialog;
     StatusBar: TStatusBar;
-    timUpdateMultiUser: TTimer;
     procedure btnAktuellesClick(Sender: TObject);
     procedure btnKarteiClick(Sender: TObject);
     procedure btnSuchenClick(Sender: TObject);
@@ -153,7 +151,6 @@ type
     procedure FormShow(Sender: TObject);
     procedure frReportGetValue(const ParName: String; var ParValue: Variant);
     procedure imgSELKClick(Sender: TObject);
-    procedure labMultiUserDblClick(Sender: TObject);
     procedure labMyMailClick(Sender: TObject);
     procedure labMyWebClick(Sender: TObject);
     procedure labVersionNeuClick(Sender: TObject);
@@ -201,7 +198,6 @@ type
     procedure mnuStatistikClick(Sender: TObject);
     procedure mnuUserDefSQLClick(Sender: TObject);
     procedure mnuVolltextsucheClick(Sender: TObject);
-    procedure timUpdateMultiUserTimer(Sender: TObject);
   private
     { private declarations }
     slAusgabe : TStringList;
@@ -641,8 +637,6 @@ begin
         frmDM.dsetHelp.close;
         frmDM.dbStatus(false); // DB schliessen
 
-        GetGemeindenFromDB;
-        timUpdateMultiUserTimer(Sender); //Einmal sofort ausführen
       end
     else
       begin
@@ -698,14 +692,6 @@ begin
   Openurl('www.selk.de');
 end;
 
-procedure TfrmMain.labMultiUserDblClick(Sender: TObject);
-begin
-  //Andere User in UserTabelle entfernen
-  frmDM.ExecSQL('Delete from ' + sUsersTablename + ' where Name<>'''+sUserAndPCName+'''');
-  labMultiUser.Hint:='';
-  labMultiUser.Visible:=false;
-end;
-
 procedure TfrmMain.btnKarteiClick(Sender: TObject);
 begin
   GetGemeindenFromDB;
@@ -730,8 +716,6 @@ end;
 
 procedure TfrmMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  //Eigenen User in UserTabelle entfernen
-  frmDM.ExecSQL('Delete from ' + sUsersTablename + ' where Name='''+sUserAndPCName+'''');
 end;
 
 procedure TfrmMain.labMyMailClick(Sender: TObject);
@@ -3271,38 +3255,6 @@ begin
           end;
     end;
   frmDM.dbStatus(false); //Datenbank schliessen
-end;
-
-procedure TfrmMain.timUpdateMultiUserTimer(Sender: TObject);
-
-var
-  bHelp: boolean;
-
-begin
-  if bDatabaseVersionChecked and frmMain.Visible then
-    begin
-      slHelp.Clear;
-      frmDM.dsetHelp2.sql.Clear;
-      frmDM.dsetHelp2.sql.add('select Name from '+sUsersTablename+' where Name <> '''+sUserAndPCName+''' group by Name order by Name');
-      bHelp := bSQLDebug;
-      bSQLDebug := false;         //Nicht in den Log aufnehmen
-      frmDM.dsetHelp2.open;
-      labMultiUser.Visible := frmDM.dsetHelp2.RecordCount > 0;
-      if labMultiUser.Visible
-        then
-          begin
-            while not frmDM.dsetHelp2.eof do
-              begin
-                slHelp.Add(frmDM.dsetHelp2.fieldByName('Name').asstring);
-                frmDM.dsetHelp2.Next;
-              end;
-            labMultiUser.Hint := RemoveLastCRLF(slHelp.Text);
-          end;
-      frmDM.dsetHelp2.Close;
-      labMultiUser.Hint := labMultiUser.Hint +#13#13'Wenn sie sicher sind, dass sie der einzige User sind, können sie mit einem Doppelklick diese Meldung löschen.';
-      bSQLDebug := bHelp;  //log wieder an
-      labMultiUser.Refresh;
-    end;
 end;
 
 end.

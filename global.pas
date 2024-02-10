@@ -26,7 +26,6 @@ const
   sKindTablename     = 'KINDER';
   sBesuchTablename   = 'BESUCH';
   sGDTablename       = 'GOTTESDIENST';
-  sUsersTablename    = 'Users';
 
   //SQL
   sSQL_KOMM_PER_JAHR = 'select count(strftime(''%%Y'', AbendmahlsDatum)) as C,'+
