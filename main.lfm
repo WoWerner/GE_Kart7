@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
   Left = 598
   Height = 415
-  Top = 260
+  Top = 235
   Width = 693
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
@@ -537,7 +537,7 @@ object frmMain: TfrmMain
       end
     end
     object MenuItem27: TMenuItem
-      Caption = 'Tools'
+      Caption = 'Werkzeuge'
       object MenuSetAnrede: TMenuItem
         Caption = 'Leeres Feld "Anrede" nach Geschlecht setzten'
         OnClick = MenuSetAnredeClick
