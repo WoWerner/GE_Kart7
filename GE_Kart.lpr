@@ -33,8 +33,8 @@ begin
         begin
           Try
 	    Application.Scaled:=True;
-            Application.Scaled:=True;
-            Application.Title:='GE_Kart Verwaltungsprogramm für Kirchengemeinden';
+  Application.Scaled:=True;
+  Application.Title:='GE_Kart Verwaltungsprogramm für Kirchengemeinden';
             Application.Initialize;
             Application.CreateForm(TfrmMain, frmMain);
             Application.CreateForm(TfrmDM, frmDM);
@@ -74,6 +74,7 @@ begin
         end;
    Except
      // LOG...
+     If hMutex <> 0 Then CloseHandle(hMutex);
    End;
 end.
 

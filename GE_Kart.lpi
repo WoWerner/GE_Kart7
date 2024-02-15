@@ -24,7 +24,7 @@
       <MajorVersionNr Value="7"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="2"/>
+      <BuildNr Value="4"/>
       <Language Value="0407"/>
       <StringTable CompanyName="Wolfgang Werner" FileDescription="GE_Kart: Verwaltungsprogramm für Kirchengemeinden" InternalName="GE_Kart.exe" LegalCopyright="Wolfgang Werner" OriginalFilename="GE_Kart.exe" ProductName="GE_Kart"/>
     </VersionInfo>
@@ -83,10 +83,10 @@
       <Unit0>
         <Filename Value="GE_Kart.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="7"/>
-        <CursorPos X="13" Y="50"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="46" Y="77"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -96,8 +96,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="711"/>
-        <CursorPos X="34" Y="734"/>
+        <TopLine Value="2448"/>
+        <CursorPos X="38" Y="2479"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -106,9 +106,9 @@
         <Filename Value="global.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Global"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="6"/>
-        <CursorPos X="28" Y="29"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="240"/>
+        <CursorPos Y="273"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -117,7 +117,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1053"/>
         <CursorPos X="51" Y="1077"/>
-        <UsageCount Value="200"/>
+        <UsageCount Value="199"/>
       </Unit3>
       <Unit4>
         <Filename Value="input.pas"/>
@@ -126,7 +126,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="151" Y="5"/>
-        <UsageCount Value="200"/>
+        <UsageCount Value="199"/>
       </Unit4>
       <Unit5>
         <Filename Value="dm.pas"/>
@@ -134,9 +134,9 @@
         <ComponentName Value="frmDM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="221"/>
-        <CursorPos X="55" Y="245"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="223"/>
+        <CursorPos X="25" Y="242"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit5>
@@ -152,14 +152,14 @@
       </Unit6>
       <Unit7>
         <Filename Value="vinfo.pas"/>
-        <UsageCount Value="201"/>
+        <UsageCount Value="200"/>
       </Unit7>
       <Unit8>
         <Filename Value="appsettings.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="31" Y="10"/>
-        <UsageCount Value="200"/>
+        <UsageCount Value="199"/>
       </Unit8>
       <Unit9>
         <Filename Value="dbgrid.pas"/>
@@ -181,7 +181,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="3" Y="69"/>
-        <UsageCount Value="200"/>
+        <UsageCount Value="199"/>
       </Unit10>
       <Unit11>
         <Filename Value="STATINFO.PAS"/>
@@ -226,13 +226,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="51"/>
         <CursorPos X="34" Y="58"/>
-        <UsageCount Value="200"/>
+        <UsageCount Value="199"/>
       </Unit14>
       <Unit15>
         <Filename Value="uscaledpi.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="3"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="193"/>
       </Unit15>
       <Unit16>
         <Filename Value="pgmupdate.pas"/>
@@ -243,14 +243,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="15"/>
         <CursorPos X="36" Y="31"/>
-        <UsageCount Value="200"/>
+        <UsageCount Value="199"/>
       </Unit16>
       <Unit17>
         <Filename Value="uhttpdownloader.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="10" Y="34"/>
-        <UsageCount Value="200"/>
+        <UsageCount Value="199"/>
       </Unit17>
       <Unit18>
         <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\regexpr\src\regexpr.pas"/>
@@ -258,20 +258,20 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="5234"/>
         <CursorPos X="3" Y="5246"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit18>
       <Unit19>
         <Filename Value="C:\Users\wwern\AppData\Local\Temp\Temp1_shttpclient.zip\Main.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="163"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="3"/>
       </Unit19>
       <Unit20>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\classes\classesh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="36"/>
         <CursorPos X="3" Y="62"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit20>
       <Unit21>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\types.pp"/>
@@ -279,14 +279,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="141"/>
         <CursorPos X="38" Y="167"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit21>
       <Unit22>
         <Filename Value="C:\lazarus\components\ZEOSDBO\src\component\ZAbstractRODataset.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1954"/>
         <CursorPos X="79" Y="1979"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="3"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit22>
       <Unit23>
@@ -295,13 +295,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="157"/>
         <CursorPos X="18" Y="198"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="3"/>
       </Unit23>
       <Unit24>
         <Filename Value="C:\lazarus\components\synapse40\source\lib\synautil.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="71" Y="2030"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="3"/>
       </Unit24>
       <Unit25>
         <Filename Value="C:\lazarus\lcl\forms.pp"/>
@@ -309,7 +309,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="644"/>
         <CursorPos X="14" Y="667"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="23"/>
       </Unit25>
       <Unit26>
         <Filename Value="C:\lazarus\lcl\graphics.pp"/>
@@ -317,7 +317,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="54"/>
         <CursorPos X="14" Y="69"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit26>
       <Unit27>
         <Filename Value="C:\lazarus\lcl\controls.pp"/>
@@ -325,14 +325,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1567"/>
         <CursorPos X="29" Y="1589"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit27>
       <Unit28>
         <Filename Value="..\..\Lazarus\shared\appsettings.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="28" Y="4"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="37"/>
       </Unit28>
       <Unit29>
         <Filename Value="..\..\Lazarus\shared\ausgabe.pas"/>
@@ -341,7 +341,7 @@
         <UnitName Value="Ausgabe"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="71" Y="18"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="37"/>
       </Unit29>
       <Unit30>
         <Filename Value="..\..\Lazarus\shared\freelist.pas"/>
@@ -351,15 +351,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="17" Y="19"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="37"/>
       </Unit30>
       <Unit31>
         <Filename Value="..\..\Lazarus\shared\help.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="751"/>
-        <CursorPos X="3" Y="754"/>
-        <UsageCount Value="22"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="460"/>
+        <CursorPos X="37" Y="498"/>
+        <UsageCount Value="37"/>
+        <Loaded Value="True"/>
       </Unit31>
       <Unit32>
         <Filename Value="..\..\Lazarus\shared\input.pas"/>
@@ -367,7 +368,7 @@
         <HasResources Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="12" Y="21"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="37"/>
       </Unit32>
       <Unit33>
         <Filename Value="..\..\Lazarus\shared\pgmupdate.pas"/>
@@ -376,50 +377,138 @@
         <UnitName Value="PgmUpdate"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16" Y="25"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="37"/>
       </Unit33>
       <Unit34>
         <Filename Value="..\..\Lazarus\shared\uhttpdownloader.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="37"/>
       </Unit34>
       <Unit35>
         <Filename Value="..\..\Lazarus\shared\vinfo.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="37"/>
       </Unit35>
     </Units>
-    <JumpHistory Count="7" HistoryIndex="6">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="623" Column="40" TopLine="606"/>
+        <Caret Line="202" Column="56" TopLine="202"/>
       </Position1>
       <Position2>
         <Filename Value="main.pas"/>
-        <Caret Line="621" Column="33" TopLine="606"/>
+        <Caret Line="658" Column="38" TopLine="637"/>
       </Position2>
       <Position3>
-        <Filename Value="global.pas"/>
-        <Caret Line="86" Column="12" TopLine="72"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="3290" TopLine="3247"/>
       </Position3>
       <Position4>
         <Filename Value="main.pas"/>
-        <Caret Line="704" Column="49" TopLine="686"/>
+        <Caret Line="3289" TopLine="3246"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="3286" Column="51" TopLine="3263"/>
+        <Caret Line="714" TopLine="696"/>
       </Position5>
       <Position6>
-        <Filename Value="dm.pas"/>
-        <Caret Line="245" Column="55" TopLine="221"/>
+        <Filename Value="global.pas"/>
+        <Caret Line="29" TopLine="9"/>
       </Position6>
       <Position7>
-        <Filename Value="main.pas"/>
-        <Caret Line="704" Column="34" TopLine="681"/>
+        <Filename Value="dm.pas"/>
+        <Caret Line="242" Column="32" TopLine="223"/>
       </Position7>
+      <Position8>
+        <Filename Value="main.pas"/>
+        <Caret Line="739" Column="77" TopLine="716"/>
+      </Position8>
+      <Position9>
+        <Filename Value="main.pas"/>
+        <Caret Line="601" Column="48" TopLine="581"/>
+      </Position9>
+      <Position10>
+        <Filename Value="main.pas"/>
+        <Caret Line="329" Column="3" TopLine="306"/>
+      </Position10>
+      <Position11>
+        <Filename Value="main.pas"/>
+        <Caret Line="739" Column="34" TopLine="713"/>
+      </Position11>
+      <Position12>
+        <Filename Value="main.pas"/>
+        <Caret Column="11"/>
+      </Position12>
+      <Position13>
+        <Filename Value="main.pas"/>
+        <Caret Line="2478" Column="17" TopLine="2465"/>
+      </Position13>
+      <Position14>
+        <Filename Value="main.pas"/>
+        <Caret Line="151" Column="23" TopLine="129"/>
+      </Position14>
+      <Position15>
+        <Filename Value="main.pas"/>
+        <Caret Line="212" Column="91" TopLine="198"/>
+      </Position15>
+      <Position16>
+        <Filename Value="main.pas"/>
+        <Caret Line="586" Column="44" TopLine="562"/>
+      </Position16>
+      <Position17>
+        <Filename Value="main.pas"/>
+        <Caret Line="725" Column="98" TopLine="713"/>
+      </Position17>
+      <Position18>
+        <Filename Value="main.pas"/>
+        <Caret Line="587" Column="52" TopLine="563"/>
+      </Position18>
+      <Position19>
+        <Filename Value="main.pas"/>
+        <Caret Line="586" Column="51" TopLine="580"/>
+      </Position19>
+      <Position20>
+        <Filename Value="main.pas"/>
+        <Caret Line="2479" Column="9" TopLine="2464"/>
+      </Position20>
+      <Position21>
+        <Filename Value="main.pas"/>
+        <Caret Line="579" Column="21" TopLine="568"/>
+      </Position21>
+      <Position22>
+        <Filename Value="main.pas"/>
+        <Caret Line="592" Column="47" TopLine="569"/>
+      </Position22>
+      <Position23>
+        <Filename Value="global.pas"/>
+        <Caret Line="273" TopLine="240"/>
+      </Position23>
+      <Position24>
+        <Filename Value="main.pas"/>
+        <Caret Line="329" TopLine="306"/>
+      </Position24>
+      <Position25>
+        <Filename Value="..\..\Lazarus\shared\help.pas"/>
+        <Caret Line="102" Column="79" TopLine="97"/>
+      </Position25>
+      <Position26>
+        <Filename Value="main.pas"/>
+        <Caret Line="638" Column="15" TopLine="631"/>
+      </Position26>
+      <Position27>
+        <Filename Value="main.pas"/>
+        <Caret Line="2477" Column="26" TopLine="2454"/>
+      </Position27>
+      <Position28>
+        <Filename Value="main.pas"/>
+        <Caret Line="737" Column="3" TopLine="735"/>
+      </Position28>
+      <Position29>
+        <Filename Value="main.pas"/>
+        <Caret Line="2477" Column="33" TopLine="2454"/>
+      </Position29>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
@@ -447,6 +536,22 @@
     </Linking>
   </CompilerOptions>
   <Debugging>
+    <BreakPoints Count="2">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="main.pas"/>
+        <Line Value="2480"/>
+      </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="main.pas"/>
+        <Line Value="601"/>
+      </Item2>
+    </BreakPoints>
     <Watches Count="1">
       <Item1>
         <Expression Value="slAusgabe"/>
