@@ -31,6 +31,7 @@ type
     dsetGD: TZQuery;
     dsHelp: TDatasource;
     dsHelp1: TDatasource;
+    dsHelp2: TDataSource;
     dsKinder: TDatasource;
     DBF_Help: TDbf;
     dsPersonen: TDatasource;
@@ -238,6 +239,34 @@ begin
                       ExecSQL('create table if not exists [Users] ([Name] varchar (200) null);');
                       ExecSQL('update Version set V=''7.5.3''');
                       sHelp := '7.5.3';
+                      myDebugLN('DB-Version now: '+sHelp);
+                    end;
+                //Update auf DB-Format 7.5.4
+                if sHelp = '7.5.3'
+                  then
+                    begin
+                      ExecSQL('drop table if exists Users');
+                      //Bereinigen der Tabelle KOMMUNIONEN
+                      ExecSQL('delete from '+global.sKommTablename+' where '+SQL_Where_IsNull('Abendmahlsdatum'));
+                      ExecSQL('delete from '+global.sKommTablename+' where '+SQL_Where_IsNull('PersonenID'));
+                      //doppelte DS löschen
+                      dsetHelp2.sql.Clear;
+                      dsetHelp2.sql.add('SELECT KommID, Abendmahlsdatum, PersonenID, COUNT(*) c FROM '+global.sKommTablename+' GROUP BY Abendmahlsdatum, PersonenID HAVING c > 1');
+                      dsetHelp2.open;
+                      while not dsetHelp2.EOF do
+                        begin
+                          ExecSQL('delete from '+global.sKommTablename+' where KommID='+dsetHelp2.fieldByName('KommID').asstring);
+                          frmDM.dsetHelp2.Next;
+                        end;
+                      dsetHelp2.Close;
+                      //Index erstellen um doppelte DS zu verhindern
+                      ExecSQL('create unique index if not exists komm_unique on '+global.sKommTablename+' (PersonenID, Abendmahlsdatum)');
+                      //Schreibfehler beseitigen
+                      ExecSQL('alter table '+global.sGDTablename+' rename column Kommunikaten to Kommunikanten');
+                      ExecSQL('alter table '+global.sGDTablename+' rename column Gastkommunikaten to Gastkommunikanten');
+
+                      ExecSQL('update Version set V=''7.5.4''');
+                      sHelp := '7.5.4';
                       myDebugLN('DB-Version now: '+sHelp);
                     end;
                 bDatabaseVersionChecked := true;

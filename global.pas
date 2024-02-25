@@ -34,7 +34,7 @@ const
                        'where (PersonenID = %s) '+
                        'GROUP BY D '+
                        'ORDER BY D DESC;';
-  sSQL_Komm_ADD      = 'INSERT INTO '+sKommTablename+  ' (Abendmahlsdatum, PersonenID) VALUES (''%s'', %s)';
+  sSQL_Komm_ADD      = 'INSERT OR REPLACE INTO '+sKommTablename+  ' (Abendmahlsdatum, PersonenID) VALUES (%s, %s)';
   sSQL_BESUCH_ADD    = 'INSERT INTO '+sBESUCHTablename+' (Besuchsdatum, Besuchsgrund, PersonenID) VALUES (''%s'', ''neuer Besuch'',%s)';
   sSQL_KIND_ADD      = 'INSERT INTO '+sKindTablename+  ' (Vorname, Vorname2, Nachname, PersonenID) VALUES (''Neues'', ''Kind'', ''hier bearbeiten'',%s)';
   //Gottesdienst anlegen
@@ -194,8 +194,8 @@ const
                         'MEMO=Memo'+#13#10+
                         'PREDIGTTEX=Predigttext'+#13#10+
                         'KUESTER=Kuester'+#13#10+
-                        'KOMM=Kommunikaten'+#13#10+
-                        'GASTKOMM=Gastkommunikaten'+#13#10+
+                        'KOMM=Kommunikanten'+#13#10+
+                        'GASTKOMM=Gastkommunikanten'+#13#10+
                         'TAG=Tag'+#13#10+
                         'GEMEINDE=Gemeinde';
 
@@ -239,8 +239,8 @@ const
                         '[Memo] TEXT NULL,'+
                         '[Predigttext] VARCHAR(100) NULL,'+
                         '[Kuester] VARCHAR(100) NULL,'+
-                        '[Kommunikaten] INTEGER NULL,'+
-                        '[Gastkommunikaten] INTEGER NULL,'+
+                        '[Kommunikanten] INTEGER NULL,'+
+                        '[Gastkommunikanten] INTEGER NULL,'+
                         '[Tag] VARCHAR(20) NULL,'+
                         '[Gemeinde] VARCHAR(2) NULL'+
                         ');';

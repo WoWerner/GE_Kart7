@@ -1379,7 +1379,13 @@ end;
 
 procedure TfrmMain.mnuGDBearbeitenClick(Sender: TObject);
 begin
+  frmDM.dsetHelp1.sql.Clear;
+  frmDM.dsetHelp1.sql.add('select Vorname, Nachname, Geburtstag, PERSONENID from '+global.sPersTablename);
+  frmDM.dsetHelp1.sql.add('order by nachname, vorname');
+  frmDM.dsetHelp1.open;
   frmGD.Showmodal;
+  frmDM.dsetHelp1.close;
+  if frmDM.dsetHelp2.Active then frmDM.dsetHelp2.Close;
 end;
 
 procedure TfrmMain.mnuGDStatistikClick(Sender: TObject);
@@ -1499,8 +1505,8 @@ begin
           frmDM.dsetHelp.first;
           while not frmDM.dsetHelp.eof do
             begin
-              kommunikanten := kommunikanten + frmDM.dsetHelp.FieldByName('Kommunikaten').asinteger;
-              gastkomm := gastkomm + frmDM.dsetHelp.FieldByName('GastKommunikaten').asinteger;
+              kommunikanten := kommunikanten + frmDM.dsetHelp.FieldByName('Kommunikanten').asinteger;
+              gastkomm := gastkomm + frmDM.dsetHelp.FieldByName('GastKommunikanten').asinteger;
 
               if frmDM.dsetHelp.FieldByName('tag').asstring = 'S' then            { sonntag }
                 begin

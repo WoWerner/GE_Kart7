@@ -752,7 +752,7 @@ begin
   if TryStrToDate(DateEditKomm.Text, dtValue) then
     begin
 
-      frmDM.ExecSQL(Format(global.sSQL_KOMM_ADD, [FormatDateTime('yyyy-mm-dd', DateEditKomm.Date), frmDM.dsetPERSONEN.FieldByName('PersonenID').AsString]));
+      frmDM.ExecSQL(Format(global.sSQL_KOMM_ADD, [SQLiteDateFormat(DateEditKomm.Date), frmDM.dsetPERSONEN.FieldByName('PersonenID').AsString]));
       frmDM.dsetKomm.refresh;
       berechnen := True;
     end
