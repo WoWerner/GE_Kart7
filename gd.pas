@@ -24,8 +24,10 @@ type
 
   TfrmGD = class(TForm)
     btnEnde: TButton;
+    btnKomDel: TButton;
     btnNew: TButton;
     btnDel: TButton;
+    btnKomAdd: TButton;
     cbGemeinde: TComboBox;
     DBCBGottesdienstForm1: TDBComboBox;
     DBCBGottesdienstForm2: TDBComboBox;
@@ -33,9 +35,9 @@ type
     DBCBTag: TDBComboBox;
     DBEdiKollekte: TDBEdit;
     DBEdiKollekteFuer: TDBEdit;
-    DBEdiKommunikaten: TDBEdit;
+    DBEdiKommunikanten: TDBEdit;
     DBEdiBesucherKiGo: TDBEdit;
-    DBEdiGastkommunikaten: TDBEdit;
+    DBEdiGastkommunikanten: TDBEdit;
     DBEdiPfarrer: TDBEdit;
     DBEdiKuester: TDBEdit;
     DBEdiPredigttext: TDBEdit;
@@ -55,8 +57,11 @@ type
     DBEdiSchlusslied: TDBEdit;
     DBEdiLiturgGesang1: TDBEdit;
     DBGrid1: TDBGrid;
+    DBGridPersonen: TDBGrid;
+    DBGridKommunikanten: TDBGrid;
     DBMemo: TDBMemo;
     DBNavigator1: TDBNavigator;
+    ediSSNachname: TLabeledEdit;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -76,6 +81,7 @@ type
     Label23: TLabel;
     Label24: TLabel;
     Label25: TLabel;
+    Label26: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -90,9 +96,13 @@ type
     Panel1: TPanel;
     procedure btnDelClick(Sender: TObject);
     procedure btnEndeClick(Sender: TObject);
+    procedure btnKomAddClick(Sender: TObject);
+    procedure btnKomDelClick(Sender: TObject);
     procedure btnNewClick(Sender: TObject);
     procedure cbGemeindeChange(Sender: TObject);
     procedure DBCBChange(Sender: TObject);
+    procedure ediSSNachnameDblClick(Sender: TObject);
+    procedure ediSSNachnameKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -113,6 +123,7 @@ implementation
 uses
   global,
   help,
+  variants,//VarArrayOf
   dm;
 
 {$R *.lfm}
@@ -124,6 +135,10 @@ begin
   frmDM.dsetGD.Open;
   cbGemeinde.Items.Text := sGemeinden;
   cbGemeinde.Text       := sGemeindenAlle;
+  DBGridPersonen.Columns.Items[0].Width:=130;
+  DBGridPersonen.Columns.Items[1].Width:=140;
+  DBGridPersonen.Columns.Items[2].Width:=80;
+  DBGridPersonen.Columns.Items[3].Visible:=false;
   dbGrid1.SetFocus;
 end;
 
@@ -182,6 +197,44 @@ end;
 procedure TfrmGD.btnEndeClick(Sender: TObject);
 begin
   close;
+end;
+
+procedure TfrmGD.btnKomAddClick(Sender: TObject);
+
+var
+  i : Integer;
+  DataSet : TDataSet;
+
+begin
+  DataSet := DBGridPersonen.DataSource.DataSet;
+  if DBGridPersonen.SelectedRows.Count > 0 then
+    begin
+      for i := 0 to DBGridPersonen.SelectedRows.Count-1 do
+         begin
+           DataSet.GotoBookmark(Pointer(DBGridPersonen.SelectedRows.Items[i]));
+           frmDM.ExecSQL(Format(global.sSQL_KOMM_ADD, [SQLiteDateFormat(frmDM.dsetGD.FieldByName('GottesdienstDatum').AsDateTime), DataSet.FieldByName('PersonenID').AsString]));
+         end;
+    end;
+  AfterScroll();
+end;
+
+procedure TfrmGD.btnKomDelClick(Sender: TObject);
+
+var
+  i : Integer;
+  DataSet : TDataSet;
+
+begin
+  DataSet := DBGridKommunikanten.DataSource.DataSet;
+  if DBGridKommunikanten.SelectedRows.Count > 0 then
+    begin
+      for i := 0 to DBGridKommunikanten.SelectedRows.Count-1 do
+         begin
+           DataSet.GotoBookmark(Pointer(DBGridKommunikanten.SelectedRows.Items[i]));
+           frmDM.ExecSQL('Delete from '+global.sKommTablename+' where KommID='+DataSet.FieldByName('KommID').AsString);
+         end;
+    end;
+  AfterScroll();
 end;
 
 procedure TfrmGD.btnDelClick(Sender: TObject);
@@ -269,9 +322,34 @@ begin
       end;
 end;
 
+procedure TfrmGD.ediSSNachnameDblClick(Sender: TObject);
+begin
+  ediSSNachname.Text:='';
+end;
+
+procedure TfrmGD.ediSSNachnameKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if ediSSNachname.Text <> ''
+    then frmDM.dsetHelp1.Locate('Nachname', VarArrayOf([ediSSNachname.Text]), [loCaseInsensitive, loPartialKey]);
+end;
+
  procedure TfrmGD.AfterScroll;
  begin
-   if frmGD.Visible then DBCBChange(self);
+   if frmGD.Visible then
+     begin
+       DBCBChange(self);
+       if frmDM.dsetHelp2.Active then frmDM.dsetHelp2.Close;
+       frmDM.dsetHelp2.sql.Clear;
+       frmDM.dsetHelp2.sql.add('select Vorname, Nachname, '+global.sKommTablename+'.KommID from '+global.sPersTablename);
+       frmDM.dsetHelp2.sql.add('left join '+global.sKommTablename+' on '+global.sKommTablename+'.PERSONENID = '+global.sPersTablename+'.PERSONENID');
+       frmDM.dsetHelp2.sql.add('where AbendmahlsDatum = '+SQLiteDateFormat(frmDM.dsetGD.FieldByName('GottesdienstDatum').AsDateTime));
+       frmDM.dsetHelp2.sql.add('order by nachname, vorname');
+       frmDM.dsetHelp2.open;
+       DBGridKommunikanten.Columns.Items[0].Width   := 130;
+       DBGridKommunikanten.Columns.Items[1].Width   := 240;
+       DBGridKommunikanten.Columns.Items[2].Visible := false;
+       frmDM.ExecSQL('update '+global.sGDTablename+' set Kommunikanten = '+ inttostr(frmDM.dsetHelp2.RecordCount)+' where GdID = '+frmDM.dsetGD.FieldByName('GdID').AsString);
+     end;
  end;
 
 end.

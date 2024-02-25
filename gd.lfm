@@ -1,12 +1,12 @@
 object frmGD: TfrmGD
-  Left = 661
-  Height = 493
-  Top = 301
-  Width = 716
+  Left = 401
+  Height = 527
+  Top = 247
+  Width = 1104
   BorderStyle = bsDialog
   Caption = 'Gottesdienstverwaltung'
-  ClientHeight = 493
-  ClientWidth = 716
+  ClientHeight = 527
+  ClientWidth = 1104
   KeyPreview = True
   OnActivate = FormActivate
   OnClose = FormClose
@@ -14,16 +14,16 @@ object frmGD: TfrmGD
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '3.0.0.3'
   object Panel1: TPanel
     Left = 0
     Height = 36
-    Top = 457
-    Width = 716
+    Top = 491
+    Width = 1104
     Align = alBottom
     BevelOuter = bvNone
     ClientHeight = 36
-    ClientWidth = 716
+    ClientWidth = 1104
     TabOrder = 0
     object DBNavigator1: TDBNavigator
       Left = 8
@@ -45,13 +45,13 @@ object frmGD: TfrmGD
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbPost, nbCancel, nbRefresh]
     end
     object btnEnde: TButton
-      Left = 632
+      Left = 1020
       Height = 25
       Top = 4
       Width = 75
       Caption = 'Ende'
-      OnClick = btnEndeClick
       TabOrder = 1
+      OnClick = btnEndeClick
     end
     object btnNew: TButton
       Left = 232
@@ -59,8 +59,8 @@ object frmGD: TfrmGD
       Top = 4
       Width = 75
       Caption = 'Neu'
-      OnClick = btnNewClick
       TabOrder = 2
+      OnClick = btnNewClick
     end
     object btnDel: TButton
       Left = 320
@@ -68,31 +68,31 @@ object frmGD: TfrmGD
       Top = 4
       Width = 75
       Caption = 'Löschen'
-      OnClick = btnDelClick
       TabOrder = 3
+      OnClick = btnDelClick
     end
     object Label149: TLabel
-      Left = 408
+      Left = 555
       Height = 15
-      Top = 12
+      Top = 10
       Width = 54
       Caption = 'Gemeinde'
       ParentColor = False
     end
     object cbGemeinde: TComboBox
-      Left = 472
+      Left = 619
       Height = 23
-      Top = 8
+      Top = 6
       Width = 85
       ItemHeight = 15
-      OnChange = cbGemeindeChange
       TabOrder = 4
       Text = 'Alle'
+      OnChange = cbGemeindeChange
     end
   end
   object DBGrid1: TDBGrid
     Left = 0
-    Height = 457
+    Height = 491
     Top = 0
     Width = 144
     Align = alLeft
@@ -117,33 +117,31 @@ object frmGD: TfrmGD
     Width = 80
     DataField = 'GottesdienstDatum'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 0
     TabOrder = 2
   end
   object Label2: TLabel
-    Left = 288
+    Left = 152
     Height = 15
-    Top = 8
+    Top = 32
     Width = 54
     Caption = 'Gemeinde'
     ParentColor = False
   end
   object DBEdiGemeinde: TDBEdit
-    Left = 352
+    Left = 216
     Height = 23
-    Top = 8
+    Top = 32
     Width = 64
     DataField = 'Gemeinde'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 2
     TabOrder = 3
   end
   object Label3: TLabel
     Left = 152
     Height = 15
-    Top = 32
+    Top = 56
     Width = 32
     Caption = 'Name'
     ParentColor = False
@@ -151,28 +149,27 @@ object frmGD: TfrmGD
   object DBEdiName: TDBEdit
     Left = 200
     Height = 23
-    Top = 32
+    Top = 56
     Width = 216
     DataField = 'Name'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 4
   end
   object DBMemo: TDBMemo
     Left = 431
-    Height = 273
-    Top = 184
+    Height = 281
+    Top = 208
     Width = 274
     DataField = 'Memo'
     DataSource = frmDM.dsGD
     ScrollBars = ssAutoBoth
-    TabOrder = 28
+    TabOrder = 29
   end
   object DBCBGottesdienstForm1: TDBComboBox
     Left = 200
     Height = 23
-    Top = 80
+    Top = 104
     Width = 80
     DataField = 'GottesdienstForm1'
     DataSource = frmDM.dsGD
@@ -193,12 +190,12 @@ object frmGD: TfrmGD
     OnChange = DBCBChange
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 5
+    TabOrder = 6
   end
   object Label4: TLabel
     Left = 152
     Height = 15
-    Top = 88
+    Top = 107
     Width = 16
     Caption = 'Art'
     ParentColor = False
@@ -206,7 +203,7 @@ object frmGD: TfrmGD
   object DBCBGottesdienstForm2: TDBComboBox
     Left = 200
     Height = 23
-    Top = 104
+    Top = 128
     Width = 80
     DataField = 'GottesdienstForm2'
     DataSource = frmDM.dsGD
@@ -227,12 +224,12 @@ object frmGD: TfrmGD
     OnChange = DBCBChange
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 6
+    TabOrder = 7
   end
   object DBCBGottesdienstForm3: TDBComboBox
     Left = 200
     Height = 23
-    Top = 128
+    Top = 152
     Width = 80
     DataField = 'GottesdienstForm3'
     DataSource = frmDM.dsGD
@@ -253,12 +250,12 @@ object frmGD: TfrmGD
     OnChange = DBCBChange
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 7
+    TabOrder = 8
   end
   object Label5: TLabel
     Left = 152
     Height = 15
-    Top = 56
+    Top = 75
     Width = 18
     Caption = 'Tag'
     ParentColor = False
@@ -266,7 +263,7 @@ object frmGD: TfrmGD
   object DBCBTag: TDBComboBox
     Left = 200
     Height = 23
-    Top = 56
+    Top = 80
     Width = 80
     DataField = 'Tag'
     DataSource = frmDM.dsGD
@@ -278,12 +275,12 @@ object frmGD: TfrmGD
     )
     MaxLength = 0
     OnChange = DBCBChange
-    TabOrder = 8
+    TabOrder = 5
   end
   object labTag: TLabel
     Left = 288
     Height = 15
-    Top = 56
+    Top = 80
     Width = 34
     Caption = 'labTag'
     ParentColor = False
@@ -291,7 +288,7 @@ object frmGD: TfrmGD
   object labGottesdienstForm1: TLabel
     Left = 288
     Height = 15
-    Top = 80
+    Top = 104
     Width = 116
     Caption = 'labGottesdienstForm1'
     ParentColor = False
@@ -299,7 +296,7 @@ object frmGD: TfrmGD
   object labGottesdienstForm2: TLabel
     Left = 288
     Height = 15
-    Top = 104
+    Top = 128
     Width = 116
     Caption = 'labGottesdienstForm1'
     ParentColor = False
@@ -307,7 +304,7 @@ object frmGD: TfrmGD
   object labGottesdienstForm3: TLabel
     Left = 288
     Height = 15
-    Top = 128
+    Top = 152
     Width = 116
     Caption = 'labGottesdienstForm1'
     ParentColor = False
@@ -315,7 +312,7 @@ object frmGD: TfrmGD
   object Label6: TLabel
     Left = 152
     Height = 15
-    Top = 152
+    Top = 176
     Width = 67
     Caption = 'Eingangslied'
     ParentColor = False
@@ -323,18 +320,17 @@ object frmGD: TfrmGD
   object DBEdiEingangslied: TDBEdit
     Left = 264
     Height = 23
-    Top = 152
+    Top = 176
     Width = 152
     DataField = 'Eingangslied'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 9
   end
   object Label7: TLabel
     Left = 152
     Height = 15
-    Top = 176
+    Top = 200
     Width = 52
     Caption = 'Hauptlied'
     ParentColor = False
@@ -342,18 +338,17 @@ object frmGD: TfrmGD
   object DBEdiHauptlied: TDBEdit
     Left = 264
     Height = 23
-    Top = 176
+    Top = 200
     Width = 152
     DataField = 'Hauptlied'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 10
   end
   object Label8: TLabel
     Left = 152
     Height = 15
-    Top = 200
+    Top = 224
     Width = 83
     Caption = 'Lied vor Predigt'
     ParentColor = False
@@ -361,18 +356,17 @@ object frmGD: TfrmGD
   object DBEdiLiedVorPredigt: TDBEdit
     Left = 264
     Height = 23
-    Top = 200
+    Top = 224
     Width = 152
     DataField = 'LiedVorPredigt'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 11
   end
   object Label9: TLabel
     Left = 152
     Height = 15
-    Top = 224
+    Top = 248
     Width = 92
     Caption = 'Lied nach Predigt'
     ParentColor = False
@@ -380,18 +374,17 @@ object frmGD: TfrmGD
   object DBEdiLiedNachPredigt: TDBEdit
     Left = 264
     Height = 23
-    Top = 224
+    Top = 248
     Width = 152
     DataField = 'LiedNachPredigt'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 12
   end
   object Label10: TLabel
     Left = 152
     Height = 15
-    Top = 248
+    Top = 272
     Width = 95
     Caption = 'Lied zur Bereitung'
     ParentColor = False
@@ -399,18 +392,17 @@ object frmGD: TfrmGD
   object DBEdiLiedZurBereitung: TDBEdit
     Left = 264
     Height = 23
-    Top = 248
+    Top = 272
     Width = 152
     DataField = 'LiedZurBereitung'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 13
   end
   object Label11: TLabel
     Left = 152
     Height = 15
-    Top = 272
+    Top = 296
     Width = 101
     Caption = 'Lied zur Austeilung'
     ParentColor = False
@@ -418,18 +410,17 @@ object frmGD: TfrmGD
   object DBEdiLiedZurAusteilung: TDBEdit
     Left = 264
     Height = 23
-    Top = 272
+    Top = 296
     Width = 152
     DataField = 'LiedZurAusteilung'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 14
   end
   object Label12: TLabel
     Left = 152
     Height = 15
-    Top = 296
+    Top = 320
     Width = 58
     Caption = 'Schlusslied'
     ParentColor = False
@@ -437,18 +428,17 @@ object frmGD: TfrmGD
   object DBEdiSchlusslied: TDBEdit
     Left = 264
     Height = 23
-    Top = 296
+    Top = 320
     Width = 152
     DataField = 'Schlusslied'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 15
   end
   object Label13: TLabel
     Left = 152
     Height = 15
-    Top = 320
+    Top = 344
     Width = 82
     Caption = 'Liturg Gesang 1'
     ParentColor = False
@@ -456,40 +446,37 @@ object frmGD: TfrmGD
   object DBEdiLiturgGesang1: TDBEdit
     Left = 264
     Height = 23
-    Top = 320
+    Top = 344
     Width = 152
     DataField = 'LiturgGesang1'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 16
   end
   object DBEdiLiturgGesang2: TDBEdit
     Left = 264
     Height = 23
-    Top = 344
+    Top = 368
     Width = 152
     DataField = 'LiturgGesang2'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 17
   end
   object DBEdiLiturgGesang3: TDBEdit
     Left = 264
     Height = 23
-    Top = 368
+    Top = 392
     Width = 152
     DataField = 'LiturgGesang3'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 18
   end
   object Label14: TLabel
     Left = 152
     Height = 15
-    Top = 344
+    Top = 368
     Width = 82
     Caption = 'Liturg Gesang 2'
     ParentColor = False
@@ -497,7 +484,7 @@ object frmGD: TfrmGD
   object Label15: TLabel
     Left = 152
     Height = 15
-    Top = 368
+    Top = 392
     Width = 82
     Caption = 'Liturg Gesang 3'
     ParentColor = False
@@ -505,7 +492,7 @@ object frmGD: TfrmGD
   object Label16: TLabel
     Left = 152
     Height = 15
-    Top = 392
+    Top = 416
     Width = 44
     Caption = 'Introitus'
     ParentColor = False
@@ -513,18 +500,17 @@ object frmGD: TfrmGD
   object DBEdiIntroitus: TDBEdit
     Left = 264
     Height = 23
-    Top = 392
+    Top = 416
     Width = 152
     DataField = 'Introitus'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 19
   end
   object Label17: TLabel
     Left = 152
     Height = 15
-    Top = 416
+    Top = 440
     Width = 58
     Caption = 'Predigttext'
     ParentColor = False
@@ -532,11 +518,10 @@ object frmGD: TfrmGD
   object DBEdiPredigttext: TDBEdit
     Left = 264
     Height = 23
-    Top = 416
+    Top = 440
     Width = 152
     DataField = 'Predigttext'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 20
   end
@@ -549,39 +534,37 @@ object frmGD: TfrmGD
     ParentColor = False
   end
   object DBEdiBesucher: TDBEdit
-    Left = 488
+    Left = 520
     Height = 23
     Top = 8
-    Width = 56
+    Width = 64
     DataField = 'Besucher'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 0
     TabOrder = 21
   end
   object Label19: TLabel
-    Left = 568
+    Left = 431
     Height = 15
-    Top = 8
+    Top = 32
     Width = 76
     Caption = 'Besucher KiGo'
     ParentColor = False
   end
   object DBEdiBesucherKiGo: TDBEdit
-    Left = 656
+    Left = 520
     Height = 23
-    Top = 8
-    Width = 49
+    Top = 32
+    Width = 64
     DataField = 'BesucherKiGo'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 0
     TabOrder = 22
   end
   object Label20: TLabel
     Left = 431
     Height = 15
-    Top = 32
+    Top = 56
     Width = 35
     Caption = 'Pfarrer'
     ParentColor = False
@@ -589,56 +572,53 @@ object frmGD: TfrmGD
   object DBEdiPfarrer: TDBEdit
     Left = 488
     Height = 23
-    Top = 32
+    Top = 56
     Width = 217
     DataField = 'Pfarrer'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 23
   end
   object Label21: TLabel
     Left = 431
     Height = 15
-    Top = 80
-    Width = 82
-    Caption = 'Kommunikaten'
+    Top = 104
+    Width = 89
+    Caption = 'Kommunikanten'
     ParentColor = False
   end
-  object DBEdiKommunikaten: TDBEdit
+  object DBEdiKommunikanten: TDBEdit
     Left = 544
     Height = 23
-    Top = 80
+    Top = 104
     Width = 40
-    DataField = 'Kommunikaten'
+    DataField = 'Kommunikanten'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 0
     TabOrder = 25
   end
   object Label22: TLabel
     Left = 431
     Height = 15
-    Top = 104
-    Width = 104
-    Caption = 'Gastkommunikaten'
+    Top = 128
+    Width = 111
+    Caption = 'Gastkommunikanten'
     ParentColor = False
   end
-  object DBEdiGastkommunikaten: TDBEdit
+  object DBEdiGastkommunikanten: TDBEdit
     Left = 544
     Height = 23
-    Top = 104
+    Top = 128
     Width = 40
-    DataField = 'Gastkommunikaten'
+    DataField = 'GastKommunikanten'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 0
     TabOrder = 26
   end
   object Label23: TLabel
     Left = 431
     Height = 15
-    Top = 56
+    Top = 80
     Width = 33
     Caption = 'Küster'
     ParentColor = False
@@ -646,18 +626,17 @@ object frmGD: TfrmGD
   object DBEdiKuester: TDBEdit
     Left = 488
     Height = 23
-    Top = 56
+    Top = 80
     Width = 217
     DataField = 'Kuester'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 100
     TabOrder = 24
   end
   object Label24: TLabel
     Left = 431
     Height = 15
-    Top = 128
+    Top = 152
     Width = 42
     Caption = 'Kollekte'
     ParentColor = False
@@ -665,18 +644,17 @@ object frmGD: TfrmGD
   object DBEdiKollekte: TDBEdit
     Left = 520
     Height = 23
-    Top = 128
+    Top = 152
     Width = 64
     DataField = 'Kollekte'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 0
     TabOrder = 27
   end
   object Label25: TLabel
     Left = 431
     Height = 15
-    Top = 152
+    Top = 176
     Width = 60
     Caption = 'Kollekte für'
     ParentColor = False
@@ -684,12 +662,83 @@ object frmGD: TfrmGD
   object DBEdiKollekteFuer: TDBEdit
     Left = 520
     Height = 23
-    Top = 152
+    Top = 176
     Width = 184
     DataField = 'KollekteFuer'
     DataSource = frmDM.dsGD
-    CharCase = ecNormal
     MaxLength = 0
-    TabOrder = 29
+    TabOrder = 28
+  end
+  object DBGridPersonen: TDBGrid
+    Left = 712
+    Height = 127
+    Hint = 'Multiselekt mit Strg'
+    Top = 32
+    Width = 384
+    AutoEdit = False
+    Color = clWindow
+    Columns = <>
+    DataSource = frmDM.dsHelp1
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect]
+    ReadOnly = True
+    Scrollbars = ssAutoVertical
+    ShowHint = True
+    TabOrder = 30
+  end
+  object ediSSNachname: TLabeledEdit
+    Left = 712
+    Height = 23
+    Hint = 'Doppelklick zum Löschen der Eingabefenster'
+    Top = 176
+    Width = 160
+    EditLabel.Height = 15
+    EditLabel.Width = 160
+    EditLabel.Caption = 'Suche nach Nachname'
+    EditLabel.ParentColor = False
+    EditLabel.ParentFont = False
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 31
+    OnDblClick = ediSSNachnameDblClick
+    OnKeyUp = ediSSNachnameKeyUp
+  end
+  object btnKomAdd: TButton
+    Left = 880
+    Height = 23
+    Top = 176
+    Width = 104
+    Caption = 'Hinzufügen'
+    TabOrder = 32
+    OnClick = btnKomAddClick
+  end
+  object btnKomDel: TButton
+    Left = 992
+    Height = 23
+    Top = 176
+    Width = 104
+    Caption = 'Entfernen'
+    TabOrder = 33
+    OnClick = btnKomDelClick
+  end
+  object DBGridKommunikanten: TDBGrid
+    Left = 712
+    Height = 280
+    Top = 208
+    Width = 384
+    Color = clWindow
+    Columns = <>
+    DataSource = frmDM.dsHelp2
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect]
+    Scrollbars = ssAutoVertical
+    TabOrder = 34
+  end
+  object Label26: TLabel
+    Left = 712
+    Height = 15
+    Top = 8
+    Width = 128
+    Caption = 'Kommunikaten erfassen'
+    ParentColor = False
   end
 end
