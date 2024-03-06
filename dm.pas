@@ -262,6 +262,21 @@ begin
                       //Schreibfehler beseitigen
                       ExecSQL('alter table '+global.sGDTablename+' rename column Kommunikaten to Kommunikanten');
                       ExecSQL('alter table '+global.sGDTablename+' rename column Gastkommunikaten to Gastkommunikanten');
+                      //Umwandlung Feld Gemeinde
+                      ExecSQL('alter table '+global.sGDTablename+' add column [Temp] VARCHAR(20) NULL');
+                      ExecSQL('update '     +global.sGDTablename+' set Temp = Gemeinde');
+                      ExecSQL('alter table '+global.sGDTablename+' drop column [Gemeinde]');
+                      ExecSQL('alter table '+global.sGDTablename+' add column [Gemeinde] VARCHAR(10) NULL');
+                      ExecSQL('update '     +global.sGDTablename+' set Gemeinde = Temp');
+                      ExecSQL('update '     +global.sGDTablename+' set Temp = ""');
+                      //Umwandlung Feld Kollekte
+                      ExecSQL('update '     +global.sGDTablename+' set Temp = Kollekte');
+                      ExecSQL('alter table '+global.sGDTablename+' drop column [Kollekte]');
+                      ExecSQL('alter table '+global.sGDTablename+' add column [Kollekte] VARCHAR(20) NULL');
+                      ExecSQL('update '     +global.sGDTablename+' set Kollekte = Temp');
+                      ExecSQL('update '     +global.sGDTablename+' set Temp = ""');
+                      //Clean up
+                      ExecSQL('alter table '+global.sGDTablename+' drop column [Temp]');
 
                       ExecSQL('update Version set V=''7.5.4''');
                       sHelp := '7.5.4';
