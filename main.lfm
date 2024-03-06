@@ -97,8 +97,8 @@ object frmMain: TfrmMain
     Left = 44
     Height = 15
     Top = 216
-    Width = 66
-    Caption = 'Ulmtalstr. 26'
+    Width = 72
+    Caption = 'Grüner Weg 2'
     Font.Color = clNavy
     ParentColor = False
     ParentFont = False
