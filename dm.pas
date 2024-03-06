@@ -81,8 +81,6 @@ Procedure TfrmDM.AutoEdit(Activ : boolean);
 begin
   dsPersonen.AutoEdit := Activ;
   dsKinder.AutoEdit   := Activ;
-  dsKomm.AutoEdit     := Activ;
-  dsBesuch.AutoEdit   := Activ;
   dsHelp.AutoEdit     := Activ;
 end;
 

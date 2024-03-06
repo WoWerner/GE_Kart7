@@ -545,6 +545,9 @@ end;
 procedure TfrmKartei.pcDetailsChange(Sender: TObject);
 
 begin
+  frmDM.dsKomm.AutoEdit   := False;
+  frmDM.dsBesuch.AutoEdit := False;
+
   case pcDetails.TabIndex of
     1: //TSEltern / Kinder
       begin
@@ -564,6 +567,8 @@ begin
     4: //TSKommunionen
       begin
         DBGridDetails.Visible                  := True;
+        frmDM.dsKomm.AutoEdit                  := True;
+
         DBGridDetails.Columns.Clear;
         DBGridDetails.DataSource               := frmDM.dsKomm;
         DBGridDetails.Columns.Items[0].Visible := False;                                    //KommID
@@ -573,6 +578,7 @@ begin
     5: //TSBesuch
       begin
         DBGridDetails.Visible                  := True;
+        frmDM.dsBesuch.AutoEdit                := True;
         DBGridDetails.Columns.Clear;
         DBGridDetails.DataSource               := frmDM.dsBesuch;
         DBGridDetails.Columns.Items[0].Visible := False;                                    //BesuchID
@@ -813,15 +819,10 @@ end;
 procedure TfrmKartei.cbBearbeitenChange(Sender: TObject);
 begin
   frmDM.AutoEdit(cbBearbeiten.Checked);
-  btnNew.Enabled        := cbBearbeiten.Checked;
-  btnNewKind.Enabled    := cbBearbeiten.Checked;
-  btnNewKomm.Enabled    := cbBearbeiten.Checked;
-  btnNewBesuch.Enabled  := cbBearbeiten.Checked;
-  btnDel.Enabled        := cbBearbeiten.Checked;
-  btnDelKind.Enabled    := cbBearbeiten.Checked;
-  btnDelKomm.Enabled    := cbBearbeiten.Checked;
-  btnDelBesuch.Enabled  := cbBearbeiten.Checked;
-  btnCopyBesuch.Enabled := cbBearbeiten.Checked;
+  btnNew.Enabled         := cbBearbeiten.Checked;
+  btnDel.Enabled         := cbBearbeiten.Checked;
+  btnNewKind.Enabled     := cbBearbeiten.Checked;
+  btnDelKind.Enabled     := cbBearbeiten.Checked;
   if cbBearbeiten.Checked and frmMain.mnuColoredEditMode.Checked
     then frmKartei.Color := clInactiveCaption
     else frmKartei.Color := clDefault;
