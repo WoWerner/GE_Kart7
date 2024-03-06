@@ -322,20 +322,20 @@ begin
       begin
         sMes := 'dsPersonen.State: ';
         case dsPersonen.State of
-          dsInactive:     sMes := sMes + 'The dataset is not active. No data is available.';
-          dsBrowse:       sMes := sMes + 'The dataset is active, and the cursor can be used to navigate the data.';
-          dsEdit:         sMes := sMes + 'The dataset is in editing mode: the current record can be modified.';
-          dsInsert:       sMes := sMes + 'The dataset is in insert mode: the current record is a new record which can be edited.';
-          dsSetKey:       sMes := sMes + 'The dataset is calculating the primary key.';
-          dsCalcFields:   sMes := sMes + 'The dataset is calculating it''s calculated fields.';
-          dsFilter:       sMes := sMes + 'The dataset is filtering records.';
-          dsNewValue:     sMes := sMes + 'The dataset is showing the new values of a record.';
-          dsOldValue:     sMes := sMes + 'The dataset is showing the old values of a record.';
-          dsCurValue:     sMes := sMes + 'The dataset is showing the current values of a record.';
-          dsBlockRead:    sMes := sMes + 'The dataset is open, but no events are transferred to datasources.';
-          dsInternalCalc: sMes := sMes + 'The dataset is calculating it''s internally calculated fields.';
-          dsOpening:      sMes := sMes + 'The dataset is currently opening, but is not yet completely open.';
-          dsRefreshFields:sMes := sMes + 'Dataset is refreshing field values from server after an update.';
+          dsInactive:     sMes := sMes + 'dsInactive:     The dataset is not active. No data is available.';
+          dsBrowse:       sMes := sMes + 'dsBrowse:       The dataset is active, and the cursor can be used to navigate the data.';
+          dsEdit:         sMes := sMes + 'dsEdit:         The dataset is in editing mode: the current record can be modified.';
+          dsInsert:       sMes := sMes + 'dsInsert:       The dataset is in insert mode: the current record is a new record which can be edited.';
+          dsSetKey:       sMes := sMes + 'dsSetKey:       The dataset is calculating the primary key.';
+          dsCalcFields:   sMes := sMes + 'dsCalcFields:   The dataset is calculating it''s calculated fields.';
+          dsFilter:       sMes := sMes + 'dsFilter:       The dataset is filtering records.';
+          dsNewValue:     sMes := sMes + 'dsNewValue:     The dataset is showing the new values of a record.';
+          dsOldValue:     sMes := sMes + 'dsOldValue:     The dataset is showing the old values of a record.';
+          dsCurValue:     sMes := sMes + 'dsCurValue:     The dataset is showing the current values of a record.';
+          dsBlockRead:    sMes := sMes + 'dsBlockRead:    The dataset is open, but no events are transferred to datasources.';
+          dsInternalCalc: sMes := sMes + 'dsInternalCalc: The dataset is calculating it''s internally calculated fields.';
+          dsOpening:      sMes := sMes + 'dsOpening:      The dataset is currently opening, but is not yet completely open.';
+          dsRefreshFields:sMes := sMes + 'dsRefreshFields: Dataset is refreshing field values from server after an update.';
         else
                           sMes := sMes + 'Other';
         end;
