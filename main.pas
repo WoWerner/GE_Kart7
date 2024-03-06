@@ -249,11 +249,17 @@ uses
 
 procedure TfrmMain.HandleException(Sender: TObject; E: Exception);
 
-begin
+var
+  CloseAction : TCloseAction = caNone;
+
+  begin
   LogAndShowError('Unbehandelter Fehler.'+#13+
                   'Nachricht: '+e.Message+#13#13+
                   'Das Programm wird beendet.');
+
   frmDM.dbStatus(false); // DB schliessen
+
+  FormClose(sender, CloseAction);  //Lock entfernen
   
   FlushDebug;
   
