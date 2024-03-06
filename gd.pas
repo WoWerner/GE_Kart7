@@ -135,10 +135,6 @@ begin
   frmDM.dsetGD.Open;
   cbGemeinde.Items.Text := sGemeinden;
   cbGemeinde.Text       := sGemeindenAlle;
-  DBGridPersonen.Columns.Items[0].Width:=130;
-  DBGridPersonen.Columns.Items[1].Width:=140;
-  DBGridPersonen.Columns.Items[2].Width:=80;
-  DBGridPersonen.Columns.Items[3].Visible:=false;
   dbGrid1.SetFocus;
 end;
 
@@ -338,17 +334,33 @@ end;
    if frmGD.Visible then
      begin
        DBCBChange(self);
+
        if frmDM.dsetHelp2.Active then frmDM.dsetHelp2.Close;
        frmDM.dsetHelp2.sql.Clear;
        frmDM.dsetHelp2.sql.add('select Vorname, Nachname, '+global.sKommTablename+'.KommID from '+global.sPersTablename);
        frmDM.dsetHelp2.sql.add('left join '+global.sKommTablename+' on '+global.sKommTablename+'.PERSONENID = '+global.sPersTablename+'.PERSONENID');
-       frmDM.dsetHelp2.sql.add('where AbendmahlsDatum = '+SQLiteDateFormat(frmDM.dsetGD.FieldByName('GottesdienstDatum').AsDateTime));
+       frmDM.dsetHelp2.sql.add('where AbendmahlsDatum = '+SQLiteDateFormat(frmDM.dsetGD.FieldByName('GottesdienstDatum').AsDateTime)+' and ');
+       frmDM.dsetHelp2.sql.add('Gemeinde="'+frmDM.dsetGD.FieldByName('Gemeinde').AsString+'"');
        frmDM.dsetHelp2.sql.add('order by nachname, vorname');
        frmDM.dsetHelp2.open;
-       DBGridKommunikanten.Columns.Items[0].Width   := 130;
-       DBGridKommunikanten.Columns.Items[1].Width   := 240;
+       DBGridKommunikanten.Columns.Items[0].Width   := 100;
+       DBGridKommunikanten.Columns.Items[1].Width   := 200;
        DBGridKommunikanten.Columns.Items[2].Visible := false;
-       frmDM.ExecSQL('update '+global.sGDTablename+' set Kommunikanten = '+ inttostr(frmDM.dsetHelp2.RecordCount)+' where GdID = '+frmDM.dsetGD.FieldByName('GdID').AsString);
+
+       if frmDM.dsetHelp1.Active then frmDM.dsetHelp1.Close;
+       frmDM.dsetHelp1.sql.Clear;
+       frmDM.dsetHelp1.sql.add('select Vorname, Nachname, Geburtstag, Gemeinde, PERSONENID from '+global.sPersTablename);
+       frmDM.dsetHelp1.sql.add('where Gemeinde="'+frmDM.dsetGD.FieldByName('Gemeinde').AsString+'" and ');
+       frmDM.dsetHelp1.sql.add('PERSONENID not in (select PERSONENID from '+global.sKommTablename+' where AbendmahlsDatum = '+SQLiteDateFormat(frmDM.dsetGD.FieldByName('GottesdienstDatum').AsDateTime)+')');
+       frmDM.dsetHelp1.sql.add('order by nachname, vorname');
+       frmDM.dsetHelp1.open;
+       DBGridPersonen.Columns.Items[0].Width:=100;
+       DBGridPersonen.Columns.Items[1].Width:=100;
+       DBGridPersonen.Columns.Items[2].Width:=80;
+       DBGridPersonen.Columns.Items[3].Width:=70;
+       DBGridPersonen.Columns.Items[4].Visible:=false;
+       if frmDM.dsetGD.FieldByName('GdID').AsString <> '' then
+         frmDM.ExecSQL('update '+global.sGDTablename+' set Kommunikanten = '+ inttostr(frmDM.dsetHelp2.RecordCount)+' where GdID = '+frmDM.dsetGD.FieldByName('GdID').AsString);
      end;
  end;
 

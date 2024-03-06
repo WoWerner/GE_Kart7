@@ -1385,12 +1385,8 @@ end;
 
 procedure TfrmMain.mnuGDBearbeitenClick(Sender: TObject);
 begin
-  frmDM.dsetHelp1.sql.Clear;
-  frmDM.dsetHelp1.sql.add('select Vorname, Nachname, Geburtstag, PERSONENID from '+global.sPersTablename);
-  frmDM.dsetHelp1.sql.add('order by nachname, vorname');
-  frmDM.dsetHelp1.open;
   frmGD.Showmodal;
-  frmDM.dsetHelp1.close;
+  if frmDM.dsetHelp1.Active then frmDM.dsetHelp1.close;
   if frmDM.dsetHelp2.Active then frmDM.dsetHelp2.Close;
 end;
 
