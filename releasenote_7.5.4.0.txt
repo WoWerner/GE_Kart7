@@ -1,0 +1,18 @@
+﻿Änderungen in der Version 7.5.4.0 (09.03.2024)
+
+- Kommunikanten und Besuche können auch ohne Bearbeitungsmodus eingegeben werden
+- Kommunikanten können in der Gottesdienstmaske eingegeben werden 
+- Kollekten können in der Gottesdienstmaske eingegeben werden (Bugfix)
+- Verbesserung der Benutzung auf geteilten Laufwerken (Bugfix)
+- Bereinigung Kommunikaten von doppelten Einträgen
+- Verhindern der doppelten Eingabe von Kommunikaten
+
+Änderungen in der Version 7.5.3.4 (15.02.2024)
+
+- Verbesserung der Benutzung auf geteilten Laufwerken
+- Tools --> Werkzeuge umbenannt
+
+Interne Änderungen:
+- SQLite 3.45.1
+
+Soll die Meldung noch einmal angezeigt werden?

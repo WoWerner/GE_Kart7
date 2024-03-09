@@ -1,9 +1,0 @@
-﻿Änderungen in der Version 7.5.3.4 (15.02.2024)
-
-- Verbesserung der Benutzung auf geteilten Laufwerken
-- Tools --> Werkzeuge umbenannt
-
-Interne Änderungen:
-- SQLite 3.45.1
-
-Soll die Meldung noch einmal angezeigt werden?
