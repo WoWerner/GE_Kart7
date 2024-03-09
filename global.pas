@@ -33,7 +33,8 @@ const
                        'from '+sKommTablename+' '+
                        'where (PersonenID = %s) '+
                        'GROUP BY D '+
-                       'ORDER BY D DESC;';
+                       'ORDER BY D DESC '+
+                       'Limit 5;';
   sSQL_Komm_ADD      = 'INSERT OR REPLACE INTO '+sKommTablename+  ' (Abendmahlsdatum, PersonenID) VALUES (%s, %s)';
   sSQL_BESUCH_ADD    = 'INSERT INTO '+sBESUCHTablename+' (Besuchsdatum, Besuchsgrund, PersonenID) VALUES (''%s'', ''neuer Besuch'',%s)';
   sSQL_KIND_ADD      = 'INSERT INTO '+sKindTablename+  ' (Vorname, Vorname2, Nachname, PersonenID) VALUES (''Neues'', ''Kind'', ''hier bearbeiten'',%s)';
