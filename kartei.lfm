@@ -83,9 +83,9 @@ object frmKartei: TfrmKartei
     Height = 488
     Top = 161
     Width = 888
-    ActivePage = TSAllgemein
+    ActivePage = TSZuAbGang
     ParentFont = False
-    TabIndex = 0
+    TabIndex = 3
     TabOrder = 1
     OnChange = pcDetailsChange
     object TSAllgemein: TTabSheet
@@ -2495,7 +2495,6 @@ object frmKartei: TfrmKartei
         Top = 24
         Width = 120
         Caption = 'Hinzufügen'
-        Enabled = False
         ParentFont = False
         TabOrder = 2
         OnClick = btnNewKommClick
@@ -2531,7 +2530,6 @@ object frmKartei: TfrmKartei
         Top = 64
         Width = 120
         Caption = 'Löschen'
-        Enabled = False
         ParentFont = False
         TabOrder = 3
         OnClick = btnDelKommClick
@@ -2670,7 +2668,6 @@ object frmKartei: TfrmKartei
         Top = 152
         Width = 128
         Caption = 'Löschen'
-        Enabled = False
         ParentFont = False
         TabOrder = 7
         OnClick = btnDelBesuchClick
@@ -2681,7 +2678,6 @@ object frmKartei: TfrmKartei
         Top = 112
         Width = 128
         Caption = 'Hinzufügen'
-        Enabled = False
         ParentFont = False
         TabOrder = 6
         OnClick = btnNewBesuchClick
@@ -2713,7 +2709,6 @@ object frmKartei: TfrmKartei
         Top = 192
         Width = 128
         Caption = 'Kopieren'
-        Enabled = False
         ParentFont = False
         ParentShowHint = False
         ShowHint = True

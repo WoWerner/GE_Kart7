@@ -634,7 +634,7 @@ begin
     then
       begin
         berechnen := False;
-        //myDebugLN('Berechnung aufgerufen');
+        myDebugLN('TimerBerechnungTimer');
 
         //Alter
         i := AgeNow(frmDM.dsetPERSONEN.FieldByName('Geburtstag').AsDateTime);
