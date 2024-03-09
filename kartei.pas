@@ -511,7 +511,6 @@ begin
   //myDebugLN('frmKartei.FormShow');
   frmDM.dbStatus(true, true);
   OnFilterChange(Sender);
-  berechnen := True;
   DBGridOverView.Columns.Clear;
   DBGridOverView.Columns.Add.FieldName := 'Vorname';      DBGridOverView.Columns.Items[0].Width := 115;
   DBGridOverView.Columns.Add.FieldName := 'Nachname';     DBGridOverView.Columns.Items[1].Width := 115;
@@ -519,10 +518,12 @@ begin
   DBGridOverView.Columns.Add.FieldName := 'Strasse';      DBGridOverView.Columns.Items[3].Width := 140;
   DBGridOverView.Columns.Add.FieldName := 'Geburtstag';   DBGridOverView.Columns.Items[4].Width :=  80;
   panShowOverview.Visible              := frmMain.mnuShowOverView.Checked;
-  cbGemeinde.Items.Text   := sGemeinden;
-  cbGemeinde.Text         := sGemeindenAlle;
-  DBCBGemeinde.Items.Text := sGemeinden;
+  cbGemeinde.Items.Text                := sGemeinden;
+  cbGemeinde.Text                      := sGemeindenAlle;
+  DBCBGemeinde.Items.Text              := sGemeinden;
   DBCBGemeinde.Items.Delete(0);  //sGemeindenAlle
+  pcDetailsChange(Sender);
+  berechnen := True;
 end;
 
 procedure TfrmKartei.panDatenbankOverviewMouseLeave(Sender: TObject);
@@ -645,45 +646,48 @@ begin
 
         case pcDetails.TabIndex of
           4: //TSKommunionen
-          begin
-            MemoKomm.Clear;
-            frmDM.dsetHelp.SQL.Text := Format(global.sSQL_KOMM_PER_JAHR, [frmDM.dsetPERSONEN.FieldByName('PersonenID').AsString]);
-            frmDM.dsetHelp.Open;
-            frmDM.dsetHelp.First;
-            if frmDM.dsetHelp.EOF
-              then
-                begin
-                  MemoKomm.Text := 'Keine';
-                end
-              else
-                begin
-                  MemoKomm.Lines.BeginUpdate;
-                  while not frmDM.dsetHelp.EOF do
-                    begin
-                      MemoKomm.Lines.Add(frmDM.dsetHelp.FieldByName('D').AsString + ': ' + frmDM.dsetHelp.FieldByName('C').AsString);
-                      frmDM.dsetHelp.Next;
-                    end;
-                  MemoKomm.SelStart  := 0;
-                  MemoKomm.SelLength := 0;
-                  MemoKomm.Lines.EndUpdate;
-                end;
-            frmDM.dsetHelp.Close;
-            frmDM.dsetKomm.First;
-            btnDelKomm.Visible := frmDM.dsetKomm.FieldByName('KommID').AsString <> '';
-          end;
+            begin
+              MemoKomm.Clear;
+              frmDM.dsetHelp.SQL.Text := Format(global.sSQL_KOMM_PER_JAHR, [frmDM.dsetPERSONEN.FieldByName('PersonenID').AsString]);
+              frmDM.dsetHelp.Open;
+              frmDM.dsetHelp.First;
+              if frmDM.dsetHelp.EOF
+                then
+                  begin
+                    MemoKomm.Text := 'Keine';
+                  end
+                else
+                  begin
+                    MemoKomm.Lines.BeginUpdate;
+                    while not frmDM.dsetHelp.EOF do
+                      begin
+                        MemoKomm.Lines.Add(frmDM.dsetHelp.FieldByName('D').AsString + ': ' + frmDM.dsetHelp.FieldByName('C').AsString);
+                        frmDM.dsetHelp.Next;
+                      end;
+                    MemoKomm.SelStart  := 0;
+                    MemoKomm.SelLength := 0;
+                    MemoKomm.Lines.EndUpdate;
+                  end;
+              frmDM.dsetHelp.Close;
+              frmDM.dsetKomm.First;
+              btnDelKomm.Visible := frmDM.dsetKomm.FieldByName('KommID').AsString <> '';
+            end;
           5: //TSBesuch
-          begin
-            frmDM.dsetBesuch.First;
-            btnDelBesuch.Visible  := frmDM.dsetBesuch.FieldByName('BesuchID').AsString <> '';
-            btnCopyBesuch.Visible := btnDelBesuch.Visible;
-          end;
+            begin
+              frmDM.dsetBesuch.First;
+              btnDelBesuch.Visible  := frmDM.dsetBesuch.FieldByName('BesuchID').AsString <> '';
+              btnCopyBesuch.Visible := btnDelBesuch.Visible;
+            end;
         end;
       end;
 
   if weiter_mit_enter
     then
       begin
-        while not((activeControl is Tdbedit) or (activeControl is Tdbcombobox) or (activeControl is Tdbcheckbox)) do SelectNext(ActiveControl,True,True);
+        while not((activeControl is Tdbedit)     or
+                  (activeControl is Tdbcombobox) or
+                  (activeControl is Tdbcheckbox))
+          do SelectNext(ActiveControl,True,True);
         weiter_mit_enter := false;
       end;
 end;
@@ -709,7 +713,7 @@ begin
   if frmKartei.Visible
     then
       begin        
-        berechnen := True;
+        berechnen            := True;
         scBarKartei.position := frmDM.dsetPERSONEN.RecNo;
       end;
 end;
