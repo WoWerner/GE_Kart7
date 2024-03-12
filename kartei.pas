@@ -645,6 +645,15 @@ begin
         cbMarkiert.Checked := frmDM.dsetPERSONEN.FieldByName('Markiert').AsBoolean;
 
         case pcDetails.TabIndex of
+          4, //TSKommunionen
+          5: //TSBesuch
+            begin
+              if frmDM.dsetPersonen.State = dsEdit
+                then frmDM.dsetPersonen.Post;
+            end;
+        end;
+
+        case pcDetails.TabIndex of
           4: //TSKommunionen
             begin
               MemoKomm.Clear;
@@ -731,7 +740,7 @@ begin
           then
             begin
               frmDM.dsetPERSONEN.FieldByName('LastChange').AsDateTime := date;
-              Result := MessageDlg('Sollen die Daten gespeichert werden?',  mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+              Result := MessageDlg('Sollen die Änderungen an der Person gespeichert werden?',  mtConfirmation, [mbYes, mbNo], 0) = mrYes;
             end;
         SetLastChange := True;
         //Prüfen auf Geburtstag < Taufe < Konfirmation
