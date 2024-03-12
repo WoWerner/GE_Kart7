@@ -361,6 +361,7 @@ begin
 
   sPrintPath  := IncludeTrailingPathDelimiter(sPrintPath);
   ForceDirectories(UTF8ToSys(sPrintPath));
+  ForceDirectories(UTF8ToSys(ExtractFilePath(sDebugFile)));
 
   myDebugLN('Starte GE_Kart '+labVersion.Caption);
   myDebugLN('AppDir    : '+sAppDir);
