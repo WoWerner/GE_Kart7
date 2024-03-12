@@ -8,6 +8,7 @@ object frmDM: TfrmDM
   object dsPersonen: TDataSource
     AutoEdit = False
     DataSet = dsetPersonen
+    Enabled = False
     OnStateChange = dsPersonenStateChange
     Left = 232
     Top = 21
@@ -82,38 +83,6 @@ object frmDM: TfrmDM
     Left = 232
     Top = 80
   end
-  object dsetKomm: TZQuery
-    Connection = ZConGE_Kart7
-    SortedFields = 'AbendmahlsDatum'
-    SortType = stDescending
-    OnPostError = dsetPostError
-    SQL.Strings = (
-      'select * from Kommunionen'
-    )
-    Params = <>
-    MasterFields = 'PersonenID'
-    MasterSource = dsPersonen
-    LinkedFields = 'PersonenID'
-    IndexFieldNames = 'AbendmahlsDatum Desc'
-    Left = 232
-    Top = 136
-  end
-  object dsetBesuch: TZQuery
-    Connection = ZConGE_Kart7
-    SortedFields = 'BesuchsDatum'
-    SortType = stDescending
-    OnPostError = dsetPostError
-    SQL.Strings = (
-      'select * from besuch'
-    )
-    Params = <>
-    MasterFields = 'PersonenID'
-    MasterSource = dsPersonen
-    LinkedFields = 'PersonenID'
-    IndexFieldNames = 'BesuchsDatum Desc'
-    Left = 232
-    Top = 192
-  end
   object ZSQLMonitor: TZSQLMonitor
     FileName = 'sql_debug.txt'
     MaxTraceCount = 100
@@ -177,5 +146,23 @@ object frmDM: TfrmDM
     DataSet = dsetHelp2
     Left = 232
     Top = 410
+  end
+  object dsetKomm: TZQuery
+    Connection = ZConGE_Kart7
+    SQL.Strings = (
+      'select * from KOMMUNIONEN'
+    )
+    Params = <>
+    Left = 232
+    Top = 136
+  end
+  object dsetBesuch: TZQuery
+    Connection = ZConGE_Kart7
+    SQL.Strings = (
+      'select * from besuch'
+    )
+    Params = <>
+    Left = 232
+    Top = 192
   end
 end

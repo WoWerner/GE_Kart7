@@ -26,8 +26,6 @@ type
     dsetHelp2: TZQuery;
     dsGD: TDatasource;
     dsetHelp1: TZQuery;
-    dsetKomm: TZQuery;
-    dsetBesuch: TZQuery;
     dsetGD: TZQuery;
     dsHelp: TDatasource;
     dsHelp1: TDatasource;
@@ -41,6 +39,8 @@ type
     dsetHelp: TZQuery;
     dsetKinder: TZQuery;
     ZConGE_Kart7: TZConnection;
+    dsetKomm: TZQuery;
+    dsetBesuch: TZQuery;
     ZSQLMonitor: TZSQLMonitor;
     procedure dsetGDAfterScroll(DataSet: TDataSet);
     procedure dsetPostError(DataSet: TDataSet; E: EDatabaseError; var DataAction: TDataAction);

@@ -572,9 +572,6 @@ begin
 
         DBGridDetails.Columns.Clear;
         DBGridDetails.DataSource               := frmDM.dsKomm;
-        DBGridDetails.Columns.Items[0].Visible := False;                                    //KommID
-        DBGridDetails.Columns.Items[1].Width   := Round(ScaleX(130,nDefDPI)*ScaleFactor);   //AbendmahlsDatum
-        DBGridDetails.Columns.Items[2].Visible := False;                                    //PersonenID
       end;
     5: //TSBesuch
       begin
@@ -582,14 +579,6 @@ begin
         frmDM.dsBesuch.AutoEdit                := True;
         DBGridDetails.Columns.Clear;
         DBGridDetails.DataSource               := frmDM.dsBesuch;
-        DBGridDetails.Columns.Items[0].Visible := False;                                    //BesuchID
-        DBGridDetails.Columns.Items[1].Width   := Round(ScaleX( 80,nDefDPI)*ScaleFactor);   //Datum
-        DBGridDetails.Columns.Items[2].Width   := Round(ScaleX(400,nDefDPI)*ScaleFactor);   //Grund
-        DBGridDetails.Columns.Items[3].Width   := Round(ScaleX(100,nDefDPI)*ScaleFactor);   //Mitbringsel
-        DBGridDetails.Columns.Items[4].Width   := Round(ScaleX(150,nDefDPI)*ScaleFactor);   //Bibeltext
-        DBGridDetails.Columns.Items[5].Visible := False;                                    //Memo
-        DBGridDetails.Columns.Items[6].Width   := Round(ScaleX(100,nDefDPI)*ScaleFactor);   //Terminabsprache
-        DBGridDetails.Columns.Items[7].Visible := False;                                    //PersonenID
       end;
     else
       begin
@@ -678,12 +667,27 @@ begin
                     MemoKomm.Lines.EndUpdate;
                   end;
               frmDM.dsetHelp.Close;
-              frmDM.dsetKomm.First;
+              frmDM.dsetKomm.Close;
+              frmDM.dsetKomm.SQL.Text := 'select * from '+sKommTablename+' where (PersonenID = '+frmDM.dsetPERSONEN.FieldByName('PersonenID').AsString+') ORDER BY AbendmahlsDatum DESC';
+              frmDM.dsetKomm.Open;
+              DBGridDetails.Columns.Items[0].Visible := False;                                    //KommID
+              DBGridDetails.Columns.Items[1].Width   := Round(ScaleX(130,nDefDPI)*ScaleFactor);   //AbendmahlsDatum
+              DBGridDetails.Columns.Items[2].Visible := False;                                    //PersonenID
               btnDelKomm.Visible := frmDM.dsetKomm.FieldByName('KommID').AsString <> '';
             end;
           5: //TSBesuch
             begin
-              frmDM.dsetBesuch.First;
+              frmDM.dsetBesuch.Close;
+              frmDM.dsetBesuch.SQL.Text := 'select * from '+sBesuchTablename+' where (PersonenID = '+frmDM.dsetPERSONEN.FieldByName('PersonenID').AsString+') ORDER BY Besuchsdatum DESC';
+              frmDM.dsetBesuch.Open;
+              DBGridDetails.Columns.Items[0].Visible := False;                                    //BesuchID
+              DBGridDetails.Columns.Items[1].Width   := Round(ScaleX( 85,nDefDPI)*ScaleFactor);   //Datum
+              DBGridDetails.Columns.Items[2].Width   := Round(ScaleX(400,nDefDPI)*ScaleFactor);   //Grund
+              DBGridDetails.Columns.Items[3].Width   := Round(ScaleX(100,nDefDPI)*ScaleFactor);   //Mitbringsel
+              DBGridDetails.Columns.Items[4].Width   := Round(ScaleX(150,nDefDPI)*ScaleFactor);   //Bibeltext
+              DBGridDetails.Columns.Items[5].Visible := False;                                    //Memo
+              DBGridDetails.Columns.Items[6].Width   := Round(ScaleX(100,nDefDPI)*ScaleFactor);   //Terminabsprache
+              DBGridDetails.Columns.Items[7].Visible := False;                                    //PersonenID
               btnDelBesuch.Visible  := frmDM.dsetBesuch.FieldByName('BesuchID').AsString <> '';
               btnCopyBesuch.Visible := btnDelBesuch.Visible;
             end;
