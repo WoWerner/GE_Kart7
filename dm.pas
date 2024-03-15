@@ -248,8 +248,7 @@ begin
                       ExecSQL('delete from '+global.sKommTablename+' where '+SQL_Where_IsNull('Abendmahlsdatum'));
                       ExecSQL('delete from '+global.sKommTablename+' where '+SQL_Where_IsNull('PersonenID'));
                       //doppelte DS löschen
-                      dsetHelp2.sql.Clear;
-                      dsetHelp2.sql.add('SELECT KommID, Abendmahlsdatum, PersonenID, COUNT(*) c FROM '+global.sKommTablename+' GROUP BY Abendmahlsdatum, PersonenID HAVING c > 1');
+                      dsetHelp2.sql.Text := 'SELECT KommID, Abendmahlsdatum, PersonenID, COUNT(*) c FROM '+global.sKommTablename+' GROUP BY Abendmahlsdatum, PersonenID HAVING c > 1';
                       dsetHelp2.open;
                       while not dsetHelp2.EOF do
                         begin
@@ -285,15 +284,16 @@ begin
                 bDatabaseVersionChecked := true;
               end;
 
-          if OpenDatabases
-            then
-              begin
-                myDebugLN('Öffne DB');
-                dsetPersonen.Active := true;
-                dsetKinder.Active   := true;
-                dsetKomm.Active     := true;
-                dsetBesuch.Active   := true;
-              end;
+          myDebugLN(slPersonenFeldNamen.Text);
+
+          if OpenDatabases then
+            begin
+              myDebugLN('Öffne DB');
+              dsetPersonen.Active := true;
+              dsetKinder.Active   := true;
+              dsetKomm.Active     := true;
+              dsetBesuch.Active   := true;
+            end;
         except
           // Log Exception..
           on E: Exception do

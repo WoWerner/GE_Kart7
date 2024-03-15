@@ -18,6 +18,8 @@ uses
   ExtCtrls,
   ComCtrls,
   kartei,
+  csvdataset,
+  DB,
   LR_DBSet,
   LR_Class,
   LR_E_TXT,
@@ -243,8 +245,7 @@ uses
   LCLIntf,       // Openurl
   FileCtrl,      // MinimizeName
   dm,
-  gd,
-  db;
+  gd;
 
 { TfrmMain }
 
@@ -847,15 +848,14 @@ end;
 
 procedure TfrmMain.mnuCSVImportClick(Sender: TObject);
 
-var Line       : String;
-    Item       : String;
-    ErrorText  : string;
-    FeldNamen  : String;
-    sSQL       : string;
-    i          : integer;
-    ActLine    : Integer;
-    Lines      : integer;
-    ItemNo     : integer;
+var Item           : String;
+    Item_val       : String;
+    ErrorText      : string;
+    sSQL_FeldNamen : String;
+    sSQL           : string;
+    i              : integer;
+    ActLine        : Integer;
+    Lines          : integer;
 
 begin
   if MessageDlg('Sie müssen jetzt eine CSV (comma seperated value) Datei auswählen.'#13+
