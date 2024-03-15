@@ -614,23 +614,12 @@ end;
 
 procedure TfrmKartei.TimerBerechnungTimer(Sender: TObject);
 
-var
-  i: integer;
-
 begin
   if berechnen and frmDM.dsetPERSONEN.Active
     then
       begin
         berechnen := False;
         myDebugLN('TimerBerechnungTimer');
-
-        //Alter
-        i := AgeNow(frmDM.dsetPERSONEN.FieldByName('Geburtstag').AsDateTime);
-        if (i > 111) or (i = -1)
-          then labAlter.Caption := '??'
-          else labAlter.Caption := IntToStr(i);
-
-        cbMarkiert.Checked := frmDM.dsetPERSONEN.FieldByName('Markiert').AsBoolean;
 
         case pcDetails.TabIndex of
           4, //TSKommunionen
@@ -721,12 +710,23 @@ end;
 
 procedure TfrmKartei.AfterScroll;
 
+var
+  alter: integer;
+
 begin
   if frmKartei.Visible
     then
       begin        
         berechnen            := True;
         scBarKartei.position := frmDM.dsetPERSONEN.RecNo;
+
+        //Alter
+        alter := AgeNow(frmDM.dsetPERSONEN.FieldByName('Geburtstag').AsDateTime);
+        if (alter > 111) or (alter = -1)
+          then labAlter.Caption := '??'
+          else labAlter.Caption := IntToStr(alter);
+
+        cbMarkiert.Checked := frmDM.dsetPERSONEN.FieldByName('Markiert').AsBoolean;
       end;
 end;
 
