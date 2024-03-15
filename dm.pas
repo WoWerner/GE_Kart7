@@ -122,6 +122,7 @@ end;
 Procedure TfrmDM.dbStatus(Activ : boolean; OpenDatabases: boolean = false);
 
 var sHelp : string;
+    i     : integer;
 
 begin
   if Activ
@@ -281,6 +282,14 @@ begin
                       sHelp := '7.5.4';
                       myDebugLN('DB-Version now: '+sHelp);
                     end;
+                slPersonenFeldNamen.Clear;
+                dsetHelp2.sql.Text := 'select * from '+global.sPersTablename;
+                dsetHelp2.open;
+                for i := 0 to dsetHelp2.FieldDefs.Count-1 do
+                  begin
+                    slPersonenFeldNamen.Add(UPPERCASE(dsetHelp2.FieldDefs.Items[i].Name));
+                  end;
+                dsetHelp2.Close;
                 bDatabaseVersionChecked := true;
               end;
 

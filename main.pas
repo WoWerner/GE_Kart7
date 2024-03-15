@@ -36,6 +36,7 @@ type
     btnSuchen: TButton;
     btnEnde: TButton;
     btnAktuelles: TButton;
+    CSVDatasetImport: TCSVDataset;
     frCSVExport: TfrCSVExport;
     frDBDataSet: TfrDBDataSet;
     frDBDataSetDetail: TfrDBDataSet;
@@ -325,6 +326,7 @@ begin
   Application.OnException    := @HandleException;
   slHelp                     := TStringlist.Create;
   slAusgabe                  := TStringList.create;
+  slPersonenFeldNamen        := TStringList.create;
   sAppDir                    := vConfigurations.MyDirectory;
   sIniFile                   := vConfigurations.ConfigFile;
   sSavePath                  := sAppDir+'Sicherung';
@@ -575,6 +577,7 @@ procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   slAusgabe.Free;
   slHelp.Free;
+  slPersonenFeldNamen.Free;
   myDebugLN('Beende GE_Kart');
   myDebugLN('************************************************************************************');
   FlushDebug;
@@ -858,24 +861,24 @@ var Item           : String;
     Lines          : integer;
 
 begin
-  if MessageDlg('Sie müssen jetzt eine CSV (comma seperated value) Datei auswählen.'#13+
-             'Als Trennzeichen sind "'+CSV_Delimiter+'" und TAB erlaubt'#13+
+  Lines     := 0;
+  ActLine   := 0;
+  ErrorText := '';
+  sSQL_FeldNamen := 'INSERT INTO '+sPersTablename+  ' (';
+
+  if MessageDlg('Sie müssen jetzt eine CSV (Comma Seperated Value) Datei auswählen.'#13+
+             'Als Trennzeichen ist ein "'+CSV_Delimiter+'" erlaubt'#13+
              'Format der Datei:'#13#13+
-             '1.Zeile: Feldnamen. Die gültigen Feldnamen können Sie ermitteln mit einen Datenexport oder mit einen Ausdruck der Struktur'#13#13+
-             'Folgende Zeilen: Daten. Die Daten dürfen kein "'+CSV_Delimiter+'" und TAB enthalten'#13#13+
-             'Alle " als Feldbegrenzer werden gelöscht'#13+
-             'Die Tabelle darf kein Feld PersonenID, Markiert oder Abgang enthalten'#13#13+
+             '1.Zeile: Feldnamen. Die gültigen Feldnamen können Sie mit einen Datenexport oder mit einen Ausdruck der Struktur ermitteln.'#13#13+
+             'Folgende Zeilen: Daten. Die Daten dürfen kein "'+CSV_Delimiter+'" enthalten'#13#13+
+             'Alle " als Feldbegrenzer werden gelöscht'#13#13+
              'Beispiel:'#13+
              'NAME;STRASSE;LAND;PLZ;ORT;'#13+
              'Adam;Bergstraße 9;;12345;Musterstadt;'#13+
              'Brecht;"Sample street";GB;98765;London;'#13#13+
-             'Sicherheitsfunktion: Zum Fortfahren "Wiederholen" drücken!', mtConfirmation, [mbYes, mbRetry, mbNo],0) = mrRetry
+             'Sicherheitsfunktion: Zum Fortfahren "Wiederholen" drücken!', mtConfirmation, [mbRetry, mbNo],0) = mrRetry
     then
       begin
-        Lines     := 0;
-        ItemNo    := 1;
-        ErrorText := '';
-        slHelp.Clear;
         try
           openDialog.Title       := 'Selektiere eine CSV Import Datei';
           openDialog.InitialDir  := UTF8ToSys(sAppDir);          // Set up the starting directory to be the current one
@@ -888,66 +891,77 @@ begin
             begin
               myDebugLN('Import: '+ OpenDialog.Filename);
 
-              slHelp.loadfromfile(UTF8ToSys(OpenDialog.Filename));
-              slHelp.text := RemoveBOM(slHelp.text);
+              CSVDatasetImport.FileName:=OpenDialog.Filename;
+              CSVDatasetImport.Open;
 
-              FeldNamen := 'INSERT INTO '+sPersTablename+  ' (';
-              //Header lesen
-              if slHelp.count > 1
-                then
-                  begin
-                    Line := slHelp.strings[0];
-                    repeat
-                      Item := UPPERCASE(GetCSVRecordItem(ItemNo, Line, [CSV_Delimiter, #9], '"'));
+              //Feldnamen zusammensuchen
+              for i := 0 to CSVDatasetImport.FieldDefs.Count-1 do
+                begin
+                   Item := UPPERCASE(CSVDatasetImport.FieldDefs.Items[i].Name);
+                   if (Item = 'PERSONENID') or
+                      (Item = 'MARKIERT') or
+                      (Item = 'ABGANG')
+                     then
+                       begin
+                         //Überspringen
+                       end
+                     else
+                       begin
+                         //Prüfung ob das Feld existiert
+                         if slPersonenFeldNamen.IndexOf(Item) = -1
+                           then ErrorText += 'Das Feld '+Item+' ist ungültig'#13
+                           else sSQL_FeldNamen += Item +  ', ';
+                       end;
+                end;
+              sSQL_FeldNamen += ' MARKIERT, ABGANG) VALUES (';
+              myDebugLN(sSQL_FeldNamen);
 
-                      if (Item = 'PERSONENID') or
-                         (Item = 'MARKIERT') or
-                         (Item = 'ABGANG')
-                        then Raise Exception.CreateFmt('Ungültiger Spaltenname "%s" in der Tabelle. Die Funktion wird abgebrochen.', [Item]);
+              if ErrorText = '' then
+                begin
+                  //eigentliche Daten lesen und einfügen
+                  while not CSVDatasetImport.EOF do
+                    begin
+                      inc(ActLine);
+                      sSQL := sSQL_FeldNamen;
 
-                      if Item <> '' then
+                      for i := 0 to CSVDatasetImport.FieldDefs.Count-1 do
                         begin
-                          FeldNamen := FeldNamen + Item +  ', ';
-                          inc(ItemNo);
-                        end;
-                    until Item = '';
-                  end;
-              FeldNamen := FeldNamen + ' Markiert, Abgang) VALUES (';
-              myDebugLN(FeldNamen);
-
-              //Daten einfügen
-              if slHelp.count > 1 then
-                for ActLine := 1 to slHelp.count-1 do
-                  begin
-                    Line := slHelp.strings[ActLine];
-                    Line := Trim(Line);
-                    if Line <> ''
-                      then
-                        begin
-                          sSQL := FeldNamen;
-                          for i := 1 to ItemNo-1 do
-                            begin
-                              Item := GetCSVRecordItem(i, Line, [CSV_Delimiter, #9], '"');
-                              //Auf Datum prüfen
-                              if (Item <> '') and IsDateFormat(Item, DefaultFormatSettings.DateSeparator)
-                                then Item := FormatDateTime('yyyy-mm-dd', StrToDate(Item));
-                              sSQL := sSQL + '''' + Item + ''', ';
-                            end;
-                          sSQL := sSQL + '0, 0)';     //Markiert und Abgang auf false setzen
-                          try
-                            frmDM.ExecSQL(sSQL, true);
-                            inc(Lines);
-                          except
-                            on E: Exception
-                              do
+                           Item := UPPERCASE(CSVDatasetImport.FieldDefs.Items[i].Name);
+                           if (Item = 'PERSONENID') or
+                              (Item = 'MARKIERT') or
+                              (Item = 'ABGANG')
+                             then
+                               begin
+                                 //Überspringen
+                               end
+                             else
                                 begin
-                                  ErrorText := ErrorText + 'In Zeile: '+inttostr(ActLine)+
-                                               ' ist folgender Fehler aufgetreten: '+e.Message+'. Die Zeile wird NICHT importiert!'#13;
-                                  break;
+                                  Item_val := CSVDatasetImport.FieldByName(CSVDatasetImport.FieldDefs.Items[i].Name).AsString;
+                                  //Auf Datum prüfen
+                                  if (Item_val <> '') and IsDateFormat(Item_val, DefaultFormatSettings.DateSeparator)
+                                    then Item_val := FormatDateTime('yyyy-mm-dd', StrToDate(Item_val));
+                                  sSQL += '''' + Item_val + ''', ';
                                 end;
-                          end;
                         end;
-                  end;
+
+                      sSQL := sSQL + '0, 0)';     //Markiert und Abgang auf false setzen
+
+                      try
+                        //myDebugLN(sSQL);
+                        frmDM.ExecSQL(sSQL, true);
+                        inc(Lines);
+                      except
+                        on E: Exception
+                          do
+                            begin
+                              ErrorText += 'In Zeile: '+inttostr(ActLine)+' ist folgender Fehler aufgetreten: '+e.Message+'. Die Zeile wird NICHT importiert!'#13;
+                              break;
+                            end;
+                      end;
+                      CSVDatasetImport.Next;
+                    end;
+                end;
+              CSVDatasetImport.Close;
               if ErrorText <> '' then LogAndShowError(ErrorText);
               MessageDlg(Inttostr(Lines)+' Zeilen importiert', mtInformation, [mbOK],0);
             end;

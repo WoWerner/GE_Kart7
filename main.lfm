@@ -296,6 +296,13 @@ object frmMain: TfrmMain
       end
       object MenuItem19: TMenuItem
         Caption = 'Import'
+        object mnuCSVImport: TMenuItem
+          Caption = 'Füge Daten aus einer CSV-Datei an die Datenbank an (UTF8 Kodierung)'
+          OnClick = mnuCSVImportClick
+        end
+        object MenuItem1: TMenuItem
+          Caption = '-'
+        end
         object mnuImport: TMenuItem
           Caption = 'Daten aus GE_Kart 6 importieren'
           OnClick = mnuImportClick
@@ -304,16 +311,13 @@ object frmMain: TfrmMain
           Caption = 'Gottesdienste aus GE_Kart 6 importieren'
           OnClick = mnuImportGDClick
         end
-        object MenuItem1: TMenuItem
+        object Separator1: TMenuItem
           Caption = '-'
         end
         object mnuPrintDBStrukt: TMenuItem
           Caption = 'Zeige Datenbankstruktur'
           OnClick = mnuPrintDBStruktClick
         end
-        object mnuCSVImport: TMenuItem
-          Caption = 'Füge Daten aus einer CSV-Datei an die Datenbank an (UTF8 Kodierung)'
-          OnClick = mnuCSVImportClick
       end
       object mnuExport: TMenuItem
         Caption = 'Exportiere markierte Personen'
@@ -646,5 +650,17 @@ object frmMain: TfrmMain
     DataSource = frmDM.dsHelp1
     Left = 600
     Top = 80
+  end
+  object CSVDatasetImport: TCSVDataset
+    FieldDefs = <>
+    CSVOptions.FirstLineAsFieldNames = True
+    CSVOptions.DefaultFieldLength = 255
+    CSVOptions.Delimiter = ';'
+    CSVOptions.QuoteChar = '"'
+    CSVOptions.LineEnding = #13#10
+    CSVOptions.IgnoreOuterWhitespace = False
+    CSVOptions.QuoteOuterWhitespace = True
+    Left = 368
+    Top = 271
   end
 end

@@ -277,7 +277,8 @@ var
   ScaleFactorY,
   ScaleFactorX      : double;
   bDatabaseVersionChecked : boolean;
-  WORKAREA          : TRect;
+  WORKAREA            : TRect;
+  slPersonenFeldNamen : TStringList;
 
 
 implementation
