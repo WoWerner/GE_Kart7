@@ -1192,9 +1192,14 @@ procedure TfrmMain.mnuExportClick(Sender: TObject);
 
 begin
   frmDM.dbStatus(true);
-  frmDM.dsetHelp.SQL.Text := 'select * from Personen';
-  frmDM.dsetHelp.Open;
-  ExportQueToCSVFile(frmDM.dsetHelp, 'Export.csv', ';', '"', true, false);
+
+  //DB bereinigen
+  frmDM.ExecSQL(sSQL_ClearMark1);
+  frmDM.ExecSQL(sSQL_ClearMark2);
+
+  frmDM.dsetHelp.sql.Text := 'select * from '+global.sPersTablename+' where markiert <> ''0'' order by nachname, vorname';
+  frmDM.dsetHelp.open;
+  ExportQueToCSVFile(frmDM.dsetHelp, sPrintPath+'Export.csv', ';', '"', true, false);
   frmDM.dsetHelp.Close;
   frmDM.dbStatus(false); // DB schliessen
 end;

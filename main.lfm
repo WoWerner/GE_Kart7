@@ -314,10 +314,9 @@ object frmMain: TfrmMain
         object mnuCSVImport: TMenuItem
           Caption = 'Füge Daten aus einer CSV-Datei an die Datenbank an (UTF8 Kodierung)'
           OnClick = mnuCSVImportClick
-        end
       end
       object mnuExport: TMenuItem
-        Caption = 'Export'
+        Caption = 'Exportiere markierte Personen'
         OnClick = mnuExportClick
       end
       object MenuItem17: TMenuItem
