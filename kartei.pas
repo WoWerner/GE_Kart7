@@ -569,7 +569,6 @@ begin
       begin
         DBGridDetails.Visible                  := True;
         frmDM.dsKomm.AutoEdit                  := True;
-
         DBGridDetails.Columns.Clear;
         DBGridDetails.DataSource               := frmDM.dsKomm;
       end;
@@ -772,13 +771,13 @@ var
   dtValue: TDateTime;
 
 begin
-  if TryStrToDate(DateEditKomm.Text, dtValue) then
-    begin
-
-      frmDM.ExecSQL(Format(global.sSQL_KOMM_ADD, [SQLiteDateFormat(DateEditKomm.Date), frmDM.dsetPERSONEN.FieldByName('PersonenID').AsString]));
-      frmDM.dsetKomm.refresh;
-      berechnen := True;
-    end
+  if TryStrToDate(DateEditKomm.Text, dtValue)
+    then
+      begin
+        frmDM.ExecSQL(Format(global.sSQL_KOMM_ADD, [SQLiteDateFormat(DateEditKomm.Date), frmDM.dsetPERSONEN.FieldByName('PersonenID').AsString]));
+        frmDM.dsetKomm.refresh;
+        berechnen := True;
+      end
   else
     begin
       ShowMessage('Ungültiges Datum');

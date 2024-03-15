@@ -66,6 +66,7 @@ type
     MenuItem22: TMenuItem;
     MenuItem23: TMenuItem;
     MenuItem27: TMenuItem;
+    Separator1: TMenuItem;
     mnuEMailVersand: TMenuItem;
     mnuDefineAnredeEntries: TMenuItem;
     mnuGebListSplit: TMenuItem;
@@ -326,16 +327,16 @@ begin
   sAppDir                    := vConfigurations.MyDirectory;
   sIniFile                   := vConfigurations.ConfigFile;
   sSavePath                  := sAppDir+'Sicherung';
-  sSavePath                  := help.ReadIniVal(sIniFile, 'Sicherung', 'Verzeichnis', sSavePath, true);
-  sPrintPath                 := help.ReadIniVal(sIniFile, 'Ausgaben'  , 'Verzeichnis', sAppDir+'Ausgaben\', true);
-  sDatabase                  := help.ReadIniVal(sIniFile, 'Datenbank','Datei',sAppDir+'ge_kart7.db', true);
+  sSavePath                  := help.ReadIniVal(sIniFile, 'Sicherung', 'Verzeichnis', sAppDir+'Sicherung\', true);
+  sPrintPath                 := help.ReadIniVal(sIniFile, 'Ausgaben' , 'Verzeichnis', sAppDir+'Ausgaben\', true);
+  sDatabase                  := help.ReadIniVal(sIniFile, 'Datenbank', 'Datei'      , sAppDir+'ge_kart7.db', true);
   sDatabaseLock              := ChangeFileExt(sDatabase, '.lock');
-  sDebugFile                 := help.ReadIniVal(sIniFile, 'Debug', 'Name', sAppDir+'debug.txt', true);
-  bSQLDebug                  := 'TRUE' = Uppercase(help.ReadIniVal(sIniFile, 'Debug', 'SQLDebug', 'true', true));
-  sUserAndPCName             := replacechar(GetComputerName, ' ', '_')+';'+replacechar(GetUserName, ' ', '_');    //PC und User Name ermitteln
-  mnuSQLDebug.Checked        := bSQLDebug;
+  sDebugFile                 := help.ReadIniVal(sIniFile, 'Debug', 'Name', sAppDir+'debug\debug.txt', true);
   bDebug                     := 'TRUE' = Uppercase(help.ReadIniVal(sIniFile, 'Debug', 'Debug', 'true', true));
+  bSQLDebug                  := 'TRUE' = Uppercase(help.ReadIniVal(sIniFile, 'Debug', 'SQLDebug', 'true', true));
+  mnuSQLDebug.Checked        := bSQLDebug;
   mnuDebug.Checked           := bDebug;
+  sUserAndPCName             := replacechar(GetComputerName, ' ', '_')+';'+replacechar(GetUserName, ' ', '_');    //PC und User Name ermitteln
   frmMain.caption            := 'GE_Kart '+GetProductVersionString;
   labVersion.Caption         := labVersion.Caption + ' ' + frmMain.caption;
   bDatabaseVersionChecked    := false;
@@ -569,10 +570,10 @@ begin
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
+
 begin
   slAusgabe.Free;
   slHelp.Free;
-
   myDebugLN('Beende GE_Kart');
   myDebugLN('************************************************************************************');
   FlushDebug;
@@ -1104,15 +1105,10 @@ begin
   frmDM.ExecSQL(sSQL_ClearMark1);
   frmDM.ExecSQL(sSQL_ClearMark2);
 
-  sNamen := '';
-
-  frmDM.dsetHelp.sql.Clear;
-  frmDM.dsetHelp.sql.add('select vorname, Nachname');
-  frmDM.dsetHelp.sql.add('from '+global.sPersTablename);
-  frmDM.dsetHelp.sql.add('where markiert <> ''0''');
-  frmDM.dsetHelp.sql.add('order by nachname, vorname');
-
+  frmDM.dsetHelp.sql.Text := 'select vorname, Nachname from '+global.sPersTablename+' where markiert <> ''0'' order by nachname, vorname';
   frmDM.dsetHelp.open;
+
+  sNamen := '';
   while not frmDM.dsetHelp.eof do
     begin
       sNamen := sNamen + frmDM.dsetHelp.fieldByName('vorname').asstring+' '+frmDM.dsetHelp.fieldByName('Nachname').asstring+#13;
