@@ -295,16 +295,16 @@ begin
         then
           result := result +
                     DateToStr(frmDM.dsetHelp.fieldByName('Geburtstag').asdateTime)+' '+
-                    frmDM.dsetHelp.fieldByName('vorname').asstring+' '+frmDM.dsetHelp.fieldByName('Nachname').asstring+' '+
-                    inttostr(AgeAtDate(frmDM.dsetHelp.fieldByName('Geburtstag').asdateTime,datum))+' Jahre, Tel.: '+
+                    AppendChar(frmDM.dsetHelp.fieldByName('vorname').asstring+' '+frmDM.dsetHelp.fieldByName('Nachname').asstring, ' ', 18)+' '+
+                    inttostr(AgeAtDate(frmDM.dsetHelp.fieldByName('Geburtstag').asdateTime,datum))+', '+
                     frmDM.dsetHelp.fieldByName('TelPrivat').asstring+#13#10;
       if mnuShowTaufTag.Checked and
          (FormatDateTime('ddmm', datum) = FormatDateTime('ddmm', frmDM.dsetHelp.fieldByName('TaufDatum').asdateTime))
         then
           result := result +
                     DateToStr(frmDM.dsetHelp.fieldByName('TaufDatum').asdateTime)+' '+
-                    frmDM.dsetHelp.fieldByName('vorname').asstring+' '+frmDM.dsetHelp.fieldByName('Nachname').asstring+' '+
-                    inttostr(AgeAtDate(frmDM.dsetHelp.fieldByName('TaufDatum').asdateTime,datum))+'ter Tauftag, Tel.: '+
+                    AppendChar(frmDM.dsetHelp.fieldByName('vorname').asstring+' '+frmDM.dsetHelp.fieldByName('Nachname').asstring, ' ', 18)+' '+
+                    inttostr(AgeAtDate(frmDM.dsetHelp.fieldByName('TaufDatum').asdateTime,datum))+'ter Tauftag, '+
                     frmDM.dsetHelp.fieldByName('TelPrivat').asstring+#13#10;
       frmDM.dsetHelp.next;
     end;
