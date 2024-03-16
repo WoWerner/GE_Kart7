@@ -1,0 +1,34 @@
+﻿Änderungen in der Version 7.5.4.1 (16.03.2024)
+
+- Programmabsturz beim Hinzufügen von Kommunikanten und Besuche beseitigt
+- Datenexport der markierten Personen
+- Datenimport aus CSV verbessert
+  Damit kann der Datenexport direkt ohne Nachbearbeitung eingelesen werden
+  Die Datei kann z.B. 
+	- für Überweisungen in andere Gemeinden genutzt werden
+	- wiederherstellen aus Datensicherungen
+  Es erfolgt auch eine Überpüfung bevor die Daten importiert werden.
+  Die Fehlermeldungen wurden verbessert
+  
+- Kleine interne Verbesserungen 
+  - Farben
+  - Anzeige der Geburtstage auf der Startseite  
+
+Änderungen in der Version 7.5.4.0 (09.03.2024)
+
+- Kommunikanten und Besuche können auch ohne Bearbeitungsmodus eingegeben werden
+- Kommunikanten können in der Gottesdienstmaske eingegeben werden 
+- Kollekten können in der Gottesdienstmaske eingegeben werden (Bugfix)
+- Verbesserung der Benutzung auf geteilten Laufwerken (Bugfix)
+- Bereinigung Kommunikaten von doppelten Einträgen
+- Verhindern der doppelten Eingabe von Kommunikaten
+
+Änderungen in der Version 7.5.3.4 (15.02.2024)
+
+- Verbesserung der Benutzung auf geteilten Laufwerken
+- Tools --> Werkzeuge umbenannt
+
+Interne Änderungen:
+- SQLite 3.45.1
+
+Soll die Meldung noch einmal angezeigt werden?

@@ -59,13 +59,13 @@ const
   //Markierungen
   sSQL_DelMark       = 'Update '+sPersTablename+' set markiert=0';
   sSQL_ClearMark1    = 'Update '+sPersTablename+' set markiert=0 where ((markiert=''N'') or (markiert=''F''))';
-  sSQL_ClearMark2    = 'Update '+sPersTablename+' set markiert=1 where ((markiert=''Y'') or (markiert=''T''))';
+  sSQL_ClearMark2    = 'Update '+sPersTablename+' set markiert=1 where (markiert <> 0)';
   sSQL_InvertMark    = 'Update '+sPersTablename+' set markiert = not markiert';
 
   //Abgänge
   sSQL_DelAbgang     = 'Update '+sPersTablename+' set Abgang=0';
   sSQL_ClearAbgang1  = 'Update '+sPersTablename+' set Abgang=0 where ((Abgang=''N'') or (Abgang=''F''))';
-  sSQL_ClearAbgang2  = 'Update '+sPersTablename+' set Abgang=1 where ((Abgang=''Y'') or (Abgang=''T''))';
+  sSQL_ClearAbgang2  = 'Update '+sPersTablename+' set Abgang=1 where (Abgang <> 0)';
 
   //Auswahlliste
   sSQL_Auswahlliste = 'select personenID, Vorname, Vorname2, NachName, GebName, Geburtstag, Taufdatum, Kirche from Personen '+
@@ -248,37 +248,36 @@ const
 
   sGemeindenAlle      = 'Alle';
 
-
-
 type
   EMyException = class(Exception);
 
 var
-  sPW, sPW1         : string; //Verschlüsseltes PW
-  sAktuelles        : String;
-  sAnredenEintraege : String;
-  sAppDir           : String;
-  sDatabase         : string;
-  sDatabaseLock     : string;
-  sDebugFile        : String;
-  sDefaultGemeinde  : string;
-  sGemeinden        : String;
-  sIniFile          : String;
-  sKirchenEintraege : String;
-  sNewVers          : String;
-  sPrintPath        : String;
-  sReportFile       : String;
-  sSavePath         : String;
-  sUserDefSQLFile   : String = 'UserDefSQL.SQL';
-  sUserAndPCName    : String;
-  bSQLDebug         : boolean;
-  dtLastSave        : TDateTime;
+  sPW,
+  sPW1                    : string; //Verschlüsseltes PW
+  sAktuelles              : String;
+  sAnredenEintraege       : String;
+  sAppDir                 : String;
+  sDatabase               : string;
+  sDatabaseLock           : string;
+  sDebugFile              : String;
+  sDefaultGemeinde        : string;
+  sGemeinden              : String;
+  sIniFile                : String;
+  sKirchenEintraege       : String;
+  sNewVers                : String;
+  sPrintPath              : String;
+  sReportFile             : String;
+  sSavePath               : String;
+  sUserDefSQLFile         : String = 'UserDefSQL.SQL';
+  sUserAndPCName          : String;
+  bSQLDebug               : boolean;
+  dtLastSave              : TDateTime;
   ScaleFactor,
   ScaleFactorY,
-  ScaleFactorX      : double;
+  ScaleFactorX            : double;
   bDatabaseVersionChecked : boolean;
-  WORKAREA            : TRect;
-  slPersonenFeldNamen : TStringList;
+  WORKAREA                : TRect;
+  slPersonenFeldNamen     : TStringList;
 
 
 implementation

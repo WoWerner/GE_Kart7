@@ -916,7 +916,7 @@ begin
               sSQL_FeldNamen += ' MARKIERT, ABGANG) VALUES (';
               myDebugLN(sSQL_FeldNamen);
 
-              if ErrorText = '' then
+              if ErrorText = '' then     //keine Fehler bei den Feldnamen, Weiter mit Import
                 begin
                   //eigentliche Daten lesen und einfügen
                   while not CSVDatasetImport.EOF do

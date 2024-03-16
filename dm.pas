@@ -282,18 +282,18 @@ begin
                       sHelp := '7.5.4';
                       myDebugLN('DB-Version now: '+sHelp);
                     end;
+
+                //Ermittlung der aktuellen möglichen Feldnamen (für den Datenimport aos CSV)
                 slPersonenFeldNamen.Clear;
                 dsetHelp2.sql.Text := 'select * from '+global.sPersTablename;
                 dsetHelp2.open;
                 for i := 0 to dsetHelp2.FieldDefs.Count-1 do
-                  begin
-                    slPersonenFeldNamen.Add(UPPERCASE(dsetHelp2.FieldDefs.Items[i].Name));
-                  end;
+                  slPersonenFeldNamen.Add(UPPERCASE(dsetHelp2.FieldDefs.Items[i].Name));
                 dsetHelp2.Close;
+                //myDebugLN(slPersonenFeldNamen.Text);
+
                 bDatabaseVersionChecked := true;
               end;
-
-          myDebugLN(slPersonenFeldNamen.Text);
 
           if OpenDatabases then
             begin
