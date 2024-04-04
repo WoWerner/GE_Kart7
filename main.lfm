@@ -298,13 +298,12 @@ object frmMain: TfrmMain
         Caption = 'Import'
         object mnuCSVImport: TMenuItem
           Caption = 'Füge Daten aus einer CSV-Datei an die Datenbank an (UTF8 Kodierung)'
-          OnClick = mnuCSVImportClick 
-		    
-        end      
-		object mnuPrintDBStrukt: TMenuItem
-              Caption = 'Zeige Datenbankstruktur'
-              OnClick = mnuPrintDBStruktClick
-          end 
+          OnClick = mnuCSVImportClick
+        end
+        object mnuPrintDBStrukt: TMenuItem
+          Caption = 'Zeige Datenbankstruktur'
+          OnClick = mnuPrintDBStruktClick
+        end
         object MenuItem1: TMenuItem
           Caption = '-'
         end

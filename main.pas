@@ -1323,8 +1323,9 @@ begin
   PerpareDatabaseForPrint;
   for i := 0 to frmDM.dsetHelp.FieldDefs.Count-1 do
     begin
-      if frmDM.dsetHelp.FieldDefs[i].DataType in [ftDate, ftString, ftInteger]
-        then slAusgabe.Add(frmDM.dsetHelp.FieldDefs[i].Name);
+      if frmDM.dsetHelp.FieldDefs[i].DataType in [ftDate, ftString, ftInteger, ftLargeint]
+        then slAusgabe.Add(frmDM.dsetHelp.FieldDefs[i].Name)
+        else myDebugln(FieldTypeToString(frmDM.dsetHelp.FieldDefs[i].DataType));
     end;
 
   frmFreieListe.SrcList.Items.Text := slAusgabe.Text;
@@ -2406,8 +2407,8 @@ begin
   if AskForAge and
      (StrToInt(FormatDateTime('MM',Now)) > 10) and
      (MessageDlg('Für Listen mit Alter: Ausgeben für das Folgejahr?', mtConfirmation, [mbYes, mbNo],0) = mrYes) //Ab November für das Folgejahr?
-    then frmDM.dsetHelp.SQL.Text:='select *, (strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) + 1 as Age from personen'
-    else frmDM.dsetHelp.SQL.Text:='select *, (strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) as Age from personen';
+    then frmDM.dsetHelp.SQL.Text:='select *, (strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) + 1 as PersonenAlter from personen'
+    else frmDM.dsetHelp.SQL.Text:='select *, (strftime(''%Y'', ''now'') - strftime(''%Y'', geburtstag)) as PersonenAlter from personen';
 
   frmDM.dsetHelp.SQL.Add(sWhere+sOrder);
 
