@@ -1755,7 +1755,7 @@ var
     frmDM.dsetHelp.sql.add(sWhere3);
     frmDM.dsetHelp.sql.add(sWhere4);
     frmDM.dsetHelp.sql.add(sWhere5);
-    frmDM.dsetHelp.sql.add('order by strftime(''%j'',geburtstag), nachname, vorname');
+    frmDM.dsetHelp.sql.add('order by strftime(''%m%d'',geburtstag), nachname, vorname');   // %j day of year: 001-366, geht nicht bei Schaltjahr
 
     frmDM.dsetHelp.open;
 
@@ -1781,7 +1781,7 @@ var
         frmDM.dsetHelp.sql.add(sWhere3);
         frmDM.dsetHelp.sql.add(sWhere4);
         frmDM.dsetHelp.sql.add(sWhere5);
-        frmDM.dsetHelp.sql.add('order by strftime(''%j'',geburtstag), nachname, vorname');
+        frmDM.dsetHelp.sql.add('order by strftime(''%m%d'',geburtstag), nachname, vorname');  // %j day of year: 001-366, geht nicht bei Schaltjahr
 
         frmDM.dsetHelp.open;
         while not frmDM.dsetHelp.eof do
@@ -2388,7 +2388,7 @@ begin
   //Order by ermitteln
   if      mnuSortName.checked     then sOrder := ' order by Upper(tempstring)'
   else if mnuSortOrt.checked      then sOrder := ' order by PLZ, Ort, Ortsteil, Strasse, Upper(tempstring)'
-  else if mnuSortGeb.checked      then sOrder := ' order by strftime(''%m%d'',geburtstag), Upper(tempstring)'  // %j day of year: 001-366 //Geht nicht bei Schaltjahr
+  else if mnuSortGeb.checked      then sOrder := ' order by strftime(''%m%d'',geburtstag), Upper(tempstring)'  // %j day of year: 001-366, geht nicht bei Schaltjahr
   else if mnuSortGebAlter.checked then sOrder := ' order by strftime(''%J'',geburtstag), Upper(tempstring)'    // %J Julian day number
   else if mnuSortTauf.checked     then sOrder := ' order by strftime(''%m%d'',TaufDatum), Upper(tempstring)';
 
