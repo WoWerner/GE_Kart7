@@ -2897,38 +2897,38 @@ begin
                     SetAbgang;
                   end;
 
-              //Abgänge aus älteren Jahren
+              //Abgänge aus anderen Jahren
               sOldYearAbgang := '';
               if (year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_nach_Datum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_nach_Datum').asstring) < frmStatInfo.stat_jahr.text) then
+                 (year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_nach_Datum').asstring) <> frmStatInfo.stat_jahr.text) then
                 begin
                   inc(abgang_old);
                   SetAbgang;
                   sOldYearAbgang := year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_nach_Datum').asstring);
                 end;
               if (year(frmDM.dsetPersonen.fieldByName('UebertrittsAbDatum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('UebertrittsAbDatum').asstring) < frmStatInfo.stat_jahr.text) then
+                 (year(frmDM.dsetPersonen.fieldByName('UebertrittsAbDatum').asstring) <> frmStatInfo.stat_jahr.text) then
                 begin
                   inc(abgang_old);
                   SetAbgang;
                   sOldYearAbgang := year(frmDM.dsetPersonen.fieldByName('UebertrittsAbDatum').asstring);
                 end;
               if (year(frmDM.dsetPersonen.fieldByName('AustrittsDatum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('AustrittsDatum').asstring) < frmStatInfo.stat_jahr.text) then
+                 (year(frmDM.dsetPersonen.fieldByName('AustrittsDatum').asstring) <> frmStatInfo.stat_jahr.text) then
                 begin
                   inc(abgang_old);
                   SetAbgang;
                   sOldYearAbgang := year(frmDM.dsetPersonen.fieldByName('AustrittsDatum').asstring);
                 end;
               if (year(frmDM.dsetPersonen.fieldByName('AusschlussDatum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('AusschlussDatum').asstring) < frmStatInfo.stat_jahr.text) then
+                 (year(frmDM.dsetPersonen.fieldByName('AusschlussDatum').asstring) <> frmStatInfo.stat_jahr.text) then
                 begin
                   inc(abgang_old);
                   SetAbgang;
                   sOldYearAbgang := year(frmDM.dsetPersonen.fieldByName('AusschlussDatum').asstring);
                 end;
               if (year(frmDM.dsetPersonen.fieldByName('TodesDatum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('TodesDatum').asstring) < frmStatInfo.stat_jahr.text) then
+                 (year(frmDM.dsetPersonen.fieldByName('TodesDatum').asstring) <> frmStatInfo.stat_jahr.text) then
                 begin
                   inc(abgang_old);
                   SetAbgang;
@@ -3203,7 +3203,7 @@ begin
                   then
                     begin
                       slAusgabe.add(#13#10+'Es wurden ' +inttostr(Abgang)+' Abgang / Abgänge gefunden. Bei ihnen wurde das Feld "Abgang" gesetzt.');
-                      if Abgang_old > 0 then slAusgabe.add('Es wurden ' +inttostr(Abgang_old)+' alte(r) Abgang / Abgänge gefunden. Bei ihnen wurde das Feld "Abgang" gesetzt.');
+                      if Abgang_old > 0 then slAusgabe.add('Es wurden ' +inttostr(Abgang_old)+' andere(r) Abgang / Abgänge gefunden. Bei ihnen wurde das Feld "Abgang" gesetzt.');
                       slAusgabe.add('Die gefundenen Personen wurden markiert.');
                       slAusgabe.add('Zur Dokumentation können die Karteikarten geduckt werden und danach können die Personen gelöscht werden.');
                       einfuegen2('Abgänge:',sAbgaenge);

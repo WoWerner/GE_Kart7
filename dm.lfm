@@ -4,7 +4,7 @@ object frmDM: TfrmDM
   Top = 64
   Width = 368
   Caption = 'frmDM'
-  LCLVersion = '3.0.0.3'
+  LCLVersion = '3.6.0.0'
   object dsPersonen: TDataSource
     AutoEdit = False
     DataSet = dsetPersonen
@@ -47,9 +47,9 @@ object frmDM: TfrmDM
     Top = 304
   end
   object dsetPersonen: TZQuery
-    Connection = ZConGE_Kart7
     SortedFields = 'TempString'
     AfterScroll = dsetPersonenAfterScroll
+    Connection = ZConGE_Kart7
     BeforePost = dsetPersonenBeforePost
     OnPostError = dsetPostError
     SQL.Strings = (
@@ -69,8 +69,8 @@ object frmDM: TfrmDM
     Top = 304
   end
   object dsetKinder: TZQuery
-    Connection = ZConGE_Kart7
     SortedFields = 'Geburtstag'
+    Connection = ZConGE_Kart7
     OnPostError = dsetPostError
     SQL.Strings = (
       'select KinderID, Vorname, Vorname2, Nachname, GebName, Geburtstag, Taufdatum, Kirche, PersonenID from Kinder'
@@ -99,10 +99,10 @@ object frmDM: TfrmDM
     Top = 356
   end
   object dsetGD: TZQuery
-    Connection = ZConGE_Kart7
     SortedFields = 'GottesdienstDatum'
     SortType = stDescending
     AfterScroll = dsetGDAfterScroll
+    Connection = ZConGE_Kart7
     OnPostError = dsetPostError
     SQL.Strings = (
       'select * from Gottesdienst'
@@ -124,14 +124,14 @@ object frmDM: TfrmDM
   end
   object ZConGE_Kart7: TZConnection
     ControlsCodePage = cCP_UTF8
-    AutoEncodeStrings = True
     Properties.Strings = (
       'AutoEncodeStrings=ON'
       'controls_cp=CP_UTF8'
+      'RawStringEncoding=DB_CP'
     )
-    Connected = True
+    DisableSavepoints = False
     Port = 0
-    Protocol = 'sqlite-3'
+    Protocol = 'sqlite'
     Left = 40
     Top = 21
   end

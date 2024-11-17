@@ -1,0 +1,22 @@
+﻿Änderungen in der Version 7.5.4.2 (17.11.2024)
+
+PersonenAlter eingefügt in "Freie Liste"
+Geburtagsliste Sortierung Schaltjahr angepasst
+Speichern der Gottesdienste in der Gottesdienstverwaltung
+
+Interne Änderungen:
+- SQLite 3.47.0.0
+
+Änderungen in der Version 7.5.4.1 (16.03.2024)
+
+- Programmabsturz beim Hinzufügen von Kommunikanten und Besuche beseitigt
+- Datenexport der markierten Personen
+- Datenimport aus CSV verbessert
+  Damit kann der Datenexport direkt ohne Nachbearbeitung eingelesen werden
+  Die Datei kann z.B. 
+	- für Überweisungen in andere Gemeinden genutzt werden
+	- wiederherstellen aus Datensicherungen
+  Es erfolgt auch eine Überpüfung bevor die Daten importiert werden.
+  Die Fehlermeldungen wurden verbessert
+
+Soll die Meldung noch einmal angezeigt werden?
