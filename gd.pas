@@ -109,11 +109,10 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
   private
-    { private declarations }
+    UpdateKommunikaten: boolean;
   public
-    { public declarations }
     procedure AfterScroll;
-  end; 
+  end;
 
 var
   frmGD: TfrmGD;
@@ -137,7 +136,6 @@ begin
   cbGemeinde.Text       := sGemeindenAlle;
   dbGrid1.SetFocus;
 end;
-
 
 procedure TfrmGD.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
@@ -166,6 +164,7 @@ begin
   DBCBGottesdienstForm1.Hint := sHelp;
   DBCBGottesdienstForm2.Hint := sHelp;
   DBCBGottesdienstForm3.Hint := sHelp;
+  UpdateKommunikaten         := false;
 end;
 
 procedure TfrmGD.FormKeyPress(Sender: TObject; var Key: char);
@@ -211,6 +210,7 @@ begin
            frmDM.ExecSQL(Format(global.sSQL_KOMM_ADD, [SQLiteDateFormat(frmDM.dsetGD.FieldByName('GottesdienstDatum').AsDateTime), DataSet.FieldByName('PersonenID').AsString]));
          end;
     end;
+  UpdateKommunikaten := true;
   AfterScroll();
 end;
 
@@ -230,6 +230,7 @@ begin
            frmDM.ExecSQL('Delete from '+global.sKommTablename+' where KommID='+DataSet.FieldByName('KommID').AsString);
          end;
     end;
+  UpdateKommunikaten := true;
   AfterScroll();
 end;
 
@@ -246,6 +247,8 @@ end;
 
 procedure TfrmGD.btnNewClick(Sender: TObject);
 begin
+  if (frmDM.dsetGD.state in [dsEdit, dsInsert])
+    then frmDM.dsetGD.post;
   frmDM.ExecSQL(Format(global.sSQL_GD_ADD, [FormatDateTime('yyyy-mm-dd', date())]));
   frmDM.dsetGD.refresh;
   frmDM.dsetGD.First;
@@ -298,7 +301,12 @@ var help_chr : Char;
     end;
 
 begin
-  if frmDM.dsetGD.state in [dsEdit, dsInsert] then frmDM.dsetGD.post;
+  if frmDM.dsetGD.state in [dsEdit, dsInsert]
+    then
+      begin
+        frmDM.dsetGD.post;
+        frmDM.dsetGD.refresh;
+      end;
   LabGottesdienstForm1.caption := DB_To_Label(frmDM.dsetGD.FieldByName('GottesdienstForm1').asstring);
   LabGottesdienstForm2.caption := DB_To_Label(frmDM.dsetGD.FieldByName('GottesdienstForm2').asstring);
   LabGottesdienstForm3.caption := DB_To_Label(frmDM.dsetGD.FieldByName('GottesdienstForm3').asstring);
@@ -359,8 +367,14 @@ end;
        DBGridPersonen.Columns.Items[2].Width:=80;
        DBGridPersonen.Columns.Items[3].Width:=70;
        DBGridPersonen.Columns.Items[4].Visible:=false;
-       if frmDM.dsetGD.FieldByName('GdID').AsString <> '' then
-         frmDM.ExecSQL('update '+global.sGDTablename+' set Kommunikanten = '+ inttostr(frmDM.dsetHelp2.RecordCount)+' where GdID = '+frmDM.dsetGD.FieldByName('GdID').AsString);
+       if UpdateKommunikaten
+         then
+           begin
+             if frmDM.dsetGD.FieldByName('GdID').AsString <> ''
+               then
+                 frmDM.ExecSQL('update '+global.sGDTablename+' set Kommunikanten = '+ inttostr(frmDM.dsetHelp2.RecordCount)+' where GdID = '+frmDM.dsetGD.FieldByName('GdID').AsString);
+             UpdateKommunikaten := false;
+           end;
      end;
  end;
 
