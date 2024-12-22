@@ -596,76 +596,79 @@ begin
   if FileExists(UTF8ToSys(sDatabase)) then
     begin
       myDebugLN('FormShow: '+sDatabase);
-      if FileExists(UTF8ToSys(sDatabaseLock)) then
-        begin
-           slHelp.LoadFromFile(sDatabaseLock);
-           MessageDlg('Die Datenbank wird von '+RemoveLastCRLF(slHelp.Text)+' benutzt.'+#13+
-           'Das Programm wird beendet.'+#13#13+
-           'Wenn sie sicher sind, das sie der einzige Benutzer sind, können Sie die Datei'+#13+
-           sDatabaseLock+#13+
-           'löschen' , mtWarning, [mbOK],0);
-           slHelp.Clear;
-           close;  //??? blitzt noch kurz auf
-        end
-      else
-        begin
-          slHelp.Text := sUserAndPCName;
-          slHelp.SaveToFile(sDatabaseLock);
-          slHelp.Clear;
-          frmDM.SetDBPath({UTF8ToSys}(sDatabase));
-          Statusbar.Hint           := 'Database : '+sDatabase;
-          Statusbar.Panels[0].Text := MinimizeName(sDatabase, Statusbar.Canvas, Statusbar.Panels[0].Width);
+      if FileExists(UTF8ToSys(sDatabaseLock))
+        then
+          begin
+             myDebugLN(sDatabaseLock + ' Datei gefunden');
+             slHelp.LoadFromFile(sDatabaseLock);
+             MessageDlg('Die Datenbank wird von '+RemoveLastCRLF(slHelp.Text)+' benutzt.'+#13+
+             'Das Programm wird beendet.'+#13#13+
+             'Wenn sie sicher sind, das sie der einzige Benutzer sind, können Sie die Datei'+#13+
+             sDatabaseLock+#13+
+             'löschen' , mtWarning, [mbOK],0);
+             slHelp.Clear;
+             close;  //??? blitzt noch kurz auf
+          end
+        else
+          begin
+            slHelp.Text := sUserAndPCName;
+            slHelp.SaveToFile(sDatabaseLock);
+            slHelp.Clear;
+            myDebugLN(sDatabaseLock + ' Datei erstellt');
+            frmDM.SetDBPath({UTF8ToSys}(sDatabase));
+            Statusbar.Hint           := 'Database : '+sDatabase;
+            Statusbar.Panels[0].Text := MinimizeName(sDatabase, Statusbar.Canvas, Statusbar.Panels[0].Width);
 
-          frmDM.dbStatus(true);   //Damit wird die Datenbankstruktur geprüft und ggf. angepasst
-          frmDM.dbStatus(false);  //DB schliessen
+            frmDM.dbStatus(true);   //Damit wird die Datenbankstruktur geprüft und ggf. angepasst
+            frmDM.dbStatus(false);  //DB schliessen
 
-          memGeburtstag.Clear;
-          sHelp := HeutigeGebTage(now-2);
-          if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Vorgestern:'+#13#10+sHelp+#13#10;
-          sHelp := HeutigeGebTage(now-1);
-          if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Gestern:'+#13#10+sHelp+#13#10;
-          sHelp := HeutigeGebTage(now);
-          if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Heute:'+#13#10+sHelp+#13#10;
-          sHelp := HeutigeGebTage(now+1);
-          if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Morgen:'+#13#10+sHelp+#13#10;
-          sHelp := HeutigeGebTage(now+2);
-          if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Übermorgen:'+#13#10+sHelp;
+            memGeburtstag.Clear;
+            sHelp := HeutigeGebTage(now-2);
+            if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Vorgestern:'+#13#10+sHelp+#13#10;
+            sHelp := HeutigeGebTage(now-1);
+            if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Gestern:'+#13#10+sHelp+#13#10;
+            sHelp := HeutigeGebTage(now);
+            if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Heute:'+#13#10+sHelp+#13#10;
+            sHelp := HeutigeGebTage(now+1);
+            if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Morgen:'+#13#10+sHelp+#13#10;
+            sHelp := HeutigeGebTage(now+2);
+            if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Übermorgen:'+#13#10+sHelp;
 
-          memGeburtstag.visible := (memGeburtstag.Text <> '');
+            memGeburtstag.visible := (memGeburtstag.Text <> '');
 
-          if bHelp
-            then
-              begin
-                if memGeburtstag.Text <> '' then MessageDlg(memGeburtstag.Text, mtInformation, [mbOK],0);
-                close;  //??? blitzt noch kurz auf
-              end;
+            if bHelp
+              then
+                begin
+                  if memGeburtstag.Text <> '' then MessageDlg(memGeburtstag.Text, mtInformation, [mbOK],0);
+                  close;  //??? blitzt noch kurz auf
+                end;
 
-          frmDM.dbStatus(true);
+            frmDM.dbStatus(true);
 
-          //Sortierreihenfolge Karteikarte vorbereiten
-          frmDM.ExecSQL('Update PERSONEN SET TempString='+SQL_UTF8UmlautReplace('Nachname')+'||'' ''||'+SQL_UTF8UmlautReplace('Vorname'));
-          //DB bereinigen
-          frmDM.ExecSQL(sSQL_ClearMark1);
-          frmDM.ExecSQL(sSQL_ClearMark2);
-          frmDM.ExecSQL(sSQL_ClearAbgang1);
-          frmDM.ExecSQL(sSQL_ClearAbgang2);
-          //NULL Werte aus Gemeinde entfernen
-          frmDM.ExecSQL('Update PERSONEN SET Gemeinde=''''               where '+ SQL_Where_IsNull('Gemeinde'));
-          frmDM.ExecSQL('Update PERSONEN SET Ueberwiesen_nach_Datum='''' where Ueberwiesen_nach_Datum=="30.12.1899"');
-          frmDM.ExecSQL('Update PERSONEN SET AustrittsDatum=''''         where AustrittsDatum="30.12.1899"');
-          frmDM.ExecSQL('Update PERSONEN SET AusschlussDatum=''''        where AusschlussDatum="30.12.1899"');
-          frmDM.ExecSQL('Update PERSONEN SET TodesDatum=''''             where TodesDatum="30.12.1899"');
-          frmDM.ExecSQL('Update PERSONEN SET UebertrittsAbDatum=''''     where UebertrittsAbDatum="30.12.1899"');
+            //Sortierreihenfolge Karteikarte vorbereiten
+            frmDM.ExecSQL('Update PERSONEN SET TempString='+SQL_UTF8UmlautReplace('Nachname')+'||'' ''||'+SQL_UTF8UmlautReplace('Vorname'));
+            //DB bereinigen
+            frmDM.ExecSQL(sSQL_ClearMark1);
+            frmDM.ExecSQL(sSQL_ClearMark2);
+            frmDM.ExecSQL(sSQL_ClearAbgang1);
+            frmDM.ExecSQL(sSQL_ClearAbgang2);
+            //NULL Werte aus Gemeinde entfernen
+            frmDM.ExecSQL('Update PERSONEN SET Gemeinde=''''               where '+ SQL_Where_IsNull('Gemeinde'));
+            frmDM.ExecSQL('Update PERSONEN SET Ueberwiesen_nach_Datum='''' where Ueberwiesen_nach_Datum=="30.12.1899"');
+            frmDM.ExecSQL('Update PERSONEN SET AustrittsDatum=''''         where AustrittsDatum="30.12.1899"');
+            frmDM.ExecSQL('Update PERSONEN SET AusschlussDatum=''''        where AusschlussDatum="30.12.1899"');
+            frmDM.ExecSQL('Update PERSONEN SET TodesDatum=''''             where TodesDatum="30.12.1899"');
+            frmDM.ExecSQL('Update PERSONEN SET UebertrittsAbDatum=''''     where UebertrittsAbDatum="30.12.1899"');
 
-          frmDM.dsetHelp.SQL.Text:='Select * from Gemeinde';
-          frmDM.dsetHelp.Open;
-          labGemeinde1.caption := frmDM.dsetHelp.FieldByName('Adr1').AsString;
-          labGemeinde2.caption := frmDM.dsetHelp.FieldByName('Adr2').AsString;
-          frmDM.dsetHelp.close;
-          frmDM.dbStatus(false); // DB schliessen
+            frmDM.dsetHelp.SQL.Text:='Select * from Gemeinde';
+            frmDM.dsetHelp.Open;
+            labGemeinde1.caption := frmDM.dsetHelp.FieldByName('Adr1').AsString;
+            labGemeinde2.caption := frmDM.dsetHelp.FieldByName('Adr2').AsString;
+            frmDM.dsetHelp.close;
+            frmDM.dbStatus(false); // DB schliessen
 
-          GetGemeindenFromDB;
-        end;
+            GetGemeindenFromDB;
+          end;
     end
   else
     begin
@@ -745,11 +748,18 @@ end;
 
 procedure TfrmMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  if FileExists(UTF8ToSys(sDatabaseLock)) then
-    begin
-      slHelp.LoadFromFile(sDatabaseLock);
-      if (RemoveLastCRLF(slHelp.Text) = sUserAndPCName) then SysUtils.DeleteFile(UTF8ToSys(sDatabaseLock));
-    end;
+  if FileExists(UTF8ToSys(sDatabaseLock))
+    then
+      begin
+        slHelp.LoadFromFile(sDatabaseLock);
+        if (RemoveLastCRLF(slHelp.Text) = sUserAndPCName)
+          then
+            begin
+              SysUtils.DeleteFile(UTF8ToSys(sDatabaseLock));
+              myDebugLN(sDatabaseLock + ' Datei gelöscht');
+            end
+          else myDebugLN(sDatabaseLock +' enthält '+ slHelp.Text);
+      end;
 end;
 
 procedure TfrmMain.labMyMailClick(Sender: TObject);
