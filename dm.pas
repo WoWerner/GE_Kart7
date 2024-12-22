@@ -386,13 +386,18 @@ begin
           lcBindPrepStmt: sMes := sMes + 'Bind prepared     ';
           lcExecPrepStmt: sMes := sMes + 'Execute prepared  ';
           lcUnprepStmt:   sMes := sMes + 'Unprepare prepared';
+          lcFetch:        sMes := sMes + 'Fetch             ';
+          lcFetchDone:    sMes := sMes + 'Fetch complete    ';
         else
                           sMes := sMes + 'Other             ';
         end;
 
-        sMes := sMes +' ' + Event.Message;
+        sMes := sMes + ' ' + Event.Message;
 
-        if Event.Error <> '' then sMes := sMes +', Err: ' + Event.error;
+        if Event.Error <> ''
+          then sMes := sMes +', Err: ' + Event.error;
+
+        sMes := sMes + ', ErrorCodeOrAffectedRows: ' + inttostr(Event.ErrorCodeOrAffectedRows);
 
          myDebugLN(sMes);
       end;
