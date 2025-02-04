@@ -19,7 +19,7 @@ object frmKartei: TfrmKartei
   OnShow = FormShow
   Position = poScreenCenter
   ShowHint = True
-  LCLVersion = '3.0.0.3'
+  LCLVersion = '3.6.0.0'
   object panShowOverview: TPanel
     Left = 0
     Height = 649
@@ -83,9 +83,9 @@ object frmKartei: TfrmKartei
     Height = 488
     Top = 161
     Width = 888
-    ActivePage = TSAllgemein
+    ActivePage = TSZuAbGang
     ParentFont = False
-    TabIndex = 0
+    TabIndex = 3
     TabOrder = 1
     OnChange = pcDetailsChange
     object TSAllgemein: TTabSheet
@@ -110,7 +110,7 @@ object frmKartei: TfrmKartei
         Left = 3
         Height = 15
         Top = 102
-        Width = 71
+        Width = 72
         Caption = 'Telefon privat'
         ParentColor = False
         ParentFont = False
@@ -130,7 +130,7 @@ object frmKartei: TfrmKartei
         Left = 211
         Height = 15
         Top = 102
-        Width = 92
+        Width = 93
         Caption = 'Telefon dienstlich'
         ParentColor = False
         ParentFont = False
@@ -161,7 +161,7 @@ object frmKartei: TfrmKartei
         Left = 419
         Height = 15
         Top = 102
-        Width = 72
+        Width = 73
         Caption = 'Telefon mobil'
         ParentColor = False
         ParentFont = False
@@ -170,7 +170,7 @@ object frmKartei: TfrmKartei
         Left = 651
         Height = 15
         Top = 102
-        Width = 18
+        Width = 17
         Caption = 'Fax'
         ParentColor = False
         ParentFont = False
@@ -502,7 +502,7 @@ object frmKartei: TfrmKartei
         Left = 419
         Height = 15
         Top = 194
-        Width = 219
+        Width = 220
         Caption = 'Internet / Facebook / Twitter / WKW / u.a.'
         ParentColor = False
         ParentFont = False
@@ -541,7 +541,7 @@ object frmKartei: TfrmKartei
         Left = 419
         Height = 15
         Top = 242
-        Width = 219
+        Width = 220
         Caption = 'Internet / Facebook / Twitter / WKW / u.a.'
         ParentColor = False
         ParentFont = False
@@ -1163,7 +1163,7 @@ object frmKartei: TfrmKartei
         Left = 673
         Height = 15
         Top = 264
-        Width = 57
+        Width = 58
         Caption = 'Taufdatum'
         ParentColor = False
         ParentFont = False
@@ -1223,7 +1223,7 @@ object frmKartei: TfrmKartei
         Left = 4
         Height = 15
         Top = 8
-        Width = 61
+        Width = 62
         Caption = 'Tauf Datum'
         ParentColor = False
         ParentFont = False
@@ -1232,7 +1232,7 @@ object frmKartei: TfrmKartei
         Left = 84
         Height = 15
         Top = 8
-        Width = 42
+        Width = 43
         Caption = 'Tauf Ort'
         ParentColor = False
         ParentFont = False
@@ -1252,7 +1252,7 @@ object frmKartei: TfrmKartei
         Left = 285
         Height = 15
         Top = 8
-        Width = 60
+        Width = 61
         Caption = 'Tauf Pfarrer'
         ParentColor = False
         ParentFont = False
@@ -1272,7 +1272,7 @@ object frmKartei: TfrmKartei
         Left = 484
         Height = 15
         Top = 8
-        Width = 62
+        Width = 63
         Caption = 'Tauf Spruch'
         ParentColor = False
         ParentFont = False
@@ -1292,7 +1292,7 @@ object frmKartei: TfrmKartei
         Left = 686
         Height = 15
         Top = 8
-        Width = 70
+        Width = 71
         Caption = 'Tauf. Reg. Nr.'
         ParentColor = False
         ParentFont = False
@@ -1490,7 +1490,7 @@ object frmKartei: TfrmKartei
         Left = 4
         Height = 15
         Top = 241
-        Width = 61
+        Width = 62
         Caption = 'Trau Datum'
         ParentColor = False
         ParentFont = False
@@ -1524,7 +1524,7 @@ object frmKartei: TfrmKartei
         Left = 84
         Height = 15
         Top = 241
-        Width = 42
+        Width = 43
         Caption = 'Trau Ort'
         ParentColor = False
         ParentFont = False
@@ -1544,7 +1544,7 @@ object frmKartei: TfrmKartei
         Left = 285
         Height = 15
         Top = 241
-        Width = 60
+        Width = 61
         Caption = 'Trau Pfarrer'
         ParentColor = False
         ParentFont = False
@@ -1564,7 +1564,7 @@ object frmKartei: TfrmKartei
         Left = 484
         Height = 15
         Top = 241
-        Width = 62
+        Width = 63
         Caption = 'Trau Spruch'
         ParentColor = False
         ParentFont = False
@@ -1584,7 +1584,7 @@ object frmKartei: TfrmKartei
         Left = 686
         Height = 15
         Top = 241
-        Width = 70
+        Width = 71
         Caption = 'Trau. Reg. Nr.'
         ParentColor = False
         ParentFont = False
@@ -1593,7 +1593,7 @@ object frmKartei: TfrmKartei
         Left = 4
         Height = 15
         Top = 282
-        Width = 60
+        Width = 61
         Caption = 'Trauzeugen'
         ParentColor = False
         ParentFont = False
@@ -1863,7 +1863,7 @@ object frmKartei: TfrmKartei
         Left = 4
         Height = 15
         Top = 239
-        Width = 65
+        Width = 66
         Caption = 'Todesdatum'
         ParentColor = False
         ParentFont = False
@@ -2267,7 +2267,7 @@ object frmKartei: TfrmKartei
       object DBCBAbgaenge: TDBCheckBox
         Left = 4
         Height = 23
-        Hint = 'Kann manuel gesetzt werden und wird von der Statistik automatisch gesetzt'
+        Hint = 'Kann manuell gesetzt werden und wird von der Statistik automatisch gesetzt'
         Top = 130
         Width = 90
         Caption = 'Abgang'
@@ -2311,7 +2311,7 @@ object frmKartei: TfrmKartei
         Height = 15
         Hint = 'Sterbeort'
         Top = 239
-        Width = 45
+        Width = 46
         Caption = 'Todesort'
         ParentColor = False
         ParentFont = False
@@ -2385,7 +2385,7 @@ object frmKartei: TfrmKartei
         Left = 523
         Height = 15
         Top = 282
-        Width = 85
+        Width = 84
         Caption = 'Bestattungstext '
         ParentColor = False
         ParentFont = False
@@ -2607,7 +2607,7 @@ object frmKartei: TfrmKartei
         Left = 576
         Height = 15
         Top = 48
-        Width = 90
+        Width = 91
         Caption = 'Terminabsprache'
         ParentColor = False
         ParentFont = False
@@ -2627,7 +2627,7 @@ object frmKartei: TfrmKartei
         Left = 268
         Height = 15
         Top = 48
-        Width = 46
+        Width = 45
         Caption = 'Bibeltext'
         ParentColor = False
         ParentFont = False
@@ -3330,7 +3330,7 @@ object frmKartei: TfrmKartei
         Left = 76
         Height = 15
         Top = 8
-        Width = 22
+        Width = 23
         Caption = 'Titel'
         ParentColor = False
         ParentFont = False

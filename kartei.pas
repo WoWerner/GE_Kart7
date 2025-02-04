@@ -706,6 +706,7 @@ begin
   sAdr := sAdr + trim(frmDM.dsetPERSONEN.FieldByName('Land').AsString + ' ' + frmDM.dsetPERSONEN.FieldByName('PLZ').AsString + ' ' + frmDM.dsetPERSONEN.FieldByName('Ort').AsString);
   Clipboard.AsText := sAdr;
   Handled := true;
+  ShowMessage('Adresse in Zwischenablage kopiert');
 end;
 
 procedure TfrmKartei.AfterScroll;
