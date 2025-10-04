@@ -611,10 +611,17 @@ begin
           end
         else
           begin
-            slHelp.Text := sUserAndPCName;
-            slHelp.SaveToFile(sDatabaseLock);
-            slHelp.Clear;
-            myDebugLN(sDatabaseLock + ' Datei erstellt');
+            try
+              slHelp.Text := sUserAndPCName;
+              slHelp.SaveToFile(sDatabaseLock);
+              slHelp.Clear;
+              myDebugLN(sDatabaseLock + ' Datei erstellt');
+            except
+              on E: Exception do
+                begin
+                  LogAndShowError('Fehler beim Erstellen von: ' + sDatabaseLock + '. Fehler: '+e.Message);
+                end;
+            end;
             frmDM.SetDBPath({UTF8ToSys}(sDatabase));
             Statusbar.Hint           := 'Database : '+sDatabase;
             Statusbar.Panels[0].Text := MinimizeName(sDatabase, Statusbar.Canvas, Statusbar.Panels[0].Width);
@@ -2507,11 +2514,12 @@ begin
   openDialog.Options      := [ofFileMustExist];          // Only allow existing files to be selected
   openDialog.Filter       := 'Alle|*.*|DB-Datei |*.db';
   openDialog.FilterIndex  := 2;                          // Select report files as the starting filter type
-  if openDialog.Execute                                 // Display the open file dialog
+  if openDialog.Execute                                  // Display the open file dialog
     then
       begin
-        FormClose(sender, CloseAction);
-        sDatabase := openDialog.FileName;
+        FormClose(sender, CloseAction);                  // Lock entfernen
+        sDatabase       := openDialog.FileName;
+        sDatabaseLock   := ChangeFileExt(sDatabase, '.lock');
         bDatabaseVersionChecked := false;
         myDebugLN('New Database : '+sDatabase);
         FormShow(sender);                               // Prüft die Datei und stellt das Main Formular richtig dar.

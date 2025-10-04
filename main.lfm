@@ -42,7 +42,7 @@ object frmMain: TfrmMain
   OnShow = FormShow
   Position = poScreenCenter
   ShowHint = True
-  LCLVersion = '3.0.0.3'
+  LCLVersion = '3.8.0.0'
   object lb_Name: TLabel
     Left = 16
     Height = 47
