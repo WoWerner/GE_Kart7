@@ -234,7 +234,7 @@ uses
   LazFileUtils,
   inifiles,
   Ausgabe,
-  ssl_openssl,   // die dll Files gehen nur bis 1.0.2u. Die Version 1.1.1 geht nicht
+  ssl_openssl3,
   httpsend,
   Statinfo,
   suche,

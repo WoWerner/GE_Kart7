@@ -36,13 +36,13 @@ object frmMain: TfrmMain
     0000
   }
   Menu = MainMenu
+  Position = poScreenCenter
+  ShowHint = True
+  LCLVersion = '4.2.0.0'
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
-  Position = poScreenCenter
-  ShowHint = True
-  LCLVersion = '3.8.0.0'
   object lb_Name: TLabel
     Left = 16
     Height = 47
@@ -268,8 +268,8 @@ object frmMain: TfrmMain
     Height = 356
     Top = 8
     Width = 356
-    OnClick = imgSELKClick
     Stretch = True
+    OnClick = imgSELKClick
   end
   object MainMenu: TMainMenu
     Left = 368

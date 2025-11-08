@@ -19,7 +19,7 @@ object frmKartei: TfrmKartei
   OnShow = FormShow
   Position = poScreenCenter
   ShowHint = True
-  LCLVersion = '3.6.0.0'
+  LCLVersion = '3.8.0.0'
   object panShowOverview: TPanel
     Left = 0
     Height = 649
@@ -79,7 +79,7 @@ object frmKartei: TfrmKartei
     Visible = False
   end
   object pcDetails: TPageControl
-    Left = 7
+    Left = 8
     Height = 488
     Top = 161
     Width = 888
@@ -2268,7 +2268,7 @@ object frmKartei: TfrmKartei
         Left = 4
         Height = 23
         Hint = 'Kann manuell gesetzt werden und wird von der Statistik automatisch gesetzt'
-        Top = 130
+        Top = 128
         Width = 90
         Caption = 'Abgang'
         DataField = 'Abgang'
