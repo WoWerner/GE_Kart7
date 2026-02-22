@@ -2443,6 +2443,7 @@ begin
   if frReport.Variables.IndexOf(' Adr1')           <0 then frReport.Variables.Add(' Adr1');
   if frReport.Variables.IndexOf(' Adr2')           <0 then frReport.Variables.Add(' Adr2');
   if frReport.Variables.IndexOf(' Kennzeichnung')  <0 then frReport.Variables.Add(' Kennzeichnung');
+  frReport.Title := Formular;
 
   if CallDesigner
     then frReport.DesignReport

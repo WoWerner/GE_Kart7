@@ -12,7 +12,7 @@ Für den erfolgreichen Build und Betrieb werden folgende Bibliotheken und Werkze
 * **ZeosLib 8.0** – [https://sourceforge.net/projects/zeoslib/](https://sourceforge.net/projects/zeoslib/)
   Datenbankzugriffskomponenten für verschiedene DBMS.
 
-* **SQLite 3.51.0** – [https://sqlite.org/](https://sqlite.org/)
+* **SQLite 3.51.2** – [https://sqlite.org/](https://sqlite.org/)
   Eingebettete SQL-Datenbank.
 
 * **Synapse 41.0** – [https://github.com/geby/synapse](https://github.com/geby/synapse)
@@ -28,7 +28,7 @@ Für den erfolgreichen Build und Betrieb werden folgende Bibliotheken und Werkze
 
 1. Lazarus 4.4 installieren.
 2. ZeosLib 8.0 herunterladen und in Lazarus einbinden.
-3. SQLite 3.51.0 bereitstellen (DLL im Projektverzeichnis oder im Systempfad).
+3. SQLite 3.51.2 bereitstellen (DLL im Projektverzeichnis oder im Systempfad).
 4. Synapse-Bibliothek herunterladen und in Lazarus einrichten.
 5. 7ZIP.dll in das Programmverzeichnis legen.
 
@@ -40,7 +40,7 @@ Für den erfolgreichen Build und Betrieb werden folgende Bibliotheken und Werkze
 
 ## Hinweise
 
-* Die benötigten DLLs (SQLite, 7ZIP) müssen zur Laufzeit im selben Verzeichnis wie die ausführbare Datei liegen.
+* Die benötigten DLLs (SQLite, 7ZIP, libcrypto-3-x64 und libssl-3-x64.) müssen zur Laufzeit im selben Verzeichnis wie die ausführbare Datei liegen.
 * Für den Datenbankzugriff über Zeos muss der entsprechende Treiber aktiviert sein.
 
 ## Lizenz

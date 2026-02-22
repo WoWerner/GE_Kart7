@@ -1,0 +1,19 @@
+﻿Änderungen in der Version 7.5.4.3 (22.02.2026)
+- Statistik: Fehler in der Berechnung der Berechnung der Kommunikanten beseitigt 
+- Nutzung auf OneDrive / GoogleDrive: Verbesserung den Dateisperre
+- Drucken: 2 neue Listen
+
+Interne Änderungen:
+- Das Programm nutzt jetzt die aktuelle 64 Bit Umgebung
+- LazarusVersion 4.4
+- SQLite Version 3.51.2
+- OpenSSL 3.0
+
+Änderungen in der Version 7.5.4.2 (17.11.2024)
+
+PersonenAlter eingefügt in "Freie Liste"
+Geburtagsliste Sortierung Schaltjahr angepasst
+Speichern der Gottesdienste in der Gottesdienstverwaltung
+
+
+Soll die Meldung noch einmal angezeigt werden?
