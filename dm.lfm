@@ -1,17 +1,18 @@
 object frmDM: TfrmDM
   Left = 706
-  Height = 516
+  Height = 774
   Top = 64
-  Width = 368
+  Width = 552
   Caption = 'frmDM'
-  LCLVersion = '3.6.0.0'
+  DesignTimePPI = 144
+  LCLVersion = '4.4.0.0'
   object dsPersonen: TDataSource
     AutoEdit = False
     DataSet = dsetPersonen
     Enabled = False
     OnStateChange = dsPersonenStateChange
-    Left = 232
-    Top = 21
+    Left = 348
+    Top = 32
   end
   object DBF_Help: TDbf
     FilePath = 'D:\src\GE_Kart\GE_Kart7\Datenbank6\'
@@ -19,32 +20,32 @@ object frmDM: TfrmDM
     TableName = 'Ge_kart5.dbf'
     TableLevel = 4
     FilterOptions = []
-    Left = 152
-    Top = 460
+    Left = 228
+    Top = 690
   end
   object dsKinder: TDataSource
     AutoEdit = False
     DataSet = dsetKinder
-    Left = 312
-    Top = 80
+    Left = 468
+    Top = 120
   end
   object dsKomm: TDataSource
     AutoEdit = False
     DataSet = dsetKomm
-    Left = 312
-    Top = 136
+    Left = 468
+    Top = 204
   end
   object dsBesuch: TDataSource
     AutoEdit = False
     DataSet = dsetBesuch
-    Left = 312
-    Top = 192
+    Left = 468
+    Top = 288
   end
   object dsHelp: TDataSource
     AutoEdit = False
     DataSet = dsetHelp
-    Left = 232
-    Top = 304
+    Left = 348
+    Top = 456
   end
   object dsetPersonen: TZQuery
     SortedFields = 'TempString'
@@ -57,16 +58,16 @@ object frmDM: TfrmDM
     )
     Params = <>
     IndexFieldNames = 'TempString Asc'
-    Left = 152
-    Top = 21
+    Left = 228
+    Top = 32
   end
   object dsetHelp: TZQuery
     Connection = ZConGE_Kart7
     OnPostError = dsetPostError
     Params = <>
     MasterSource = dsBesuch
-    Left = 152
-    Top = 304
+    Left = 228
+    Top = 456
   end
   object dsetKinder: TZQuery
     SortedFields = 'Geburtstag'
@@ -80,23 +81,23 @@ object frmDM: TfrmDM
     MasterSource = dsPersonen
     LinkedFields = 'PersonenID'
     IndexFieldNames = 'Geburtstag Asc'
-    Left = 232
-    Top = 80
+    Left = 348
+    Top = 120
   end
   object ZSQLMonitor: TZSQLMonitor
     FileName = 'sql_debug.txt'
     MaxTraceCount = 100
     OnTrace = ZSQLMonitorTrace
     OnLogTrace = ZSQLMonitorLogTrace
-    Left = 40
-    Top = 80
+    Left = 60
+    Top = 120
   end
   object dsetHelp1: TZQuery
     Connection = ZConGE_Kart7
     OnPostError = dsetPostError
     Params = <>
-    Left = 152
-    Top = 356
+    Left = 228
+    Top = 534
   end
   object dsetGD: TZQuery
     SortedFields = 'GottesdienstDatum'
@@ -109,18 +110,18 @@ object frmDM: TfrmDM
     )
     Params = <>
     IndexFieldNames = 'GottesdienstDatum Desc'
-    Left = 152
-    Top = 248
+    Left = 228
+    Top = 372
   end
   object dsGD: TDataSource
     DataSet = dsetGD
-    Left = 232
-    Top = 248
+    Left = 348
+    Top = 372
   end
   object dsHelp1: TDataSource
     DataSet = dsetHelp1
-    Left = 232
-    Top = 356
+    Left = 348
+    Top = 534
   end
   object ZConGE_Kart7: TZConnection
     ControlsCodePage = cCP_UTF8
@@ -129,23 +130,24 @@ object frmDM: TfrmDM
       'controls_cp=CP_UTF8'
       'RawStringEncoding=DB_CP'
     )
+    Connected = True
     DisableSavepoints = False
     Port = 0
     Protocol = 'sqlite'
-    Left = 40
-    Top = 21
+    Left = 60
+    Top = 32
   end
   object dsetHelp2: TZQuery
     Connection = ZConGE_Kart7
     OnPostError = dsetPostError
     Params = <>
-    Left = 152
-    Top = 410
+    Left = 228
+    Top = 615
   end
   object dsHelp2: TDataSource
     DataSet = dsetHelp2
-    Left = 232
-    Top = 410
+    Left = 348
+    Top = 615
   end
   object dsetKomm: TZQuery
     Connection = ZConGE_Kart7
@@ -153,8 +155,11 @@ object frmDM: TfrmDM
       'select * from KOMMUNIONEN'
     )
     Params = <>
-    Left = 232
-    Top = 136
+    MasterFields = 'PersonenID'
+    MasterSource = dsPersonen
+    LinkedFields = 'PersonenID'
+    Left = 348
+    Top = 204
   end
   object dsetBesuch: TZQuery
     Connection = ZConGE_Kart7
@@ -162,7 +167,7 @@ object frmDM: TfrmDM
       'select * from besuch'
     )
     Params = <>
-    Left = 232
-    Top = 192
+    Left = 348
+    Top = 288
   end
 end

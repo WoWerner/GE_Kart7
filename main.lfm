@@ -1,13 +1,14 @@
 object frmMain: TfrmMain
   Left = 599
-  Height = 415
+  Height = 622
   Top = 236
-  Width = 693
+  Width = 1040
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'frmMain'
-  ClientHeight = 415
-  ClientWidth = 693
+  ClientHeight = 622
+  ClientWidth = 1040
+  DesignTimePPI = 144
   Icon.Data = {
     FE0200000000010001002020100000000000E802000016000000280000002000
     0000400000000100040000000000800200000000000000000000000000000000
@@ -38,86 +39,86 @@ object frmMain: TfrmMain
   Menu = MainMenu
   Position = poScreenCenter
   ShowHint = True
-  LCLVersion = '4.2.0.0'
+  LCLVersion = '4.4.0.0'
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
   object lb_Name: TLabel
-    Left = 16
-    Height = 47
-    Top = 24
-    Width = 281
+    Left = 24
+    Height = 71
+    Top = 36
+    Width = 426
     Caption = 'Gemeinde-Kartei'
     Font.Color = clPurple
-    Font.Height = -35
+    Font.Height = -53
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 16
-    Height = 15
-    Top = 152
-    Width = 18
+    Left = 24
+    Height = 25
+    Top = 228
+    Width = 26
     Caption = 'für:'
     ParentColor = False
     ParentFont = False
   end
   object labVersion: TLabel
-    Left = 16
-    Height = 23
-    Top = 72
-    Width = 60
+    Left = 24
+    Height = 36
+    Top = 108
+    Width = 90
     Caption = 'Version:'
-    Font.Height = 24
+    Font.Height = 36
     ParentColor = False
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 16
-    Height = 15
-    Top = 196
-    Width = 23
+    Left = 24
+    Height = 25
+    Top = 294
+    Width = 34
     Caption = 'von:'
     ParentColor = False
     ParentFont = False
   end
   object LabMyName: TLabel
-    Left = 44
-    Height = 15
-    Top = 196
-    Width = 93
+    Left = 66
+    Height = 25
+    Top = 294
+    Width = 139
     Caption = 'Wolfgang Werner'
     Font.Color = clNavy
     ParentColor = False
     ParentFont = False
   end
   object labMyStreet: TLabel
-    Left = 44
-    Height = 15
-    Top = 216
-    Width = 72
+    Left = 66
+    Height = 25
+    Top = 324
+    Width = 109
     Caption = 'Grüner Weg 2'
     Font.Color = clNavy
     ParentColor = False
     ParentFont = False
   end
   object labMyCity: TLabel
-    Left = 44
-    Height = 15
-    Top = 236
-    Width = 169
+    Left = 66
+    Height = 25
+    Top = 354
+    Width = 257
     Caption = '35753 Greifenstein / Holzhausen'
     Font.Color = clNavy
     ParentColor = False
     ParentFont = False
   end
   object labMyTelNr: TLabel
-    Left = 44
-    Height = 15
-    Top = 256
-    Width = 89
+    Left = 66
+    Height = 25
+    Top = 384
+    Width = 147
     Caption = '06478 / 43 29 840'
     Font.Color = clNavy
     ParentColor = False
@@ -125,10 +126,10 @@ object frmMain: TfrmMain
   end
   object labMyMail: TLabel
     Cursor = crHandPoint
-    Left = 44
-    Height = 15
-    Top = 276
-    Width = 100
+    Left = 66
+    Height = 25
+    Top = 414
+    Width = 147
     Caption = 'mail@w-werner.de'
     Font.Color = clNavy
     ParentColor = False
@@ -137,10 +138,10 @@ object frmMain: TfrmMain
   end
   object labMyWeb: TLabel
     Cursor = crHandPoint
-    Left = 44
-    Height = 15
-    Top = 296
-    Width = 96
+    Left = 66
+    Height = 25
+    Top = 444
+    Width = 140
     Caption = 'www.w-werner.de'
     Font.Color = clNavy
     ParentColor = False
@@ -149,10 +150,10 @@ object frmMain: TfrmMain
   end
   object LabGemeinde1: TLabel
     Cursor = crHandPoint
-    Left = 44
-    Height = 15
-    Top = 152
-    Width = 90
+    Left = 66
+    Height = 25
+    Top = 228
+    Width = 134
     Caption = 'Mustergemeinde'
     Font.Color = clNavy
     ParentColor = False
@@ -161,10 +162,10 @@ object frmMain: TfrmMain
   end
   object LabGemeinde2: TLabel
     Cursor = crHandPoint
-    Left = 44
-    Height = 15
-    Top = 168
-    Width = 90
+    Left = 66
+    Height = 25
+    Top = 252
+    Width = 134
     Caption = 'Mustergemeinde'
     Font.Color = clNavy
     ParentColor = False
@@ -172,10 +173,10 @@ object frmMain: TfrmMain
     OnDblClick = mnuGemeindeAdresseClick
   end
   object btnKartei: TButton
-    Left = 16
-    Height = 25
-    Top = 320
-    Width = 120
+    Left = 24
+    Height = 38
+    Top = 480
+    Width = 180
     Caption = 'Kartei bearbeiten'
     ParentFont = False
     TabOrder = 0
@@ -183,25 +184,25 @@ object frmMain: TfrmMain
   end
   object StatusBar: TStatusBar
     Left = 0
-    Height = 23
-    Top = 392
-    Width = 693
+    Height = 36
+    Top = 586
+    Width = 1040
     Panels = <    
       item
-        Width = 400
+        Width = 600
       end    
       item
-        Width = 50
+        Width = 75
       end>
     ParentFont = False
     SimplePanel = False
   end
   object btnSuchen: TButton
-    Left = 146
-    Height = 25
+    Left = 219
+    Height = 38
     Hint = 'Rechtsklick: Volltextsuche'
-    Top = 320
-    Width = 75
+    Top = 480
+    Width = 112
     Caption = 'Suchen'
     ParentFont = False
     ParentShowHint = False
@@ -211,12 +212,12 @@ object frmMain: TfrmMain
     OnContextPopup = btnSuchenContextPopup
   end
   object memGeburtstag: TMemo
-    Left = 312
-    Height = 356
-    Top = 8
-    Width = 374
+    Left = 468
+    Height = 534
+    Top = 12
+    Width = 561
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -11
+    Font.Height = -17
     Font.Name = 'Lucida Console'
     Font.Pitch = fpFixed
     Font.Quality = fqDraft
@@ -227,23 +228,23 @@ object frmMain: TfrmMain
     WordWrap = False
   end
   object btnEnde: TButton
-    Left = 231
-    Height = 25
-    Top = 320
-    Width = 75
+    Left = 346
+    Height = 38
+    Top = 480
+    Width = 112
     Caption = 'Ende'
     ParentFont = False
     TabOrder = 4
     OnClick = mnuEndeClick
   end
   object labVersionNeu: TLabel
-    Left = 16
-    Height = 15
-    Top = 96
-    Width = 129
+    Left = 24
+    Height = 23
+    Top = 144
+    Width = 189
     Caption = 'Neue Version verfügbar: '
     Color = clYellow
-    Font.Height = 16
+    Font.Height = 24
     ParentColor = False
     ParentFont = False
     ParentShowHint = False
@@ -252,10 +253,10 @@ object frmMain: TfrmMain
     OnClick = labVersionNeuClick
   end
   object btnAktuelles: TButton
-    Left = 16
-    Height = 17
-    Top = 352
-    Width = 290
+    Left = 24
+    Height = 26
+    Top = 528
+    Width = 435
     Caption = 'Aktuelles'
     ParentFont = False
     TabOrder = 5
@@ -264,16 +265,16 @@ object frmMain: TfrmMain
   end
   object imgSELK: TImage
     Cursor = crHandPoint
-    Left = 312
-    Height = 356
-    Top = 8
-    Width = 356
+    Left = 468
+    Height = 534
+    Top = 12
+    Width = 534
     Stretch = True
     OnClick = imgSELKClick
   end
   object MainMenu: TMainMenu
-    Left = 368
-    Top = 32
+    Left = 552
+    Top = 48
     object mnuDatei: TMenuItem
       Caption = 'Datei'
       object MenuItem26: TMenuItem
@@ -610,46 +611,32 @@ object frmMain: TfrmMain
   object frDBDataSet: TfrDBDataSet
     DataSet = frmDM.dsetHelp
     DataSource = frmDM.dsHelp
-    Left = 600
-    Top = 32
+    Left = 900
+    Top = 48
   end
   object frReport: TfrReport
     Dataset = frDBDataSet
-    DefaultCopies = 0
     InitialZoom = pzDefault
     Options = []
-    PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
+    PreviewButtons = [pbZoom, pbPrint, pbExit]
     DataType = dtDataSet
     OnGetValue = frReportGetValue
-    Left = 600
-    Top = 128
+    Left = 900
+    Top = 192
   end
   object OpenDialog: TOpenDialog
-    Left = 368
-    Top = 128
+    Left = 552
+    Top = 192
   end
   object SaveDialog: TSaveDialog
-    Left = 368
-    Top = 176
-  end
-  object frTextExport: TfrTextExport
-    ShowExportParamsDlg = False
-    Left = 600
-    Top = 176
-  end
-  object frHTMExport: TfrHTMExport
-    Left = 600
-    Top = 224
-  end
-  object frCSVExport: TfrCSVExport
-    Left = 600
-    Top = 272
+    Left = 552
+    Top = 264
   end
   object frDBDataSetDetail: TfrDBDataSet
     DataSet = frmDM.dsetHelp1
     DataSource = frmDM.dsHelp1
-    Left = 600
-    Top = 80
+    Left = 900
+    Top = 120
   end
   object CSVDatasetImport: TCSVDataset
     FieldDefs = <>
@@ -660,7 +647,7 @@ object frmMain: TfrmMain
     CSVOptions.LineEnding = #13#10
     CSVOptions.IgnoreOuterWhitespace = False
     CSVOptions.QuoteOuterWhitespace = True
-    Left = 368
-    Top = 271
+    Left = 552
+    Top = 407
   end
 end

@@ -367,6 +367,7 @@ begin
       end;
 end;
 
+
 procedure TfrmDM.ZSQLMonitorLogTrace(Sender: TObject; Event: TZLoggingEvent);
 
 var

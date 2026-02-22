@@ -2769,6 +2769,10 @@ begin
         try
           screen.cursor := crhourglass;
 
+          frmDM.dsetKomm.Close;
+          frmDM.dsetKomm.SQL.Text := 'select * from '+sKommTablename;
+          frmDM.dsetKomm.Open;
+
           frmDM.ExecSQL(global.sSQL_DelMark);
           frmDM.ExecSQL(global.sSQL_DelAbgang);
 
@@ -2979,7 +2983,7 @@ begin
                             else
                               begin
                                 inc(restan);
-                                sRestListe += AppendChar(sPerson,' ',32) + Format('%3.0d', [PersSummKomm])+#13#10;
+                                sRestListe += sPerson+#13#10;
                               end;
                           end
                         else if ok then sInvalidKomm += sPerson+#13#10;
@@ -3152,7 +3156,7 @@ begin
                 einfuegen('Kommunikanten  : '+inttostr(komm),'');
                 einfuegen('Restanten      : '+inttostr(restan),'');
                 einfuegen('Abendmahlsgänge: '+inttostr(SummKomm),'');
-                if sInvalidKomm <> ''       then slAusgabe.add('WARNUNG Abendmahlsgänge bei nicht konf. Personen:'+#13#10+sInvalidKomm);
+                einfuegen2('WARNUNG Abendmahlsgänge bei nicht konf. Personen:',sInvalidKomm);
 
                 slAusgabe.add('');
                 einfuegen('Zugänge        : '+inttostr(zugang),'');
