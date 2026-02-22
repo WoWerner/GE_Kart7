@@ -22,9 +22,6 @@ uses
   DB,
   LR_DBSet,
   LR_Class,
-  LR_E_TXT,
-  LR_E_HTM,
-  LR_E_CSV,
   Windows;
 
 type
@@ -37,12 +34,9 @@ type
     btnEnde: TButton;
     btnAktuelles: TButton;
     CSVDatasetImport: TCSVDataset;
-    frCSVExport: TfrCSVExport;
     frDBDataSet: TfrDBDataSet;
     frDBDataSetDetail: TfrDBDataSet;
-    frHTMExport: TfrHTMExport;
     frReport: TfrReport;
-    frTextExport: TfrTextExport;
     imgSELK: TImage;
     Label1: TLabel;
     Label2: TLabel;
