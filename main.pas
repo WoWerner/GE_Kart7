@@ -2662,10 +2662,14 @@ var
     verst,
     austr,
     konvertzu,
-    komm,
-    restan,
-    SummKomm,
-    PersSummKomm   : integer;
+    nKommunikanten,
+    nRestanten,
+    nKommunikantenNK,
+    nKommunikantenET,
+    nRestantenNK,
+    nRestantenET,
+    nSummKomm,
+    nPersSummKomm   : integer;
     sKommListe,
     sRestListe,
     sFilter,
@@ -2709,9 +2713,13 @@ begin
   verst              := 0;
   austr              := 0;
   konvertzu          := 0;
-  komm               := 0;
-  restan             := 0;
-  SummKomm           := 0;
+  nKommunikanten     := 0;
+  nRestanten         := 0;
+  nKommunikantenNK   := 0;
+  nKommunikantenET   := 0;
+  nRestantenNK       := 0;
+  nRestantenET       := 0;
+  nSummKomm          := 0;
   nw                 := 0;
   nm                 := 0;
   nw10               := 0;
@@ -2953,41 +2961,50 @@ begin
                 end;
 
               {Kommunikantenberechnung}
-              ok           := false;
-              PersSummKomm := 0;
+              //erste einmal zählen
+              nPersSummKomm := 0;
               frmDM.dsetKomm.first;
               while not frmDM.dsetKomm.eof do
                 begin
                   if year(frmDM.dsetKomm.FieldByName('AbendmahlsDatum').asstring) = frmStatInfo.stat_jahr.text
                     then
                       begin
-                        ok := true;
-                        inc(SummKomm);
-                        inc(PersSummKomm)
+                        inc(nSummKomm);
+                        inc(nPersSummKomm)
                       end;
                   frmDM.dsetKomm.next;
                 end;
-
-              if not frmDM.dsetPersonen.fieldByName('Abgang').asboolean
+              //Kommunikanten zuordnen
+              if nPersSummKomm > 0
                 then
                   begin
-                    if (frmDM.dsetPersonen.fieldByName('KonfDatum').asstring <> '') or //Konfimirte
-                       ((TaufJahr - GeburtsJahr) > 14) // Erwachsenentaufe
+                    //Kommunikanten
+                    sKommListe += AppendChar(sPerson,' ',32) + Format('%3.0d', [nPersSummKomm])+#13#10;
+                    if (frmDM.dsetPersonen.fieldByName('KonfDatum').asstring <> '')
+                      then                                         inc(nKommunikanten)   //Konfimirte
+                      else if ((TaufJahr - GeburtsJahr) > 14) then inc(nKommunikantenET) //Erwachsenentaufe
+                      else
+                        begin
+                          inc(nKommunikantenNK);                                         //Nicht Konfimirte
+                          sInvalidKomm += sPerson+#13#10;
+                        end
+                  end
+                else
+                  begin
+                    if (frmDM.dsetPersonen.fieldByName('KonfDatum').asstring <> '')      //Konfimirte
                       then
                         begin
-                          if ok
-                            then
-                              begin
-                                inc(komm);
-                                sKommListe += AppendChar(sPerson,' ',32) + Format('%3.0d', [PersSummKomm])+#13#10;
-                              end
-                            else
-                              begin
-                                inc(restan);
-                                sRestListe += sPerson+#13#10;
-                              end;
-                          end
-                        else if ok then sInvalidKomm += sPerson+#13#10;
+                          inc(nRestanten);
+                          sRestListe += sPerson+#13#10;
+                        end
+                    else if ((TaufJahr - GeburtsJahr) > 14) then
+                      begin
+                        inc(nRestantenET);
+                        sRestListe += sPerson+#13#10;
+                      end
+                    else
+                      inc(nRestantenNK);                                                 //Nicht Konfimirte
+
                   end;
 
               if not frmDM.dsetPersonen.fieldByName('Abgang').asboolean
@@ -3154,10 +3171,23 @@ begin
                 if sInvalidGebTag <> ''     then slAusgabe.add('WARNUNG Ungültiges Geburtsdatum bei folgenden Personen:'+#13#10+sInvalidGebTag);
                 if sInvalidTaufTag <> ''    then slAusgabe.add('WARNUNG Ungültiges Taufdatum bei folgenden Personen:'+#13#10+sInvalidTaufTag);
 
-                einfuegen('Kommunikanten  : '+inttostr(komm),'');
-                einfuegen('Restanten      : '+inttostr(restan),'');
-                einfuegen('Abendmahlsgänge: '+inttostr(SummKomm),'');
-                einfuegen2('WARNUNG Abendmahlsgänge bei nicht konf. Personen:',sInvalidKomm);
+                einfuegen('Abendmahlsgänge    :',Format('%4.0d', [nSummKomm]));
+                einfuegen('Konfirmierte'        ,'');
+                einfuegen('  Kommunikanten    :',Format('%4.0d', [nKommunikanten]));
+                einfuegen('  Restanten        :',Format('%4.0d', [nRestanten]));
+                einfuegen('Erwachsenentaufe'    ,'');
+                einfuegen('  Kommunikanten    :',Format('%4.0d', [nKommunikantenET]));
+                einfuegen('  Restanten        :',Format('%4.0d', [nRestantenET]));
+                einfuegen('Nicht konfirmierte'  ,'');
+                einfuegen('  Kommunikanten    :',Format('%4.0d', [nKommunikantenNK]));
+                einfuegen('  Restanten        :',Format('%4.0d', [nRestantenNK]));
+                if (nSummKomm>0)
+                  then
+                    begin
+                      einfuegen2('WARNUNG Abendmahlsgänge bei nicht konf. Personen:',sInvalidKomm);
+                      einfuegen2('Kommunikantenliste:',sKommListe);
+                      einfuegen2('Restantenliste (Konfirmierte und Erwachsenentaufe) :',sRestListe);
+                    end;
 
                 slAusgabe.add('');
                 einfuegen('Zugänge        : '+inttostr(zugang),'');
@@ -3227,12 +3257,6 @@ begin
                     end;
                 einfuegen2('Nicht konfirmirte Erwachsene:',sN_Konf_Erw);
                 einfuegen2('Erwachsenengetaufte:',sErw_Getaufte);
-                if (komm>0)
-                  then
-                    begin
-                      einfuegen2('Kommunikantenliste:',sKommListe);
-                      einfuegen2('Restantenliste:',sRestListe);
-                    end;
 
                 slAusgabe.add(#13#10+'Erzeugt von GE_Kart '+ GetProductVersionString +' am: '+datetostr(date));
               end;
