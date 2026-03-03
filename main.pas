@@ -361,12 +361,14 @@ begin
   ForceDirectories(UTF8ToSys(sPrintPath));
   ForceDirectories(UTF8ToSys(ExtractFilePath(sDebugFile)));
 
-  myDebugLN('Starte GE_Kart '+labVersion.Caption);
-  myDebugLN('AppDir    : '+sAppDir);
-  myDebugLN('sIniFile  : '+sIniFile);
-  myDebugLN('sSavePath : '+sSavePath);
-  myDebugLN('sPrintPath: '+sPrintPath);
-  myDebugLN('Database  : '+sDatabase);
+  myDebugLN('Starte '+frmMain.caption);
+  myDebugLN('LazarusVersion: '+frmMain.LCLVersion);
+  myDebugLN('FP-Version    : '+{$I %FPCVERSION%});
+  myDebugLN('AppDir        : '+sAppDir);
+  myDebugLN('sIniFile      : '+sIniFile);
+  myDebugLN('sSavePath     : '+sSavePath);
+  myDebugLN('sPrintPath    : '+sPrintPath);
+  myDebugLN('Database      : '+sDatabase);
 
   //Dialoge übersetzen
   TranslateUnitResourceStrings('LCLStrConsts','lclstrconsts.%s.po','de','en');
