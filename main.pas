@@ -1512,7 +1512,7 @@ begin
 
   dt := now();
   if FormatDateTime('MM', dt) = '01' then dt := dt-365;
-  frmStatInfo.stat_jahr.Text        := FormatDateTime('YYYY', dt);
+  frmStatInfo.stat_jahr.text        := FormatDateTime('YYYY', dt);
   frmStatInfo.stat_jahr.Enabled     := true;
   frmStatInfo.stat_Kirche.Enabled   := false;
   frmStatInfo.stat_gemeinde.Enabled := true;
@@ -2606,7 +2606,6 @@ procedure TfrmMain.mnuStatistikClick(Sender: TObject);
   end;
 
 var
-    ok           : boolean;
     nRecords,
     erw,
     kinder,
@@ -2647,6 +2646,7 @@ var
     n75,
     alter,
     GeburtsJahr,
+    nStatJahr,
     konf,
     k_tauf,
     e_tauf,
@@ -2672,13 +2672,15 @@ var
     nRestantenET,
     nSummKomm,
     nPersSummKomm   : integer;
+    sStatJahr,
     sKommListe,
     sRestListe,
     sFilter,
     sAbgaenge,
     sZugang,
-    sPerson,
-    sOldYearAbgang,
+    sInvalid,
+    sPerson,             //Zwischenspeicher
+    sOldYearAbgang,        //Zwischenspeicher Jahr
     sN_Konf_Erw,
     sErw_Getaufte,
     sNewYearZugang,
@@ -2761,6 +2763,7 @@ begin
   sInvalidGebTag     := '';
   sInvalidTaufTag    := '';
   sInvalidKomm       := '';
+  sInvalid           := '';
   sAbgaenge          := '';
   sZugang            := '';
   sN_Konf_Erw        := '';
@@ -2769,7 +2772,7 @@ begin
 
   dt := now();
   if FormatDateTime('MM', dt) = '01' then dt := dt-365;
-  frmStatInfo.stat_jahr.Text        := FormatDateTime('YYYY', dt);
+  frmStatInfo.stat_jahr.text        := FormatDateTime('YYYY', dt);
   frmStatInfo.stat_jahr.Enabled     := true;
   frmStatInfo.stat_Kirche.Enabled   := true;
   frmStatInfo.stat_gemeinde.Enabled := true;
@@ -2779,6 +2782,9 @@ begin
       begin
         try
           screen.cursor := crhourglass;
+
+          sStatJahr := frmStatInfo.stat_jahr.text;
+          nStatJahr := strtoint(sStatJahr);
 
           frmDM.dsetKomm.Close;
           frmDM.dsetKomm.SQL.Text := 'select * from '+sKommTablename;
@@ -2819,7 +2825,7 @@ begin
 
               try
                 GeburtsJahr    := strtoint(year(frmDM.dsetPersonen.fieldByName('Geburtstag').asstring));
-                alter          := strtoint(frmStatInfo.stat_jahr.text) - GeburtsJahr;
+                alter          := nStatJahr - GeburtsJahr;
               except
                 GeburtsJahr    := 0;
                 alter          := -1;
@@ -2827,12 +2833,12 @@ begin
               end;
 
               {die eigentliche statistik}
-              if year(frmDM.dsetPersonen.fieldByName('KonfDatum').asstring) = frmStatInfo.stat_jahr.text then inc(konf);
-              if year(frmDM.dsetPersonen.fieldByName('TrauDatum').asstring) = frmStatInfo.stat_jahr.text then inc(trau);
+              if year(frmDM.dsetPersonen.fieldByName('KonfDatum').asstring) = sStatJahr then inc(konf);
+              if year(frmDM.dsetPersonen.fieldByName('TrauDatum').asstring) = sStatJahr then inc(trau);
 
               //Zugänge
               //Zugänge aus Folgejahren NICHT mitzählen
-              if year(frmDM.dsetPersonen.fieldByName('TaufDatum').asstring) = frmStatInfo.stat_jahr.text then
+              if year(frmDM.dsetPersonen.fieldByName('TaufDatum').asstring) = sStatJahr then
                 begin
                   if alter < 15
                     then inc(k_tauf)
@@ -2840,19 +2846,19 @@ begin
                   inc(zugang);
                   sZugang += sPerson+#13#10;
                 end;
-              if year(frmDM.dsetPersonen.fieldByName('UebertrittsZuDatum').asstring) = frmStatInfo.stat_jahr.text then
+              if year(frmDM.dsetPersonen.fieldByName('UebertrittsZuDatum').asstring) = sStatJahr then
                 begin
                   inc(uebergetr);
                   inc(zugang);
                   sZugang += sPerson+#13#10
                 end;
-              if year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_von_Datum').asstring) = frmStatInfo.stat_jahr.text then
+              if year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_von_Datum').asstring) = sStatJahr then
                 begin
                   inc(ueberweis);
                   inc(zugang);
                   sZugang += sPerson+#13#10
                 end;
-              if year(frmDM.dsetPersonen.fieldByName('EintrittsDatum').asstring) = frmStatInfo.stat_jahr.text then
+              if year(frmDM.dsetPersonen.fieldByName('EintrittsDatum').asstring) = sStatJahr then
                 begin
                   inc(EinTritt);
                   inc(zugang);
@@ -2862,61 +2868,61 @@ begin
               //Zugänge aus Folgejahren
               sNewYearZugang := '';
               if (year(frmDM.dsetPersonen.fieldByName('TaufDatum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('TaufDatum').asstring) >    frmStatInfo.stat_jahr.text)
+                 (year(frmDM.dsetPersonen.fieldByName('TaufDatum').asstring) > sStatJahr)
                 then
                   begin
                     sNewYearZugang := year(frmDM.dsetPersonen.fieldByName('TaufDatum').asstring);
                   end;
 
               if (year(frmDM.dsetPersonen.fieldByName('UebertrittsZuDatum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('UebertrittsZuDatum').asstring) > frmStatInfo.stat_jahr.text)
+                 (year(frmDM.dsetPersonen.fieldByName('UebertrittsZuDatum').asstring) > sStatJahr)
                 then
                   begin
                     sNewYearZugang := year(frmDM.dsetPersonen.fieldByName('UebertrittsZuDatum').asstring);
                   end;
               if (year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_von_Datum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_von_Datum').asstring) > frmStatInfo.stat_jahr.text)
+                 (year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_von_Datum').asstring) > sStatJahr)
                 then
                   begin
                     sNewYearZugang := year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_von_Datum').asstring);
                   end;
               if (year(frmDM.dsetPersonen.fieldByName('EintrittsDatum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('EintrittsDatum').asstring) > frmStatInfo.stat_jahr.text)
+                 (year(frmDM.dsetPersonen.fieldByName('EintrittsDatum').asstring) > sStatJahr)
                 then
                   begin
                     sNewYearZugang := year(frmDM.dsetPersonen.fieldByName('EintrittsDatum').asstring);
                   end;
 
               //Abgänge
-              if year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_nach_Datum').asstring) = frmStatInfo.stat_jahr.text
+              if year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_nach_Datum').asstring) = sStatJahr
                 then
                   begin
                     inc(uebern);
                     inc(abgang);
                     SetAbgang;
                   end;
-              if year(frmDM.dsetPersonen.fieldByName('AustrittsDatum').asstring) = frmStatInfo.stat_jahr.text
+              if year(frmDM.dsetPersonen.fieldByName('AustrittsDatum').asstring) = sStatJahr
                 then
                   begin
                     inc(austr);
                     inc(abgang);
                     SetAbgang;
                   end;
-              if year(frmDM.dsetPersonen.fieldByName('AusschlussDatum').asstring) = frmStatInfo.stat_jahr.text
+              if year(frmDM.dsetPersonen.fieldByName('AusschlussDatum').asstring) = sStatJahr
                 then
                   begin
                     inc(ausgesch);
                     inc(abgang);
                     SetAbgang;
                   end;
-              if year(frmDM.dsetPersonen.fieldByName('TodesDatum').asstring) = frmStatInfo.stat_jahr.text
+              if year(frmDM.dsetPersonen.fieldByName('TodesDatum').asstring) = sStatJahr
                 then
                   begin
                     inc(verst);
                     inc(abgang);
                     SetAbgang;
                   end;
-              if year(frmDM.dsetPersonen.fieldByName('UebertrittsAbDatum').asstring) = frmStatInfo.stat_jahr.text
+              if year(frmDM.dsetPersonen.fieldByName('UebertrittsAbDatum').asstring) = sStatJahr
                 then
                   begin
                     inc(KONVERTZU);
@@ -2927,35 +2933,35 @@ begin
               //Abgänge aus anderen Jahren
               sOldYearAbgang := '';
               if (year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_nach_Datum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_nach_Datum').asstring) <> frmStatInfo.stat_jahr.text) then
+                 (year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_nach_Datum').asstring) < sStatJahr) then
                 begin
                   inc(abgang_old);
                   SetAbgang;
                   sOldYearAbgang := year(frmDM.dsetPersonen.fieldByName('Ueberwiesen_nach_Datum').asstring);
                 end;
               if (year(frmDM.dsetPersonen.fieldByName('UebertrittsAbDatum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('UebertrittsAbDatum').asstring) <> frmStatInfo.stat_jahr.text) then
+                 (year(frmDM.dsetPersonen.fieldByName('UebertrittsAbDatum').asstring) < sStatJahr) then
                 begin
                   inc(abgang_old);
                   SetAbgang;
                   sOldYearAbgang := year(frmDM.dsetPersonen.fieldByName('UebertrittsAbDatum').asstring);
                 end;
               if (year(frmDM.dsetPersonen.fieldByName('AustrittsDatum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('AustrittsDatum').asstring) <> frmStatInfo.stat_jahr.text) then
+                 (year(frmDM.dsetPersonen.fieldByName('AustrittsDatum').asstring) < sStatJahr) then
                 begin
                   inc(abgang_old);
                   SetAbgang;
                   sOldYearAbgang := year(frmDM.dsetPersonen.fieldByName('AustrittsDatum').asstring);
                 end;
               if (year(frmDM.dsetPersonen.fieldByName('AusschlussDatum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('AusschlussDatum').asstring) <> frmStatInfo.stat_jahr.text) then
+                 (year(frmDM.dsetPersonen.fieldByName('AusschlussDatum').asstring) < sStatJahr) then
                 begin
                   inc(abgang_old);
                   SetAbgang;
                   sOldYearAbgang := year(frmDM.dsetPersonen.fieldByName('AusschlussDatum').asstring);
                 end;
               if (year(frmDM.dsetPersonen.fieldByName('TodesDatum').asstring) <> '') and
-                 (year(frmDM.dsetPersonen.fieldByName('TodesDatum').asstring) <> frmStatInfo.stat_jahr.text) then
+                 (year(frmDM.dsetPersonen.fieldByName('TodesDatum').asstring) < sStatJahr) then
                 begin
                   inc(abgang_old);
                   SetAbgang;
@@ -2968,7 +2974,7 @@ begin
               frmDM.dsetKomm.first;
               while not frmDM.dsetKomm.eof do
                 begin
-                  if year(frmDM.dsetKomm.FieldByName('AbendmahlsDatum').asstring) = frmStatInfo.stat_jahr.text
+                  if year(frmDM.dsetKomm.FieldByName('AbendmahlsDatum').asstring) = sStatJahr
                     then
                       begin
                         inc(nSummKomm);
@@ -3094,14 +3100,14 @@ begin
                         end
                       else
                         begin
-                          sZugang += sPerson+ ' (Zugang im Jahr '+sNewYearZugang+'; wird NICHT mitgezählt!)'+#13#10;
+                          sInvalid += sPerson+ ' (Zugang im Jahr '+sNewYearZugang+'; wird NICHT mitgezählt!)'+#13#10;
                         end;
                   end
                 else {Abgänge}
                   begin
-                    sAbgaenge += sPerson;
-                    if sOldYearAbgang <> '' then sAbgaenge += ' (Abgang im Jahr '+sOldYearAbgang+'); wird NICHT mitgezählt!';
-                    sAbgaenge += #13#10;
+                    if sOldYearAbgang <> ''
+                      then sInvalid += sPerson+' (Abgang im Jahr '+sOldYearAbgang+'); wird NICHT mitgezählt!'+#13#10
+                      else sAbgaenge += sPerson+#13#10;
                   end;
 
               frmDM.dsetPersonen.Next;
@@ -3109,7 +3115,7 @@ begin
 
           //und jetzt die Ausgabe
           slAusgabe.add('*****************************************************');
-          slAusgabe.add('Eingabeparameter Jahr       : "'+frmStatInfo.stat_jahr.text+'"');
+          slAusgabe.add('Eingabeparameter Jahr       : "'+sStatJahr+'"');
           slAusgabe.add('                 Konfession : "'+frmStatInfo.stat_Kirche.text+'"');
           slAusgabe.add('                 Gemeinde   : "'+frmStatInfo.stat_gemeinde.text+'"');
           slAusgabe.add('*****************************************************');
@@ -3124,54 +3130,50 @@ begin
                 slAusgabe.add(' ');
                 einfuegen('Jahresstatistik','');
                 slAusgabe.add(' ');
-                einfuegen('Konfirmierte    : '+inttostr(erw),RealToStr(erw/summe*100,2,2)+ ' %');
-                einfuegen('   davon Erwachsengetaufte: '+inttostr(erw_taufe),'');
-                einfuegen('Nicht-Konfirm.  : '+inttostr(kinder),RealToStr(kinder/summe*100,2,2)+ ' %');
-                einfuegen('Nicht-Konf. Erw : '+inttostr(n_konf_erw),RealToStr(n_konf_erw/summe*100,2,2)+ ' %');
-                einfuegen('Summe           : '+inttostr(summe),'');
-                einfuegen('Bemerkungen zu dieser Summe: Sie enthält KEINE Abgänge.','');
+                einfuegen('Konfirmierte              : '+Format('%4.0d  ', [erw])        ,RealToStr(erw/summe*100,5,2)+ ' %');
+                einfuegen('   davon Erwachsengetaufte: '+Format('%4.0d  ', [erw_taufe])  ,'');
+                einfuegen('Nicht-Konfirm.            : '+Format('%4.0d  ', [kinder])     ,RealToStr(kinder/summe*100,5,2)+ ' %');
+                einfuegen('Nicht-Konf. Erw           : '+Format('%4.0d  ', [n_konf_erw]) ,RealToStr(n_konf_erw/summe*100,5,2)+ ' %');
+                einfuegen('Summe                     : '+Format('%4.0d  ', [summe])      ,'');
+                einfuegen('Die Summen enthalten KEINE Abgänge.','');
                 slAusgabe.add(' ');
                 slAusgabe.add('Altersstruktur');
-                einfuegen('Weiblich             : '+inttostr(nw)   ,RealToStr(nw    /summe*100,5,2)+ ' %'); //Hier könnte noch ein Balken ausgegeben werden
-                einfuegen('Weiblich  0-10 Jahre : '+inttostr(nw10 ),RealToStr(nw10  /summe*100,5,2)+ ' %'+Balken(nw10  /summe*300));
-                einfuegen('Weiblich 11-20 Jahre : '+inttostr(nw20 ),RealToStr(nw20  /summe*100,5,2)+ ' %'+Balken(nw20  /summe*300));
-                einfuegen('Weiblich 21-30 Jahre : '+inttostr(nw30 ),RealToStr(nw30  /summe*100,5,2)+ ' %'+Balken(nw30  /summe*300));
-                einfuegen('Weiblich 31-40 Jahre : '+inttostr(nw40 ),RealToStr(nw40  /summe*100,5,2)+ ' %'+Balken(nw40  /summe*300));
-                einfuegen('Weiblich 41-50 Jahre : '+inttostr(nw50 ),RealToStr(nw50  /summe*100,5,2)+ ' %'+Balken(nw50  /summe*300));
-                einfuegen('Weiblich 51-60 Jahre : '+inttostr(nw60 ),RealToStr(nw60  /summe*100,5,2)+ ' %'+Balken(nw60  /summe*300));
-                einfuegen('Weiblich 61-70 Jahre : '+inttostr(nw70 ),RealToStr(nw70  /summe*100,5,2)+ ' %'+Balken(nw70  /summe*300));
-                einfuegen('Weiblich 71-80 Jahre : '+inttostr(nw80 ),RealToStr(nw80  /summe*100,5,2)+ ' %'+Balken(nw80  /summe*300));
-                einfuegen('Weiblich 81-90 Jahre : '+inttostr(nw90 ),RealToStr(nw90  /summe*100,5,2)+ ' %'+Balken(nw90  /summe*300));
-                einfuegen('Weiblich 91-100 Jahre: '+inttostr(nw100),RealToStr(nw100 /summe*100,5,2)+ ' %'+Balken(nw100 /summe*300));
-                einfuegen('Weiblich 101.. Jahre : '+inttostr(nw101),RealToStr(nw101 /summe*100,5,2)+ ' %'+Balken(nw101 /summe*300));
-                einfuegen('Männlich             : '+inttostr(nm)   ,RealToStr(nm    /summe*100,5,2)+ ' %');
-                einfuegen('Männlich  0-10 Jahre : '+inttostr(nm10 ),RealToStr(nm10  /summe*100,5,2)+ ' %'+Balken(nm10  /summe*300));
-                einfuegen('Männlich 11-20 Jahre : '+inttostr(nm20 ),RealToStr(nm20  /summe*100,5,2)+ ' %'+Balken(nm20  /summe*300));
-                einfuegen('Männlich 21-30 Jahre : '+inttostr(nm30 ),RealToStr(nm30  /summe*100,5,2)+ ' %'+Balken(nm30  /summe*300));
-                einfuegen('Männlich 31-40 Jahre : '+inttostr(nm40 ),RealToStr(nm40  /summe*100,5,2)+ ' %'+Balken(nm40  /summe*300));
-                einfuegen('Männlich 41-50 Jahre : '+inttostr(nm50 ),RealToStr(nm50  /summe*100,5,2)+ ' %'+Balken(nm50  /summe*300));
-                einfuegen('Männlich 51-60 Jahre : '+inttostr(nm60 ),RealToStr(nm60  /summe*100,5,2)+ ' %'+Balken(nm60  /summe*300));
-                einfuegen('Männlich 61-70 Jahre : '+inttostr(nm70 ),RealToStr(nm70  /summe*100,5,2)+ ' %'+Balken(nm70  /summe*300));
-                einfuegen('Männlich 71-80 Jahre : '+inttostr(nm80 ),RealToStr(nm80  /summe*100,5,2)+ ' %'+Balken(nm80  /summe*300));
-                einfuegen('Männlich 81-90 Jahre : '+inttostr(nm90 ),RealToStr(nm90  /summe*100,5,2)+ ' %'+Balken(nm90  /summe*300));
-                einfuegen('Männlich 91-100 Jahre: '+inttostr(nm100),RealToStr(nm100 /summe*100,5,2)+ ' %'+Balken(nm100 /summe*300));
-                einfuegen('Männlich 101.. Jahre : '+inttostr(nm101),RealToStr(nm101 /summe*100,5,2)+ ' %'+Balken(nm101 /summe*300));
+                einfuegen('Weiblich             : '+Format('%4.0d', [   nw]),RealToStr(nw    /summe*100,5,2)+ ' %'); //Hier könnte noch ein Balken ausgegeben werden
+                einfuegen('Weiblich  0-10 Jahre : '+Format('%4.0d', [ nw10]),RealToStr(nw10  /summe*100,5,2)+ ' %'+Balken(nw10  /summe*300));
+                einfuegen('Weiblich 11-20 Jahre : '+Format('%4.0d', [ nw20]),RealToStr(nw20  /summe*100,5,2)+ ' %'+Balken(nw20  /summe*300));
+                einfuegen('Weiblich 21-30 Jahre : '+Format('%4.0d', [ nw30]),RealToStr(nw30  /summe*100,5,2)+ ' %'+Balken(nw30  /summe*300));
+                einfuegen('Weiblich 31-40 Jahre : '+Format('%4.0d', [ nw40]),RealToStr(nw40  /summe*100,5,2)+ ' %'+Balken(nw40  /summe*300));
+                einfuegen('Weiblich 41-50 Jahre : '+Format('%4.0d', [ nw50]),RealToStr(nw50  /summe*100,5,2)+ ' %'+Balken(nw50  /summe*300));
+                einfuegen('Weiblich 51-60 Jahre : '+Format('%4.0d', [ nw60]),RealToStr(nw60  /summe*100,5,2)+ ' %'+Balken(nw60  /summe*300));
+                einfuegen('Weiblich 61-70 Jahre : '+Format('%4.0d', [ nw70]),RealToStr(nw70  /summe*100,5,2)+ ' %'+Balken(nw70  /summe*300));
+                einfuegen('Weiblich 71-80 Jahre : '+Format('%4.0d', [ nw80]),RealToStr(nw80  /summe*100,5,2)+ ' %'+Balken(nw80  /summe*300));
+                einfuegen('Weiblich 81-90 Jahre : '+Format('%4.0d', [ nw90]),RealToStr(nw90  /summe*100,5,2)+ ' %'+Balken(nw90  /summe*300));
+                einfuegen('Weiblich 91-100 Jahre: '+Format('%4.0d', [nw100]),RealToStr(nw100 /summe*100,5,2)+ ' %'+Balken(nw100 /summe*300));
+                einfuegen('Weiblich 101.. Jahre : '+Format('%4.0d', [nw101]),RealToStr(nw101 /summe*100,5,2)+ ' %'+Balken(nw101 /summe*300));
+                einfuegen('Männlich             : '+Format('%4.0d', [   nm]),RealToStr(nm    /summe*100,5,2)+ ' %');
+                einfuegen('Männlich  0-10 Jahre : '+Format('%4.0d', [ nm10]),RealToStr(nm10  /summe*100,5,2)+ ' %'+Balken(nm10  /summe*300));
+                einfuegen('Männlich 11-20 Jahre : '+Format('%4.0d', [ nm20]),RealToStr(nm20  /summe*100,5,2)+ ' %'+Balken(nm20  /summe*300));
+                einfuegen('Männlich 21-30 Jahre : '+Format('%4.0d', [ nm30]),RealToStr(nm30  /summe*100,5,2)+ ' %'+Balken(nm30  /summe*300));
+                einfuegen('Männlich 31-40 Jahre : '+Format('%4.0d', [ nm40]),RealToStr(nm40  /summe*100,5,2)+ ' %'+Balken(nm40  /summe*300));
+                einfuegen('Männlich 41-50 Jahre : '+Format('%4.0d', [ nm50]),RealToStr(nm50  /summe*100,5,2)+ ' %'+Balken(nm50  /summe*300));
+                einfuegen('Männlich 51-60 Jahre : '+Format('%4.0d', [ nm60]),RealToStr(nm60  /summe*100,5,2)+ ' %'+Balken(nm60  /summe*300));
+                einfuegen('Männlich 61-70 Jahre : '+Format('%4.0d', [ nm70]),RealToStr(nm70  /summe*100,5,2)+ ' %'+Balken(nm70  /summe*300));
+                einfuegen('Männlich 71-80 Jahre : '+Format('%4.0d', [ nm80]),RealToStr(nm80  /summe*100,5,2)+ ' %'+Balken(nm80  /summe*300));
+                einfuegen('Männlich 81-90 Jahre : '+Format('%4.0d', [ nm90]),RealToStr(nm90  /summe*100,5,2)+ ' %'+Balken(nm90  /summe*300));
+                einfuegen('Männlich 91-100 Jahre: '+Format('%4.0d', [nm100]),RealToStr(nm100 /summe*100,5,2)+ ' %'+Balken(nm100 /summe*300));
+                einfuegen('Männlich 101.. Jahre : '+Format('%4.0d', [nm101]),RealToStr(nm101 /summe*100,5,2)+ ' %'+Balken(nm101 /summe*300));
                 slAusgabe.add(' ');
                 slAusgabe.add('SELK Struktur');
-                einfuegen(' 0-6   Jahre: '+inttostr(n6 ),RealToStr(n6 /summe*100,5,2)+ ' %'+Balken(n6 /summe*100));
-                einfuegen(' 7-13  Jahre: '+inttostr(n13),RealToStr(n13/summe*100,5,2)+ ' %'+Balken(n13/summe*100));
-                einfuegen(' 14-17 Jahre: '+inttostr(n17),RealToStr(n17/summe*100,5,2)+ ' %'+Balken(n17/summe*100));
-                einfuegen(' 18-29 Jahre: '+inttostr(n29),RealToStr(n29/summe*100,5,2)+ ' %'+Balken(n29/summe*100));
-                einfuegen(' 30-39 Jahre: '+inttostr(n39),RealToStr(n39/summe*100,5,2)+ ' %'+Balken(n39/summe*100));
-                einfuegen(' 40-49 Jahre: '+inttostr(n49),RealToStr(n49/summe*100,5,2)+ ' %'+Balken(n49/summe*100));
-                einfuegen(' 50-65 Jahre: '+inttostr(n65),RealToStr(n65/summe*100,5,2)+ ' %'+Balken(n65/summe*100));
-                einfuegen(' 66-74 Jahre: '+inttostr(n74),RealToStr(n74/summe*100,5,2)+ ' %'+Balken(n74/summe*100));
-                einfuegen(' 75..  Jahre: '+inttostr(n75),RealToStr(n75/summe*100,5,2)+ ' %'+Balken(n75/summe*100));
+                einfuegen(' 0-6   Jahre: '+Format('%4.0d', [ n6]),RealToStr(n6 /summe*100,5,2)+ ' %'+Balken(n6 /summe*100));
+                einfuegen(' 7-13  Jahre: '+Format('%4.0d', [n13]),RealToStr(n13/summe*100,5,2)+ ' %'+Balken(n13/summe*100));
+                einfuegen(' 14-17 Jahre: '+Format('%4.0d', [n17]),RealToStr(n17/summe*100,5,2)+ ' %'+Balken(n17/summe*100));
+                einfuegen(' 18-29 Jahre: '+Format('%4.0d', [n29]),RealToStr(n29/summe*100,5,2)+ ' %'+Balken(n29/summe*100));
+                einfuegen(' 30-39 Jahre: '+Format('%4.0d', [n39]),RealToStr(n39/summe*100,5,2)+ ' %'+Balken(n39/summe*100));
+                einfuegen(' 40-49 Jahre: '+Format('%4.0d', [n49]),RealToStr(n49/summe*100,5,2)+ ' %'+Balken(n49/summe*100));
+                einfuegen(' 50-65 Jahre: '+Format('%4.0d', [n65]),RealToStr(n65/summe*100,5,2)+ ' %'+Balken(n65/summe*100));
+                einfuegen(' 66-74 Jahre: '+Format('%4.0d', [n74]),RealToStr(n74/summe*100,5,2)+ ' %'+Balken(n74/summe*100));
+                einfuegen(' 75..  Jahre: '+Format('%4.0d', [n75]),RealToStr(n75/summe*100,5,2)+ ' %'+Balken(n75/summe*100));
                 slAusgabe.add(' ');
-
-                if sInvalidGeschlecht <> '' then slAusgabe.add('WARNUNG Ungültiges Geschlecht bei folgenden Personen:'+#13#10+sInvalidGeschlecht);
-                if sInvalidGebTag <> ''     then slAusgabe.add('WARNUNG Ungültiges Geburtsdatum bei folgenden Personen:'+#13#10+sInvalidGebTag);
-                if sInvalidTaufTag <> ''    then slAusgabe.add('WARNUNG Ungültiges Taufdatum bei folgenden Personen:'+#13#10+sInvalidTaufTag);
 
                 einfuegen('Abendmahlsgänge    :',Format('%4.0d', [nSummKomm]));
                 einfuegen('Konfirmierte'        ,'');
@@ -3183,13 +3185,7 @@ begin
                 einfuegen('Nicht konfirmierte'  ,'');
                 einfuegen('  Kommunikanten    :',Format('%4.0d', [nKommunikantenNK]));
                 einfuegen('  Restanten        :',Format('%4.0d', [nRestantenNK]));
-                if (nSummKomm>0)
-                  then
-                    begin
-                      einfuegen2('WARNUNG Abendmahlsgänge bei nicht konf. Personen:',sInvalidKomm);
-                      einfuegen2('Kommunikantenliste:',sKommListe);
-                      einfuegen2('Restantenliste (Konfirmierte und Erwachsenentaufe) :',sRestListe);
-                    end;
+                einfuegen2('WARNUNG Abendmahlsgänge bei nicht konf. Personen:',sInvalidKomm);
 
                 slAusgabe.add('');
                 einfuegen('Zugänge        : '+inttostr(zugang),'');
@@ -3205,7 +3201,20 @@ begin
                 einfuegen('Ausschlüsse    : '+inttostr(ausgesch),'');
                 einfuegen('Überweisungen  : '+inttostr(uebern),'');
                 einfuegen('Übertritte     : '+inttostr(Konvertzu),'');
-                slAusgabe.add('');
+                einfuegen2('Zugänge:',sZugang);
+                if (Abgang > 0) or
+                   (Abgang_old > 0)
+                  then
+                    begin
+                      slAusgabe.add('');
+                      slAusgabe.add('Es wurden ' +inttostr(Abgang)+' Abgang / Abgänge gefunden. Bei ihnen wurde das Feld "Abgang" gesetzt.');
+                      if Abgang_old > 0 then slAusgabe.add('Es wurden ' +inttostr(Abgang_old)+' andere(r) Abgang / Abgänge gefunden. Bei ihnen wurde das Feld "Abgang" gesetzt.');
+                      slAusgabe.add('Die gefundenen Personen wurden markiert.');
+                      slAusgabe.add('Zur Dokumentation können die Karteikarten geduckt werden und danach können die Personen gelöscht werden.');
+                    end;
+                einfuegen2('Abgänge:',sAbgaenge);
+                einfuegen2('Ungültige Personen',sInvalid);
+
                 einfuegen('Konfirmationen : '+inttostr(konf),'');
                 if trau > 0
                   then
@@ -3215,10 +3224,9 @@ begin
                       einfuegen('Gemeinde kommen, werden Sie doppelt gezählt!','');
                     end;
                 einfuegen('Trauungen      : '+inttostr(trau),'');
-                slAusgabe.add(#13#10);
 
                 //Besuche
-                sFilter := 'where strftime(''%Y'',besuch.Besuchsdatum) = '''+frmStatInfo.stat_jahr.text+''''+
+                sFilter := 'where strftime(''%Y'',besuch.Besuchsdatum) = '''+sStatJahr+''''+
                            ' and personen.Kirche='''+frmStatInfo.stat_Kirche.Text+''' ';
                 if frmStatInfo.stat_gemeinde.Text <> '' then sFilter := sFilter +'and personen.Gemeinde='''+frmStatInfo.stat_gemeinde.Text+''' ';
 
@@ -3243,24 +3251,25 @@ begin
                 frmDM.dsetHelp.Open;
                 einfuegen('Besuchte Pers. : '+inttostr(frmDM.dsetHelp.RecordCount) + ' Wie viele verschiedene Personen wurden besucht.','');
                 frmDM.dsetHelp.Close;
+
                 slAusgabe.add('');
+                slAusgabe.add('-------------------------------------------------------------------------------------------------------');
+                slAusgabe.add('Hinweislisten');
+                slAusgabe.add('-------------------------------------------------------------------------------------------------------');
 
-                einfuegen2('Zugänge:',sZugang);
-
-                if (Abgang > 0) or
-                   (Abgang_old > 0)
-                  then
-                    begin
-                      slAusgabe.add(#13#10+'Es wurden ' +inttostr(Abgang)+' Abgang / Abgänge gefunden. Bei ihnen wurde das Feld "Abgang" gesetzt.');
-                      if Abgang_old > 0 then slAusgabe.add('Es wurden ' +inttostr(Abgang_old)+' andere(r) Abgang / Abgänge gefunden. Bei ihnen wurde das Feld "Abgang" gesetzt.');
-                      slAusgabe.add('Die gefundenen Personen wurden markiert.');
-                      slAusgabe.add('Zur Dokumentation können die Karteikarten geduckt werden und danach können die Personen gelöscht werden.');
-                      einfuegen2('Abgänge:',sAbgaenge);
-                    end;
                 einfuegen2('Nicht konfirmirte Erwachsene:',sN_Konf_Erw);
                 einfuegen2('Erwachsenengetaufte:',sErw_Getaufte);
-
-                slAusgabe.add(#13#10+'Erzeugt von GE_Kart '+ GetProductVersionString +' am: '+datetostr(date));
+                einfuegen2('Ungültiges Geschlecht bei folgenden Personen:',sInvalidGeschlecht);
+                einfuegen2('Ungültiges Geburtsdatum bei folgenden Personen:',sInvalidGebTag);
+                einfuegen2('Ungültiges Taufdatum bei folgenden Personen:',sInvalidTaufTag);
+                if (nSummKomm>0)
+                  then
+                    begin
+                      einfuegen2('Kommunikantenliste:',sKommListe);
+                      einfuegen2('Restantenliste (Konfirmierte und Erwachsenentaufe) :',sRestListe);
+                    end;
+                slAusgabe.add('-------------------------------------------------------------------------------------------------------');
+                slAusgabe.add('Erzeugt von GE_Kart '+ GetProductVersionString +' am '+datetostr(date));
               end;
         finally
           screen.cursor := crdefault;
