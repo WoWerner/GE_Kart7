@@ -216,8 +216,8 @@ object frmMain: TfrmMain
     Top = 8
     Width = 374
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -11
-    Font.Name = 'Lucida Console'
+    Font.Height = -12
+    Font.Name = 'Consolas'
     Font.Pitch = fpFixed
     Font.Quality = fqDraft
     ParentFont = False

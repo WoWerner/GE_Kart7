@@ -206,7 +206,7 @@ type
     procedure ShowDruckenMnu;
     procedure GetGemeindenFromDB;
     Procedure Datensicherung(Auto: boolean);
-    function  HeutigeGebTage(datum:TDateTime): String;
+    function  GebTage(datum:TDateTime): String;
     procedure HandleException(Sender: TObject; E: Exception);
   public
     { public declarations }
@@ -263,7 +263,7 @@ var
   Halt;                  // End of program execution
 end;
 
-function TfrmMain.HeutigeGebTage(datum:TDateTime): String;
+function TfrmMain.GebTage(datum:TDateTime): String;
 
 var
   sWhere : String;
@@ -368,7 +368,7 @@ begin
   myDebugLN('sIniFile      : '+sIniFile);
   myDebugLN('sSavePath     : '+sSavePath);
   myDebugLN('sPrintPath    : '+sPrintPath);
-  myDebugLN('Database      : '+sDatabase);
+  myDebugLN('Datenbank     : '+sDatabase);
 
   //Dialoge übersetzen
   TranslateUnitResourceStrings('LCLStrConsts','lclstrconsts.%s.po','de','en');
@@ -394,12 +394,12 @@ begin
   sDefaultGemeinde  := help.ReadIniVal(sIniFile, 'Defaults','Gemeinde', '', true);
 
   //Skalierung ermitteln für ALLE Fenster
-  ScaleFactor  := 1;
+  ScaleFactor   := 1;
+  ScaleFactorX  := 1;
+  ScaleFactorY  := 1;
   myDebugLN('Screen.PixelsPerInch: '+inttostr(Screen.PixelsPerInch)+', Designwert: '+inttostr(nDefDPI));
 
   WORKAREA      := GETMaxWindowsSize; //Verfügbarer Platz
-  ScaleFactorX  := 1;
-  ScaleFactorY  := 1;
 
   if WORKAREA.Right  < MaxWindWidth  then ScaleFactorX := WORKAREA.Right  / MaxWindWidth;
   if WORKAREA.Bottom < MaxWindHeight then ScaleFactorY := WORKAREA.Bottom / MaxWindHeight;
@@ -619,23 +619,23 @@ begin
                 end;
             end;
             frmDM.SetDBPath({UTF8ToSys}(sDatabase));
-            Statusbar.Hint           := 'Database : '+sDatabase;
+            Statusbar.Hint           := 'Datenbank: '+sDatabase;
             Statusbar.Panels[0].Text := MinimizeName(sDatabase, Statusbar.Canvas, Statusbar.Panels[0].Width);
 
             frmDM.dbStatus(true);   //Damit wird die Datenbankstruktur geprüft und ggf. angepasst
             frmDM.dbStatus(false);  //DB schliessen
 
             memGeburtstag.Clear;
-            sHelp := HeutigeGebTage(now-2);
-            if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Vorgestern:'+#13#10+sHelp+#13#10;
-            sHelp := HeutigeGebTage(now-1);
-            if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Gestern:'+#13#10+sHelp+#13#10;
-            sHelp := HeutigeGebTage(now);
-            if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Heute:'+#13#10+sHelp+#13#10;
-            sHelp := HeutigeGebTage(now+1);
-            if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Morgen:'+#13#10+sHelp+#13#10;
-            sHelp := HeutigeGebTage(now+2);
-            if sHelp <> '' then memGeburtstag.Text := memGeburtstag.Text+'Übermorgen:'+#13#10+sHelp;
+            sHelp := GebTage(now-2);
+            if sHelp <> '' then memGeburtstag.Append('Vorgestern:'+#13#10+sHelp+#13#10);
+            sHelp := GebTage(now-1);
+            if sHelp <> '' then memGeburtstag.Append('Gestern:'+#13#10+sHelp+#13#10);
+            sHelp := GebTage(now);
+            if sHelp <> '' then memGeburtstag.Append('Heute:'+#13#10+sHelp+#13#10);
+            sHelp := GebTage(now+1);
+            if sHelp <> '' then memGeburtstag.Append('Morgen:'+#13#10+sHelp+#13#10);
+            sHelp := GebTage(now+2);
+            if sHelp <> '' then memGeburtstag.Append('Übermorgen:'+#13#10+sHelp);
 
             memGeburtstag.visible := (memGeburtstag.Text <> '');
 
