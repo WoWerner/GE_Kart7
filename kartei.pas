@@ -992,7 +992,9 @@ begin
     then
       begin
         frmDM.ExecSQL(Format(sSQL_Besuch_DEL, [frmDM.dsetPERSONEN.FieldByName('PersonenID').AsString, frmDM.dsetBesuch.FieldByName('BesuchID').AsString]));
-        frmDM.dsetBesuch.Refresh;
+        //frmDM.dsetBesuch.Refresh;    Verursacht Access violation
+        frmDM.dsetBesuch.Close;
+        frmDM.dsetBesuch.open;
         berechnen := True;
       end;
 end;
