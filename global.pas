@@ -16,9 +16,8 @@ const
   sFehltNoch         = 'Diese Funktion fehlt noch.'+#13#10+'Wenn Sie sie brauchen, melden Sie sich.';
   sInBearbeitung     = 'Diese Funktion ist in Bearbeitung.'+#13#10+'Die Ergebnisse können noch falsch sein.';
 
-  nDefDPI            =   96;
   MaxWindWidth       = 1000; //Karteifenster
-  MaxWindHeight      =  675; //Karteifenster
+  MaxWindHeight      =  680; //Karteifenster
 
   //db-Zugriff
   sPersTablename     = 'PERSONEN';

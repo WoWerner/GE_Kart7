@@ -315,6 +315,7 @@ var
   HTTP     : THTTPSend;
   sRelease : String;
   INI      : TINIFile;
+  dpiScale : double;
 
 begin
   Application.OnException    := @HandleException;
@@ -397,12 +398,13 @@ begin
   ScaleFactor   := 1;
   ScaleFactorX  := 1;
   ScaleFactorY  := 1;
-  myDebugLN('Screen.PixelsPerInch: '+inttostr(Screen.PixelsPerInch)+', Designwert: '+inttostr(nDefDPI));
+  dpiScale      := Screen.PixelsPerInch/frmMain.DesignTimePPI;
+  myDebugLN('Screen.PixelsPerInch: '+inttostr(Screen.PixelsPerInch)+', Designwert: '+inttostr(frmMain.DesignTimePPI)+', dpiScale:'+ floattostr(dpiScale));
 
   WORKAREA      := GETMaxWindowsSize; //Verfügbarer Platz
 
-  if WORKAREA.Right  < MaxWindWidth  then ScaleFactorX := WORKAREA.Right  / MaxWindWidth;
-  if WORKAREA.Bottom < MaxWindHeight then ScaleFactorY := WORKAREA.Bottom / MaxWindHeight;
+  if WORKAREA.Right  < (MaxWindWidth  * dpiScale) then ScaleFactorX := WORKAREA.Right  / (MaxWindWidth  * dpiScale);
+  if WORKAREA.Bottom < (MaxWindHeight * dpiScale) then ScaleFactorY := WORKAREA.Bottom / (MaxWindHeight * dpiScale);
 
   if ScaleFactorX < ScaleFactor then ScaleFactor := ScaleFactorX;
   if ScaleFactorY < ScaleFactor then ScaleFactor := ScaleFactorY;
@@ -730,6 +732,7 @@ end;
 procedure TfrmMain.btnKarteiClick(Sender: TObject);
 begin
   GetGemeindenFromDB;
+  kartei.frmKartei.ScaleBy(round(ScaleFactor*100),100);
   kartei.frmKartei.ShowModal;
 end;
 

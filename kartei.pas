@@ -556,13 +556,13 @@ begin
         DBGridDetails.Columns.Clear;
         DBGridDetails.DataSource               := frmDM.dsKinder;
         DBGridDetails.Columns.Items[0].Visible := False;                                    //KinderID
-        DBGridDetails.Columns.Items[1].Width   := Round(ScaleX(145,nDefDPI)*ScaleFactor);   //Vorname
-        DBGridDetails.Columns.Items[2].Width   := Round(ScaleX(145,nDefDPI)*ScaleFactor);   //Vorname2
-        DBGridDetails.Columns.Items[3].Width   := Round(ScaleX(145,nDefDPI)*ScaleFactor);   //Nachname
-        DBGridDetails.Columns.Items[4].Width   := Round(ScaleX(145,nDefDPI)*ScaleFactor);   //GebName
-        DBGridDetails.Columns.Items[5].Width   := Round(ScaleX(80,nDefDPI)*ScaleFactor);    //Geburtstag
-        DBGridDetails.Columns.Items[6].Width   := Round(ScaleX(80,nDefDPI)*ScaleFactor);    //Taufdatum
-        DBGridDetails.Columns.Items[7].Width   := Round(ScaleX(80,nDefDPI)*ScaleFactor);    //Kirche
+        DBGridDetails.Columns.Items[1].Width   := Round(ScaleX(145,frmKartei.DesignTimePPI)*ScaleFactor);   //Vorname
+        DBGridDetails.Columns.Items[2].Width   := Round(ScaleX(145,frmKartei.DesignTimePPI)*ScaleFactor);   //Vorname2
+        DBGridDetails.Columns.Items[3].Width   := Round(ScaleX(145,frmKartei.DesignTimePPI)*ScaleFactor);   //Nachname
+        DBGridDetails.Columns.Items[4].Width   := Round(ScaleX(145,frmKartei.DesignTimePPI)*ScaleFactor);   //GebName
+        DBGridDetails.Columns.Items[5].Width   := Round(ScaleX(80,frmKartei.DesignTimePPI)*ScaleFactor);    //Geburtstag
+        DBGridDetails.Columns.Items[6].Width   := Round(ScaleX(80,frmKartei.DesignTimePPI)*ScaleFactor);    //Taufdatum
+        DBGridDetails.Columns.Items[7].Width   := Round(ScaleX(80,frmKartei.DesignTimePPI)*ScaleFactor);    //Kirche
         DBGridDetails.Columns.Items[8].Visible := False;                                    //PersonenID
       end;
     4: //TSKommunionen
@@ -586,9 +586,9 @@ begin
   end;
 
   case pcDetails.TabIndex of
-    1, 5: pcDetails.Height := Round(ScaleY(342,nDefDPI)*ScaleFactor); //Eltern / Kinder, Besuch
-    4:    pcDetails.Height := Round(ScaleY(160,nDefDPI)*ScaleFactor); //Kommunionen
-    else  pcDetails.Height := Round(ScaleY(488,nDefDPI)*ScaleFactor);
+    1, 5: pcDetails.Height := Round(ScaleY(342,frmKartei.DesignTimePPI)*ScaleFactor); //Eltern / Kinder, Besuch
+    4:    pcDetails.Height := Round(ScaleY(160,frmKartei.DesignTimePPI)*ScaleFactor); //Kommunionen
+    else  pcDetails.Height := Round(ScaleY(488,frmKartei.DesignTimePPI)*ScaleFactor);
   end;
 
   if DBGridDetails.Visible
@@ -659,7 +659,7 @@ begin
               frmDM.dsetKomm.SQL.Text := 'select * from '+sKommTablename+' where (PersonenID = '+frmDM.dsetPERSONEN.FieldByName('PersonenID').AsString+') ORDER BY AbendmahlsDatum DESC';
               frmDM.dsetKomm.Open;
               DBGridDetails.Columns.Items[0].Visible := False;                                    //KommID
-              DBGridDetails.Columns.Items[1].Width   := Round(ScaleX(130,nDefDPI)*ScaleFactor);   //AbendmahlsDatum
+              DBGridDetails.Columns.Items[1].Width   := Round(ScaleX(130,frmKartei.DesignTimePPI)*ScaleFactor);   //AbendmahlsDatum
               DBGridDetails.Columns.Items[2].Visible := False;                                    //PersonenID
               btnDelKomm.Visible := frmDM.dsetKomm.FieldByName('KommID').AsString <> '';
             end;
@@ -669,12 +669,12 @@ begin
               frmDM.dsetBesuch.SQL.Text := 'select * from '+sBesuchTablename+' where (PersonenID = '+frmDM.dsetPERSONEN.FieldByName('PersonenID').AsString+') ORDER BY Besuchsdatum DESC';
               frmDM.dsetBesuch.Open;
               DBGridDetails.Columns.Items[0].Visible := False;                                    //BesuchID
-              DBGridDetails.Columns.Items[1].Width   := Round(ScaleX( 85,nDefDPI)*ScaleFactor);   //Datum
-              DBGridDetails.Columns.Items[2].Width   := Round(ScaleX(400,nDefDPI)*ScaleFactor);   //Grund
-              DBGridDetails.Columns.Items[3].Width   := Round(ScaleX(100,nDefDPI)*ScaleFactor);   //Mitbringsel
-              DBGridDetails.Columns.Items[4].Width   := Round(ScaleX(150,nDefDPI)*ScaleFactor);   //Bibeltext
+              DBGridDetails.Columns.Items[1].Width   := Round(ScaleX( 85,frmKartei.DesignTimePPI)*ScaleFactor);   //Datum
+              DBGridDetails.Columns.Items[2].Width   := Round(ScaleX(400,frmKartei.DesignTimePPI)*ScaleFactor);   //Grund
+              DBGridDetails.Columns.Items[3].Width   := Round(ScaleX(100,frmKartei.DesignTimePPI)*ScaleFactor);   //Mitbringsel
+              DBGridDetails.Columns.Items[4].Width   := Round(ScaleX(150,frmKartei.DesignTimePPI)*ScaleFactor);   //Bibeltext
               DBGridDetails.Columns.Items[5].Visible := False;                                    //Memo
-              DBGridDetails.Columns.Items[6].Width   := Round(ScaleX(100,nDefDPI)*ScaleFactor);   //Terminabsprache
+              DBGridDetails.Columns.Items[6].Width   := Round(ScaleX(100,frmKartei.DesignTimePPI)*ScaleFactor);   //Terminabsprache
               DBGridDetails.Columns.Items[7].Visible := False;                                    //PersonenID
               btnDelBesuch.Visible  := frmDM.dsetBesuch.FieldByName('BesuchID').AsString <> '';
               btnCopyBesuch.Visible := btnDelBesuch.Visible;

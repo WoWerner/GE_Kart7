@@ -1,14 +1,14 @@
 object frmKartei: TfrmKartei
-  Left = 431
-  Height = 675
+  Left = 311
+  Height = 680
   Hint = 'Strg-Pos1: Erster Datensatz'#13#10'Bild hoch: Vorhergehender Datensatz'#13#10'Bild runter: Nächster Datensatz'#13#10'Strg-Ende: Letzter Datensatz'#13#10#13#10'Strg-S: Speichern'#13#10'Strg-P: Drucken'#13#10'Strg-F: Schnellsuche'#13#10#13#10'Mausrad: Datensatzwechsel'#13#10#13#10'F1: Hilfe'
-  Top = 209
-  Width = 1003
+  Top = 52
+  Width = 1000
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Kartei'
-  ClientHeight = 675
-  ClientWidth = 1003
+  ClientHeight = 680
+  ClientWidth = 1000
   KeyPreview = True
   Position = poScreenCenter
   ShowHint = True
@@ -22,7 +22,7 @@ object frmKartei: TfrmKartei
   OnShow = FormShow
   object panShowOverview: TPanel
     Left = 0
-    Height = 649
+    Height = 654
     Top = 0
     Width = 7
     Align = alLeft
@@ -36,12 +36,12 @@ object frmKartei: TfrmKartei
   end
   object panDatenbankOverview: TPanel
     Left = 7
-    Height = 649
+    Height = 654
     Top = 0
     Width = 610
     Align = alLeft
     BevelOuter = bvNone
-    ClientHeight = 649
+    ClientHeight = 654
     ClientWidth = 610
     ParentFont = False
     TabOrder = 12
@@ -49,7 +49,7 @@ object frmKartei: TfrmKartei
     OnMouseLeave = panDatenbankOverviewMouseLeave
     object DBGridOverView: TDBGrid
       Left = 0
-      Height = 649
+      Height = 654
       Hint = 'Zum Scrollen '#13#10'- Cursor oder '#13#10'Bild hoch / runter'#13#10'benutzen.'#13#10' '#13#10'Zum Auswählen auf eine Person klicken.'
       Top = 0
       Width = 600
@@ -3521,13 +3521,13 @@ object frmKartei: TfrmKartei
   object panNavi: TPanel
     Left = 0
     Height = 26
-    Top = 649
-    Width = 1003
+    Top = 654
+    Width = 1000
     Align = alBottom
     BevelOuter = bvNone
     Caption = 'panNavi'
     ClientHeight = 26
-    ClientWidth = 1003
+    ClientWidth = 1000
     ParentFont = False
     TabOrder = 5
     object DBNavigator1: TDBNavigator
@@ -3556,7 +3556,7 @@ object frmKartei: TfrmKartei
       Height = 26
       Hint = 'Anzahl'
       Top = 0
-      Width = 771
+      Width = 768
       Align = alClient
       PageSize = 0
       ParentShowHint = False
@@ -3566,7 +3566,7 @@ object frmKartei: TfrmKartei
       OnChange = scBarKarteiChange
     end
     object DBNavigator2: TDBNavigator
-      Left = 831
+      Left = 828
       Height = 26
       Top = 0
       Width = 60
@@ -3587,7 +3587,7 @@ object frmKartei: TfrmKartei
       VisibleButtons = [nbNext, nbLast]
     end
     object Panel1: TPanel
-      Left = 891
+      Left = 888
       Height = 26
       Top = 0
       Width = 112
